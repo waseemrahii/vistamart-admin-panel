@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiSkipBack } from 'react-icons/fi';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +8,7 @@ import PreviewImage from '../../../../components/FormInput/PreviewImage';
 import FileUpload from '../../../../components/FormInput/FileUpload';
 import apiConfig from '../../../../config/apiConfig';
 import { getAuthData } from '../../../../utils/authHelper';
+import { getUploadUrl, uploadImageToS3 } from '../../../../utils/helpers';
 
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
 const ApiUrl = `${apiConfig.admin}`;
@@ -21,9 +22,12 @@ const BannerUpdateForm = () => {
     const [category, setCategory] = useState('');
     const [brand, setBrand] = useState('');
     const [bannerImage, setBannerImage] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
+    const navigate = useNavigate();
+
     const [token, setToken] = useState('');
 
     useEffect(() => {
@@ -44,7 +48,7 @@ const BannerUpdateForm = () => {
                 setProductId(banner.productId || '');
                 setCategory(banner.category || '');
                 setBrand(banner.brand || '');
-                setBannerImage(banner.bannerImage);
+                setBannerImage(`${apiConfig.bucket}/${banner.bannerImage}`);
             } catch (error) {
                 console.error('Error fetching banner:', error);
                 toast.error('Error fetching banner data');
@@ -66,15 +70,20 @@ const BannerUpdateForm = () => {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
-                if (resourceType === 'product') setProducts(response.data.doc);
-                else if (resourceType === 'category') setCategories(response.data.doc);
-                else if (resourceType === 'brand') setBrands(response.data.doc);
+                if (response.data.doc) {
+                    if (resourceType === 'product') setProducts(response.data.doc);
+                    else if (resourceType === 'category') setCategories(response.data.doc);
+                    else if (resourceType === 'brand') setBrands(response.data.doc);
+                }
             } catch (error) {
                 console.error('Error fetching resources:', error);
+                toast.error('Error fetching resources');
             }
         };
 
-        fetchResourceData();
+        if (resourceType) {
+            fetchResourceData();
+        }
     }, [resourceType, token]);
 
     const handleBannerTypeChange = (e) => setBannerType(e.target.value);
@@ -95,18 +104,28 @@ const BannerUpdateForm = () => {
                 toast.error('Image is too large. Maximum size is 2MB.');
                 return;
             }
-
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                setBannerImage(reader.result); // Set base64 image data for preview
-            };
+            setSelectedFile(file);
+            const objectUrl = URL.createObjectURL(file);
+            setBannerImage(objectUrl); // Update preview image
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        let imageKey = bannerImage; // Use existing image if no new upload
+        if (selectedFile) {
+            try {
+                const uploadConfig = await getUploadUrl(selectedFile.type, "banners");
+                imageKey = await uploadImageToS3(uploadConfig.url, selectedFile);
+            } catch (error) {
+                toast.error('Error uploading image');
+                console.error('Error uploading image:', error);
+                return;
+            }
+        }
+
+        
         const data = {
             bannerType,
             resourceType,
@@ -117,7 +136,7 @@ const BannerUpdateForm = () => {
             }[resourceType],
             url: e.target.url.value,
             publish: false, // Example publish value
-            bannerImage: bannerImage // Base64 image
+            bannerImage: imageKey // Updated or existing image
         };
 
         try {
@@ -130,6 +149,8 @@ const BannerUpdateForm = () => {
 
             if (response.status === 200) {
                 toast.success('Banner updated successfully');
+                navigate('/bannersetup');
+
                 // Optionally navigate back or reset the form
             } else {
                 toast.error('Failed to update banner');
@@ -139,7 +160,6 @@ const BannerUpdateForm = () => {
             console.error('Error updating banner:', error.response ? error.response.data : error.message);
         }
     };
-
 
     return (
         <div className="content container-fluid snipcss-j33vn">

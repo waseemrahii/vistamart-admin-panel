@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { login, selectAuthLoading, selectAuthError } from "../../redux/slices/admin/authSlice";
 
-const LoginPage = () => {
+const LoginPage = ({ setIsLoggedIn }) => {
   const dispatch = useDispatch();
   const loading = useSelector(selectAuthLoading);
   const error = useSelector(selectAuthError);
@@ -26,6 +26,7 @@ const LoginPage = () => {
       const resultAction = await dispatch(login({ email, password }));
       if (login.fulfilled.match(resultAction)) {
         toast.success("Login successful");
+        setIsLoggedIn(true); // Set logged in state to true
         navigate("/");
         // Save email and password if "Remember Me" is checked
         if (rememberMe) {

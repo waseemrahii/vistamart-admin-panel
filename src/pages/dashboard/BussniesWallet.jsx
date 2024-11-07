@@ -34,7 +34,7 @@ const BusinessAnalytics = () => {
   
     walletAnalytics()
     },[])
-    console.log(businessAnalytics ?  businessAnalytics:"")
+    // console.log(businessAnalytics ?  businessAnalytics:"")
     // if(loading) {
     //   return  <LoadingSpinner/>
     // }

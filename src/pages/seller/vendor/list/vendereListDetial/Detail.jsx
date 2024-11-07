@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchVendorById, updateVendorStatus } from "../../../../../redux/slices/seller/vendorSlice"; // Adjust the import path as needed
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
+import apiConfig from "../../../../../config/apiConfig";
 
 const VendorDetailes = () => {
   const { id } = useParams(); // Extract vendor ID from URL parameters
@@ -62,7 +63,9 @@ const VendorDetailes = () => {
       <div className="flex flex-col md:flex-row justify-between items-start mb-4">
         <div className="flex flex-col md:flex-row items-center space-x-0 md:space-x-4">
           <img
-            src={vendorDetails.vendorImage}
+            // src={vendorDetails.vendorImage}
+            src={`${apiConfig.bucket}/${vendorDetails?.vendorImage}`}
+
             alt="Shop Logo"
             className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
           />

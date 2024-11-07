@@ -4,6 +4,7 @@ import TableList from "../../../../../components/FormInput/TableList";
 import { ToastContainer } from "react-toastify"; // Import ToastContainer for notifications
 import ActionButton from "../../../../../components/ActionButton/Action";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
+import apiConfig from "../../../../../config/apiConfig";
 
 const VendorTable = memo(({ onDeleteVendor, vendors }) => {
   // Define columns for the TableList
@@ -16,7 +17,8 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
         <img
           width="50"
           className="avatar rounded-circle"
-          src={vendor?.vendorImage}
+          
+          src={`${apiConfig.bucket}/${vendor?.vendorImage}`}
           alt={vendor?.firstName}
         />
       ),

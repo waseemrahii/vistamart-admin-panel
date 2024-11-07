@@ -29,7 +29,7 @@ export const getProductUploadUrl = async (type) => {
 		const { token } = getAuthData();
 
 		const response = await axios.get(
-			`${BASE_URL}/api/v1/image/upload/product`,
+			`${BASE_URL}/api/v1/image/upload/`,
 			{
 				params: query,
 				headers: {
@@ -48,7 +48,9 @@ export const getProductUploadUrl = async (type) => {
 
 // Function to upload an image to S3
 export const uploadImageToS3 = async (uploadUrl, file) => {
-	try {
+	try { 
+		console.log("upload Url=====", uploadUrl)
+		console.log("upload file=====", file)
 		await axios.put(uploadUrl, file, {
 			headers: {
 				"Content-Type": file.type,

@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { FiUserPlus, FiInfo, FiImage, FiMail } from "react-icons/fi";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import { createVendor } from "../../../../../redux/slices/seller/vendorSlice";
+import { getAuthData } from "../../../../../utils/authHelper";
 import FormSection from "../../../../../components/FormInput/FormSection";
 import FormInput from "../../../../../components/FormInput/FormInput";
 import PreviewImage from "../../../../../components/FormInput/PreviewImage";
 import FileUpload from "../../../../../components/FormInput/FileUpload";
 import FormTextArea from "../../../../../components/FormInput/FormTextArea";
-import {
-	deleteUploadedImages,
-	getUploadUrl,
-	uploadImageToS3,
-} from "../../../../../utils/helpers";
+import { deleteUploadedImages, getUploadUrl, uploadImageToS3 } from "../../../../../utils/helpers";
+import apiConfig from "../../../../../config/apiConfig";
+import axiosInstance from "../../../../../utils/axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 const AddVendorForm = () => {
+	const navigate = useNavigate();
+
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
@@ -33,67 +31,81 @@ const AddVendorForm = () => {
 		banner: null,
 	});
 
-	const [logoPrview, setLogoPreview] = useState([]);
-	const [bannerPreview, setBannerPreview] = useState([]);
-	const [vendorPreview, setVendorPreview] = useState([]);
-	const dispatch = useDispatch();
+	const [logoPreview, setLogoPreview] = useState(null);
+	const [bannerPreview, setBannerPreview] = useState(null);
+	const [vendorPreview, setVendorPreview] = useState(null);
+	const [loading, setLoading] = useState(false);
+
+	const validatePassword = (password) => {
+		const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+		return passwordRegex.test(password);
+	};
 
 	async function uploadImage(uploadConfig, file) {
 		try {
 			await uploadImageToS3(uploadConfig.url, file);
-			return uploadConfig.key; // Return the key if successful
+			return uploadConfig.key;
 		} catch (error) {
 			console.error(`Failed to upload ${file.name}:`, error);
-			return null; // Return null on failure
+			return null;
 		}
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		const uploadedKeys = [];
+		if (!validatePassword(formData.password)) {
+			toast.error("Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character (e.g., 123Abs@)");
+			setLoading(false); // Stop loading on validation failure
 
-		const uploadedKeys = []; // Store successfully uploaded image keys
+			return;
+		}
+		const { token } = getAuthData();
 
-		// Extract files or use default values
 		const logoFile = formData.logo || null;
 		const bannerFile = formData.banner || null;
 		const vendorFile = formData.vendorImage || null;
 
-		// Step 1: Get upload URLs for the three images
-		const [logoUploadConfig, bannerUploadConfig, vendorUploadConfig] =
-			await Promise.all([
+		try {
+			const [logoUploadConfig, bannerUploadConfig, vendorUploadConfig] = await Promise.all([
 				getUploadUrl(logoFile.type, "vendors"),
 				getUploadUrl(bannerFile.type, "vendors"),
 				getUploadUrl(vendorFile.type, "vendors"),
 			]);
 
-		// Step 2: Upload images to S3 using the uploadImage helper function
-		uploadedKeys.push(await uploadImage(logoUploadConfig, logoFile));
-		uploadedKeys.push(await uploadImage(bannerUploadConfig, bannerFile));
-		uploadedKeys.push(await uploadImage(vendorUploadConfig, vendorFile));
+			uploadedKeys.push(await uploadImage(logoUploadConfig, logoFile));
+			uploadedKeys.push(await uploadImage(bannerUploadConfig, bannerFile));
+			uploadedKeys.push(await uploadImage(vendorUploadConfig, vendorFile));
 
-		// Step 3: Check if any image failed to upload
-		const successfulUploads = uploadedKeys.filter((key) => key !== null);
+			const successfulUploads = uploadedKeys.filter((key) => key !== null);
 
-		if (successfulUploads.length < 3) {
-			// If not all images were uploaded, delete the successfully uploaded ones
-			await deleteUploadedImages(successfulUploads);
-			toast.error("Image upload failed, deleted previously uploaded images.");
-			return;
-		}
+			if (successfulUploads.length < 3) {
+				await deleteUploadedImages(successfulUploads);
+				toast.error("Image upload failed, deleted previously uploaded images.");
+				setLoading(false); // Stop loading on error
 
-		try {
-			const finalData = {
+				return;
+			}
+
+			const vendorData = {
 				...formData,
 				logo: successfulUploads[0],
 				banner: successfulUploads[1],
 				vendorImage: successfulUploads[2],
 			};
 
-			console.log(finalData);
+			const response = await axiosInstance.post(
+				`${apiConfig.seller}/vendors/signup`,
+				vendorData,
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
 
-			const actionResult = await dispatch(createVendor(finalData));
-
-			if (createVendor.fulfilled.match(actionResult)) {
+			if (response.data.doc) {
 				toast.success("Vendor added successfully!");
 				setFormData({
 					firstName: "",
@@ -107,15 +119,20 @@ const AddVendorForm = () => {
 					logo: null,
 					banner: null,
 				});
-				setImagePreview(null); // Reset image preview
-				event.target.reset(); // Reset form fields
-			} else {
-				throw new Error(actionResult.error.message || "Failed to add vendor!");
+				setLogoPreview(null);
+				setBannerPreview(null);
+				setVendorPreview(null);
+				event.target.reset();
+				// Navigate to vendor list after successful submission
+				navigate("/venderlist");
 			}
 		} catch (error) {
 			console.error("Error adding vendor:", error);
-			toast.error(error.message || "Failed to add vendor!");
-		}
+			const errorMessage = error.response?.data?.message || "Failed to add vendor!";
+			toast.error(errorMessage);
+		  } finally {
+			setLoading(false); // Stop loading after submission
+		  }
 	};
 
 	const handleInputChange = (event) => {
@@ -131,7 +148,6 @@ const AddVendorForm = () => {
 		const name = e.target.name;
 		if (!file) return;
 
-		// Dynamically set preview state
 		const previewMap = {
 			logo: setLogoPreview,
 			banner: setBannerPreview,
@@ -141,10 +157,9 @@ const AddVendorForm = () => {
 		const setPreview = previewMap[name];
 		if (setPreview) {
 			const objectUrl = URL.createObjectURL(file);
-			setPreview(objectUrl); // Set preview dynamically
+			setPreview(objectUrl);
 		}
 
-		// Store file in formData
 		setFormData((prevData) => ({
 			...prevData,
 			[name]: file,
@@ -284,7 +299,7 @@ const AddVendorForm = () => {
 							/>
 						</div>
 						<div className="col-lg-6">
-							<PreviewImage image={logoPrview} altText="Shop Logo" />
+							<PreviewImage image={logoPreview} altText="Shop Logo" />
 							<FileUpload
 								name="logo"
 								label="Shop Logo (Ratio 2:1)"
@@ -303,13 +318,14 @@ const AddVendorForm = () => {
 				</FormSection>
 
 				<div className="form-group col-lg-12 text-right">
-					<button
-						type="submit"
-						className="btn bg-primary hover:bg-primary-dark hover:text-white mt-3 text-white"
-						style={{ color: "white" }}
-					>
-						Add Vendor
-					</button>
+				<button
+          type="submit"
+          className="btn bg-primary hover:bg-primary-dark hover:text-white mt-3 text-white"
+          style={{ color: "white" }}
+          disabled={loading} // Disable button when loading
+        >
+          {loading ? "Submitting..." : "Add Vendor"} {/* Change button text based on loading state */}
+        </button>
 				</div>
 			</form>
 			<ToastContainer />

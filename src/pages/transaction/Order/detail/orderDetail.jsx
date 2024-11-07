@@ -42,6 +42,7 @@ const OrderDetails = () => {
     try {
       await dispatch(updateOrderStatus({ orderId, status })).unwrap();
       toast.success("Order status updated successfully!");
+      
     } catch (error) {
       toast.error("Failed to update order status.");
     }
@@ -53,10 +54,10 @@ const OrderDetails = () => {
   const order = orders.find((order) => order._id === id);
 
 
-  // Check the loading state
-  if (status === 'loading') {
-    return <LoadingSpinner />;
-  }
+  // // Check the loading state
+  // if (status === 'loading') {
+  //   return <LoadingSpinner />;
+  // }
 
   // Check for errors
   if (status === 'failed') {
@@ -87,7 +88,7 @@ const OrderDetails = () => {
       <div className="bg-[#F9F9FB] w-full px-4 py-8">
         <div className="flex items-center gap-2">
           <img
-            src="https://6valley.6amtech.com/public/assets/back-end/img/all-orders.png"
+            src="/all-orders.png"
             alt=""
             className="w-5 h-5"
           />
@@ -173,8 +174,8 @@ const OrderDetails = () => {
                     </tr>
                   </thead>
                   <tbody>
-                  {(products && products.length > 0) ? (
-  products.map((product, index) => (
+                  {(products && products?.length > 0) ? (
+  products?.map((product, index) => (
     <tr className="hover:bg-gray-100" key={product._id}>
       <td className="px-4 py-2 text-center">{index + 1}</td>
       <td className="px-4 py-2 w-full">
@@ -294,7 +295,7 @@ const OrderDetails = () => {
                       <button
                         onClick={togglePaymentStatus}
                         className={`relative inline-flex items-center h-6 rounded-full w-11 focus:outline-none ${
-                          paymentStatus ? "bg-blue-600" : "bg-gray-200"
+                          paymentStatus ? "bg-green-600" : "bg-gray-200"
                         }`}
                       >
                         <span
@@ -316,7 +317,7 @@ const OrderDetails = () => {
                 <div className="flex items-center space-x-4">
                   <div>
                     <img
-                      src="https://6valley.6amtech.com/storage/app/public/profile/2022-10-12-63464cd299fc3.png"
+                      src="/2022-10-12-63464cd299fc3.png"
                       alt="Avatar"
                       className="w-16 h-16 rounded-full"
                     />

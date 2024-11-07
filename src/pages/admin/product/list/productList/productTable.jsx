@@ -10,6 +10,7 @@ import {
 } from "react-icons/fi";
 import { FaDownload } from "react-icons/fa";
 import ExportButton from "../../../../../components/ActionButton/Export";
+import apiConfig from "../../../../../config/apiConfig";
 
 const ProductTable = React.memo(
   ({
@@ -93,10 +94,10 @@ const ProductTable = React.memo(
               </Link> */}
               <Link
                 to="/inhouseaddproduct"
-                className="btn flex justify-center items-center gap-3 bg-primary text-white hover:bg-primary"
+                className="btn flex justify-center items-center gap-3 bg-primary text-white hover:bg-primary-dark hover:text-white"
               >
                 <FiPlus />
-                <span className="text">Add new product</span>
+                <span className="text hover:text-white">Add new product</span>
               </Link>
               <ExportButton
                 data={filteredProducts} // Pass the data to export
@@ -130,7 +131,8 @@ const ProductTable = React.memo(
                     <td>
                       <Link to="#" className="media align-items-center gap-2">
                         <img
-                          src={product?.thumbnail}
+                          src={`${apiConfig.bucket}/${product?.thumbnail}`} // Use the bucket URL
+
                           className="avatar border"
                           alt={product.name}
                         />

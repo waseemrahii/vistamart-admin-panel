@@ -1,21 +1,25 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuthData } from "../../../../../../../utils/authHelper"; // Import function to get token
 import apiConfig from '../../../../../../../config/apiConfig'; // Import apiConfig for API URLs
+import { getUploadUrl, uploadImageToS3 } from "../../../../../../../utils/helpers";
+
 const ApiUrl = `${apiConfig.admin}`; // Use admin role
 
 const CategoryUpdate = () => {
   const { id } = useParams(); // Extract category ID from URL params
   const navigate = useNavigate(); // To navigate after successful update
-  const [selectedLang, setSelectedLang] = useState("en");
   const [categoryData, setCategoryData] = useState({
     name: "",
     priority: 0,
-    logo: null,
+    logo: "",
   });
+  const [selectedFile, setSelectedFile] = useState(null); // To store selected file for upload
+  const [previewUrl, setPreviewUrl] = useState(""); // To store the image preview URL
+  const [selectedLang, setSelectedLang] = useState("en"); // Set default language to English
 
   // Fetch category data by ID
   useEffect(() => {
@@ -32,9 +36,9 @@ const CategoryUpdate = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("response data ====", response)
       const { name, priority, logo } = response.data.doc;
       setCategoryData({ name, priority, logo });
+      setPreviewUrl(`${apiConfig.bucket}/${logo}`); // Set initial preview URL
     } catch (error) {
       console.error("Failed to fetch category:", error);
       toast.error("Failed to fetch category data");
@@ -46,54 +50,70 @@ const CategoryUpdate = () => {
     setCategoryData({ ...categoryData, [e.target.name]: e.target.value });
   };
 
-  // Convert selected image to base64
-  const handleFileChange = useCallback((e) => {
+  // Handle file selection for logo upload
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setSelectedFile(file);
+    
+    // Create a preview URL for the selected file
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCategoryData((prevState) => ({
-          ...prevState,
-          logo: reader.result, // Store base64 image string
-        }));
-      };
-      reader.readAsDataURL(file);
-    }
-  }, []);
-
-  // Handle form submit to update category
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
-      name: categoryData.name,
-      priority: categoryData.priority,
-      logo: categoryData.logo, // Already in base64 format
-    };
-
-    try {
-      const { token } = getAuthData(); // Get token
-      const response = await fetch(`${ApiUrl}/categories/${id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update category");
-      }
-
-      const responseData = await response.json();
-      console.log("Category updated:", responseData);
-      toast.success("Category updated successfully");
-      navigate("/categories"); // Navigate after successful update
-    } catch (error) {
-      console.error("Error updating category:", error);
-      toast.error("Error updating category");
+      const fileUrl = URL.createObjectURL(file);
+      setPreviewUrl(fileUrl);
     }
   };
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  let logoKey = categoryData.logo; // Keep existing logo if no new file is uploaded
+
+  if (selectedFile) {
+    try {
+      // Ensure to get the correct upload URL
+      const uploadConfig = await getUploadUrl(selectedFile.type, "category");
+      const { url } = uploadConfig; // Ensure you extract the url correctly
+      await uploadImageToS3(url, selectedFile); // Pass only the URL and the file
+      logoKey = uploadConfig.key; // Use the key from the uploadConfig
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image"); // Show error toast
+      return; // Exit if image upload fails
+    }
+  }
+
+  const formData = {
+    name: categoryData.name,
+    priority: categoryData.priority,
+    logo: logoKey, // Use the new logo key from upload or existing
+  };
+
+  try {
+    const { token } = getAuthData(); // Get token
+    console.log("Updating category with ID:", id);
+    const response = await fetch(`${ApiUrl}/categories/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update category");
+    }
+
+    const responseData = await response.json();
+    console.log("Category updated:", responseData);
+    toast.success("Category updated successfully"); // Show success toast
+    navigate("/categories"); // Navigate after successful update
+  } catch (error) {
+    console.error("Error updating category:", error);
+    toast.error("Error updating category"); // Show error toast
+  }
+};
+
 
   return (
     <div className="content container-fluid px-10">
@@ -130,6 +150,7 @@ const CategoryUpdate = () => {
                   categoryData={categoryData}
                   onInputChange={handleInputChange}
                   onFileChange={handleFileChange}
+                  previewUrl={previewUrl} // Pass previewUrl to CategoryForm
                 />
               </form>
             </div>
@@ -145,6 +166,7 @@ const CategoryForm = ({
   categoryData,
   onInputChange,
   onFileChange,
+  previewUrl, // Accept previewUrl as a prop
 }) => {
   return (
     <div className="row">
@@ -165,7 +187,7 @@ const CategoryForm = ({
               className="form-control"
               placeholder="New Category"
               required={lang === "en"}
-              value={categoryData.name}
+              value={categoryData.name || ""} // Ensure value is a string
               onChange={onInputChange}
             />
           </div>
@@ -218,17 +240,19 @@ const CategoryForm = ({
             <img
               className="upload-img-view"
               id="viewer"
-              src={categoryData.logo || "/image-place-holder.png"}
+              src={previewUrl || `${apiConfig.bucket}/image-place-holder.png`} // Use previewUrl
               alt="Category Logo"
               width="500"
               height="500"
             />
           </div>
         </div>
-      </div>
+              </div>
       <div className="col-12 d-flex justify-content-end">
-        <button type="submit" className="btn btn-primary">
-          Update
+        <button type="submit" className="btn bg-primary text-white" style={{
+          color:"white"
+        }}>
+          Save Changes
         </button>
       </div>
     </div>

@@ -117,6 +117,9 @@ import OrderDetails from "./pages/transaction/Order/detail/orderDetail.jsx";
 import NotFoundPage from "./components/LoginPage/NotFoundPage.jsx";
 import SubCategoriess from "./pages/admin/Categories/SubCategories/SubCategories.jsx";
 import AddNewProductComponent from "./pages/admin/offerAndDeals/featureDeal/addFeatureProduct.jsx";
+import AddEmployee from "./pages/admin/employees/add/addemploye.jsx";
+import EmployeeDetails from "./pages/admin/employees/list/employeeDetails.jsx";
+import UpdateEmployee from "./pages/admin/employees/add/updateEmploye.jsx";
 
 function AllRoutes() {
   return (
@@ -179,7 +182,10 @@ function AllRoutes() {
           element={<CustomerLoyaltyReport />}
         />
         <Route path="/employeerolesetup" element={<EmployeeRoleSetup />} />
+        <Route path="/addemploye" element={<AddEmployee />} />
         <Route path="/employeelist" element={<EmployeeList />} />
+        <Route path="/update/:id" element={<UpdateEmployee />} />
+        <Route path="/view/:id" element={<EmployeeDetails />} />
         <Route path="/subscriberlist" element={<SubscriberList />} />
         <Route path="/systemsetup" element={<SystemSetup />} />
         <Route path="/appsettings" element={<AppSettings />} />
@@ -246,7 +252,7 @@ function AllRoutes() {
           path="/addvenderwidthrawtmethod"
           element={<WithdrawalMethods />}
         />
-        <Route path="*" element={<NotFoundPage />} />
+        {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
     </>
   );

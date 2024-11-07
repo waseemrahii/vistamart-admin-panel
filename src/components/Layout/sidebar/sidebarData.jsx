@@ -41,12 +41,15 @@ import { ImStatsBars } from "react-icons/im";
 export const sidebarItems = [
   {
     title: "Dashboard",
+    key: "overview",
+
     SubHeading: "Overview",
     icon: <IoHome />,
     link: "/",
     isDropdown: false,
   },
   {
+    key: "order-management",
     title: "Orders",
     SubHeading: "Order management",
     icon: <IoCartSharp />,
@@ -64,6 +67,8 @@ export const sidebarItems = [
     ],
   },
   {
+    key: "order-management",
+
     title: "Refund Requests",
     icon: <CgNotes />,
     isDropdown: true,
@@ -76,8 +81,10 @@ export const sidebarItems = [
   },
 
   {
+    
     title: "Categories Setup",
     SubHeading: "Product management",
+    key: "product-management",
     icon: <TbCategory2 />,
     isDropdown: true,
     subItems: [
@@ -115,6 +122,7 @@ export const sidebarItems = [
 
   {
     title: "Vendor",
+    key: "vendor-management",
     SubHeading: "Vendors management",
     icon: <FaWallet />,
     isDropdown: true,
@@ -146,6 +154,8 @@ export const sidebarItems = [
 
   {
     SubHeading: "Promotion management",
+    key: "promotion-management",
+
     title: "Banner Setup",
 
     icon: <AiFillPicture />,
@@ -207,6 +217,8 @@ export const sidebarItems = [
   },
 
   {
+    key: "reports-and-analysis",
+
     SubHeading: "Reports & Analysis",
     title: "Sales & Transaction",
     icon: <MdBarChart />,
@@ -234,7 +246,8 @@ export const sidebarItems = [
 
   {
     title: "Customers",
-    SubHeading: "Customer management",
+    key : "user-management",
+    SubHeading: "User management",
     icon: <MdOutlineFolderZip />,
     isDropdown: true,
     subItems: [
@@ -258,6 +271,7 @@ export const sidebarItems = [
   },
   {
     title: "Employees",
+    key:"employee-managementt",
     SubHeading: "Employee management",
     icon: <IoPersonOutline />,
     isDropdown: true,
@@ -268,6 +282,7 @@ export const sidebarItems = [
   },
   {
     title: "Subscribers",
+    key:"subscriber",
     SubHeading: "Subscriber",
     icon: <IoMdPerson />,
     link: "/subscriberlist",
@@ -276,7 +291,8 @@ export const sidebarItems = [
 
   {
     title: "Business Setup",
-    SubHeading: "Business Setup",
+    key:"system-settings",
+    SubHeading: "System Setup",
     icon: <TbWorld />,
     isDropdown: true,
     subItems: [
@@ -287,7 +303,7 @@ export const sidebarItems = [
   },
   {
     title: "System settings",
-    SubHeading: "System Setup",
+    // SubHeading: "System Setup",
 
     icon: <IoSettingsOutline />,
     isDropdown: true,

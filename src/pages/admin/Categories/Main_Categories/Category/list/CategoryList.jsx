@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import TableList from "../../../../../../components/FormInput/TableList";
 import ActionButton from "../../../../../../components/ActionButton/Action";
+import apiConfig from "../../../../../../config/apiConfig";
+
 
 const CategoryList = React.memo(
   ({ categories, handleDelete, handleSearch, searchQuery }) => {
@@ -18,7 +20,9 @@ const CategoryList = React.memo(
           label: "Logo",
           render: (item) => (
             <img
-              src={item.logo}
+            // src={`${IMAGE_BASE_URL}/${item?.logo}`}
+            src={`${apiConfig.bucket}/${item.logo}`} // Use the bucket URL
+
               className="avatar"
               alt={item.name}
               aria-label="Category Logo"

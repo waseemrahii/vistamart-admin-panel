@@ -13,6 +13,7 @@ import ConfirmationModal from "../../../../components/FormInput/ConfirmationModa
 import Switcher from "../../../../components/FormInput/Switcher";
 import ActionButton from "../../../../components/ActionButton/Action";
 import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
+import apiConfig from "../../../../config/apiConfig";
 
 const LazyTableList = lazy(() =>
   import("../../../../components/FormInput/TableList")
@@ -75,7 +76,7 @@ const BannerSetup = () => {
       label: "Image",
       render: (banner) => (
         <img
-          src={banner.bannerImage}
+        src={`${apiConfig.bucket}/${banner?.bannerImage}`} // Use the bucket URL
           alt={banner.name}
           className="h-16 w-24 object-cover "
           style={{ margin: "0 auto" }}

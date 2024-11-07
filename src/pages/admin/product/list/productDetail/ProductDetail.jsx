@@ -13,6 +13,7 @@ import {
   updateProductStatus,
 } from "../../../../../redux/slices/seller/productSlice";
 import Swal from "sweetalert2";
+import apiConfig from "../../../../../config/apiConfig";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -100,8 +101,11 @@ const ProductDetail = () => {
     return <div>Loading...</div>;
   }
 
-  const thumbnailUrl = productData.thumbnail || "/default-thumbnail.png";
-  const ImageApiUrl = productData.ImageApiUrl || "/default-thumbnail.png";
+  const thumbnailUrl = productData?.thumbnail ? `${apiConfig.bucket}/${productData.thumbnail}` : "/default-thumbnail.png";
+  const imageApiUrl = productData?.ImageApiUrl || "/default-thumbnail.png";
+
+  // const thumbnailUrl = productData.thumbnail || "/default-thumbnail.png";
+  // const ImageApiUrl = productData.ImageApiUrl || "/default-thumbnail.png";
 
   const {
     thumbnail = "/default-thumbnail.png",

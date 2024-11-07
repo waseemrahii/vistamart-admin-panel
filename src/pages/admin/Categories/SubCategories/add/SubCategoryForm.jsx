@@ -88,6 +88,11 @@ const SubCategoryForm = ({
         <button
           type="submit"
           className="btn bg-primary text-white hover:bg-primary-dark hover:text-white"
+          style={
+            {
+              color:"white",
+            }
+          }
         >
           Submit
         </button>

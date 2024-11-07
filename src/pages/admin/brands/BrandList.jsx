@@ -12,6 +12,7 @@ import Switcher from "../../../components/FormInput/Switcher";
 import ConfirmationModal from "../../../components/FormInput/ConfirmationModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import apiConfig from "../../../config/apiConfig";
 
 // Lazy load TableList for performance
 const LazyTableList = lazy(() =>
@@ -66,9 +67,9 @@ const BrandList = () => {
 			className: "flex  justify-center",
 			render: (brand) => (
 				<img
-					src={`${BUCKET_URL}/${brand.logo}`}
+					src={`${apiConfig.bucket}/${brand.logo}`}
 					alt={brand.name}
-					className="h-16 w-16 flex justify-center"
+					className="avatar"
 				/>
 			),
 		},

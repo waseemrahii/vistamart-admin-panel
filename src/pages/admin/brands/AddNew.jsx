@@ -92,6 +92,7 @@ const AddNewBrand = () => {
 		setImageAltText("");
 	};
 
+	
 	return (
 		<div className="content container-fluid snipcss-AwJk2">
 			<ToastContainer /> {/* Toast notifications container */}

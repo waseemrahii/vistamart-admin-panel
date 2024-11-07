@@ -47,7 +47,7 @@ const AddNewProduct = () => {
 		digitalProductType: "physical",
 		sku: "",
 		unit: "",
-		tags: "",
+		tags: [""],
 		price: "",
 		discount: "",
 		discountType: "percent",
@@ -81,15 +81,17 @@ const AddNewProduct = () => {
 
 	useEffect(() => {
 		if (formData.category) {
-			dispatch(fetchSubCategories(formData.category));
+		  dispatch(fetchSubCategories(formData.category));
 		}
-	}, [dispatch, formData.category]);
-
-	useEffect(() => {
+	  }, [dispatch, formData.category]);
+	  
+	  useEffect(() => {
 		if (formData.subCategory) {
-			dispatch(fetchSubSubCategories(formData.subCategory));
+		  dispatch(fetchSubSubCategories(formData.subCategory));
 		}
-	}, [dispatch, formData.subCategory]);
+	  }, [dispatch, formData.subCategory]);
+	  
+
 
 	const handleChange = (e) => {
 		const { name, value, type, checked } = e.target;
@@ -99,6 +101,7 @@ const AddNewProduct = () => {
 		}));
 	};
 
+
 	const handleDescriptionChange = (value) => {
 		setFormData((prev) => ({
 			...prev,
@@ -106,136 +109,9 @@ const AddNewProduct = () => {
 		}));
 	};
 
-	// const handleImageChange = (e, isThumbnail = false) => {
-	// 	const file = e.target.files[0];
-	// 	if (file) {
-	// 		const reader = new FileReader();
-	// 		reader.onloadend = () => {
-	// 			if (isThumbnail) {
-	// 				setThumbnail(reader.result);
-	// 				console.log("in change function thubnail", thumbnail);
-	// 			} else {
-	// 				setImages((prevImages) => [...prevImages, reader.result]);
-	// 				console.log("in change function images", images);
-	// 			}
-	// 		};
-	// 		reader.readAsDataURL(file);
-	// 	}
-	// };
-
-	// const handleImageChange = (e, isThumbnail = false) => {
-	// 	const file = e.target.files[0];
-	// 	if (!file) return;
-
-	// 	// For previewing images, use URL.createObjectURL for efficiency
-	// 	const previewUrl = URL.createObjectURL(file);
-
-	// 	// Thumbnail Handling
-	// 	if (isThumbnail) {
-	// 		setThumbnail({ preview: previewUrl, file });
-	// 		console.log("Thumbnail updated:", { preview: previewUrl, file });
-	// 	} else {
-	// 		// Add the image with preview and file data to the images array
-	// 		setImages((prevImages) => [...prevImages, { preview: previewUrl, file }]);
-	// 		console.log("Images updated:", images);
-	// 	}
-	// };
-
-	// const handleColorChange = (color) => {
-	// 	setSelectedColors((prevColors) =>
-	// 		prevColors.includes(color)
-	// 			? prevColors.filter((c) => c !== color)
-	// 			: [...prevColors, color]
-	// 	);
-	// };
-
-	// const handleAttributeChange = (e) => {
-	// 	setSelectedAttribute(e.target.value);
-	// };
-
-	// const addAttribute = () => {
-	// 	if (selectedAttribute) {
-	// 		const selectedAttr = attributes.find(
-	// 			(attr) => attr._id === selectedAttribute
-	// 		);
-	// 		if (selectedAttr) {
-	// 			setProductAttributes((prevAttrs) => [
-	// 				...prevAttrs,
-	// 				{ _id: selectedAttr._id, name: selectedAttr.name },
-	// 			]);
-	// 			setSelectedAttribute("");
-	// 		}
-	// 	}
-	// };
-
-	// const uploadImagesToS3 = async (thumbnail, images) => {
-	// 	let thumbnailKey = null; // Store the uploaded thumbnail key
-	// 	const imageKeys = []; // Store keys for successfully uploaded additional images
-	// 	const imageUploadConfigs = [];
-
-	// 	try {
-	// 		// Step 1: Get upload URL for the thumbnail
-	// 		if (thumbnail && thumbnail.file) {
-	// 			const thumbnailConfig = await getProductUploadUrl(thumbnail.file.type);
-	// 			imageUploadConfigs.push({
-	// 				type: "thumbnail",
-	// 				config: thumbnailConfig,
-	// 				file: thumbnail.file,
-	// 			});
-	// 		}
-
-	// 		// Step 2: Get upload URLs for each additional image
-	// 		images.forEach((img) => {
-	// 			if (img.file) {
-	// 				const imageConfig = getProductUploadUrl(img.file.type);
-	// 				imageUploadConfigs.push({
-	// 					type: "image",
-	// 					config: imageConfig,
-	// 					file: img.file,
-	// 				});
-	// 			}
-	// 		});
-
-	// 		// Step 3: Upload each image to S3
-	// 		const uploadPromises = imageUploadConfigs.map(
-	// 			async ({ type, config, file }) => {
-	// 				const key = await uploadImage(config, file);
-	// 				if (key) {
-	// 					if (type === "thumbnail") {
-	// 						thumbnailKey = key; // Assign thumbnail key
-	// 					} else {
-	// 						imageKeys.push(key); // Push additional image key
-	// 					}
-	// 				}
-	// 				return key;
-	// 			}
-	// 		);
-
-	// 		const results = await Promise.all(uploadPromises);
-
-	// 		// Step 4: Check for successful uploads
-	// 		if (results.includes(null)) {
-	// 			// If any upload failed, delete all successful uploads and return
-	// 			await deleteUploadedImages([thumbnailKey, ...imageKeys]);
-	// 			toast.error("Image upload failed, deleted previously uploaded images.");
-	// 			return null;
-	// 		}
-
-	// 		console.log("Successfully uploaded images:", { thumbnailKey, imageKeys });
-	// 		return { thumbnailKey, imageKeys }; // Return both the thumbnail key and list of image keys
-	// 	} catch (error) {
-	// 		console.error("Error uploading images:", error);
-	// 		await deleteUploadedImages([thumbnailKey, ...imageKeys]);
-	// 		toast.error(
-	// 			"Image upload encountered an error. Previous uploads have been deleted."
-	// 		);
-	// 		return null;
-	// 	}
-	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		const uploadResult = await uploadProductImagesToS3(thumbnail, images);
 
 		// Check if the uploadResult is null before destructuring
@@ -253,7 +129,7 @@ const AddNewProduct = () => {
 			if (!userId) {
 				throw new Error("admin does not exist or is not authenticated.");
 			}
-
+			
 			const productData = {
 				...formData,
 				userId,
@@ -262,26 +138,26 @@ const AddNewProduct = () => {
 				colors: selectedColors.map((color) => color._id),
 				attributes: productAttributes.map((attr) => attr._id),
 				category: formData.category,
-				subCategory: formData.subCategorySlug,
-				subSubCategory: formData.subSubCategorySlug,
+				subCategory: formData.subCategory,
+				subSubCategory: formData.subSubCategory,
 			};
 
 			console.log("Submitting Product Data:", productData);
 
-			// const response = await fetch(API_URL, {
-			// 	method: "POST",
-			// 	headers: {
-			// 		"Content-Type": "application/json",
-			// 		Authorization: `Bearer ${token}`,
-			// 	},
-			// 	body: JSON.stringify(productData),
-			// });
+			const response = await fetch(API_URL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify(productData),
+			});
 
-			// const data = await response.json();
+			const data = await response.json();
 
-			// if (!response.ok) {
-			// 	throw new Error(data.message || "Something went wrong!");
-			// }
+			if (!response.ok) {
+				throw new Error(data.message || "Something went wrong!");
+			}
 
 			Swal.fire({
 				icon: "success",
@@ -327,12 +203,7 @@ const AddNewProduct = () => {
 			/>
 			<ProductAdditional formData={formData} handleChange={handleChange} />
 			<ProductVideo formData={formData} handleChange={handleChange} />
-			{/* <ProductImageWrapper
-        thumbnail={thumbnail}
-        setThumbnail={setThumbnail}
-        images={images}
-        handleImageChange={handleImageChange}
-      /> */}
+		
 			<ProductImageWrapper
 				thumbnail={thumbnail}
 				setThumbnail={setThumbnail}
