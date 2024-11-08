@@ -27,6 +27,7 @@ const VendorDetailes = () => {
       confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
       confirmButtonColor: "#3085d6",
+
       cancelButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -47,9 +48,9 @@ const VendorDetailes = () => {
     }
   };
 
-  if (loading) {
-    return <div><LoadingSpinner /> </div>;
-  }
+  // if (loading) {
+  //   return <div><LoadingSpinner /> </div>;
+  // }
 
   if (error) {
     return <div>Error loading vendor data.</div>;
@@ -94,13 +95,16 @@ const VendorDetailes = () => {
           {vendorDetails.status === "pending" && (
             <>
               <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
+                className="bg-primary text-white px-4 py-2 rounded"
+                style={{color:"white !important"}}
                 onClick={() => confirmStatusChange("active", "activate")}
               >
                 Activate
               </button>
               <button
                 className="bg-red-500 text-white px-4 py-2 rounded"
+                style={{color:"white"}}
+
                 onClick={() => confirmStatusChange("rejected", "reject")}
               >
                 Reject
@@ -111,6 +115,8 @@ const VendorDetailes = () => {
             <button
               className="bg-red-500 text-white px-4 py-2 rounded"
               onClick={() => confirmStatusChange("inactive", "suspend")}
+              style={{color:"white"}}
+
             >
               Suspend
             </button>

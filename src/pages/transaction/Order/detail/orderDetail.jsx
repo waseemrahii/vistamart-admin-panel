@@ -176,13 +176,13 @@ const OrderDetails = () => {
                   <tbody>
                   {(products && products?.length > 0) ? (
   products?.map((product, index) => (
-    <tr className="hover:bg-gray-100" key={product._id}>
+    <tr className="hover:bg-gray-100" key={product?._id}>
       <td className="px-4 py-2 text-center">{index + 1}</td>
       <td className="px-4 py-2 w-full">
         <div className="flex items-center whitespace-nowrap">
           <img
             src={
-              product.thumbnail
+              product?.thumbnail
                 ? `{product.thumbnail}`
                 : fallbackImage
             }
@@ -192,10 +192,10 @@ const OrderDetails = () => {
           />
           <div>
             <div>{product?.name}</div>
-            <div>Qty: {product.qty}</div>
+            <div>Qty: {product?.qty}</div>
             <div>
               Unit price: ${product?.price} (Tax:{" "}
-              {product.taxAmount}%)
+              {product?.taxAmount}%)
             </div>
           </div>
         </div>
@@ -204,13 +204,13 @@ const OrderDetails = () => {
         ${product?.price}
       </td>
       <td className="px-4 py-2 text-center">
-        ${product.taxAmount}
+        ${product?.taxAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        ${product.discountAmount}
+        ${product?.discountAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        ${(product.price + product.taxAmount)}
+        ${(product?.price + product?.taxAmount)}
       </td>
     </tr>
   ))

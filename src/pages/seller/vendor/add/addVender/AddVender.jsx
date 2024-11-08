@@ -24,6 +24,7 @@ const AddVendorForm = () => {
 		phoneNumber: "",
 		email: "",
 		password: "",
+		// confirmPassword:"",
 		shopName: "",
 		address: "",
 		vendorImage: null,
@@ -54,12 +55,12 @@ const AddVendorForm = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const uploadedKeys = [];
-		if (!validatePassword(formData.password)) {
-			toast.error("Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character (e.g., 123Abs@)");
-			setLoading(false); // Stop loading on validation failure
+		// if (!validatePassword(formData.password)) {
+		// 	toast.error("Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character (e.g., 123Abs@)");
+		// 	setLoading(false); // Stop loading on validation failure
 
-			return;
-		}
+		// 	return;
+		// }
 		const { token } = getAuthData();
 
 		const logoFile = formData.logo || null;
@@ -113,6 +114,7 @@ const AddVendorForm = () => {
 					phoneNumber: "",
 					email: "",
 					password: "",
+					// confirmPassword:"",
 					shopName: "",
 					address: "",
 					vendorImage: null,
@@ -271,6 +273,17 @@ const AddVendorForm = () => {
 								required
 							/>
 						</div>
+						{/* <div className="col-lg-4">
+							<FormInput
+								label="confirmPassword"
+								name="confirmPassword"
+								type="password"
+								placeholder="Confirm password must be same"
+								value={formData.confirmPassword}
+								onChange={handleInputChange}
+								required
+							/>
+						</div> */}
 					</div>
 				</FormSection>
 

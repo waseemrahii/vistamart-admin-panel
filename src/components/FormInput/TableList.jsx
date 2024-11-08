@@ -124,13 +124,13 @@ const TableList = memo(
 										type="search"
 										value={searchQuery}
 										onChange={handleSearchChange}
-										className="form-control border-none outline-none px-4 py-2 w-full md:w-48"
+										className="form-control border-none outline-none  py-2 w-full md:w-48"
 										placeholder={searchPlaceholder}
 									/>
 									<button
 										type="submit"
 										title="Search"
-										className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-r-md"
+										className="bg-primary hover:bg-primary-dark text-white px-3 py-2 rounded-r-md"
 									  style={{color:"white"}}
 									>
 										Search

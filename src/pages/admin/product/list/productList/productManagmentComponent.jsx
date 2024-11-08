@@ -9,8 +9,7 @@ const InHouseProductPage = () => {
         brand: '',
         category: '',
         searchValue: '',
-      
-        userType: '', // No filter for userType
+        userType: 'in-house', // No filter for userType
         status: '', // No filter for status
         vendorNew4Days: false
       }}

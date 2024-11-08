@@ -101,6 +101,15 @@ const removeTag = (indexToRemove) => {
   }));
 };
 
+// Modified handleChange for productType
+const handleProductTypeChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value,
+    digitalProductType: value === "physical" ? "" : prevData.digitalProductType, // Clear digitalProductType if "physical"
+  }));
+};
 
   return (
     <>
@@ -183,13 +192,13 @@ const removeTag = (indexToRemove) => {
               required
             />
           </div>
-          {/* Product Type */}
-          <div className="flex flex-col px-2">
+                  {/* Other FormSelect fields here... */}
+                  <div className="flex flex-col px-2">
             <FormSelect
               label="Product Type"
               name="productType"
-              value={formData.productType}
-              onChange={handleChange}
+              value={formData?.productType}
+              onChange={handleProductTypeChange} // Use the custom handler
               options={[
                 { value: "physical", label: "Physical" },
                 { value: "digital", label: "Digital" },
@@ -198,7 +207,7 @@ const removeTag = (indexToRemove) => {
             />
           </div>
           {/* Conditionally Render Digital Product Type */}
-          {formData.productType === "digital" && (
+          {formData?.productType === "digital" && (
             <div className="flex flex-col px-2">
               <FormSelect
                 label="Digital Product Type"
@@ -212,6 +221,7 @@ const removeTag = (indexToRemove) => {
               />
             </div>
           )}
+
           {/* SKU */}
           <div className="flex flex-col px-2">
             <div className="flex justify-between items-center">

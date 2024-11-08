@@ -61,7 +61,7 @@ const EmployeeDetails = () => {
                 <div className="media-body">
                   <div className="text-capitalize mb-4">
                     <h4 className="mb-2">{name}</h4>
-                    <p>{role.name}</p>
+                    <p>{role?.name}</p>
                   </div>
                   <ul className="d-flex flex-column gap-3 px-0">
                     <li className="d-flex gap-2 align-items-center">
@@ -96,7 +96,7 @@ const EmployeeDetails = () => {
                         <h6 className="text-dark mb-0 text-capitalize">Access available:</h6>
                       </div>
                       <div className="tags d-flex gap-2 flex-wrap">
-                        {role.modules.map((module, index) => (
+                        {role?.modules.map((module, index) => (
                           <span key={index} className="badge bg-primary-light text-capitalize">
                             {module.replace('-', ' ')}
                           </span>

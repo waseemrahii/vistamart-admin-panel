@@ -90,6 +90,7 @@ const CouponList = () => {
       setCoupons(payload);
     });
   }, [dispatch]);
+  
 
   const handleUpdateStatus = (id, currentStatus) => {
     const newStatus = currentStatus ? "active" : "inactive";

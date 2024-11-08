@@ -44,7 +44,7 @@ const AddNewProduct = () => {
 		description: "",
 		brand: "",
 		productType: "",
-		digitalProductType: "physical",
+		digitalProductType: "",
 		sku: "",
 		unit: "",
 		tags: [""],
@@ -62,6 +62,7 @@ const AddNewProduct = () => {
 		metaTitle: "title",
 		metaDescription: "metadescription",
 		userType: "in-house",
+		status:"approved"
 	};
 
 	const [formData, setFormData] = useState(initialFormState);
@@ -140,6 +141,8 @@ const AddNewProduct = () => {
 				category: formData.category,
 				subCategory: formData.subCategory,
 				subSubCategory: formData.subSubCategory,
+				...(formData.productType !== "physical" && { digitalProductType: formData.digitalProductType }),
+
 			};
 
 			console.log("Submitting Product Data:", productData);
