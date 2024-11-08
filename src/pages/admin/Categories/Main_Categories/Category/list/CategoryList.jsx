@@ -13,7 +13,7 @@ const CategoryList = React.memo(
         {
           key: "_id",
           label: "ID",
-          render: (item) => `C${item._id.substring(0, 6)}`,
+          render: (item) => `C${item?._id.substring(0, 6)}`,
         },
         {
           key: "logo",
@@ -21,10 +21,10 @@ const CategoryList = React.memo(
           render: (item) => (
             <img
             // src={`${IMAGE_BASE_URL}/${item?.logo}`}
-            src={`${apiConfig.bucket}/${item.logo}`} // Use the bucket URL
+            src={`${apiConfig.bucket}/${item?.logo}`} // Use the bucket URL
 
               className="avatar"
-              alt={item.name}
+              alt={item?.name}
               aria-label="Category Logo"
             />
           ),
@@ -33,7 +33,12 @@ const CategoryList = React.memo(
         {
           key: "priority",
           label: "Priority",
-          render: (item) => item.priority || "0",
+          render: (item) => item?.priority || "0",
+        },
+        {
+          key: "product",
+          label: "Products",
+          render: (item) => item?.totalProducts || "0",
         },
         {
           key: "actions",

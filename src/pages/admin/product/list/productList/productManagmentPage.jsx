@@ -202,7 +202,7 @@ const InHouseProductList = ({
                 : error}
             </div>
           ) : (
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense >
               <ProductTable
                 products={products}
                 onToggleFeatured={handleToggleFeatured}

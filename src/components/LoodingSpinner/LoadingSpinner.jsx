@@ -1,10 +1,10 @@
 import React from "react";
-import "./LoadingSpinner.css"; // Add this file for custom styling if needed
+// import "./LoadingSpinner.css"; // Add this file for custom styling if needed
 
 const LoadingSpinner = () => {
   return (
-    <div className="loading-overlay">
-      <div className="flex items-center justify-center h-full">
+    <div className="loading-overlay flex justify-center">
+      {/* <div className="flex items-center justify-center h-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"
@@ -78,7 +78,8 @@ const LoadingSpinner = () => {
             </circle>
           </g>
         </svg>
-      </div>
+      </div> */}
+      <img src="/loader1.gif" alt="" />
     </div>
   );
 };

@@ -21,6 +21,7 @@ import {
 } from "../../../../../../redux/slices/admin/categorySlice";
 import ConfirmationModal from "../../../../../../components/FormInput/ConfirmationModal";
 import { getUploadUrl, uploadImageToS3 } from "../../../../../../utils/helpers";
+import LoadingSpinner from "../../../../../../components/LoodingSpinner/LoadingSpinner";
 
 const Categories = () => {
 	const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Categories = () => {
 		name: "",
 		priority: "",
 		logo: "",
+		status:"active"
 	});
 
 	const [searchQuery, setSearchQuery] = useState("");
@@ -167,7 +169,7 @@ const Categories = () => {
 			</h2>
 			{error && <div className="alert alert-danger">{error}</div>}
 
-			<Suspense fallback={<div>Loading form...</div>}>
+			<Suspense fallback={<div><LoadingSpinner /></div>}>
 				<CategoryForm
 					selectedLang={selectedLang}
 					newCategory={newCategory}

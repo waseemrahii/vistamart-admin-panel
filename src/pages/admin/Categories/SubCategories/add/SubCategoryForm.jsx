@@ -9,6 +9,7 @@ const SubCategoryForm = ({
 }) => {
   return (
     <form onSubmit={handleSubmit}>
+      {console.log("formdat to update ",formData)}
       <div className="row">
         <div className="col-lg-12">
           <div className="row">

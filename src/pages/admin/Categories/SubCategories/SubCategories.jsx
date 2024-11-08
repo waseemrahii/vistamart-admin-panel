@@ -22,6 +22,7 @@ import ConfirmationModal from "../../../../components/FormInput/ConfirmationModa
 const SubCategoryForm = lazy(() => import("./add/SubCategoryForm"));
 const SubCategoryList = lazy(() => import("./list/SubCategoryList"));
 
+
 const SubCategoriess = () => {
   const dispatch = useDispatch();
   const { subCategories, loading, error } = useSelector(
@@ -60,20 +61,20 @@ const SubCategoriess = () => {
         console.log("formdata ====", formData);
 
         // Check if we are in edit mode
-        if (editMode && !formData.id) {
+        if (editMode && !formData?.id) {
             throw new Error("Sub-category ID is missing for update.");
         }
-
+         
         // Prepare data for submission
         const dataToSubmit = {
-            subCategoryId: editMode ? formData.id : undefined, // Pass the ID for the update
+            subCategoryId: editMode ? formData?.id : undefined, // Pass the ID for the update
             subCategoryData: {
                 name: formData.name,
                 mainCategory: formData.mainCategory,
                 priority: formData.priority,
             },
         };
-
+         console.log("data to submitedd",dataToSubmit)
         // Dispatch create or update action
         await dispatch(editMode ? updateSubCategory(dataToSubmit) : createSubCategory(dataToSubmit));
 
@@ -121,10 +122,10 @@ const SubCategoriess = () => {
   const handleEdit = useCallback((subCategory) => {
       console.log("subcategory ----", subCategory)
     setFormData({
-      id: subCategory.id,
-      name: subCategory.name,
-      mainCategory: subCategory.mainCategory,
-      priority: subCategory.priority,
+      id: subCategory?._id,
+      name: subCategory?.name,
+      mainCategory: subCategory?.mainCategory,
+      priority: subCategory?.priority,
     });
     setEditMode(true);
     formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
