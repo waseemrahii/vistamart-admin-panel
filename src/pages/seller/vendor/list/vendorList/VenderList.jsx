@@ -8,6 +8,7 @@ import {
   updateVendorStatus,
 } from "../../../../../redux/slices/seller/vendorSlice";
 import VendorTable from "./VendorTable";
+import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 
 // Lazy load VendorSearch and VendorTable components
 
@@ -89,18 +90,18 @@ const VendorList = () => {
 
   const memoizedVendors = useMemo(() => vendors, [vendors]);
 
-  // if (loading)
-  //   return (
-  //     <div>
-  //       <LoadingSpinner />
-  //     </div>
-  //   );
-  // else if (error)
-  //   return (
-  //     <div>
-  //       <h2>Error: {error}</h2>
-  //     </div>
-  //   );
+  if (loading)
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+  else if (error)
+    return (
+      <div>
+        <h2>Error: {error}</h2>
+      </div>
+    );
 
   return (
     <VendorTable

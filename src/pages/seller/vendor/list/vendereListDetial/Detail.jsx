@@ -48,9 +48,9 @@ const VendorDetailes = () => {
     }
   };
 
-  // if (loading) {
-  //   return <div><LoadingSpinner /> </div>;
-  // }
+  if (loading) {
+    return <div><LoadingSpinner /> </div>;
+  }
 
   if (error) {
     return <div>Error loading vendor data.</div>;

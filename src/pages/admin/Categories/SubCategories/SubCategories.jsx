@@ -16,6 +16,7 @@ import {
 } from "../../../../redux/slices/admin/subCategorySlice";
 import { fetchCategories } from "../../../../redux/slices/admin/categorySlice";
 import ConfirmationModal from "../../../../components/FormInput/ConfirmationModal";
+import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 
 // Lazy load components
 const SubCategoryForm = lazy(() => import("./add/SubCategoryForm"));
@@ -57,7 +58,7 @@ const SubCategoriess = () => {
       e.preventDefault();
       try {
         // Prepare data for submission
-        console.log("formdata ====", formData);
+        // console.log("formdata ====", formData);
 
         // Check if we are in edit mode
         if (editMode && !formData?.id) {
@@ -73,7 +74,7 @@ const SubCategoriess = () => {
             priority: formData.priority,
           },
         };
-        console.log("data to submitedd", dataToSubmit);
+        // console.log("data to submitedd", dataToSubmit);
         // Dispatch create or update action
         await dispatch(
           editMode
@@ -140,7 +141,7 @@ const SubCategoriess = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // if (loading) return <div>Loading...</div>;
+  if (loading) return <div><LoadingSpinner /></div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -170,7 +171,7 @@ const SubCategoriess = () => {
         </div>
       </div>
 
-      <Suspense fallback={<div>Loading List...</div>}>
+      <Suspense>
         <MemoizedSubCategoryList
           subCategories={subCategories}
           handleDelete={handleDelete}

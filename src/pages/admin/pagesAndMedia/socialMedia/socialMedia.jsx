@@ -11,7 +11,7 @@ import {
 import { MdEdit } from "react-icons/md";
 import ActionButton from "../../../../components/ActionButton/Action";
 const SocialMedia = () => {
-  const [formData, setFormData] = useState({ name: "", link: "", id: null });
+  const [formData, setFormData] = useState({ name: "", Types: "", id: null });
   const [socialMediaLinks, setSocialMediaLinks] = useState([
     { id: 1, name: "Facebook", link: "https://facebook.com", status: true },
     {

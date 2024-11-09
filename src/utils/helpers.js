@@ -49,7 +49,9 @@ export const getUploadUrl = async (type, folder) => {
 
 // Modify getProductUploadUrl to accept a folder parameter
 export const getProductUploadUrl = async (type, folder) => {
-    try {
+     console.log("file ", type)
+     console.log("folder to uplaod", folder)
+	try {
         const query = {
             fileType: type.split("/")[1],
             folder, // Include the folder in the query

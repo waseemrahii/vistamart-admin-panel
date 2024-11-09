@@ -5,18 +5,20 @@ import { IoPersonSharp } from "react-icons/io5";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrderStatus, fetchOrderById } from "../../../../redux/slices/transaction/orderSlice";
 import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 import ImageApiUrl from "../../../../ImageApiUrl";
+import apiConfig from "../../../../config/apiConfig";
 
 const OrderDetails = () => {
   const { id } = useParams(); // Get the order ID from URL parameters
   const dispatch = useDispatch();
 
   const { orders, status, error } = useSelector((state) => state.vendorOrder);
- 
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
     // console.log("order in component ------", orders)
   const [showModal, setShowModal] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(true);
@@ -42,7 +44,29 @@ const OrderDetails = () => {
     try {
       await dispatch(updateOrderStatus({ orderId, status })).unwrap();
       toast.success("Order status updated successfully!");
+       if (status === "confirmed") {
+        navigate("/confirmedorder");
+      }
+       else if (status === "packaging") {
+        navigate("/packagingorder");
+
+      } 
+       else if (status === "pending") {
+        navigate("/pendingorder");
+
+      } 
       
+      else if (status === "out_for_delivery") {
+        navigate("/outfordelivery");
+      } else if (status === "delivered") {
+        navigate("/deliveredorder");
+      } else if (status === "canceled") {
+        navigate("/cancel");
+      } else if (status === "failed_to_deliver") {
+        navigate("/failedorder");
+      } else if (status === "returned") {
+        navigate("/returnedorder");
+      }
     } catch (error) {
       toast.error("Failed to update order status.");
     }
@@ -54,10 +78,10 @@ const OrderDetails = () => {
   const order = orders.find((order) => order._id === id);
 
 
-  // // Check the loading state
-  // if (status === 'loading') {
-  //   return <LoadingSpinner />;
-  // }
+  // Check the loading state
+  if (status === 'loading') {
+    return <LoadingSpinner />;
+  }
 
   // Check for errors
   if (status === 'failed') {
@@ -317,14 +341,14 @@ const OrderDetails = () => {
                 <div className="flex items-center space-x-4">
                   <div>
                     <img
-                      src="/2022-10-12-63464cd299fc3.png"
-                      alt="Avatar"
+        src={customer?.image ? `${apiConfig.bucket}/${customer?.image}` : fallbackImage}
+        alt="Avatar"
                       className="w-16 h-16 rounded-full"
                     />
                   </div>
                   <div className="pt-5">
                     <p className="text-md font-medium">{customer?.firstName}</p>
-                    <p className="text-gray-500">17 Orders</p>
+                    {/* <p className="text-gray-500">17 Orders</p> */}
                     <p className="text-gray-500">{customer?.phoneNumber}</p>
                     <p className="text-gray-500">{customer?.email}</p>
                   </div>
@@ -337,7 +361,7 @@ const OrderDetails = () => {
                   <h2 className="text-md font-semibold flex gap-2">
                     <IoPersonSharp /> Shipping Address
                   </h2>
-                  <MdEdit className="text-[2rem] p-1 border hover:bg-primary-dark hover:text-white rounded border-primary bg-primary text-white" />
+                  {/* <MdEdit className="text-[2rem] p-1 border hover:bg-primary-dark hover:text-white rounded border-primary bg-primary text-white" /> */}
                 </div>
                 <div className="space-y-1">
                   <p className="text-md font-medium">{customer?.firstName}</p>
@@ -363,7 +387,7 @@ const OrderDetails = () => {
                   <h2 className="text-md font-semibold flex gap-2">
                     <IoPersonSharp /> Billing Address
                   </h2>
-                  <MdEdit className="text-[2rem] p-1 border hover:bg-primary-dark hover:text-white rounded border-primary text-white bg-primary" />
+                  {/* <MdEdit className="text-[2rem] p-1 border hover:bg-primary-dark hover:text-white rounded border-primary text-white bg-primary" /> */}
                 </div>
                 <div className="space-y-1">
                   <p className="text-gray-500">
@@ -389,13 +413,13 @@ const OrderDetails = () => {
         Name: {vendor?.firstName || "N/A"}
       </h3>
       <img
-        src={vendor?.vendorImage ? `${ImageApiUrl}/${vendor.vendorImage}` : fallbackImage}
+        src={vendor?.vendorImage ? `${apiConfig.bucket}/${vendor?.vendorImage}` : fallbackImage}
         alt={vendor?.name || "N/A"}
         className="w-16 h-16 object-cover rounded mb-2"
       />
       <div>
         <p className="text-lg font-bold">Shop: {vendor?.shopName || "N/A"}</p>
-        <p className="text-gray-500 pt-3">Vendor Orders: 9 Orders Served</p>
+        {/* <p className="text-gray-500 pt-3">Vendor Orders: 9 Orders Served</p> */}
         <p className="text-gray-500">Vendor No: {vendor?.phoneNumber || "N/A"}</p>
         <p className="text-gray-500 flex justify-center gap-2">
           <FaMapMarkerAlt className="text-xl" />

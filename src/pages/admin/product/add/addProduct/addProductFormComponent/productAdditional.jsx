@@ -38,17 +38,18 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
         </div>
 
         {/* Minimum Order Quantity */}
-        <div className="flex flex-col px-2">
-          <label className="">Minimum Order Qty</label>
-          <FormInput
-            type="number"
-            name="minOrderQuantity"
-            value={formData.minimumOrderQty}
-            onChange={handleChange}
-            placeholder="Minimum Order Quantity"
-            required
-          />
-        </div>
+<div className="flex flex-col px-2">
+  <label className="">Minimum Order Qty</label>
+  <FormInput
+    type="number"
+    name="minimumOrderQty" // Changed to match formData key
+    value={formData.minimumOrderQty}
+    onChange={handleChange}
+    placeholder="Minimum Order Quantity"
+    required
+  />
+</div>
+
 
         {/* Stock  */}
         <div className="flex flex-col px-2">

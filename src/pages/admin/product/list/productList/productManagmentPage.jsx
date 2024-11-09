@@ -14,6 +14,7 @@ import {
   fetchCategories,
 } from "../../../../../redux/slices/admin/categorybrandSlice";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
+import Pagination from "../../../../../components/Pagination";
 
 // Lazy load the ProductTable component
 const ProductTable = lazy(() => import("./productTable"));
@@ -24,9 +25,11 @@ const InHouseProductList = ({
 }) => {
   const dispatch = useDispatch();
 
-  const { loading, error, status, cached, results, products } = useSelector(
+  const { loading, error, status, cached, results,pagination, products } = useSelector(
     (state) => state.product
   );
+  const [currentPage, setCurrentPage] = useState(1); // Set the initial current page
+  const totalPages = pagination?.totalPages || 1; // Get the total pages from the pagination data
 
   console.log(products);
 
@@ -55,10 +58,17 @@ const InHouseProductList = ({
       maxPrice: filters.maxPrice || undefined,
     };
     // console.log("Fetching products with cleaned filters:", cleanFilters);
-    dispatch(fetchProducts(cleanFilters));
-    dispatch(fetchCategories());
-    dispatch(fetchBrands());
-  }, [filters, dispatch]);
+   // Fetch products with the current filters and page number
+   dispatch(fetchProducts({ ...cleanFilters, page: currentPage }));
+   dispatch(fetchCategories());
+   dispatch(fetchBrands());
+ }, [filters, currentPage, dispatch]);
+
+ const handlePageChange = (page) => {
+  //  console.log("Changing page to:", page);
+   setCurrentPage(page); // Update the current page in state
+ };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -162,61 +172,63 @@ const InHouseProductList = ({
       maxPrice: "",
     });
   };
+  {loading && <LoadingSpinner />}
 
-  const handlePageChange = (page) => {
-    console.log("Changing page to:", page);
-    dispatch(fetchProducts({ ...filters, page }));
-  };
+  // const handlePageChange = (page) => {
+  //   console.log("Changing page to:", page);
+  //   dispatch(fetchProducts({ ...filters, page }));
+  // };
 
   return (
     <>
-      <div className="content container-fluid">
-        <div className="mb-3">
-          <h2 className="h1 mb-0 text-capitalize d-flex gap-2">
-            <img src="/inhouse-product-list.png" alt="In House Product List" />
-            {initialTitle}
-            <span className="badge badge-soft-dark radius-50 fz-14 ml-1">
-              {results}
-            </span>
-          </h2>
-        </div>
-
-        {categories.length > 0 && brands.length > 0 && (
-          <FilterForm
-            filters={filters}
-            onInputChange={handleInputChange}
-            onReset={handleResetFilters}
-            categories={categories}
-            brands={brands}
-          />
-        )}
-
-        {loading && <LoadingSpinner />}
-
-        {/* Lazy load ProductTable component */}
-        <div className="product-table-container">
-          {error ? (
-            <div>
-              {typeof error === "object" && error !== null
-                ? JSON.stringify(error)
-                : error}
-            </div>
-          ) : (
-            <Suspense>
-              <ProductTable
-                products={products}
-                onToggleFeatured={handleToggleFeatured}
-                onUpdateStatus={handleUpdateStatus}
-                onDeleteProduct={handleDeleteProduct}
-                results={results}
-                onPageChange={handlePageChange}
-              />
-            </Suspense>
-          )}
-        </div>
+    <div className="content container-fluid">
+      <div className="mb-3">
+        <h2 className="h1 mb-0 text-capitalize d-flex gap-2">
+          <img src="/inhouse-product-list.png" alt="In House Product List" />
+          {initialTitle}
+          <span className="badge badge-soft-dark radius-50 fz-14 ml-1">
+            {results}
+          </span>
+        </h2>
       </div>
-    </>
+
+      {categories.length > 0 && brands.length > 0 && (
+        <FilterForm
+        filters={filters}
+        onInputChange={(e) => {
+          const { name, value } = e.target;
+          setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+        }}
+        onReset={() => setFilters({})}
+        categories={categories}
+        brands={brands}
+        />
+      )}
+
+      {loading && <LoadingSpinner />}
+
+      <Suspense >
+        <ProductTable
+          products={products}
+          onToggleFeatured={handleToggleFeatured}
+          onUpdateStatus={handleUpdateStatus}
+          onDeleteProduct={handleDeleteProduct}
+          results={results}
+        />
+      </Suspense>
+
+      {/* Conditionally render pagination only if not loading */}
+      {!loading && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          paginate={handlePageChange}
+        />
+      )}
+    </div>
+  </>
   );
 };
 
 export default InHouseProductList;
+

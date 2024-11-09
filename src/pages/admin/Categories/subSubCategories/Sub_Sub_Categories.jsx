@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaDownload, FaEdit, FaSearch, FaTrash } from "react-icons/fa";
-
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-
 import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 import ActionButton from "../../../../components/ActionButton/Action";
 import ExportButton from "../../../../components/ActionButton/Export";
@@ -17,6 +15,7 @@ import {
   selectSubCategories,
   selectSubSubCategories,
 } from "../../../../redux/slices/admin/categorybrandSlice";
+import Pagination from "../../../../components/Pagination";
 
 const Sub_Sub_Categories = () => {
   const dispatch = useDispatch();
@@ -32,8 +31,9 @@ const Sub_Sub_Categories = () => {
   });
   const [activeTab, setActiveTab] = useState("en");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 14;
+  const itemsPerPage = 7;
   const [loading, setLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -54,7 +54,6 @@ const Sub_Sub_Categories = () => {
       await dispatch(addSubSubCategory(formData));
       Swal.fire("Success!", "Sub-sub-category created successfully.", "success");
   
-      // Reset form and reload categories
       setFormData({
         name: "",
         mainCategory: "",
@@ -62,17 +61,16 @@ const Sub_Sub_Categories = () => {
         priority: "",
       });
   
-      // Fetch updated data and reset to the first page
       dispatch(fetchCategories());
       dispatch(fetchSubCategories());
       dispatch(fetchSubSubCategories({}));
-      setCurrentPage(1); // Reset to first page to show the latest entry
+      setCurrentPage(1);
     } catch (error) {
       console.error("Error creating sub-sub-category:", error);
       Swal.fire("Error!", "Failed to create sub-sub-category.", "error");
     }
   };
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -93,13 +91,8 @@ const Sub_Sub_Categories = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          // console.log("subsub cateogry id ===", subSubCategoryId)
           await dispatch(deleteSubSubCategory(subSubCategoryId));
-          Swal.fire(
-            "Deleted!",
-            "Your sub-sub-category has been deleted.",
-            "success"
-          );
+          Swal.fire("Deleted!", "Your sub-sub-category has been deleted.", "success");
         } catch (error) {
           console.error("Error deleting sub-sub-category:", error);
           Swal.fire("Error!", "Failed to delete sub-sub-category.", "error");
@@ -108,23 +101,28 @@ const Sub_Sub_Categories = () => {
     });
   };
 
- // Get current sub-sub-categories
- const indexOfLastItem = currentPage * itemsPerPage;
- const indexOfFirstItem = indexOfLastItem - itemsPerPage;
- const currentSubSubCategories = subSubCategories.doc.slice(
-   indexOfFirstItem,
-   indexOfLastItem
- );
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
 
- // Calculate page numbers
- const pageNumbers = [];
- for (let i = 1; i <= Math.ceil(subSubCategories.doc.length / itemsPerPage); i++) {
-   pageNumbers.push(i);
- }
+  const filteredSubSubCategories = subSubCategories.doc.filter((item) => {
+    const mainCategoryName = categories.find((cat) => cat._id === item.mainCategory)?.name || '';
+    const subCategoryName = subCategories.find((subCat) => subCat._id === item.subCategory)?.name || '';
+    return (
+      mainCategoryName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      subCategoryName.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  });
 
- const paginate = (pageNumber) => {
-   setCurrentPage(pageNumber);
- };
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentSubSubCategories = filteredSubSubCategories.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(filteredSubSubCategories.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (loading) {
     return (
       <div>
@@ -132,7 +130,6 @@ const Sub_Sub_Categories = () => {
       </div>
     );
   }
-
   return (
     <div className="content container-fluid snipcss-TxIci">
       <div className="mb-3">
@@ -248,7 +245,7 @@ const Sub_Sub_Categories = () => {
                           ))}
                         </select>
                       </div>
-                      <div className="form-group col-md-6 col-lg-4">
+                      {/* <div className="form-group col-md-6 col-lg-4">
                         <label className="title-color" htmlFor="priority">
                           Priority
                         </label>
@@ -262,7 +259,30 @@ const Sub_Sub_Categories = () => {
                           placeholder="1"
                           min="1"
                         />
-                      </div>
+                      </div> */}
+
+<div className="form-group col-md-6 col-lg-4">
+              <label className="title-color" htmlFor="priority">
+                Priority
+              </label>
+              <select
+                className="form-control"
+                name="priority"
+                value={formData.priority}
+                onChange={handleChange}
+                id="priority"
+                required
+              >
+                <option value="" disabled>
+                  Set Priority
+                </option>
+                {Array.from({ length: 11 }, (_, i) => (
+                  <option key={i} value={i}>
+                    {i}
+                  </option>
+                ))}
+              </select>
+            </div>
                     </div>
                     <div className="form-group col-md-12 col-lg-4 justify-end flex">
                       <button
@@ -290,7 +310,7 @@ const Sub_Sub_Categories = () => {
                   {/* <img src="/sub-category.png" alt="Sub Sub Category List" /> */}
                   Sub Sub Category Table
                   <span className="badge badge-soft-dark radius-50 fz-12">
-                    {subSubCategories.length}
+                  {subSubCategories?.doc?.length}
                   </span>
                 </h5>
               </div>
@@ -307,15 +327,16 @@ const Sub_Sub_Categories = () => {
                         type="search"
                         name="searchValue"
                         className="form-control outline-none border border-primary"
-                        placeholder="Search by Title, Code, or Customer"
-                        // value={searchValue}
-                        // onChange={handleSearchChange}
+                        placeholder="Search by Subcategory or Main Category"
+                        value={searchValue}
+                        onChange={handleSearchChange}
                       />
                       <button
-                        type="submit"
-                        className=" rounded-r-md px-4 py-2  bg-primary text-white hover:bg-primary-dark"
-                        style={{ color: "white" }}
-                      >
+                        type="button"
+                        onClick={handleSearchChange}
+                        className="rounded-r-md px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                     style={{color:"white"}}
+                    >
                         Search
                       </button>
                     </div>
@@ -340,8 +361,8 @@ const Sub_Sub_Categories = () => {
                 </div>
                 <div className="hs-unfold">
                   <ExportButton
-                    data={currentSubSubCategories} // Pass the data to export
-                    filename="refundList" // Optional filename for the exported file
+data={filteredSubSubCategories}   
+                 filename="refundList" // Optional filename for the exported file
                     icon={FaDownload} // Icon for the button
                     label="Export " // Button label
                     className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
@@ -394,22 +415,13 @@ const Sub_Sub_Categories = () => {
                   ))}
                 </tbody>
               </table>
-              <ul className="pagination flex justify-center gap-1 items-center">
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className={`page-item ${currentPage === number ? "active" : ""}`}
-            onClick={() => paginate(number)}
-          >
-            <button
-              className="page-link bg-green-500 text-white rounded mx-1"
-              style={{ minWidth: "36px" , color:"white"}}
-            >
-              {number}
-            </button>
-          </li>
-        ))}
-      </ul>
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                paginate={paginate}
+                pageRange={5}
+              />
+           
             </div>
           </div>
         </div>

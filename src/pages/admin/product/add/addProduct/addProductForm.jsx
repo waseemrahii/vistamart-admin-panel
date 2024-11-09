@@ -211,6 +211,7 @@ const AddNewProduct = () => {
         setImages={setImages} // Pass the setter function to update images
       />
       <SeoSection formData={formData} handleChange={handleChange} />
+
       <div className="flex justify-end m-5">
         <button
           type="submit"

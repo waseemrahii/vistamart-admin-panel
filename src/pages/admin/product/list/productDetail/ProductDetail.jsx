@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaGlobe, FaStar, FaTrash } from "react-icons/fa";
 import { AiOutlineFile, AiOutlineShoppingCart } from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,10 +14,12 @@ import {
 } from "../../../../../redux/slices/seller/productSlice";
 import Swal from "sweetalert2";
 import apiConfig from "../../../../../config/apiConfig";
+import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 
 const ProductDetail = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { loading, error, products } = useSelector((state) => state.product);
 
@@ -25,14 +27,43 @@ const ProductDetail = () => {
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
+  // const handleUpdateStatus = (id, currentStatus) => {
+  //   let newStatus;
+  //   if (currentStatus === "pending") {
+  //     newStatus = "approved"; // Change to active if current status is pending
+  //   } else if (currentStatus === "approved") {
+  //     newStatus = "rejected"; // Change to rejected if current status is active
+  //   } else {
+  //     return; // No change needed if already rejected
+  //   }
+
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: `Do you want to change the status to ${newStatus}?`,
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonText: "Yes, update it!",
+  //     cancelButtonText: "No, cancel!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       dispatch(updateProductStatus({ productId: id, status: newStatus }))
+  //         .then(() => toast.success(`Product status updated to ${newStatus}!`))
+  //         .catch(() => toast.error("Failed to update product status."));
+  //     } else {
+  //       toast.info("Status update canceled.");
+  //     }
+  //   });
+  // };
+ 
+
   const handleUpdateStatus = (id, currentStatus) => {
     let newStatus;
     if (currentStatus === "pending") {
-      newStatus = "approved"; // Change to active if current status is pending
+      newStatus = "approved";
     } else if (currentStatus === "approved") {
-      newStatus = "rejected"; // Change to rejected if current status is active
+      newStatus = "rejected";
     } else {
-      return; // No change needed if already rejected
+      return;
     }
 
     Swal.fire({
@@ -45,13 +76,31 @@ const ProductDetail = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(updateProductStatus({ productId: id, status: newStatus }))
-          .then(() => toast.success(`Product status updated to ${newStatus}!`))
+          .then(() => {
+            toast.success(`Product status updated to ${newStatus}!`);
+
+            // Get userType from the product data
+            const userType = productData?.userType; // Assuming this is available in your product data
+
+            // Navigate based on the userType
+            if (userType === "in-house") {
+              navigate("/inhouseproductlist");
+            } else if (userType === "vendor") {
+              if (newStatus === "approved") {
+                navigate("/venderapprove");
+              } else if (newStatus === "rejected") {
+                navigate("/venderdenied");
+              }
+            }
+          })
           .catch(() => toast.error("Failed to update product status."));
       } else {
         toast.info("Status update canceled.");
       }
     });
   };
+
+
 
   const [productData, setProductData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -98,7 +147,7 @@ const ProductDetail = () => {
   }
 
   if (!productData) {
-    return <div>Loading...</div>;
+    return <div><LoadingSpinner /></div>;
   }
 
   const thumbnailUrl = productData?.thumbnail
@@ -117,13 +166,13 @@ const ProductDetail = () => {
     reviews = [],
     brand = { name: "No Brand" },
     category = { name: "No Category" },
-    totalSold = "N/A",
-    totalSoldAmount = "N/A",
+    sold = 0,
+    totalSoldAmount = 0,
     productType = "No Type",
     sku = "No SKU",
     price = "0",
     taxAmount = "0",
-    discount = "0",
+    discountAmount = "0",
     videoLink = "https://youtu.be/yC4xCS4nLRg?si=tvU2m2NCYoivkfF2",
   } = productData;
 
@@ -170,7 +219,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="d-flex flex-wrap align-items-center flex-sm-nowrap justify-content-between gap-3 min-h-50">
                   <div className="d-flex flex-wrap gap-2 align-items-center">
-                    {productData.images.map((imgUrl, index) => {
+                    {productData?.images?.map((imgUrl, index) => {
                       return (
                         // Add this return statement
                         <div
@@ -195,15 +244,15 @@ const ProductDetail = () => {
                   </div>
 
                   <span className="text-dark font-semibold">
-                    {productData.reviews?.length || 0} Reviews
+                    {productData?.numOfReviews || 0} Reviews
                   </span>
                   <div className="div">
                     <div className="flex flex-col gap-2 mt-4 md:mt-0">
                       <button
                         className={`px-4 py-2 rounded ${
-                          productData.status === "pending"
+                          productData?.status === "pending"
                             ? "bg-primary"
-                            : productData.status === "approved"
+                            : productData?.status === "approved"
                             ? "bg-red-500"
                             : "bg-gray-500"
                         }`}
@@ -233,7 +282,7 @@ const ProductDetail = () => {
                         </td>
                         <td className="px-2 py-1">
                           <span className="bg-[#00C9DB] text-white rounded-xl p-1">
-                            {productData.status}
+                            {productData?.status}
                           </span>
                         </td>
                       </div>
@@ -247,7 +296,7 @@ const ProductDetail = () => {
               <div className="border rounded-md space-y-4 p-3 ">
                 <div className="d-flex justify-between mb-1">
                   <h6 className="font-semibold text-capitalize">Total Sold:</h6>
-                  <h3 className="mb-0">{totalSold}</h3>
+                  <h3 className="mb-0">{sold}</h3>
                 </div>
                 <div className="d-flex justify-between mb-1">
                   <h6 className="font-semibold text-capitalize">
@@ -289,7 +338,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="d-flex justify-between mb-1">
                   <h6 className="font-semibold text-capitalize">Discount:</h6>
-                  <h3 className="mb-0">{discount}</h3>
+                  <h3 className="mb-0">{discountAmount}</h3>
                 </div>
               </div>
             </div>
@@ -319,15 +368,13 @@ const ProductDetail = () => {
               </div>
               <div className="card-body">
                 <div>
-                  <h6 className="mb-3 text-capitalize">{productData.name}</h6>
+                  <h6 className="mb-3 text-capitalize">{productData?.metaTitle}</h6>
                 </div>
-                {/* <p className="text-capitalize">
-              <div
-                    className="rich-editor-html-content"
-                    dangerouslySetInnerHTML={{ __html: description }}
-                />
+                <p className="text-capitalize">
+                  
+                    {productData?.metaDescription}
 
-              </p> */}
+              </p>
                 <div className="d-flex flex-wrap gap-2">
                   <a
                     className="text-dark border rounded p-2 d-flex align-items-center justify-content-center gap-1"
@@ -340,7 +387,7 @@ const ProductDetail = () => {
                   {productData.videoLink && (
                     <a
                       className="text-dark border rounded p-2 d-flex align-items-center justify-content-center gap-1"
-                      href={productData.videoLink}
+                      href={productData?.videoLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
