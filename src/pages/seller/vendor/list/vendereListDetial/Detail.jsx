@@ -84,9 +84,9 @@ const VendorDetailes = () => {
               <span className="font-semibold"> Orders</span>
               </h1>
             </div>
-            <Link className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+            {/* <Link className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
               View Live
-            </Link>
+            </Link> */}
           </div>
         </div>
 

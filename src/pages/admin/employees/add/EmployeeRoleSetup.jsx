@@ -256,12 +256,12 @@ const EmployeeRoleSetup = () => {
                                         </td> */}
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                            <button 
+                                            {/* <button 
                                             onClick={() => handleEditRole(role)} 
                                             className="btn btn-outline--primary btn-sm square-btn"
                                         >
                                             <FaEdit />
-                                        </button>
+                                        </button> */}
                                         <button 
                                             onClick={() => handleDeleteRole(role._id)} 
                                             className="btn btn-outline-danger btn-sm square-btn"

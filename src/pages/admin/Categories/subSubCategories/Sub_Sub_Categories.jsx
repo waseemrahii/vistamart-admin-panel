@@ -32,7 +32,7 @@ const Sub_Sub_Categories = () => {
   });
   const [activeTab, setActiveTab] = useState("en");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 14;
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -52,27 +52,27 @@ const Sub_Sub_Categories = () => {
     e.preventDefault();
     try {
       await dispatch(addSubSubCategory(formData));
-      Swal.fire(
-        "Success!",
-        "Sub-sub-category created successfully.",
-        "success"
-      );
-      dispatch(fetchCategories());
-      dispatch(fetchSubCategories());
-      dispatch(fetchSubSubCategories({})); // Ensure you're dispatching here correctly
+      Swal.fire("Success!", "Sub-sub-category created successfully.", "success");
   
+      // Reset form and reload categories
       setFormData({
         name: "",
         mainCategory: "",
         subCategory: "",
         priority: "",
       });
+  
+      // Fetch updated data and reset to the first page
+      dispatch(fetchCategories());
+      dispatch(fetchSubCategories());
+      dispatch(fetchSubSubCategories({}));
+      setCurrentPage(1); // Reset to first page to show the latest entry
     } catch (error) {
       console.error("Error creating sub-sub-category:", error);
       Swal.fire("Error!", "Failed to create sub-sub-category.", "error");
     }
   };
-
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -108,18 +108,23 @@ const Sub_Sub_Categories = () => {
     });
   };
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+ // Get current sub-sub-categories
+ const indexOfLastItem = currentPage * itemsPerPage;
+ const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+ const currentSubSubCategories = subSubCategories.doc.slice(
+   indexOfFirstItem,
+   indexOfLastItem
+ );
 
-  // Get current sub-sub-categories
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentSubSubCategories = subSubCategories.doc.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+ // Calculate page numbers
+ const pageNumbers = [];
+ for (let i = 1; i <= Math.ceil(subSubCategories.doc.length / itemsPerPage); i++) {
+   pageNumbers.push(i);
+ }
 
+ const paginate = (pageNumber) => {
+   setCurrentPage(pageNumber);
+ };
   if (loading) {
     return (
       <div>
@@ -389,7 +394,22 @@ const Sub_Sub_Categories = () => {
                   ))}
                 </tbody>
               </table>
-          
+              <ul className="pagination flex justify-center gap-1 items-center">
+        {pageNumbers.map((number) => (
+          <li
+            key={number}
+            className={`page-item ${currentPage === number ? "active" : ""}`}
+            onClick={() => paginate(number)}
+          >
+            <button
+              className="page-link bg-green-500 text-white rounded mx-1"
+              style={{ minWidth: "36px" , color:"white"}}
+            >
+              {number}
+            </button>
+          </li>
+        ))}
+      </ul>
             </div>
           </div>
         </div>

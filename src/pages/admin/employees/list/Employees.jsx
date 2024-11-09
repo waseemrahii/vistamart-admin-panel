@@ -134,9 +134,9 @@ const EmployeeList = () => {
                     </td>
                     <td className="text-center">
                       <div className="d-flex gap-10 justify-content-center">
-                        <Link to={`/update/${employee.id}`} className="btn btn-outline--primary btn-sm square-btn" title="Edit">
+                        {/* <Link to={`/update/${employee.id}`} className="btn btn-outline--primary btn-sm square-btn" title="Edit">
                           <FaEdit />
-                        </Link>
+                        </Link> */}
                         <Link className="btn btn-outline-info btn-sm square-btn" title="View" to={`/view/${employee.id}`}>
                           <FaEye />
                         </Link>

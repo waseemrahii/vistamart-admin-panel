@@ -154,13 +154,13 @@ const ProductTable = React.memo(
                         >
                           <FiEye />
                         </Link>
-                        <Link
+                        {/* <Link
                           to={`/product/${product._id}`}
                           className="btn btn-sm border-gray-400 hover:bg-gray-500 hover:text-white"
                           title="Edit"
                         >
                           <FiEdit />
-                        </Link>
+                        </Link> */}
                         <button
                           type="button"
                           className="btn btn-sm border-red-400 text-red-400 hover:bg-red-500 hover:text-white"
