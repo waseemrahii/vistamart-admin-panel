@@ -1,4 +1,3 @@
-
 import React, {
   useState,
   useEffect,
@@ -21,7 +20,6 @@ import ConfirmationModal from "../../../../components/FormInput/ConfirmationModa
 // Lazy load components
 const SubCategoryForm = lazy(() => import("./add/SubCategoryForm"));
 const SubCategoryList = lazy(() => import("./list/SubCategoryList"));
-
 
 const SubCategoriess = () => {
   const dispatch = useDispatch();
@@ -54,43 +52,50 @@ const SubCategoriess = () => {
     loadData();
   }, [loadData]);
 
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    try {
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
         // Prepare data for submission
         console.log("formdata ====", formData);
 
         // Check if we are in edit mode
         if (editMode && !formData?.id) {
-            throw new Error("Sub-category ID is missing for update.");
+          throw new Error("Sub-category ID is missing for update.");
         }
-         
+
         // Prepare data for submission
         const dataToSubmit = {
-            subCategoryId: editMode ? formData?.id : undefined, // Pass the ID for the update
-            subCategoryData: {
-                name: formData.name,
-                mainCategory: formData.mainCategory,
-                priority: formData.priority,
-            },
+          subCategoryId: editMode ? formData?.id : undefined, // Pass the ID for the update
+          subCategoryData: {
+            name: formData.name,
+            mainCategory: formData.mainCategory,
+            priority: formData.priority,
+          },
         };
-         console.log("data to submitedd",dataToSubmit)
+        console.log("data to submitedd", dataToSubmit);
         // Dispatch create or update action
-        await dispatch(editMode ? updateSubCategory(dataToSubmit) : createSubCategory(dataToSubmit));
+        await dispatch(
+          editMode
+            ? updateSubCategory(dataToSubmit)
+            : createSubCategory(dataToSubmit)
+        );
 
         Swal.fire(
-            "Success!",
-            `Sub-category ${editMode ? "updated" : "created"} successfully.`,
-            "success"
+          "Success!",
+          `Sub-category ${editMode ? "updated" : "created"} successfully.`,
+          "success"
         );
 
         resetForm();
         await loadData();
-    } catch (error) {
+      } catch (error) {
         console.error("Submit Error:", error);
         Swal.fire("Error!", "Failed to process the request.", "error");
-    }
-}, [editMode, formData, dispatch, loadData]);
+      }
+    },
+    [editMode, formData, dispatch, loadData]
+  );
 
   const resetForm = useCallback(() => {
     setFormData({ name: "", mainCategory: "", priority: "" });
@@ -120,7 +125,7 @@ const SubCategoriess = () => {
   );
 
   const handleEdit = useCallback((subCategory) => {
-      console.log("subcategory ----", subCategory)
+    console.log("subcategory ----", subCategory);
     setFormData({
       id: subCategory?._id,
       name: subCategory?.name,

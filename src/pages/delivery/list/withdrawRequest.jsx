@@ -152,8 +152,8 @@ const WithdrawRequest = () => {
             </span>
           </div>
           <div>
-            <div className="px-3 py-4 ">
-              <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
+            <div className="px-3 py-4  ">
+              <div className="flex flex-col md:flex-row lg:justify-between gap-4 w-full  lg:w-[50vw]">
                 {/* Search Field */}
                 <div className="w-full lg:w-auto">
                   <form onSubmit={handleSearchSubmit}>
@@ -166,7 +166,7 @@ const WithdrawRequest = () => {
                       <input
                         type="search"
                         name="searchValue"
-                        className="form-control"
+                        className="form-control outline-none "
                         placeholder="Search by Product Name"
                         value={filters.searchValue}
                         onChange={handleInputChange}
@@ -183,7 +183,7 @@ const WithdrawRequest = () => {
                 </div>
 
                 {/* Export Button & Dropdown */}
-                <div className="flex flex-row  items-center  justify-center w-full lg:w-auto lg:flex-row lg:items-center lg:justify-end gap-3">
+                <div className="flex flex-row  items-center  justify-center w-full lg:w-auto lg:flex-row lg:items-center lg:justify-center gap-3">
                   <ExportButton
                     data={list}
                     filename="List"
@@ -194,7 +194,7 @@ const WithdrawRequest = () => {
                   />
                   <select
                     name="/"
-                    className="border px-10 py-2 rounded border-gray-300 bg-white w-full sm:w-auto mt-2 sm:mt-0"
+                    className="border px-10 py-2 rounded outline-none border-gray-300 bg-white w-full sm:w-auto  sm:mt-0"
                   >
                     <option value="">All</option>
                     <option value="">Approved</option>

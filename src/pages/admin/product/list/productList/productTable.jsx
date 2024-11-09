@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  FiEdit,
-  FiTrash,
-  FiEye,
-  FiChevronLeft,
-  FiChevronRight,
-  FiPlus,
-} from "react-icons/fi";
+import { FiEdit, FiTrash, FiEye, FiPlus } from "react-icons/fi";
 import { FaDownload } from "react-icons/fa";
 import ExportButton from "../../../../../components/ActionButton/Export";
 import apiConfig from "../../../../../config/apiConfig";
@@ -17,7 +10,7 @@ const ProductTable = React.memo(
     products,
     onToggleFeatured,
     onUpdateStatus,
-    // onDeleteProduct,
+    onDeleteProduct,
     totalDocs,
     limit,
     totalPages,
@@ -62,7 +55,7 @@ const ProductTable = React.memo(
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control border-green-400"
+                    className="form-control outline-none hover:border-primary"
                     placeholder="Search by Product Name"
                     aria-label="Search orders"
                     value={searchQuery}
@@ -132,7 +125,6 @@ const ProductTable = React.memo(
                       <Link to="#" className="media align-items-center gap-2">
                         <img
                           src={`${apiConfig.bucket}/${product?.thumbnail}`} // Use the bucket URL
-
                           className="avatar border"
                           alt={product.name}
                         />
@@ -156,8 +148,8 @@ const ProductTable = React.memo(
                       <div className="btn-group flex gap-3">
                         <Link
                           to={`/products/${product._id}`}
-                           className="btn border-primary text-primary  "
-                            // style={{color:"white"}}
+                          className="btn border-primary text-primary  "
+                          // style={{color:"white"}}
                           title="View"
                         >
                           <FiEye />
@@ -169,14 +161,14 @@ const ProductTable = React.memo(
                         >
                           <FiEdit />
                         </Link>
-                        {/* <button
+                        <button
                           type="button"
                           className="btn btn-sm border-red-400 text-red-400 hover:bg-red-500 hover:text-white"
                           onClick={() => onDeleteProduct(product._id)}
                           title="Delete"
                         >
                           <FiTrash />
-                        </button> */}
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -192,7 +184,7 @@ const ProductTable = React.memo(
           </table>
         </div>
 
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="pagination flex bg-green-200 p-2 justify-around">
             <button
               onClick={handlePrevPage}
@@ -220,7 +212,7 @@ const ProductTable = React.memo(
               Next
             </button>
           </div>
-        )}
+        )} */}
       </>
     );
   }

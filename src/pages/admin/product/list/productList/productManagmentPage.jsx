@@ -130,25 +130,25 @@ const InHouseProductList = ({
     }
   };
 
-  // const handleDeleteProduct = async (productId) => {
-  //   const result = await Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "Do you want to delete this product?",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonText: "Yes, delete it!",
-  //     cancelButtonText: "No",
-  //   });
+  const handleDeleteProduct = async (productId) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to delete this product?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No",
+    });
 
-  //   if (result.isConfirmed) {
-  //     try {
-  //       await dispatch(deleteProduct(productId)).unwrap();
-  //       Swal.fire("Deleted!", "Product has been deleted.", "success");
-  //     } catch (error) {
-  //       Swal.fire("Error", error.message, "error");
-  //     }
-  //   }
-  // };
+    if (result.isConfirmed) {
+      try {
+        await dispatch(deleteProduct(productId)).unwrap();
+        Swal.fire("Deleted!", "Product has been deleted.", "success");
+      } catch (error) {
+        Swal.fire("Error", error.message, "error");
+      }
+    }
+  };
 
   const handleResetFilters = () => {
     setFilters({
@@ -202,12 +202,12 @@ const InHouseProductList = ({
                 : error}
             </div>
           ) : (
-            <Suspense >
+            <Suspense>
               <ProductTable
                 products={products}
                 onToggleFeatured={handleToggleFeatured}
                 onUpdateStatus={handleUpdateStatus}
-                // onDeleteProduct={handleDeleteProduct}
+                onDeleteProduct={handleDeleteProduct}
                 results={results}
                 onPageChange={handlePageChange}
               />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  FaServer } from "react-icons/fa";
+import { FaServer } from "react-icons/fa";
 
 const EnvironmentSettings = () => {
   const [activeMenu, setActiveMenu] = useState("environment"); // State to track active menu
@@ -12,12 +12,12 @@ const EnvironmentSettings = () => {
       title: "Environment Settings",
       url: "https://6valley.6amtech.com/admin/business-settings/web-config/environment-setup",
       formFields: [
-        { label: "App name", value: "6valley", disabled: true },
+        { label: "App name", value: "", disabled: true },
         { label: "App debug", value: "False", options: ["True", "False"] },
         { label: "App mode", value: "Live", options: ["Live", "Dev"] },
         {
           label: "App URL",
-          value: "http://6valley.6amtech.com",
+          value: "",
           disabled: true,
         },
         { label: "DB connection", value: "---", disabled: true },
@@ -28,7 +28,7 @@ const EnvironmentSettings = () => {
         { label: "DB password", value: "---", disabled: true },
         {
           label: "Buyer username",
-          value: "6valley-admin-demo-jhisdfhisufjifjfijqw5467",
+          value: "",
           disabled: true,
         },
         { label: "Purchase code", value: "", type: "password", disabled: true },

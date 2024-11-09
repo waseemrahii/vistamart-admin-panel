@@ -23,19 +23,37 @@ const ProductReports = () => {
         </h2>
       </div>
       {/* Top Navbar for sections */}
-      <div className="inline-page-menu  px-5 ">
-        <ul className="list-unstyled flex gap-3 font-bold">
-          <li className={activeSection === "allproduct" ? "active" : ""}>
+      <div className="inline-page-menu px-5 ">
+        <ul className="list-unstyled flex gap-3 font-bold p-2 text-nowrap w-60 md:w-full overflow-x-scroll md:overflow-hidden scroll-smooth ">
+          <li
+            className={`${
+              activeSection === "allproduct"
+                ? "border-b-2 border-green-500"
+                : ""
+            }`}
+          >
             <button onClick={() => handleSectionClick("allproduct")}>
               All Products
             </button>
           </li>
-          <li className={activeSection === "productstock" ? "active" : ""}>
+          <li
+            className={`${
+              activeSection === "productstock"
+                ? "border-b-2 border-green-500"
+                : ""
+            }`}
+          >
             <button onClick={() => handleSectionClick("productstock")}>
               Product Stock
             </button>
           </li>
-          <li className={activeSection === "listedproduct" ? "active" : ""}>
+          <li
+            className={`${
+              activeSection === "listedproduct"
+                ? "border-b-2 border-green-500"
+                : ""
+            }`}
+          >
             <button onClick={() => handleSectionClick("listedproduct")}>
               Wish Listed Products
             </button>
@@ -44,6 +62,7 @@ const ProductReports = () => {
           {/* Add more buttons for additional sections as needed */}
         </ul>
       </div>
+
       {/* <div className="inline-page-menu my-4">
   <ul className="list-unstyled">
     <li className="active"><a className="text-capitalize" href="https://6valley.6amtech.com/admin/business-settings/payment-method">Digital payment methods</a></li>

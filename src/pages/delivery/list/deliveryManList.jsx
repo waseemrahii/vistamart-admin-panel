@@ -3,6 +3,7 @@ import { FaChevronDown, FaFileImport } from "react-icons/fa";
 import { FiSearch, FiEdit, FiTrash } from "react-icons/fi"; // Importing icons
 import { CiImport } from "react-icons/ci";
 import { BiHide } from "react-icons/bi";
+import Switcher from "../../../components/FormInput/Switcher";
 const DeliveryManList = () => {
   {
     ("------------------------------DeleveryMan---------------------------------------------");
@@ -147,23 +148,29 @@ const DeliveryManList = () => {
       </div>
       <div className="bg-white shadow-md rounded-md">
         <div className="p-4 border-b border-gray-300 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center">
             <input
               type="text"
-              className="border border-gray-300 rounded-md py-2 px-4"
+              className="border border-gray-300 rounded-md py-2 px-4 w-24 md:w-40 lg:w-full outline-none"
               placeholder="Search by name, contact info"
             />
-            <button className="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark">
+            <button
+              className="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark "
+              style={{ color: "white" }}
+            >
               Search
             </button>
           </div>
 
-          <div className="flex flex-row items-center justify-center md:flex-row gap-3 w-full md:w-auto">
+          <div className="flex flex-col items-center justify-center md:flex-row gap-3 w-40 md:w-auto">
             <button className="border-2 border-green-500  bg-white text-blue-300 items-center flex-grow flex gap-2 py-2 px-4 rounded-md hover:bg-primary-dark">
               <FaChevronDown />
               Export
             </button>
-            <button className="bg-primary text-white flex-grow py-2 px-4 rounded-md hover:bg-primary-dark">
+            <button
+              className="bg-primary text-white text-nowrap flex-grow py-2 px-4 rounded-md hover:bg-primary-dark"
+              style={{ color: "white" }}
+            >
               + Add Delivery Man
             </button>
           </div>
@@ -214,7 +221,7 @@ const DeliveryManList = () => {
                     </td>
                     <td className="px-4 py-2 text-center">
                       <form>
-                        <label className="switch flex justify-center items-center">
+                        {/* <label className="switch flex justify-center items-center">
                           <input
                             type="checkbox"
                             className=""
@@ -227,7 +234,9 @@ const DeliveryManList = () => {
                               deliveryMan.name ? "bg-blue-500" : "bg-gray-300"
                             }`}
                           />
-                        </label>
+                        </label> */}
+
+                        <Switcher />
                       </form>
                     </td>
                     <td className="px-4 py-2 text-center">

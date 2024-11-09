@@ -255,100 +255,99 @@ const AddNewDelivery = () => {
                 className="mt-1 block font-medium outline-none text-sm w-full border px-3 py-2 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
-           
-              {/* Password Field */}
-              <div>
-                <label className="text-sm font-semibold text-gray-700">
-                  Password
-                </label>
-                <div className="relative mt-1">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    className="block font-medium outline-none text-sm w-full border px-3 py-2 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50"
-                  />
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700 cursor-pointer"
-                  >
-                    {showPassword ? (
-                      // Show "hide" icon when password is visible
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        className="text-gray-500"
-                      >
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                      </svg>
-                    ) : (
-                      // Show "eye" icon when password is hidden
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        className="text-gray-500"
-                      >
-                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
 
-              {/* Confirm Password Field */}
-              <div>
-                <label className="text-sm font-semibold text-gray-700">
-                  Confirm Password
-                </label>
-                <div className="relative mt-1">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    placeholder="Confirm Password"
-                    className="block font-medium outline-none text-sm w-full border px-3 py-2 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50"
-                  />
-                  <button
-                    type="button"
-                    onClick={toggleConfirmPasswordVisibility}
-                    className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700 cursor-pointer"
-                  >
-                    {showConfirmPassword ? (
-                      // Show "hide" icon when confirm password is visible
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        className="text-gray-500"
-                      >
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                      </svg>
-                    ) : (
-                      // Show "eye" icon when confirm password is hidden
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        className="text-gray-500"
-                      >
-                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
+            {/* Password Field */}
+            <div>
+              <label className="text-sm font-semibold text-gray-700">
+                Password
+              </label>
+              <div className="relative mt-1">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="block font-medium outline-none text-sm w-full border px-3 py-2 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700 cursor-pointer"
+                >
+                  {showPassword ? (
+                    // Show "hide" icon when password is visible
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      className="text-gray-500"
+                    >
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                  ) : (
+                    // Show "eye" icon when password is hidden
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      className="text-gray-500"
+                    >
+                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                    </svg>
+                  )}
+                </button>
               </div>
-           
+            </div>
+
+            {/* Confirm Password Field */}
+            <div>
+              <label className="text-sm font-semibold text-gray-700">
+                Confirm Password
+              </label>
+              <div className="relative mt-1">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                  className="block font-medium outline-none text-sm w-full border px-3 py-2 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+                <button
+                  type="button"
+                  onClick={toggleConfirmPasswordVisibility}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-700 cursor-pointer"
+                >
+                  {showConfirmPassword ? (
+                    // Show "hide" icon when confirm password is visible
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      className="text-gray-500"
+                    >
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                  ) : (
+                    // Show "eye" icon when confirm password is hidden
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      className="text-gray-500"
+                    >
+                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="flex justify-end mt-6 items-center ">
-            <button className="px-4 py-2 bg-gray-200 rounded font-medium mr-2">
+          <div className="flex justify-center md:justify-end mt-6 items-center gap-2  ">
+            <button className="px-4 py-2 bg-gray-200 rounded font-medium ">
               Reset
             </button>
             <button

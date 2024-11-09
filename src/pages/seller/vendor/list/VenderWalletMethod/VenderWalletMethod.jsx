@@ -123,7 +123,11 @@ const VenderWalletMethod = () => {
             <img width="20" src="/withdraw-icon.png" alt="Withdraw Icon" />
             Withdraw Method List
           </h2>
-          <a href="#" className="btn bg-primary text-white">
+          <a
+            href="#"
+            className="btn bg-primary hover:bg-primary-dark"
+            style={{ color: "white" }}
+          >
             + Add method
           </a>
         </div>
@@ -150,7 +154,7 @@ const VenderWalletMethod = () => {
                     </div>
                     <input
                       type="search"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       placeholder="Search Method Name"
                       value={searchValue}
                       onChange={handleSearch}
@@ -198,24 +202,30 @@ const VenderWalletMethod = () => {
                       <td className="text-center">
                         <button
                           onClick={() => toggleActiveStatus(method.id)}
-                          className="btn btn-light"
+                          className="btn btn-light "
                         >
                           {method.isActive ? (
-                            <FaToggleOn style={{ color: "green p-4" }} />
+                            <FaToggleOn
+                              style={{ color: "green " }}
+                              className="h-8 w-12"
+                            />
                           ) : (
-                            <FaToggleOff style={{ color: "red p-4" }} />
+                            <FaToggleOff className="h-8 w-12 text-red-600" />
                           )}
                         </button>
                       </td>
                       <td className="text-center">
                         <button
                           onClick={() => toggleDefaultStatus(method.id)}
-                          className="btn btn-light btn-sm square-btn"
+                          className="btn btn-light btn-sm square-btn "
                         >
                           {method.isDefault ? (
-                            <FaToggleOn style={{ color: "green" }} />
+                            <FaToggleOn
+                              style={{ color: "green" }}
+                              className="h-8 w-12"
+                            />
                           ) : (
-                            <FaToggleOff style={{ color: "red" }} />
+                            <FaToggleOff className="h-8 w-12 text-red-600" />
                           )}
                         </button>
                       </td>
@@ -231,7 +241,7 @@ const VenderWalletMethod = () => {
                           to="/addvenderwidthrawtmethod"
                           icon={FaEdit} // Pass dynamic icon
                           className="ml-4"
-                          label="Edit"
+                          // label="Edit"
                         />
                         {/* <a
                           href="#"

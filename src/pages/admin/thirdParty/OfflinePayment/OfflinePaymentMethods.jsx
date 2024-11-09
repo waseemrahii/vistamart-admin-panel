@@ -1,6 +1,7 @@
 // OfflinePaymentMethods.js
 
 import React, { useState } from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const OfflinePaymentMethods = () => {
   const [currentTab, setCurrentTab] = useState("all"); // State to manage active tab
@@ -42,19 +43,25 @@ const OfflinePaymentMethods = () => {
       <nav>
         <div className="nav nav-tabs mb-3 border-0" role="tablist">
           <button
-            className={`nav-link ${currentTab === "all" ? "active" : ""}`}
+            className={`nav-link ${
+              currentTab === "all" ? "border-b-2 border-green-500" : ""
+            }`}
             onClick={() => handleTabChange("all")}
           >
             All
           </button>
           <button
-            className={`nav-link ${currentTab === "active" ? "active" : ""}`}
+            className={`nav-link ${
+              currentTab === "active" ? "border-b-2 border-green-500" : ""
+            }`}
             onClick={() => handleTabChange("active")}
           >
             Active
           </button>
           <button
-            className={`nav-link ${currentTab === "inactive" ? "active" : ""}`}
+            className={`nav-link ${
+              currentTab === "inactive" ? "border-b-2 border-green-500" : ""
+            }`}
             onClick={() => handleTabChange("inactive")}
           >
             Inactive
@@ -89,7 +96,7 @@ const OfflinePaymentMethods = () => {
                         id="datatableSearch_"
                         type="search"
                         name="searchValue"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         placeholder="Search by payment method name"
                         value=""
                         required=""
@@ -191,7 +198,7 @@ const OfflinePaymentMethods = () => {
                               title="Edit"
                               href={`https://6valley.6amtech.com/admin/business-settings/offline-payment-method/update/${method.id}`}
                             >
-                              <i className="tio-edit"></i>
+                              <FaEdit />
                             </a>
                             {/* Delete button */}
                             <button
@@ -199,7 +206,7 @@ const OfflinePaymentMethods = () => {
                               title="Delete"
                               data-id={`delete-method-name-${method.id}`}
                             >
-                              <i className="tio-delete"></i>
+                              <FaTrash />
                             </button>
                             {/* Delete form */}
                             <form

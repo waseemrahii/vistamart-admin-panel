@@ -118,7 +118,8 @@ const CookieSettings = () => {
               <div className="d-flex justify-content-end gap-10 flex-wrap mt-3">
                 <button
                   type="button"
-                  className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] call-demo"
+                  className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark call-demo"
+                  style={{ color: "white" }}
                 >
                   Clear
                 </button>

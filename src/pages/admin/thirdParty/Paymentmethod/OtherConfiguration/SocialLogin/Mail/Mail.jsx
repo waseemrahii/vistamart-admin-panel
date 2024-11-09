@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Switcher from "../../../../../../../components/FormInput/Switcher";
 const Mail = () => {
-  const initialSmtpConfig={ 
+  const initialSmtpConfig = {
     name: "",
     host: "",
     driver: "",
@@ -12,8 +12,8 @@ const Mail = () => {
     encryption: "",
     password: "",
   };
-  
-  const initialsendgridConfig={
+
+  const initialsendgridConfig = {
     name: "",
     host: "",
     driver: "",
@@ -22,13 +22,12 @@ const Mail = () => {
     email: "",
     encryption: "",
     password: "",
-  }
-  
+  };
+
   const [showPassword, setShowPassword] = useState(false);
   const [showGridPassword, setShowGridPassword] = useState(false);
-  const [smtpConfig, setSmtpConfig] = useState( initialSmtpConfig)
-  const[sendgridConfig, setSendgridConfig]=useState( initialsendgridConfig)
-
+  const [smtpConfig, setSmtpConfig] = useState(initialSmtpConfig);
+  const [sendgridConfig, setSendgridConfig] = useState(initialsendgridConfig);
 
   const handleSmtpConfigChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +42,6 @@ const Mail = () => {
   const toggleGridPasswordVisibility = () => {
     setShowGridPassword((prevShowGrid) => !prevShowGrid);
   };
-  
 
   const handleSendgridConfigChange = (e) => {
     const { name, value } = e.target;
@@ -63,11 +61,9 @@ const Mail = () => {
     console.log("Saving Sendgrid config:", sendgridConfig);
   };
 
-  
-
   const handleReset = () => {
     setSmtpConfig(initialSmtpConfig); // Reset SMTP config
-    setSendgridConfig( initialsendgridConfig); // Reset Sendgrid config
+    setSendgridConfig(initialsendgridConfig); // Reset Sendgrid config
   };
   return (
     <div className="content container-fluid snipcss-R5i2w">
@@ -109,15 +105,15 @@ const Mail = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="card mt-3">
-                <form onSubmit={handleSaveSmtpConfig} >
+                <form onSubmit={handleSaveSmtpConfig}>
                   <input
                     type="hidden"
                     name="_token"
                     value="NUpqhZtm7pRjhaqQhQPJVPmT5ShZIbb5yd6KyYU7"
                     autoComplete="off"
                   />
-                  <div className="border-b-2 shadow-md flex  items-center p-3">
-                    <div className="flex justify-between w-full text-nowrap items-center ">
+                  <div className="border-b-2 shadow-md flex  items-center  p-3">
+                    <div className="flex justify-between w-[120vw] text-nowrap items-center ">
                       <h5 className="mb-0 d-flex align-items-center gap-2 text-capitalize">
                         <img
                           width="20"
@@ -170,7 +166,7 @@ const Mail = () => {
                           <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
                         </svg>
                         {/* Tooltip shown on hover */}
-                        <span className="hidden group-hover:block absolute bg-gray-800 text-white text-xs rounded-lg p-2 bottom-full mb-2 text-nowrap ">
+                        <span className="hidden group-hover:block absolute bg-gray-800 text-white text-xs rounded-lg p-2 bottom-full mb-2 text-nowrap  ">
                           Enter Mailer name
                         </span>
                       </div>
@@ -181,7 +177,7 @@ const Mail = () => {
                       name="name"
                       value={smtpConfig.name}
                       onChange={handleSmtpConfigChange}
-                      className="form-control hover:border-primary  outline-none w-56 md:w-96"
+                      className="form-control hover:border-primary  outline-none w-48 md:w-96"
                       placeholder="Enter your name"
                       autoComplete="off"
                     />
@@ -481,7 +477,7 @@ const Mail = () => {
                     autoComplete="off"
                   />
                   <div className="border-b-2 shadow-md flex  items-center p-3">
-                    <div className="flex justify-end items-center gap-12 md:gap-52 text-nowrap">
+                    <div className="flex justify-between w-full gap-6 text-nowrap items-center">
                       <h5 className="mb-0 d-flex align-items-center gap-2 text-capitalize">
                         <img
                           width="20"
@@ -544,7 +540,7 @@ const Mail = () => {
                       name="name"
                       value={sendgridConfig.name}
                       onChange={handleSendgridConfigChange}
-                      className="form-control hover:border-primary  outline-none w-56 md:w-96"
+                      className="form-control hover:border-primary  outline-none w-48 md:w-96"
                       placeholder="Enter your name"
                       autoComplete="off"
                     />
@@ -780,10 +776,10 @@ const Mail = () => {
                         />
                         <button
                           type="button"
-                          onClick={toggleGridPasswordVisibility }
+                          onClick={toggleGridPasswordVisibility}
                           className="absolute right-3 top-1/2 transform -translate-y-1/2 focus:outline-none"
                         >
-                          {showGridPassword? (
+                          {showGridPassword ? (
                             // Show cross icon when password is visible
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

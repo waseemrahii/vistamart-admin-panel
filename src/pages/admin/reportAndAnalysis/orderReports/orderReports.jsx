@@ -210,7 +210,7 @@ const OrderReports = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2 w-52 border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2 w-52 border border-primary outline-none"
           >
             <option value="">All</option>
             <option value="">This Month</option>
@@ -221,7 +221,7 @@ const OrderReports = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2 w-52 border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2 w-52 border border-primary outline-none"
           >
             <option value="">This Year</option>
             <option value="">This Month</option>
@@ -230,7 +230,7 @@ const OrderReports = () => {
             <option value="">Custom Date</option>
           </select>
           <button
-            className="px-6 w-52 py-2 rounded border border-green-200 bg-[#A1CB46] hover:bg-[#6a852f] text-white"
+            className="px-6 w-52 py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
             style={{ color: "white" }}
           >
             Filter
@@ -383,14 +383,15 @@ const OrderReports = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control"
+                    className="form-control outline-none hover:border-primary"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value=""
                   />
                   <button
                     type="submit"
-                    className="btn bg-[#A1CB46] hover:bg-[#94ba42]"
+                    className="btn bg-primary hover:bg-primary-dark"
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>
@@ -398,7 +399,7 @@ const OrderReports = () => {
               </form>
               <button
                 type="button"
-                className="rounded w-20 px-3 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-nowrap btn-block flex gap-2 "
+                className="rounded w-20 px-3 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
                   color: "white",

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaPen, FaTrash } from "react-icons/fa";
@@ -19,7 +18,7 @@ const DealOfTheDay = () => {
   const deals = useSelector((state) => state.dealOfTheDay.deals);
   const loading = useSelector((state) => state.dealOfTheDay.loading);
   const { products } = useSelector((state) => state.product);
-  
+
   const [title, setTitle] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -110,7 +109,6 @@ const DealOfTheDay = () => {
           confirmButtonText: "OK",
         });
         dispatch(fetchDeals());
-
       }
       setTitle("");
       setSelectedProduct(null);
@@ -130,11 +128,10 @@ const DealOfTheDay = () => {
     setTitle(dealItem.title);
     setSelectedProduct(dealItem.product);
     setCurrentDealId(dealItem._id);
-    
-    // Scroll smoothly to the top of the page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
+    // Scroll smoothly to the top of the page
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -215,7 +212,7 @@ const DealOfTheDay = () => {
                       <input
                         type="text"
                         name="title"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         id="title"
                         placeholder="Ex: LUX"
                         value={title}
@@ -230,76 +227,84 @@ const DealOfTheDay = () => {
                         Products
                       </label>
                       <div className="relative" ref={dropdownRef}>
-  <button
-    type="button"
-    className="form-control text-left text-capitalize w-full bg-white border border-gray-300 px-4 py-2 rounded-md shadow-sm flex items-center justify-between"
-    onClick={toggleDropdown}
-  >
-    {selectedProduct ? selectedProduct.name : 'Select product'}
-    <svg
-      className={`w-5 h-5 transition-transform transform ${
-        dropdownOpen ? 'rotate-180' : ''
-      }`}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M19 9l-7 7-7-7"
-      />
-    </svg>
-  </button>
-  {dropdownOpen && (
-    <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
-      <div className="relative p-2">
-        <div className="relative mb-2">
-          <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-            placeholder="Search product..."
-          />
-        </div>
-        <div className="space-y-3">
-          {products.map((product) => (
-            <div
-              key={product._id}
-              className="flex items-center gap-3 p-2 border-b last:border-b-0 cursor-pointer hover:bg-gray-100"
-              onClick={() => handleProductSelect(product)}
-            >
-              <img
-                className="w-10 h-10 border border-gray-200 rounded"
-                src={product?.thumbnail}
-                alt="product"
-              />
-              <div className="flex-1">
-                <h5 className="text-sm font-medium text-gray-900">
-                  {product.name.length > 20 ? `${product.name.slice(0, 20)}...` : product.name}
-                </h5>
-                <div className="text-xs text-gray-500">
-                  {product.category?.name || 'No category'} -{' '}
-                  {product.brand?.name || 'No brand'}
-                </div>
-              </div>
-              <AiOutlineCheckCircle className="text-green-500" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )}
-</div>
+                        <button
+                          type="button"
+                          className="form-control text-left text-capitalize w-full bg-white border border-gray-300 px-4 py-2 rounded-md shadow-sm flex items-center justify-between"
+                          onClick={toggleDropdown}
+                        >
+                          {selectedProduct
+                            ? selectedProduct.name
+                            : "Select product"}
+                          <svg
+                            className={`w-5 h-5 transition-transform transform ${
+                              dropdownOpen ? "rotate-180" : ""
+                            }`}
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </button>
+                        {dropdownOpen && (
+                          <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                            <div className="relative p-2">
+                              <div className="relative mb-2">
+                                <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                <input
+                                  type="text"
+                                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-md focus:outline-none hover:border-primary focus:border-indigo-500"
+                                  placeholder="Search product..."
+                                />
+                              </div>
+                              <div className="space-y-3">
+                                {products.map((product) => (
+                                  <div
+                                    key={product._id}
+                                    className="flex items-center gap-3 p-2 border-b last:border-b-0 cursor-pointer hover:bg-gray-100"
+                                    onClick={() => handleProductSelect(product)}
+                                  >
+                                    <img
+                                      className="w-10 h-10 border border-gray-200 rounded"
+                                      src={product?.thumbnail}
+                                      alt="product"
+                                    />
+                                    <div className="flex-1">
+                                      <h5 className="text-sm font-medium text-gray-900">
+                                        {product.name.length > 20
+                                          ? `${product.name.slice(0, 20)}...`
+                                          : product.name}
+                                      </h5>
+                                      <div className="text-xs text-gray-500">
+                                        {product.category?.name ||
+                                          "No category"}{" "}
+                                        - {product.brand?.name || "No brand"}
+                                      </div>
+                                    </div>
+                                    <AiOutlineCheckCircle className="text-green-500" />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <button type="submit" className="btn bg-primary mt-4 text-white" style={{color:"white"}}>
-                {currentDealId ? "Update Deal" : "Add Deal"}
+                <button
+                  type="submit"
+                  className="btn bg-primary hover:bg-primary-dark mt-4 text-white"
+                  style={{ color: "white" }}
+                >
+                  {currentDealId ? "Update Deal" : "Add Deal"}
                 </button>
-              
               </form>
             </div>
           </div>
@@ -316,48 +321,53 @@ const DealOfTheDay = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {deals && deals.length > 0 ? (
-  deals.map((dealItem, index) => (
-    <tr key={dealItem._id}>
-      <td>{index + 1}</td>
-      <td>{dealItem.products && dealItem.products.length > 0 ? dealItem.products[0].name : "N/A"}</td>
-      <td>{dealItem.title}</td>
-      <td>
-        <label className="switcher">
-          <input
-            type="checkbox"
-            className="switcher_input"
-            checked={dealItem.status === "active"}
-            onChange={() => toggleStatus(dealItem._id, dealItem.status)}
-          />
-          <span className="switcher_control"></span>
-        </label>
-      </td>
-      <td className="text-center flex justify-center">
-        <div className="d-flex gap-2">
-          <button
-            title="Edit"
-            className="btn btn-sm border-green-400 hover:bg-green-400 hover:text-white"
-            onClick={() => handleEdit(dealItem)}
-          >
-            <FaPen />
-          </button>
-          <ActionButton
-            onClick={() => handleDelete(dealItem._id)}
-            icon={FaTrash}
-            className="ml-4"
-            label="Delete"
-          />
-        </div>
-      </td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan="5">No deals available</td>
-  </tr>
-)}
-
+                  {deals && deals.length > 0 ? (
+                    deals.map((dealItem, index) => (
+                      <tr key={dealItem._id}>
+                        <td>{index + 1}</td>
+                        <td>
+                          {dealItem.products && dealItem.products.length > 0
+                            ? dealItem.products[0].name
+                            : "N/A"}
+                        </td>
+                        <td>{dealItem.title}</td>
+                        <td>
+                          <label className="switcher">
+                            <input
+                              type="checkbox"
+                              className="switcher_input"
+                              checked={dealItem.status === "active"}
+                              onChange={() =>
+                                toggleStatus(dealItem._id, dealItem.status)
+                              }
+                            />
+                            <span className="switcher_control"></span>
+                          </label>
+                        </td>
+                        <td className="text-center flex justify-center">
+                          <div className="d-flex gap-2">
+                            <button
+                              title="Edit"
+                              className="btn btn-sm border-green-400 hover:bg-green-400 hover:text-white"
+                              onClick={() => handleEdit(dealItem)}
+                            >
+                              <FaPen />
+                            </button>
+                            <ActionButton
+                              onClick={() => handleDelete(dealItem._id)}
+                              icon={FaTrash}
+                              className="ml-4"
+                              label="Delete"
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5">No deals available</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -369,4 +379,3 @@ const DealOfTheDay = () => {
 };
 
 export default DealOfTheDay;
-

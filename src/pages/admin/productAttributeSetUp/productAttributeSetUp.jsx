@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaDownload, FaEdit, FaSearch, FaTrash } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,14 +8,16 @@ import {
   fetchAttributes,
   createAttribute,
   updateAttribute,
-  deleteAttribute
-} from '../../../redux/slices/admin/attributeSlice';
+  deleteAttribute,
+} from "../../../redux/slices/admin/attributeSlice";
 import ActionButton from "../../../components/ActionButton/Action";
 import ExportButton from "../../../components/ActionButton/Export";
 
 const AttributeSetup = () => {
   const dispatch = useDispatch();
-  const { attributes, loading, error } = useSelector((state) => state.attribute);
+  const { attributes, loading, error } = useSelector(
+    (state) => state.attribute
+  );
   const [activeTab, setActiveTab] = useState("en");
   const [searchValue, setSearchValue] = useState("");
   const [newAttribute, setNewAttribute] = useState({ name: "" });
@@ -47,7 +49,9 @@ const AttributeSetup = () => {
     if (editingAttribute) {
       // Update attribute
       console.log("editing attribute: ", editingAttribute._id);
-      dispatch(updateAttribute({ id: editingAttribute._id, data: newAttribute }));
+      dispatch(
+        updateAttribute({ id: editingAttribute._id, data: newAttribute })
+      );
       toast.success("Attribute updated successfully!");
     } else {
       // Add new attribute
@@ -113,7 +117,7 @@ const AttributeSetup = () => {
                       <input
                         type="text"
                         name="name"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         id={`type-en`}
                         placeholder="Enter Attribute Name"
                         value={newAttribute.name}
@@ -190,7 +194,7 @@ const AttributeSetup = () => {
               <div className="text-start">
                 <div className="table-responsive">
                   <table className="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table w-100">
-                    <thead className="thead-light thead-50 text-capitalize">
+                    <thead className="thead-light thead-50 text-capitalize ">
                       <tr>
                         <th>SL</th>
                         <th className="text-center">Attribute Name</th>

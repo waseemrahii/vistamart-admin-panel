@@ -5,11 +5,7 @@ const AnnouncementSetup = () => {
     <div className="bg-[#F9F9FB]  px-5 py-5 w-[100%]">
       {" "}
       <div className="font-bold text-[1.3rem] flex gap-2 items-center">
-        <img
-          src="/announcement.png"
-          alt=""
-          className="w-6 h-6"
-        />
+        <img src="/announcement.png" alt="" className="w-6 h-6" />
         <h1>Announcement Setup</h1>
       </div>
       <div className="p-4 h-[80vh] w-full bg-white  rounded-lg mt-3 px-10 py-8  border border-gray-300 rounded-lg shadow-lg">
@@ -56,12 +52,15 @@ const AnnouncementSetup = () => {
             <label className="block text-gray-700 mb-2">Text</label>
             <input
               type="text"
-              className="w-full h-10 border border-gray-300 rounded-md p-2"
+              className="w-full h-10 border border-gray-300 rounded-md p-2 outline-none"
               value="Get 50% discount for specific products from June 2024 to December 2024."
             />
           </div>
           <div className=" text-right">
-            <button className=" px-3   bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
+            <button
+              className=" px-3   bg-primary text-white py-2 rounded-md hover:bg-primary-dark"
+              style={{ color: "white" }}
+            >
               Publish
             </button>
           </div>

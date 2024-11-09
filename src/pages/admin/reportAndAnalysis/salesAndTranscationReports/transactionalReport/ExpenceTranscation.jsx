@@ -87,7 +87,7 @@ const ExpenceTranscation = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2 outline-none"
           >
             <option value="">This Year</option>
             <option value="">This Month</option>
@@ -95,7 +95,7 @@ const ExpenceTranscation = () => {
           </select>
           <div className="">
             <button
-              className="px-6  py-2 rounded border border-green-200 bg-[#A1CB46] hover:bg-[#6a852f] text-white"
+              className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
               style={{ color: "white" }}
             >
               Filter
@@ -182,7 +182,7 @@ const ExpenceTranscation = () => {
       {/* ///////////// */}
       <div className="card">
         <div className="px-3 py-4">
-          <div className="flex justify-between gap-3 align-items-center">
+          <div className="flex justify-between gap-3 align-items-center flex-col lg:flex-row">
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto text-[1rem] font-semibold">
               Total Transactions{" "}
               <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
@@ -190,13 +190,13 @@ const ExpenceTranscation = () => {
               </span>
             </h5>
 
-            <div className="flex  gap-3">
+            <div className="flex  gap-3 flex-col lg:flex-row w-40 md:w-full lg:w-[30vw]">
               <form
                 action="https://6valley.6amtech.com/admin/customer/subscriber-list"
                 method="GET"
                 className="w-80 "
               >
-                <div className="input-group input-group-merge input-group-custom">
+                <div className="input-group input-group-merge input-group-custom w-40  md:w-full">
                   <div className="input-group-prepend">
                     <div className="input-group-text">
                       <FaSearch />
@@ -206,14 +206,15 @@ const ExpenceTranscation = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control"
+                    className="form-control outline-none"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value=""
                   />
                   <button
                     type="submit"
-                    className="btn bg-[#A1CB46] hover:bg-[#94ba42]"
+                    className="btn bg-primary hover:bg-primary-dark"
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>
@@ -237,7 +238,7 @@ const ExpenceTranscation = () => {
                 filename="ExpenceTranscation" // Optional filename for the exported file
                 icon={FaDownload} // Icon for the button
                 label="Export " // Button label
-                className="bg-[#A1CB46] text-white hover:bg-[#7e9f37]" // Tailwind classes for styling
+                className="bg-primary text-white hover:bg-primary-dark w-40 " // Tailwind classes for styling
                 style={{ color: "white" }} // Optional inline styles
               />
             </div>

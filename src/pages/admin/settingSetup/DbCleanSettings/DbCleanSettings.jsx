@@ -51,7 +51,7 @@ const DbCleanSettings = () => {
               id="cookie_text"
               cols="30"
               rows="6"
-              className="form-control"
+              className="form-control outline-none hover:border-primary"
               value={cookieText}
               onChange={handleTextChange}
             />
@@ -60,7 +60,8 @@ const DbCleanSettings = () => {
             <button
               type="button"
               id="submit"
-              className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37]"
+              className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+              style={{ color: "white" }}
               onClick={handleSave}
             >
               Save

@@ -65,7 +65,7 @@ const InHouseSales = () => {
             <select
               name=""
               id=""
-              className="text-md  bg-white px-4 rounded py-3 w-[70%] border border-green-300"
+              className="text-md  bg-white px-4 rounded py-3 w-[70%] border border-primary outline-none"
             >
               <option value="">This Year</option>
               <option value="">This Month</option>
@@ -74,7 +74,7 @@ const InHouseSales = () => {
               <option value="">Custom Date</option>
             </select>
             <button
-              className="px-3 w-[20% ] py-3 rounded border border-green-200 bg-[#A1CB46] hover:bg-[#6a852f] text-white"
+              className="px-3 w-[20% ] py-3 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
               style={{ color: "white" }}
             >
               Filter

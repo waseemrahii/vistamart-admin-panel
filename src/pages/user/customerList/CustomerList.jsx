@@ -91,7 +91,7 @@ const CustomerList = React.memo(() => {
             <h3 className=" text-[1rem] font-semibold col-lg-4">
               Customer Table
             </h3>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-col w-full lg:w-[30vw] md:flex-row">
               <div className="">
                 <div className="input-group input-group-merge input-group-custom">
                   <div className="input-group-prepend"></div>
@@ -113,7 +113,7 @@ const CustomerList = React.memo(() => {
                   filename="UserList" // Optional filename for the exported file
                   icon={FaDownload} // Icon for the button
                   label="Export " // Button label
-                  className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                  className="bg-primary text-white hover:bg-primary-dark " // Tailwind classes for styling
                   style={{ color: "white" }} // Optional inline styles
                 />
               </div>

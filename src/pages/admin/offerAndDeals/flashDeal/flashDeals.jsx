@@ -149,7 +149,7 @@ const FlashDeals = () => {
                       <input
                         type="text"
                         name="title"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         placeholder="Enter title"
                         value={formData.title}
                         onChange={handleInputChange}
@@ -166,7 +166,7 @@ const FlashDeals = () => {
                       <input
                         type="date"
                         name="startDate"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         value={formData.startDate}
                         onChange={handleInputChange}
                         required
@@ -182,7 +182,7 @@ const FlashDeals = () => {
                       <input
                         type="date"
                         name="endDate"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         value={formData.endDate}
                         onChange={handleInputChange}
                         required
@@ -198,12 +198,13 @@ const FlashDeals = () => {
                     />
                   </div>
                   <div className="flex justify-end m-5 w-full">
-                    <button 
-                      type="submit" 
-                      className="btn bg-primary text-white"
+                    <button
+                      type="submit"
+                      className="btn bg-primary hover:bg-primary-dark"
+                      style={{ color: "white" }}
                       disabled={isSubmitting} // Disable the button while submitting
                     >
-                      {isSubmitting ? 'Submitting...' : 'Add Flash Deal'}
+                      {isSubmitting ? "Submitting..." : "Add Flash Deal"}
                     </button>
                   </div>
                 </div>
@@ -235,13 +236,13 @@ const FlashDeals = () => {
                 <ExportButton />
               </div>
 
-              {status === 'loading' ? (
+              {status === "loading" ? (
                 <p>Loading...</p>
-              ) : status === 'failed' ? (
+              ) : status === "failed" ? (
                 <p>{error}</p>
               ) : (
                 <div className="table-responsive">
-                  <table className="table table-hover text-nowrap" >
+                  <table className="table table-hover text-nowrap">
                     <thead className="bg-green-200 ">
                       <tr>
                         <th>Title</th>
@@ -255,40 +256,41 @@ const FlashDeals = () => {
                       {filteredDeals.map((deal) => (
                         <tr key={deal._id}>
                           <td>{deal.title}</td>
-                          <td>{new Date(deal.startDate).toLocaleDateString()}</td>
+                          <td>
+                            {new Date(deal.startDate).toLocaleDateString()}
+                          </td>
                           <td>{new Date(deal.endDate).toLocaleDateString()}</td>
                           <td>
                             <img src={deal.image} alt={deal.title} width="50" />
                           </td>
                           <td>
-                          <div className="d-flex justify-content-center gap-2">
-
+                            <div className="d-flex justify-content-center gap-2">
                               <Link
-                            to={`/add-flashproduct/${deal._id}`}
-                            className="h-30 d-flex gap-2 align-items-center btn btn-soft-info btn-sm border-green-500"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="9"
-                              height="9"
-                              viewBox="0 0 9 9"
-                              fill="none"
-                              className="svg replaced-svg border-green-500"
-                            >
-                              <path
-                                d="M9 3.9375H5.0625V0H3.9375V3.9375H0V5.0625H3.9375V9H5.0625V5.0625H9V3.9375Z"
-                                fill="#00A3AD"
+                                to={`/add-flashproduct/${deal._id}`}
+                                className="h-30 d-flex gap-2 align-items-center btn btn-soft-info btn-sm border-green-500"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="9"
+                                  height="9"
+                                  viewBox="0 0 9 9"
+                                  fill="none"
+                                  className="svg replaced-svg border-green-500"
+                                >
+                                  <path
+                                    d="M9 3.9375H5.0625V0H3.9375V3.9375H0V5.0625H3.9375V9H5.0625V5.0625H9V3.9375Z"
+                                    fill="#00A3AD"
+                                  />
+                                </svg>
+                                Add product
+                              </Link>
+                              <ActionButton
+                                onClick={() => handleDelete(deal._id)}
+                                icon={FaTrash} // Pass dynamic icon
+                                className="ml-4"
+                                label="Delete"
                               />
-                            </svg>
-                            Add product
-                          </Link>
-                          <ActionButton
-                            onClick={() => handleDelete(deal._id)}
-                            icon={FaTrash} // Pass dynamic icon
-                            className="ml-4"
-                            label="Delete"
-                          />
-                          </div>
+                            </div>
                           </td>
                         </tr>
                       ))}

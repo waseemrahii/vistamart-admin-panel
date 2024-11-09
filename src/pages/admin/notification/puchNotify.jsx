@@ -13,7 +13,7 @@ const PuchNotify = () => {
             <button className="text-gray-600">Bangla(BD)</button>
             <button className="text-gray-600">Hindi(IN)</button>
           </div>
-          <select className="border border-gray-300 rounded-md px-4 py-2 bg-white ">
+          <select className="border border-gray-300 rounded-md px-4 py-2 bg-white outline-none">
             <option>For Customer</option>
             <option>For Admin</option>
           </select>
@@ -39,7 +39,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Order Pending Message"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2"
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -56,7 +56,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Order Pending Message"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2"
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -73,7 +73,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Order out for delivery Message"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2"
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -95,7 +95,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Order out for delivery Message"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2"
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -117,7 +117,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Order out for delivery "
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2"
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -139,7 +139,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Order out for delivery "
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2 "
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -162,7 +162,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Your refund request is canceled {orderId}"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2 "
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none "
             ></textarea>
           </div>
           <div>
@@ -184,7 +184,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="You have a message from deliveryman"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2 "
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -206,7 +206,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="You have a message from seller"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2 "
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -223,7 +223,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="Admin add fund to your wallet"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2 "
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>
           <div>
@@ -240,7 +240,7 @@ const PuchNotify = () => {
               cols={25}
               id=""
               placeholder="customize your message from admin message"
-              className="hover:border-blue-400 border border-gray-200 px-10 py-2 "
+              className="hover:border-blue-400 border border-gray-200 px-10 py-2 outline-none"
             ></textarea>
           </div>{" "}
         </div>

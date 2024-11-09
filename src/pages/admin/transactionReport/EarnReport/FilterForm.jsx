@@ -14,7 +14,7 @@ const FilterForm = () => {
         <div className="row gy-3 gx-2 align-items-center text-left">
           <Col sm={6} md={3}>
             <Form.Select
-              className="form-control __form-control"
+              className="form-control __form-control outline-none hover:border-primary"
               name="date_type"
               id="date_type"
             >
@@ -52,7 +52,7 @@ const FilterForm = () => {
           <Col sm={6} md={3}>
             <Button
               type="submit"
-              className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37]  w-100"
+              className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark  w-100"
             >
               <IoFilter /> Filter
             </Button>

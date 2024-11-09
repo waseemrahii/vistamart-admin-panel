@@ -81,7 +81,7 @@ const CustomerLoyaltyReport = () => {
                         name="from"
                         id="start-date-time"
                         value=""
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         title="From date"
                       />
                     </div>
@@ -93,7 +93,7 @@ const CustomerLoyaltyReport = () => {
                         name="to"
                         id="end-date-time"
                         value=""
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         title="To date"
                       />
                     </div>
@@ -103,7 +103,7 @@ const CustomerLoyaltyReport = () => {
                       <select
                         name="transaction_type"
                         id=""
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         title="Select transaction type"
                       >
                         <option value="">All</option>
@@ -140,7 +140,8 @@ const CustomerLoyaltyReport = () => {
                 <div>
                   <button
                     type="submit"
-                    className="btn flex gap items-center px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37]"
+                    className="btn flex gap items-center px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                    style={{ color: "white" }}
                   >
                     <FaFilter className="mr-1" /> Filter
                   </button>

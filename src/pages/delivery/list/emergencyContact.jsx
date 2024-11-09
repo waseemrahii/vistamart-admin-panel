@@ -15,6 +15,7 @@ import {
 import { CiImport } from "react-icons/ci";
 import { IoMdAdd } from "react-icons/io";
 import ActionButton from "../../../components/ActionButton/Action";
+import Switcher from "../../../components/FormInput/Switcher";
 
 const EmergencyContact = () => {
   const list = [
@@ -152,8 +153,8 @@ const EmergencyContact = () => {
         />
         <h1 className="text-[1rem] font-bold"> Emergency Contact</h1>
       </div>
-      <div className="h-[60vh] w-full bg-white  rounded-lg mt-3 px-10 py-8">
-        <h3 className="text-[.9rem] font-bold text-gray-600 mb-2 border-b-2 border-b-gray-300 w-100 flex gap-3 align-items-center">
+      <div className="h-[70vh] md:h-[50vh] w-full bg-white  rounded-lg mt-3 px-10 py-8">
+        <h3 className="text-[.9rem]  font-bold text-gray-600 mb-2 border-b-2 border-b-gray-300 w-100 flex gap-3 align-items-center">
           <IoMdPerson className="text-[1.4rem]" />
           Add New Contact Information
         </h3>
@@ -161,20 +162,22 @@ const EmergencyContact = () => {
           <div className="mb-4">
             <div className="">
               <div>
-                <label className="block text-[1rem]  text-gray-700">
+                <label className="block font-medium text-sm text-gray-700">
                   Contact Name
                 </label>
                 <input
                   type="text"
                   placeholder="Contact Name"
-                  className="mt-1 block w-full border px-3 py-2  hover:border-blue-300 rounded-md border-gray-300 shadow-sm "
+                  className="mt-1 block w-full border px-3 py-2 font-medium text-base rounded-md border-gray-300 shadow-sm outline-none hover:border-primary "
                 />
               </div>
 
               <div>
-                <label className="block text-gray-700 mt-4">Phone</label>
-                <div className="flex">
-                  <select className="mt-1 block px-3 py-2 bg-white border rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <label className="block text-sm font-medium text-gray-700 mt-4">
+                  Phone
+                </label>
+                <div className="flex ">
+                  <select className="mt-1 block px-3 py-2 w-14 md:w-28 text-sm font-medium outline-none bg-white border rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option>UK (+44)</option>
                     <option>US (+1)</option>
                     <option>IN (+91)</option>
@@ -182,10 +185,10 @@ const EmergencyContact = () => {
                   <input
                     type="text"
                     placeholder="Ex:017********"
-                    className="mt-1 block w-3/4  rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="mt-1 block w-3/4 outline-none text-sm font-medium rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
-                <div className="flex justify-end mt-4">
+                <div className="flex justify-center md:justify-end mt-4">
                   <button
                     type="reset"
                     className="mr-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
@@ -194,7 +197,7 @@ const EmergencyContact = () => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-primary text-white hover:bg-primary-dark inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                    className="bg-primary hover:bg-primary-dark inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                     style={{ color: "white" }}
                   >
                     Submit
@@ -205,8 +208,8 @@ const EmergencyContact = () => {
           </div>
         </form>
       </div>
-      <div className="mb-4 h-[40vh] w-full bg-white  rounded-lg mt-3 px-10 py-8">
-        <h3 className="text-lg font-bold text-gray-600 mb-2 border-b-2 border-b-gray-300 w-100 flex gap-3 align-items-center">
+      <div className="mb-4 h-full w-full bg-white  rounded-lg mt-3 px-10 py-8">
+        <h3 className="text-sm font-bold text-gray-600 mb-2 border-b-2 border-b-gray-300 w-100 flex gap-3 align-items-center">
           <IoMdPerson />
           Account Information
         </h3>
@@ -240,13 +243,14 @@ const EmergencyContact = () => {
                     <td className="px-4 py-2 text-center">
                       <form>
                         <label className="switch flex justify-center items-center">
-                          <input
+                          {/* <input
                             type="checkbox"
                             className=""
                             name="featured"
                             checked={product.featured}
                             readOnly
-                          />
+                          /> */}
+                          <Switcher />
                           <span
                             className={`slider ${
                               list.name ? "bg-blue-500" : "bg-gray-300"

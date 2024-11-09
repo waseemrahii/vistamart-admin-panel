@@ -146,7 +146,7 @@ const CustomerReviews = () => {
                   id="datatableSearch_"
                   type="search"
                   name="searchValue"
-                  className="form-control"
+                  className="form-control outline-none"
                   placeholder="Search by Product or Customer"
                   aria-label="Search orders"
                   required=""
@@ -163,12 +163,15 @@ const CustomerReviews = () => {
           </div>
         </div>
         <form action="#" method="GET" onSubmit={(e) => e.preventDefault()}>
-          <div className="row gy-3 align-items-end">
-            <div className="col-md-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full align-items-end">
+            <div className="">
               <label htmlFor="status" className="title-color d-flex">
                 Choose Status
               </label>
-              <select className="form-control" name="status">
+              <select
+                className="form-control outline-none hover:border-primary"
+                name="status"
+              >
                 <option value="" selected="">
                   ---Select status---
                 </option>
@@ -176,7 +179,7 @@ const CustomerReviews = () => {
                 <option value="0">Inactive</option>
               </select>
             </div>
-            <div className="col-md-4">
+            <div className="">
               <div>
                 <label htmlFor="from" className="title-color d-flex">
                   From
@@ -186,12 +189,12 @@ const CustomerReviews = () => {
                   name="from"
                   id="start-date-time"
                   value=""
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   title="From date"
                 />
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="">
               <div>
                 <label htmlFor="to" className="title-color d-flex">
                   To
@@ -201,16 +204,17 @@ const CustomerReviews = () => {
                   name="to"
                   id="end-date-time"
                   value=""
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   title="To date"
                 />
               </div>
             </div>
-            <div className="col-md-2">
+            <div className="">
               <div>
                 <button
                   type="submit"
                   className="btn px-3  py-2 bg-primary text-white hover:bg-primary-dark"
+                  style={{ color: "white" }}
                 >
                   Filter
                 </button>

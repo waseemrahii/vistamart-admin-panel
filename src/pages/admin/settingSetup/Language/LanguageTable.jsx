@@ -77,7 +77,8 @@ const LanguageTable = () => {
             <div className="col-sm-8 col-md-6 col-lg-4">
               <div className="d-flex gap-10 justify-content-sm-end">
                 <button
-                  className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] btn-icon-split flex align-items-center gap-2"
+                  className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark btn-icon-split flex align-items-center gap-2"
+                  style={{ color: "white" }}
                   data-toggle="modal"
                   data-target="#lang-modal"
                 >

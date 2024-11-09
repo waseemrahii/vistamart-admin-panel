@@ -68,7 +68,7 @@ const CustomerBonusSetUp = () => {
               autoComplete="off"
             />
             <div className="row gap-2">
-              <div className="col-sm-12 col-md-12 flex">
+              <div className="col-sm-12 col-md-12 flex flex-col md:flex-row">
                 <div className="col-sm-6 col-md-6">
                   <div className="form-group">
                     <label
@@ -80,7 +80,7 @@ const CustomerBonusSetUp = () => {
                     <input
                       type="text"
                       name="title"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       id="bonus_title"
                       placeholder="Ex:EID Dhamaka"
                       required
@@ -98,7 +98,7 @@ const CustomerBonusSetUp = () => {
                     <input
                       type="text"
                       name="description"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       id="short_desc"
                       placeholder="Ex:EID Dhamaka"
                     />
@@ -117,7 +117,7 @@ const CustomerBonusSetUp = () => {
                     <select
                       name="bonus_type"
                       id="bonus-type"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       required
                     >
                       <option value="percentage">Percentage(%)</option>
@@ -140,7 +140,7 @@ const CustomerBonusSetUp = () => {
                       type="number"
                       name="bonus_amount"
                       min="0"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       value="0"
                       id="bonus_amount"
                       placeholder="Ex:5"
@@ -159,7 +159,7 @@ const CustomerBonusSetUp = () => {
                       type="number"
                       name="min_add_money_amount"
                       min="0"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       id="min_add_money_amount"
                       value="0"
                       placeholder="Ex:100"
@@ -183,7 +183,7 @@ const CustomerBonusSetUp = () => {
                       min="0"
                       name="max_bonus_amount"
                       value="0"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       id="max_bonus_amount"
                       placeholder="Ex:5000"
                     />
@@ -201,7 +201,7 @@ const CustomerBonusSetUp = () => {
                       type="date"
                       name="start_date_time"
                       id="start-date-time"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                       required
                     />
                   </div>
@@ -218,7 +218,7 @@ const CustomerBonusSetUp = () => {
                       type="date"
                       name="end_date_time"
                       id="end-date-time"
-                      className="form-control"
+                      className="form-control outline-none hover:border-primary"
                     />
                   </div>
                 </div>
@@ -230,7 +230,8 @@ const CustomerBonusSetUp = () => {
                   </button>
                   <button
                     type="submit"
-                    className="btn  py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] px-5"
+                    className="btn  py-2 bg-primary text-white hover:bg-primary-dark px-5"
+                    style={{ color: "white" }}
                   >
                     Submit
                   </button>
@@ -256,9 +257,9 @@ const CustomerBonusSetUp = () => {
               <form
                 action="https://6valley.6amtech.com/admin/customer/wallet/bonus-setup"
                 method="GET"
-                className="flex items-center gap-4"
+                className="flex items-center gap-4 flex-col md:flex-row"
               >
-                <div className="input-group input-group-merge input-group-custom">
+                <div className="input-group input-group-merge input-group-custom ">
                   <div className="input-group-prepend">
                     <div className="input-group-text">
                       <FaSearch />
@@ -274,7 +275,8 @@ const CustomerBonusSetUp = () => {
                   />
                   <button
                     type="submit"
-                    className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37]"
+                    className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark "
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>

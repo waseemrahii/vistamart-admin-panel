@@ -23,31 +23,46 @@ const TranscatioReports = () => {
         </h2>
       </div>
       {/* Top Navbar for sections */}
-      <div className="inline-page-menu  px-5 ">
-        <ul className="list-unstyled flex gap-3 font-bold">
-          <li className={activeSection === "ordertranscation" ? "active" : ""}>
+      <div className="inline-page-menu px-5">
+        <ul className="list-unstyled flex gap-3 font-bold text-nowrap w-60 p-2 md:w-full overflow-x-scroll md:overflow-x-hidden scroll-smooth">
+          <li
+            className={`${
+              activeSection === "ordertranscation"
+                ? "active border-b-2 border-green-500"
+                : ""
+            }`}
+          >
             <button onClick={() => handleSectionClick("ordertranscation")}>
               Order Transactions
             </button>
           </li>
           <li
-            className={activeSection === "expencetranscation" ? "active" : ""}
+            className={`${
+              activeSection === "expencetranscation"
+                ? "active border-b-2 border-green-500"
+                : ""
+            }`}
           >
             <button onClick={() => handleSectionClick("expencetranscation")}>
               Expense Transactions
             </button>
           </li>
           <li
-            className={activeSection === "refoundtranscation" ? "active" : ""}
+            className={`${
+              activeSection === "refoundtranscation"
+                ? "active border-b-2 border-green-500"
+                : ""
+            }`}
           >
             <button onClick={() => handleSectionClick("refoundtranscation")}>
-              Refound Transcation
+              Refound Transaction
             </button>
           </li>
 
           {/* Add more buttons for additional sections as needed */}
         </ul>
       </div>
+
       {/* <div className="inline-page-menu my-4">
   <ul className="list-unstyled">
     <li className="active"><a className="text-capitalize" href="https://6valley.6amtech.com/admin/business-settings/payment-method">Digital payment methods</a></li>

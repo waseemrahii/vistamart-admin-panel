@@ -201,15 +201,15 @@ const VendorSales = () => {
           alt=""
           className="w-7 h-7"
         />
-        <h1 className="text-xl font-bold">Vendor Reports</h1>
+        <h1 className="text-xl font-bold text-nowrap">Vendor Reports</h1>
       </div>
-      <div className="rounded-md border bg-white border-gray-300 shadow-md hover:shadow-md px-5 py-5">
+      <div className="rounded-md border bg-white border-gray-300 shadow-md hover:shadow-md px-5 py-5 ">
         <h1 className="font-bold text-md">Filter Data</h1> <br />
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-2 lg:gap-8">
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2 w-52 border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2 w-52 outline-none hover:border-primary"
           >
             <option value="">This Year</option>
             <option value="">This Month</option>
@@ -218,7 +218,7 @@ const VendorSales = () => {
             <option value="">Custom Date</option>
           </select>
           <button
-            className="px-6 w-52 py-2 rounded border border-green-200 bg-[#A1CB46] hover:bg-[#6a852f] text-white"
+            className="px-6 w-52 py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
             style={{ color: "white" }}
           >
             Filter
@@ -321,7 +321,7 @@ const VendorSales = () => {
       {/* ///////////// */}
       <div className="card ">
         <div className="px-3 py-4">
-          <div className="flex justify-between gap-3 align-items-center">
+          <div className="flex justify-between gap-3 align-items-center flex-col lg:flex-row">
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
               Total Vendor{" "}
               <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
@@ -329,7 +329,7 @@ const VendorSales = () => {
               </span>
             </h5>
 
-            <div className="flex  gap-3">
+            <div className="flex  gap-3 flex-col md:flex-row">
               <form
                 action="https://6valley.6amtech.com/admin/customer/subscriber-list"
                 method="GET"
@@ -345,14 +345,15 @@ const VendorSales = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control"
+                    className="form-control outline-none"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value=""
                   />
                   <button
                     type="submit"
-                    className="btn bg-[#A1CB46] hover:bg-[#94ba42]"
+                    className="btn bg-primary hover:bg-primary-dark"
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>
@@ -360,7 +361,7 @@ const VendorSales = () => {
               </form>
               <button
                 type="button"
-                className="rounded w-20 px-3 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-nowrap btn-block flex gap-2 "
+                className="rounded w-20 px-3 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
                   color: "white",

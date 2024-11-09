@@ -125,7 +125,6 @@ const AllProduct = () => {
       duration: "Juneer",
       inHouse: "$0.00",
       deliverd: "admin",
-     
 
       commission: "$0.00",
       shipping: "$0.00",
@@ -228,7 +227,7 @@ const AllProduct = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2  border border-primary outline-none"
           >
             <option value="">All </option>
             <option value="">Hold</option>
@@ -237,7 +236,7 @@ const AllProduct = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2  border border-green-300 outline-none"
           >
             <option value="">This Year</option>
             <option value="">Inhouse</option>
@@ -247,7 +246,7 @@ const AllProduct = () => {
           </select>
           <div className="flex ">
             <button
-              className="px-6  py-2 rounded border border-green-200 bg-[#A1CB46] hover:bg-[#6a852f] text-white"
+              className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
               style={{ color: "white" }}
             >
               Filter
@@ -333,7 +332,7 @@ const AllProduct = () => {
       {/* ///////////// */}
       <div className="card">
         <div className="px-3 py-4">
-          <div className="flex justify-between gap-3 align-items-center">
+          <div className="flex justify-between gap-3 align-items-center flex-col lg:flex-row">
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
               Total Transactions{" "}
               <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
@@ -341,13 +340,13 @@ const AllProduct = () => {
               </span>
             </h5>
 
-            <div className="flex  gap-3">
+            <div className="flex  gap-3 flex-col lg:flex-row w-40 md:w-full lg:w-[30vw]">
               <form
                 action="https://6valley.6amtech.com/admin/customer/subscriber-list"
                 method="GET"
                 className="w-80 "
               >
-                <div className="input-group input-group-merge input-group-custom">
+                <div className="input-group input-group-merge input-group-custom w-40 md:w-full">
                   <div className="input-group-prepend">
                     <div className="input-group-text">
                       <FaSearch />
@@ -357,14 +356,15 @@ const AllProduct = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control"
+                    className="form-control outline-none hover:border-primary"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value=""
                   />
                   <button
                     type="submit"
-                    className="btn bg-[#A1CB46] hover:bg-[#94ba42]"
+                    className="btn bg-primary hover:bg-primary-dark"
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>
@@ -373,7 +373,7 @@ const AllProduct = () => {
 
               <button
                 type="button"
-                className="rounded w-32 px-3 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-nowrap btn-block flex gap-2 "
+                className="rounded w-32 px-3 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
                   color: "white",
@@ -449,7 +449,7 @@ const AllProduct = () => {
             <img
               src="https://6valley.6amtech.com/public/assets/back-end/img/empty-state-icon/default.png"
               alt=""
-              className="w-52 h-52 "
+              className="w-28 h-28 md:w-52 md:h-52 "
             />{" "}
             <span>No product found</span>
           </div>

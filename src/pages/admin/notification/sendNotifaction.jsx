@@ -168,7 +168,7 @@ const SendNotification = () => {
                   placeholder="Notification*"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="px-5 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-blue-500"
+                  className="px-5 py-2 border border-gray-200 rounded-md focus:outline-none hover:border-primary focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col gap-3">
@@ -178,7 +178,7 @@ const SendNotification = () => {
                   rows={5}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="border border-gray-300"
+                  className="border border-gray-300 outline-none"
                 ></textarea>
               </div>
             </form>

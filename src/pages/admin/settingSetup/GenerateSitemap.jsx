@@ -16,8 +16,9 @@ const GenerateSitemap = () => {
         </div>
         <div className="card-body text-center">
           <a
-            href="https://6valley.6amtech.com/admin/business-settings/web-config/mysitemap-download"
-            className="btn  py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-capitalize px-4"
+            href="/"
+            className="btn  py-2 bg-primary text-white hover:bg-primary-dark text-capitalize px-4"
+            style={{ color: "white" }}
           >
             Download generate sitemap
           </a>

@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FaSearch, FaDownload, FaChevronDown, FaTrash } from 'react-icons/fa';
-import { fetchSubscribers, deleteSubscriber } from '../../../redux/slices/admin/subscriberSlice'; // Update path as needed
-import ActionButton from '../../../components/ActionButton/Action';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FaSearch, FaDownload, FaChevronDown, FaTrash } from "react-icons/fa";
+import {
+  fetchSubscribers,
+  deleteSubscriber,
+} from "../../../redux/slices/admin/subscriberSlice"; // Update path as needed
+import ActionButton from "../../../components/ActionButton/Action";
 
 const SubscriberList = () => {
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   // Fetch subscribers from Redux state
-  const { subscribers,createAt, loading, error } = useSelector((state) => state.subscriber);
+  const { subscribers, createAt, loading, error } = useSelector(
+    (state) => state.subscriber
+  );
 
   // Fetch subscribers when component mounts
   useEffect(() => {
@@ -22,14 +27,14 @@ const SubscriberList = () => {
   };
 
   const handleDelete = (subscriberId) => {
-    if (window.confirm('Are you sure you want to delete this subscriber?')) {
+    if (window.confirm("Are you sure you want to delete this subscriber?")) {
       dispatch(deleteSubscriber(subscriberId));
     }
   };
 
   const handleExport = () => {
     // Implement export functionality if needed
-    console.log('Export functionality here');
+    console.log("Export functionality here");
   };
 
   return (
@@ -40,8 +45,8 @@ const SubscriberList = () => {
             src="https://6valley.6amtech.com/public/assets/back-end/img/subscribers.png"
             width="20"
             alt=""
-          />{' '}
-          Subscriber list{' '}
+          />{" "}
+          Subscriber list{" "}
           <span className="badge badge-soft-dark radius-50 fz-14 ml-1">
             {subscribers.length}
           </span>
@@ -50,7 +55,7 @@ const SubscriberList = () => {
       <div className="row mt-20">
         <div className="col-md-12">
           <div className="card">
-            <div className="card-header">
+            <div className="card-header flex gap-2 ">
               <form onSubmit={handleSearch}>
                 <div className="input-group input-group-merge input-group-custom">
                   <div className="input-group-prepend">
@@ -62,7 +67,7 @@ const SubscriberList = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control"
+                    className="form-control outline-none hover:border-primary"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value={searchValue}
@@ -70,7 +75,8 @@ const SubscriberList = () => {
                   />
                   <button
                     type="submit"
-                    className="btn bg-[#A1CB46] hover:bg-[#94ba42]"
+                    className=" bg-primary hover:bg-primary-dark px-2 py-1 md:px-4 md:py-2"
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>
@@ -78,7 +84,8 @@ const SubscriberList = () => {
               </form>
               <button
                 type="button"
-                className="btn rounded text-white bg-[#A1CB46] hover:bg-[#94ba42] text-nowrap flex justify-center align-items-center gap-2"
+                className="btn rounded text-white px-2 py-2 md:px-4 md:py-2 bg-primary hover:bg-primary-dark text-nowrap flex justify-center align-items-center gap-2"
+                style={{ color: "white" }}
                 onClick={handleExport}
               >
                 <FaDownload /> Export <FaChevronDown />
@@ -103,9 +110,7 @@ const SubscriberList = () => {
                       <tr key={subscriber._id}>
                         <td>{index + 1}</td>
                         <td>{subscriber.email}</td>
-                        {
-                          console.log(" create date", createAt)
-                        }
+                        {console.log(" create date", createAt)}
                         <td>{new Date(createAt).toLocaleString()}</td>
                         <td>
                           <ActionButton

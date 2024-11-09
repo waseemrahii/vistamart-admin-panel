@@ -27,14 +27,24 @@ const ThirParty = () => {
       </div>
       {/* Top Navbar for sections */}
       <div className="inline-page-menu m-2">
-        <ul className=" font-semibold flex gap-3">
-          <li className={activeSection === "paymentmethod" ? "active" : ""}>
+        <ul className=" font-semibold flex gap-3 text-nowrap">
+          <li
+            className={
+              activeSection === "paymentmethod"
+                ? "border-b-2 border-green-500"
+                : ""
+            }
+          >
             <button onClick={() => handleSectionClick("paymentmethod")}>
               PayMent Method
             </button>
           </li>
           <li
-            className={activeSection === "offlinepaymentmethod" ? "active" : ""}
+            className={
+              activeSection === "offlinepaymentmethod"
+                ? "border-b-2 border-green-500"
+                : ""
+            }
           >
             <button onClick={() => handleSectionClick("offlinepaymentmethod")}>
               Offline Payment Method
@@ -51,7 +61,7 @@ const ThirParty = () => {
         </ul>
       </div> */}
       {/* Conditional rendering of section content */}
-      <div className="card">
+      <div className="card ">
         {activeSection === "paymentmethod" && <PayMentMethod />}
         {activeSection === "offlinepaymentmethod" && <OfflinePaymentMethods />}
 

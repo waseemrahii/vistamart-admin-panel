@@ -59,7 +59,7 @@ const VenderWallet = () => {
                   <select
                     name="withdraw_status_filter"
                     data-action=""
-                    className="custom-select min-w-120 withdraw-status-filter"
+                    className="custom-select min-w-120 withdraw-status-filter outline-none hover:border-primary"
                   >
                     <option value="all">All</option>
                     <option value="approved">Approved</option>
@@ -141,7 +141,6 @@ const VenderWallet = () => {
                             to={request.actionLink}
                             icon={FaEye} // Pass dynamic icon
                             className="ml-4"
-                          
                           />
                         </div>
                       </td>

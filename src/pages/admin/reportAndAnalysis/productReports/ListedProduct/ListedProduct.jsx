@@ -108,7 +108,7 @@ const ListedProduct = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2  border border-green-300 outline-none"
           >
             <option value="">All </option>
             <option value="">Hold</option>
@@ -117,14 +117,14 @@ const ListedProduct = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-green-300"
+            className="text-md  bg-white px-2 rounded py-2  border border-green-300 outline-none"
           >
             <option value="">Wishlist Sort by High TO Low </option>
             <option value="">Wishlist Sort by Low To High</option>
           </select>
           <div className="flex ">
             <button
-              className="px-6  py-2 rounded border border-green-200 bg-[#A1CB46] hover:bg-[#6a852f] text-white"
+              className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
               style={{ color: "white" }}
             >
               Filter
@@ -162,14 +162,15 @@ const ListedProduct = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control"
+                    className="form-control outline-none hover:border-primary"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value=""
                   />
                   <button
                     type="submit"
-                    className="btn bg-[#A1CB46] hover:bg-[#94ba42]"
+                    className="btn bg-primary hover:bg-priamry-dark"
+                    style={{ color: "white" }}
                   >
                     Search
                   </button>
@@ -178,7 +179,7 @@ const ListedProduct = () => {
 
               <button
                 type="button"
-                className="rounded w-32 px-3 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-nowrap btn-block flex gap-2 "
+                className="rounded w-32 px-3 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
                   color: "white",

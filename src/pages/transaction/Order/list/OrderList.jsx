@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { FaEye, FaDownload, FaSearch, FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import {
+  FaEye,
+  FaDownload,
+  FaSearch,
+  FaSort,
+  FaSortUp,
+  FaChevronRight,
+  FaChevronLeft,
+  FaSortDown,
+} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -21,7 +30,7 @@ const OrderList = () => {
   } = useSelector((state) => state.vendorOrder || {});
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [ordersPerPage] = useState(3);
+  const [ordersPerPage] = useState(5);
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "asc" });
   const [searchValue, setSearchValue] = useState("");
 
@@ -66,18 +75,28 @@ const OrderList = () => {
   const filteredOrders = sortedOrders.filter((order) => {
     const searchTerm = searchValue.toLowerCase();
     return (
-      String(order?.orderId || "").toLowerCase().includes(searchTerm) ||
-      String(order?.customer?.firstName || "").toLowerCase().includes(searchTerm) ||
-      String(order?.customer?.lastName || "").toLowerCase().includes(searchTerm) ||
-      String(order?.totalAmount || "").toLowerCase().includes(searchTerm)
+      String(order?.orderId || "")
+        .toLowerCase()
+        .includes(searchTerm) ||
+      String(order?.customer?.firstName || "")
+        .toLowerCase()
+        .includes(searchTerm) ||
+      String(order?.customer?.lastName || "")
+        .toLowerCase()
+        .includes(searchTerm) ||
+      String(order?.totalAmount || "")
+        .toLowerCase()
+        .includes(searchTerm)
     );
   });
-  
 
   // Pagination Logic
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
-  const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const currentOrders = filteredOrders.slice(
+    indexOfFirstOrder,
+    indexOfLastOrder
+  );
 
   const totalOrders = filteredOrders.length;
   const totalPages = Math.ceil(totalOrders / ordersPerPage); // Calculate total pages
@@ -92,12 +111,12 @@ const OrderList = () => {
     setSortConfig({ key, direction });
   };
 
-  const getSortIcon = (key) => {
-    if (sortConfig.key === key) {
-      return sortConfig.direction === "asc" ? <FaSortUp /> : <FaSortDown />;
-    }
-    return <FaSort />;
-  };
+  // const getSortIcon = (key) => {
+  //   if (sortConfig.key === key) {
+  //     return sortConfig.direction === "asc" ? <FaSortUp /> : <FaSortDown />;
+  //   }
+  //   return <FaSort />;
+  // };
 
   if (loading)
     return (
@@ -106,6 +125,20 @@ const OrderList = () => {
       </div>
     );
   if (error) return <div>Error: {error}</div>;
+
+  // Calculate the range of page numbers to display
+  const pageRange = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(pageRange / 2));
+  let endPage = Math.min(totalPages, currentPage + Math.floor(pageRange / 2));
+
+  // Ensure that we always display `pageRange` number of buttons if possible
+  if (endPage - startPage < pageRange - 1) {
+    if (startPage > 1) {
+      startPage = Math.max(1, endPage - pageRange + 1);
+    } else {
+      endPage = Math.min(totalPages, startPage + pageRange - 1);
+    }
+  }
 
   return (
     <div className="content container-fluid">
@@ -163,24 +196,25 @@ const OrderList = () => {
             </div>
           </div>
 
-          <div className="table-responsive">
-            <table className="table table-hover mb-0">
-              <thead className="table-light bg-secondary">
-                <tr className="w-full">
+          <div className="">
+            <table className="table  table-hover mb-0">
+              <thead className="table-light  bg-secondary">
+                <tr className="w-full ">
                   <th onClick={() => requestSort("orderId")} scope="flex">
-                    Order ID {getSortIcon("orderId")}
+                    Order ID
                   </th>
+
                   <th onClick={() => requestSort("createdAt")} scope="flex">
-                    Date {getSortIcon("createdAt")}
+                    Date
                   </th>
                   <th onClick={() => requestSort("customerName")} scope="flex">
-                    Customer Name {getSortIcon("customerName")}
+                    Customer Name
                   </th>
                   <th onClick={() => requestSort("store")} scope="flex">
-                    Store {getSortIcon("store")}
+                    Store
                   </th>
                   <th onClick={() => requestSort("totalAmount")} scope="flex">
-                    Amount {getSortIcon("totalAmount")}
+                    Amount
                   </th>
                   <th scope="col">Status</th>
                   <th scope="col">Action</th>
@@ -193,67 +227,105 @@ const OrderList = () => {
                       {order?.orderId}
                     </td>
                     <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                    <td>{order.customer ? `${order.customer.firstName} ${order.customer.lastName}` : "Unknown Customer"}</td>
+                    <td>
+                      {order.customer
+                        ? `${order.customer.firstName} ${order.customer.lastName}`
+                        : "Unknown Customer"}
+                    </td>
                     <td>{order.vendors?.[0]?.shopName || "Unknown Store"}</td>
                     <td>{order.totalAmount}</td>
                     <td>
                       {(() => {
-                        const statusClass = {
-                          pending: "bg-primary",
-                          confirmed: "bg-blue-300",
-                          packaging: "bg-yellow-300",
-                          out_for_delivery: "bg-orange-300",
-                          delivered: "bg-primary",
-                          failed_to_deliver: "bg-red-500",
-                          returned: "bg-gray-500",
-                          canceled: "bg-red-300",
-                        }[order.status] || "bg-gray-400";
-                        return <span className={`badge ${statusClass} text-white`}>{order.status}</span>;
+                        const statusClass =
+                          {
+                            pending: "bg-primary",
+                            confirmed: "bg-blue-300",
+                            packaging: "bg-yellow-300",
+                            out_for_delivery: "bg-orange-300",
+                            delivered: "bg-primary",
+                            failed_to_deliver: "bg-red-500",
+                            returned: "bg-gray-500",
+                            canceled: "bg-red-300",
+                          }[order.status] || "bg-gray-400";
+                        return (
+                          <span className={`badge ${statusClass} text-white`}>
+                            {order.status}
+                          </span>
+                        );
                       })()}
                     </td>
-                                          <td>
-                        {/* <Link
+                    <td>
+                      {/* <Link
                         to={`/orderdetail/${order._id}`}
                           className="btn border-green-300 text-green-500 btn-sm"
                         >
                           <FaEye size={18} />
                         </Link>  */}
-                        <ActionButton
-                          to={`/orderdetail/${order._id}`}
-                          icon={FaEye} // Pass dynamic icon
-                          className="ml-4"
-                       
-                        />
-                        {/* <button
+                      <ActionButton
+                        to={`/orderdetail/${order._id}`}
+                        icon={FaEye} // Pass dynamic icon
+                        className="ml-4"
+                      />
+                      {/* <button
                           className="btn bg-red-300 text-white btn-sm ml-2"
                           onClick={() => handleDeleteOrder(order._id)}
                         >
                           <FaTrashAlt size={18} />
                         </button>  */}
-                      </td>
-
-                    
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <div className="pagination-container">
+          {/* pageination */}
+          <div className="flex items-center justify-center gap-3 mt-6">
+            {/* Previous Button */}
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className="btn btn-outline-secondary"
+              className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
+                currentPage === 1
+                  ? "bg-black text-white cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-dark text-white"
+              }`}
+              style={{ color: "white" }}
             >
-              Previous
+              <FaChevronLeft />
             </button>
-            <span className="mx-2">{`Page ${currentPage} of ${totalPages}`}</span>
+
+            {/* Page Numbers */}
+            {[...Array(endPage - startPage + 1)].map((_, index) => {
+              const page = startPage + index;
+              return (
+                <button
+                  key={page}
+                  onClick={() => paginate(page)}
+                  className={`w-6 h-6 flex items-center justify-center rounded-full font-medium transition-all ${
+                    currentPage === page
+                      ? "bg-primary text-white shadow-md"
+                      : "bg-primary-dark hover:bg-primary text-white"
+                  }`}
+                  style={{ color: "white" }}
+                >
+                  {page}
+                </button>
+              );
+            })}
+
+            {/* Next Button */}
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="btn btn-outline-secondary"
+              className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
+                currentPage === totalPages
+                  ? "bg-black cursor-not-allowed"
+                  : "bg-primary hover:bg-primary-dark text-white"
+              }`}
+              style={{ color: "white" }}
             >
-              Next
+              <FaChevronRight />
             </button>
           </div>
         </div>
@@ -263,13 +335,6 @@ const OrderList = () => {
 };
 
 export default OrderList;
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect } from "react";
 // import { FaEye, FaDownload, FaSearch } from "react-icons/fa";
@@ -432,7 +497,6 @@ export default OrderList;
 //     : "Unknown Store"}
 // </td>
 
-
 //                       <td>{order.totalAmount}</td>
 //                       <td>
 //                         {(() => {
@@ -505,7 +569,7 @@ export default OrderList;
 //                           to={`/orderdetail/${order._id}`}
 //                           icon={FaEye} // Pass dynamic icon
 //                           className="ml-4"
-                       
+
 //                         />
 //                         {/* <button
 //                           className="btn bg-red-300 text-white btn-sm ml-2"
@@ -557,8 +621,3 @@ export default OrderList;
 // };
 
 // export default OrderList;
-
-
-
-
-

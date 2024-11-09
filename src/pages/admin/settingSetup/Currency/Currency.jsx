@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 // Sample data
 const initialCurrencies = [
@@ -67,7 +68,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                 <input
                   type="text"
                   name="name"
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   id="name"
                   placeholder="Ex: United States Dollar"
                   value={name}
@@ -84,7 +85,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                 <input
                   type="text"
                   name="symbol"
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   id="symbol"
                   placeholder="Ex: $"
                   value={symbol}
@@ -101,7 +102,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                 <input
                   type="text"
                   name="code"
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   id="code"
                   placeholder="Ex: USD"
                   value={code}
@@ -121,7 +122,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                   max="1000000"
                   name="exchangeRate"
                   step="0.00000001"
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   id="exchangeRate"
                   placeholder="Ex: 120"
                   value={exchangeRate}
@@ -137,7 +138,8 @@ const CurrencyForm = ({ onAddCurrency }) => {
                 </button>
                 <button
                   type="submit"
-                  className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37]"
+                  className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                  style={{ color: "white" }}
                 >
                   Submit
                 </button>
@@ -192,13 +194,13 @@ const CurrencyList = ({ currencies }) => {
                       className="btn btn-outline--primary btn-sm btn-xs edit"
                       disabled={currency.status === "Default"}
                     >
-                      <i className="tio-edit"></i>
+                      <FaEdit />
                     </button>
                     <button
                       title="Delete"
                       className="btn btn-outline-danger btn-sm btn-xs delete-data-without-form"
                     >
-                      <i className="tio-delete"></i>
+                      <FaTrash />
                     </button>
                   </div>
                 </td>
@@ -251,7 +253,8 @@ const CurrencyCard = () => {
             <div className="d-flex justify-content-end flex-wrap mt-3">
               <button
                 type="submit"
-                className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] "
+                className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark "
+                style={{ color: "white" }}
               >
                 Save
               </button>
