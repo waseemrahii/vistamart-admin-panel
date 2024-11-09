@@ -46,13 +46,13 @@ const CategoryList = React.memo(
           render: (item) => (
             <div className="d-flex gap-2 justify-content-center">
               <ActionButton
-                to={`/categoryedit/${item._id}`}
+                to={`/categoryedit/${item?._id}`}
                 icon={FaEdit} // View icon
                 className="ml-4"
                 // label="View"
               />
               <ActionButton
-                onClick={() => handleDelete(item._id)}
+                onClick={() => handleDelete(item?._id)}
                 icon={FaTrash} // Delete icon
                 className="ml-4"
                 // label="Delete"

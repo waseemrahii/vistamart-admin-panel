@@ -20,30 +20,59 @@ export const getUploadUrl = async (type, folder) => {
 		throw new Error("Failed to get upload URL");
 	}
 };
-export const getProductUploadUrl = async (type) => {
-	try {
-		const query = {
-			fileType: type.split("/")[1],
-		};
+// export const getProductUploadUrl = async (type) => {
+// 	try {
+// 		const query = {
+// 			fileType: type.split("/")[1],
+// 		};
 
-		const { token } = getAuthData();
+// 		const { token } = getAuthData();
 
-		const response = await axios.get(
-			`${BASE_URL}/api/v1/image/upload/`,
-			{
-				params: query,
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			}
-		);
+// 		const response = await axios.get(
+// 			`${BASE_URL}/api/v1/image/upload/`,
+// 			{
+// 				params: query,
+// 				headers: {
+// 					"Content-Type": "application/json",
+// 					Authorization: `Bearer ${token}`,
+// 				},
+// 			}
+// 		);
 
-		return response.data; // Contains the URL and the key for S3 storage
-	} catch (error) {
-		console.error("Error fetching upload URL: ", error);
-		throw new Error("Failed to get upload URL");
-	}
+// 		return response.data; // Contains the URL and the key for S3 storage
+// 	} catch (error) {
+// 		console.error("Error fetching upload URL: ", error);
+// 		throw new Error("Failed to get upload URL");
+// 	}
+// };
+
+
+// Modify getProductUploadUrl to accept a folder parameter
+export const getProductUploadUrl = async (type, folder) => {
+    try {
+        const query = {
+            fileType: type.split("/")[1],
+            folder, // Include the folder in the query
+        };
+
+        const { token } = getAuthData();
+
+        const response = await axios.get(
+            `${BASE_URL}/api/v1/image/upload/`,
+            {
+                params: query,
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        return response.data; // Contains the URL and the key for S3 storage
+    } catch (error) {
+        console.error("Error fetching upload URL: ", error);
+        throw new Error("Failed to get upload URL");
+    }
 };
 
 // Function to upload an image to S3

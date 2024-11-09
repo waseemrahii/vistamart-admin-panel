@@ -17,7 +17,7 @@ const ProductTable = React.memo(
     products,
     onToggleFeatured,
     onUpdateStatus,
-    // onDeleteProduct,
+    onDeleteProduct,
     totalDocs,
     limit,
     totalPages,
@@ -162,21 +162,21 @@ const ProductTable = React.memo(
                         >
                           <FiEye />
                         </Link>
-                        <Link
+                        {/* <Link
                           to={`/product/${product._id}`}
                           className="btn btn-sm border-gray-400 hover:bg-gray-500 hover:text-white"
                           title="Edit"
                         >
                           <FiEdit />
-                        </Link>
-                        {/* <button
+                        </Link> */}
+                        <button
                           type="button"
                           className="btn btn-sm border-red-400 text-red-400 hover:bg-red-500 hover:text-white"
                           onClick={() => onDeleteProduct(product._id)}
                           title="Delete"
                         >
                           <FiTrash />
-                        </button> */}
+                        </button>
                       </div>
                     </td>
                   </tr>

@@ -19,7 +19,7 @@ const CompanyInformationForm = () => {
                 className="form-control outline-none hover:border-primary"
                 type="text"
                 name="company_name"
-                defaultValue="6valley CMS"
+                defaultValue="VistaMart CMS"
                 placeholder="New business"
               />
             </div>
@@ -43,7 +43,7 @@ const CompanyInformationForm = () => {
                 className="form-control outline-none hover:border-primary"
                 type="text"
                 name="company_email"
-                defaultValue="copy@6amtech.com"
+                defaultValue="vistamart@gmail.com"
                 placeholder="Company@gmail.com"
               />
             </div>
@@ -55,10 +55,10 @@ const CompanyInformationForm = () => {
                 id="country"
                 name="country_code"
                 className="form-control js-select2-custom outline-none hover:border-primary"
-                defaultValue="US"
+                defaultValue="PK"
               >
                 {/* Populate options here */}
-                <option value="US">United States</option>
+                <option value="pakistan"> Pakistan</option>
                 {/* Add other countries similarly */}
               </select>
             </div>
@@ -69,10 +69,10 @@ const CompanyInformationForm = () => {
               <select
                 name="timezone"
                 className="form-control js-select2-custom outline-none hover:border-primary"
-                defaultValue="Asia/Magadan"
+                defaultValue=""
               >
                 {/* Populate options here */}
-                <option value="Asia/Magadan">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>
+                <option value="">(GMT+11:00) Magadan, Solomon Is., New Islamabad</option>
                 {/* Add other time zones similarly */}
               </select>
             </div>
@@ -97,7 +97,7 @@ const CompanyInformationForm = () => {
               <label className="title-color d-flex">Company address</label>
               <input
                 type="text"
-                defaultValue="Kingston, New York 12401 United States"
+                defaultValue="company address"
                 name="shop_address"
                 className="form-control outline-none hover:border-primary"
                 placeholder="Your shop address"

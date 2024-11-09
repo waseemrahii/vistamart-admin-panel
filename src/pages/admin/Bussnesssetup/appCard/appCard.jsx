@@ -59,7 +59,7 @@ const AppDownloadInfoCard = () => {
                 type="url"
                 name="app_store_download_url"
                 className="form-input w-full p-2 border rounded"
-                value="https://codecanyon.net/item/6valley-multivendor-ecommerce-complete-ecommerce-mobile-app-web-and-admin-panel/31448597?s_rank=19"
+                value="https://vistamart.biz"
                 placeholder="Ex: https://www.apple.com/app-store/"
               />
             </div>
@@ -101,7 +101,7 @@ const AppDownloadInfoCard = () => {
                 type="url"
                 name="play_store_download_url"
                 className="form-input w-full p-2 border rounded"
-                value="https://codecanyon.net/item/6valley-multivendor-ecommerce-complete-ecommerce-mobile-app-web-and-admin-panel/31448597?s_rank=19"
+                value="https://vistamart.biz"
                 placeholder="Ex: https://play.google.com/store/apps"
               />
             </div>

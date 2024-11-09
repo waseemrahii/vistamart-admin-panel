@@ -24,7 +24,7 @@ const Adminwallet = () => {
                 alt=""
               />
               <h3 className="for-card-count font-semibold mb-0 fz-24">
-                $39,892.00
+                PKR 0
               </h3>
               <div className="text-capitalize mb-30">In-house earning</div>
             </div>
@@ -36,7 +36,7 @@ const Adminwallet = () => {
               <div className="card card-body h-100 justify-content-center">
                 <div className="d-flex gap-2 justify-content-between align-items-center">
                   <div className="d-flex flex-column align-items-start">
-                    <h3 className="mb-1 font-semibold fz-24">$12,755.02</h3>
+                    <h3 className="mb-1 font-semibold fz-24">PKR 0</h3>
                     <div className="text-capitalize mb-0">
                       Commission earned
                     </div>
@@ -51,7 +51,7 @@ const Adminwallet = () => {
               <div className="card card-body h-100 justify-content-center">
                 <div className="d-flex gap-2 justify-content-between align-items-center">
                   <div className="d-flex flex-column align-items-start">
-                    <h3 className="mb-1 font-semibold fz-24">$1,360.00</h3>
+                    <h3 className="mb-1 font-semibold fz-24">PKR 0</h3>
                     <div className="text-capitalize mb-0">
                       Delivery charge earned
                     </div>
@@ -66,7 +66,7 @@ const Adminwallet = () => {
               <div className="card card-body h-100 justify-content-center">
                 <div className="d-flex gap-2 justify-content-between align-items-center">
                   <div className="d-flex flex-column align-items-start">
-                    <h3 className="mb-1 font-semibold fz-24">$2,343.00</h3>
+                    <h3 className="mb-1 font-semibold fz-24">PKR 0</h3>
                     <div className="text-capitalize mb-0">
                       Total tax collected
                     </div>
@@ -81,7 +81,7 @@ const Adminwallet = () => {
               <div className="card card-body h-100 justify-content-center">
                 <div className="d-flex gap-2 justify-content-between align-items-center">
                   <div className="d-flex flex-column align-items-start">
-                    <h3 className="mb-1 font-semibold fz-24">$8,153.00</h3>
+                    <h3 className="mb-1 font-semibold fz-24">PKR 0</h3>
                     <div className="text-capitalize mb-0">Pending amount</div>
                   </div>
                   <div>

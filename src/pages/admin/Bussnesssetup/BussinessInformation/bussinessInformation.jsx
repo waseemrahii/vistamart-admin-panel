@@ -20,7 +20,8 @@ const BusinessInformationCard = () => {
               className="form-control border-gray-300 rounded-lg px-3 py-2 outline-none hover:border-primary"
               defaultValue="1"
             >
-              <option value="1">USD</option>
+              <option value="1">PKR</option>
+              <option value="10">USD</option>
               <option value="2">BDT</option>
               <option value="3">Indian Rupee</option>
               <option value="4">Euro</option>
@@ -44,7 +45,7 @@ const BusinessInformationCard = () => {
                   id="currency_position_left"
                   defaultChecked
                 />
-                <label htmlFor="currency_position_left" className="ml-2">($) Left</label>
+                <label htmlFor="currency_position_left" className="ml-2">(PKR) Left</label>
               </div>
               <div className="flex items-center">
                 <input
@@ -54,7 +55,7 @@ const BusinessInformationCard = () => {
                   name="currency_symbol_position"
                   id="currency_position_right"
                 />
-                <label htmlFor="currency_position_right" className="ml-2">Right ($)</label>
+                <label htmlFor="currency_position_right" className="ml-2">Right (PKR)</label>
               </div>
             </div>
           </div>
@@ -117,7 +118,7 @@ const BusinessInformationCard = () => {
             <input
               type="text"
               name="company_copyright_text"
-              defaultValue="Copyright 6amTech@2021"
+              defaultValue="Copyright Vistamart@2024"
               className="form-control border-gray-300 rounded-lg px-3 py-2 outline-none hover:border-primary"
               placeholder="Company copyright text"
             />

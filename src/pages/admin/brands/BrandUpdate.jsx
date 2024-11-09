@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBrandById, updateBrand } from '../../../redux/slices/admin/brandSlice'; // Adjust import path as necessary
+import { fetchBrandById, updateBrand } from '../../../redux/slices/admin/brandSlice';
 import { toast } from 'react-toastify';
-import { getUploadUrl, uploadImageToS3 } from '../../../utils/helpers'; // Adjust the import as necessary
+import { getUploadUrl, uploadImageToS3 } from '../../../utils/helpers';
 import apiConfig from '../../../config/apiConfig';
 
 const BrandUpdate = () => {
@@ -23,43 +23,40 @@ const BrandUpdate = () => {
   useEffect(() => {
     if (currentBrand) {
       setBrandName(currentBrand.name);
-      // setBrandImage(currentBrand.logo); // Assuming `currentBrand.logo` is already a valid URL
-      setBrandImage(`${apiConfig.bucket}/${currentBrand?.logo}`); // Set initial preview URL
-
+      setBrandImage(`${apiConfig.bucket}/${currentBrand?.logo}`);
     }
   }, [currentBrand]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let logoKey = brandImage; // Keep existing logo if no new file is uploaded
+    let logoKey = currentBrand.logo; // Keep existing logo key if no new file is uploaded
 
     if (imageFile) {
       try {
-        // Ensure to get the correct upload URL
         const uploadConfig = await getUploadUrl(imageFile.type, "brand");
-        const { url, key } = uploadConfig; // Extract the URL and key
-        await uploadImageToS3(url, imageFile); // Pass only the URL and the file
-        logoKey = key; // Use the key from the uploadConfig
+        const { url, key } = uploadConfig;
+        await uploadImageToS3(url, imageFile);
+        logoKey = key;
       } catch (error) {
         console.error("Error uploading image:", error);
-        toast.error("Failed to upload image"); // Show error toast
-        return; // Exit if image upload fails
+        toast.error("Failed to upload image");
+        return;
       }
     }
 
     const brandData = {
       name: brandName,
-      logo: logoKey, // Use the new logo key from upload or existing
+      logo: logoKey,
     };
 
     try {
       await dispatch(updateBrand({ brandId: id, brandData }));
-      toast.success("Brand updated successfully!"); // Show success toast
-      navigate(`/brandlist`); // Navigate after successful update
+      toast.success("Brand updated successfully!");
+      navigate(`/brandlist`);
     } catch (error) {
       console.error("Error updating brand:", error);
-      toast.error(`Failed to update brand: ${error.message}`); // Show error toast
+      toast.error(`Failed to update brand: ${error.message}`);
     }
   };
 
@@ -70,6 +67,7 @@ const BrandUpdate = () => {
   if (error) {
     toast.error(`Error: ${error}`);
   }
+
   return (
     <div className="content container-fluid snipcss-BVBoO">
       <div className="d-flex flex-wrap gap-2 align-items-center mb-3">
@@ -103,7 +101,6 @@ const BrandUpdate = () => {
                       {brandImage && (
                         <img className="upload-img-view" src={brandImage} alt="Brand Preview" />
                       )}
-
                     </div>
                     <div className="form-group">
                       <label className="title-color" htmlFor="brand">Brand Logo</label>
@@ -126,7 +123,7 @@ const BrandUpdate = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-end gap-3 mt-4">
-                  <button type="submit" className="btn bg-primary text-white px-4"  style={{color:"white"}}>Update</button>
+                  <button type="submit" className="btn bg-primary text-white px-4" style={{ color: "white" }}>Update</button>
                 </div>
               </form>
             </div>

@@ -5,7 +5,6 @@
       gap: 24px;
   } 
   
-
   
 
   body ::-webkit-scrollbar { 
@@ -27,9 +26,7 @@
       padding: 0;
   } 
   
-  .d-none { 
-      display: none !important;
-  } 
+  
   
   .product-image-wrapper .item-2  { 
       width: 0; 
@@ -648,18 +645,4 @@
   .custom_upload_input .delete_file_input_css:not(.d--none)  { 
       display: flex;
   } 
-  
-  a:hover { 
-      color: #0052ea; 
-      text-decoration: none;
-  } 
-  
-  a:hover { 
-      color: var(--c1);
-  } 
-  
-  .border-0 { 
-      border: 0 !important;
-  } 
-  
-  
+ 

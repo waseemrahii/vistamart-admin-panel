@@ -189,7 +189,7 @@ const ProductDetail = () => {
                               width="50"
                               className="img-fit max-50"
                               alt={`Additional ${index}`}
-                              src={imgUrl}
+                              src={`${apiConfig.bucket}/${imgUrl}`}
                             />
                           </a>
                         </div>
