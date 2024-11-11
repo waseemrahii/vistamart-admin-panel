@@ -31,7 +31,6 @@ const InHouseProductList = ({
   const [currentPage, setCurrentPage] = useState(1); // Set the initial current page
   const totalPages = pagination?.totalPages || 1; // Get the total pages from the pagination data
 
-  console.log(products);
 
   const { categories, brands } = useSelector((state) => state.category);
   const [filters, setFilters] = useState({

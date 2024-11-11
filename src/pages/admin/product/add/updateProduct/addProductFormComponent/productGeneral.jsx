@@ -11,7 +11,6 @@ import { IoIosInformationCircleOutline, IoMdPerson } from "react-icons/io";
 import FormSection from "../../../../../../components/FormInput/FormSection";
 import FormSelect from "../../../../../../components/FormInput/FormSelect";
 
-// Function to generate a 6-digit random SKU
 const generateSKU = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
@@ -21,11 +20,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   const { categories, subCategories, subSubCategories, brands } = useSelector(
     (state) => state.category
   );
-   console.log("formdata=====",formData)
-  // const [tags, setTags] = useState(
-  //   formData.tags ? formData.tags.split(",") : []
-  // );
-  // Use formData.tags directly as an array
+
   const [tags, setTags] = useState(
     (formData.tags || []).filter((tag) => tag.trim() !== "")
   );
@@ -33,7 +28,6 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   const [filteredSubCategories, setFilteredSubCategories] = useState([]);
   const [filteredSubSubCategories, setFilteredSubSubCategories] = useState([]);
 
-  // Fetch categories, brands, colors, and attributes on mount
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchBrands());
@@ -44,27 +38,32 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   // Fetch subcategories based on selected category
   useEffect(() => {
     if (formData.category) {
-      // console.log("SubCategories before filter:", subCategories);
+      console.log("Selected Category:", formData.category); // Debug category
       const relevantSubCategories = subCategories.filter(
         (sub) => sub.mainCategory._id === formData.category
       );
-      // console.log("Filtered SubCategories:", relevantSubCategories);
+      console.log("Filtered SubCategories:", relevantSubCategories); // Debug subcategories
       setFilteredSubCategories(relevantSubCategories);
       setFilteredSubSubCategories([]); // Reset sub-sub-categories
     }
   }, [formData.category, subCategories]);
-
   useEffect(() => {
-    if (formData.subCategory) {
-      const relevantSubSubCategories =
-        subSubCategories.doc?.filter(
-          (subSub) => subSub?.subCategory?._id === formData.subCategory
-        ) || [];
-      setFilteredSubSubCategories(relevantSubSubCategories);
+    if (formData.category && formData.subCategory) {
+      console.log("Selected Category:", formData.category); // Debug category
+      console.log("Selected SubCategory:", formData.subCategory); // Debug subcategory
+  
+      // Check if subSubCategories are available
+      if (subSubCategories && subSubCategories.doc) {
+        const relevantSubSubCategories = subSubCategories.doc.filter(
+          (subSub) => subSub.subCategory?._id === formData.subCategory
+        );
+  
+        console.log("Filtered Sub-Sub-Categories:", relevantSubSubCategories); // Debug sub-sub-categories
+        setFilteredSubSubCategories(relevantSubSubCategories);
+      }
     }
-  }, [formData.subCategory, subSubCategories]);
-
-  // SKU generation
+  }, [formData.category, formData.subCategory, subSubCategories]); 
+  
   const handleGenerateSKU = () => {
     const newSKU = generateSKU();
     setFormData((prevData) => ({
@@ -73,7 +72,6 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
     }));
   };
 
-  // Adding a tag
   const handleTagInput = (e) => {
     if (e.key === "Enter" && e.target.value.trim()) {
       e.preventDefault();
@@ -83,63 +81,55 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
         setTags(updatedTags);
         setFormData((prevData) => ({
           ...prevData,
-          tags: updatedTags, // Store tags as an array in formData
+          tags: updatedTags,
         }));
       }
-      e.target.value = ""; // Clear input after adding tag
+      e.target.value = "";
     }
   };
 
-  // Removing a tag
   const removeTag = (indexToRemove) => {
     const updatedTags = tags.filter((_, index) => index !== indexToRemove);
     setTags(updatedTags);
     setFormData((prevData) => ({
       ...prevData,
-      tags: updatedTags, // Update tags array in formData
+      tags: updatedTags,
     }));
   };
 
   return (
     <>
-      {/* General Product Information Section */}
       <FormSection title="General Information" icon={<IoMdPerson />}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Category */}
           <div className="flex flex-col px-2">
             <FormSelect
               label="Category"
               name="category"
               value={formData.category}
               onChange={handleChange}
-              options={
-                categories.length > 0
-                  ? categories.map((category) => ({
-                      value: category._id,
-                      label: category.name,
-                    }))
-                  : [{ value: "", label: "Not Category Found" }]
-              }
+              options={categories.length > 0
+                ? categories.map((category) => ({
+                    value: category._id,
+                    label: category.name,
+                  }))
+                : [{ value: "", label: "Not Category Found" }]}
               required
             />
           </div>
+
           {/* Sub-Category */}
           <div className="flex flex-col px-2">
             <FormSelect
               label="Sub-Category"
               name="subCategory"
-              value={formData.subCategories}
-              onChange={(e) =>
-                setFormData({ ...formData, subCategory: e.target.value })
-              }
-              options={
-                filteredSubCategories.length > 0
-                  ? filteredSubCategories.map((subCategory) => ({
-                      value: subCategory._id, // Ensure you're setting the correct _id here
-                      label: subCategory.name,
-                    }))
-                  : [{ value: "", label: "Not Sub-Category Found" }]
-              }
+              value={formData.subCategory}
+              onChange={(e) => setFormData({ ...formData, subCategory: e.target.value })}
+              options={filteredSubCategories.length > 0
+                ? filteredSubCategories.map((subCategory) => ({
+                    value: subCategory._id,
+                    label: subCategory.name,
+                }))
+                : [{ value: "", label: "Not Sub-Category Found" }]}
             />
           </div>
 
@@ -150,16 +140,15 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               name="subSubCategory"
               value={formData.subSubCategory}
               onChange={handleChange}
-              options={
-                filteredSubSubCategories.length > 0
-                  ? filteredSubSubCategories.map((subSubCategory) => ({
-                      value: subSubCategory._id, // Ensure correct field here
-                      label: subSubCategory.name,
-                    }))
-                  : [{ value: "", label: "Not Sub-Sub-Category Found" }]
-              }
+              options={filteredSubSubCategories.length > 0
+                ? filteredSubSubCategories.map((subSubCategory) => ({
+                    value: subSubCategory._id,
+                    label: subSubCategory.name,
+                }))
+                : [{ value: "", label: "Not Sub-Sub-Category Found" }]}
             />
           </div>
+
           {/* Brand */}
           <div className="flex flex-col px-2">
             <FormSelect
@@ -167,17 +156,16 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               name="brand"
               value={formData.brand}
               onChange={handleChange}
-              options={
-                brands.length > 0
-                  ? brands.map((brand) => ({
-                      value: brand._id,
-                      label: brand.name,
-                    }))
-                  : [{ value: "", label: "Not Brand Found" }]
-              }
+              options={brands.length > 0
+                ? brands.map((brand) => ({
+                    value: brand._id,
+                    label: brand.name,
+                  }))
+                : [{ value: "", label: "Not Brand Found" }]}
               required
             />
           </div>
+
           {/* Product Type */}
           <div className="flex flex-col px-2">
             <FormSelect
@@ -192,6 +180,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               required
             />
           </div>
+
           {/* Conditionally Render Digital Product Type */}
           {formData.productType === "digital" && (
             <div className="flex flex-col px-2">
@@ -207,15 +196,16 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               />
             </div>
           )}
+
           {/* SKU */}
           <div className="flex flex-col px-2">
             <div className="flex justify-between items-center">
               <label className="">Product SKU</label>
               <button
-                className="text-primary   flex g items-center hover:text-primary-dark"
+                className="text-primary flex items-center hover:text-primary-dark"
                 onClick={handleGenerateSKU}
               >
-                <IoIosInformationCircleOutline className="text-[1rem] " />
+                <IoIosInformationCircleOutline className="text-[1rem]" />
                 Generate Code
               </button>
             </div>
@@ -227,16 +217,17 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                 name="sku"
                 placeholder="Code"
                 value={formData.sku}
-                readOnly // Keep SKU input read-only to prevent manual editing
+                readOnly
               />
               <AiOutlineSync
                 onClick={handleGenerateSKU}
                 className="cursor-pointer text-primary hover:text-primary-dark ml-2"
                 title="Generate SKU"
-                size={24} // Set size for the icon
+                size={24}
               />
             </div>
           </div>
+
           {/* Unit */}
           <div className="flex flex-col px-2">
             <FormSelect
@@ -280,8 +271,9 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             ))}
             <input
               type="text"
-              className="flex-1 border-none outline-none focus:ring-0 p-1 hover:border-primary"
+              className="flex-1 border-none outline-none focus:ring-0 p-1"
               placeholder="Press Enter to add tag"
+              // value={formData.tags.join(", ")} // Display tags as comma-separated values
               onKeyPress={handleTagInput}
             />
           </div>

@@ -1,4 +1,253 @@
-// import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCategories,
+  fetchBrands,
+  fetchColors,
+  fetchAttributes,
+  fetchSubCategories,
+  fetchSubSubCategories,
+} from "../../../../../redux/slices/admin/categorybrandSlice";
+import "react-quill/dist/quill.snow.css";
+import "../addProduct/form.css";
+import ProductImageWrapper from "./addProductFormComponent/productImageUpload";
+import ProductForm from "./addProductFormComponent/productForm";
+import ProductGeneral from "./addProductFormComponent/productGeneral";
+import ProductAdditional from "./addProductFormComponent/productAdditional";
+import ProductVideo from "./addProductFormComponent/productVideo";
+import SeoSection from "./addProductFormComponent/SeoSection";
+import Swal from "sweetalert2";
+import apiConfig from "../../../../../config/apiConfig";
+import { getAuthData } from "../../../../../utils/authHelper";
+import { toast } from "react-toastify";
+import uploadProductImagesToS3 from "../addProduct/uploadImages";
+
+const API_URL = `${apiConfig.seller}/products`;
+
+const InhouseProductUpdate = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { categories, subCategories, subSubCategories, brands, colors, attributes } = useSelector((state) => state.category);
+
+  const initialFormState = {
+    name: "",
+    description: "",
+    brand: "",
+    productType: "",
+    digitalProductType: "",
+    sku: "",
+    unit: "",
+    tags: [""],
+    price: "",
+    discount: "",
+    discountType: "percent",
+    discountAmount: "",
+    taxAmount: "",
+    taxIncluded: false,
+    minimumOrderQty: "3",
+    shippingCost: "",
+    stock: "",
+    isFeatured: false,
+    videoLink: "",
+    metaTitle: "title",
+    metaDescription: "metadescription",
+    userType: "in-house",
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
+  const [thumbnail, setThumbnail] = useState(null);
+  const [images, setImages] = useState([]);
+  const [initialThumbnail, setInitialThumbnail] = useState(null);
+  const [initialImages, setInitialImages] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+    dispatch(fetchBrands());
+    dispatch(fetchColors());
+    dispatch(fetchAttributes());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const { token } = getAuthData();
+        const response = await fetch(`${API_URL}/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!response.ok) throw new Error("Failed to fetch product data");
+  
+        const product = await response.json();
+  
+        setFormData({
+          ...product.doc,
+          category: product.doc.category._id,
+          subCategory: product.doc.subCategory,
+          subSubCategory: product.doc.subSubCategory,
+          brand: product.doc.brand._id,
+          tags: product.doc.tags || [],
+        });
+  
+        setThumbnail(product.doc.thumbnail);
+        setImages(product.doc.images);
+        setInitialThumbnail(product.doc.thumbnail);
+        setInitialImages(product.doc.images);
+  
+        if (product.doc.category._id) {
+          dispatch(fetchSubCategories(product.doc.category._id));
+        }
+        if (product.doc.subCategory) {
+          dispatch(fetchSubSubCategories(product.doc.subCategory));
+        }
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+      }
+    };
+    fetchProduct();
+  }, [id, dispatch]);
+
+  const hasChanges = () => {
+    return JSON.stringify(formData) !== JSON.stringify(initialFormState) ||
+           thumbnail !== initialThumbnail ||
+           JSON.stringify(images) !== JSON.stringify(initialImages);
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleDescriptionChange = (value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      description: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    if (!hasChanges()) {
+      toast.info("No changes detected.");
+      navigate(-1); // Go back to the previous page
+      return;
+    }
+  
+    // Initializing keys with existing data (in case no new files are uploaded)
+    let thumbnailKey = initialThumbnail;
+    let imageKeys = initialImages;
+  
+    // Check if a new thumbnail file is provided
+    if (thumbnail && thumbnail.file && thumbnail.file !== initialThumbnail) {
+      const uploadResult = await uploadProductImagesToS3(thumbnail.file, images);
+      if (!uploadResult) {
+        console.error("Thumbnail upload failed.");
+        return;
+      }
+      thumbnailKey = uploadResult.thumbnailKey; // Update only if new file is uploaded
+    }
+  
+    // Check for updated additional images, avoiding re-upload if unchanged
+    if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i])) {
+      const uploadResult = await uploadProductImagesToS3(null, images); // null for thumbnail if not uploading
+      if (!uploadResult) {
+        console.error("Image upload failed.");
+        return;
+      }
+      imageKeys = uploadResult.imageKeys; // Update only if new files are uploaded
+    }
+  
+    // Proceed with submitting form data using the new or existing keys
+    try {
+      const { token, user } = getAuthData();
+      const userId = user?._id;
+      if (!userId) throw new Error("User not authenticated.");
+  
+      const productData = {
+        ...formData,
+        userId,
+        thumbnail: thumbnailKey,
+        images: imageKeys,
+        // colors: selectedColors.map((color) => color._id),
+        // attributes: productAttributes.map((attr) => attr._id),
+        category: formData.category,
+        subCategory: formData.subCategory,
+        subSubCategory: formData.subSubCategory,
+      };
+      console.log("product data t0 submit",productData)
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(productData),
+      });
+  
+      if (response.ok) {
+        Swal.fire("Success", "Product updated successfully", "success").then(() => navigate(-1)); // Go back on success
+      } else {
+        const errorData = await response.json(); // Capture backend error message
+        console.error("Failed to update product:", errorData.message || "Unknown error");
+        Swal.fire("Error", errorData.message || "Failed to update product", "error");
+      }
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
+  };
+  
+
+  return (
+    <form onSubmit={handleSubmit} className="Update Product p-6">
+      <ProductForm
+        formData={formData}
+        handleChange={handleChange}
+        handleDescriptionChange={handleDescriptionChange}
+        errorMessage={errorMessage}
+      />
+      <ProductGeneral
+        formData={formData}
+        handleChange={handleChange}
+        setFormData={setFormData}
+        categories={categories}
+        subCategories={subCategories}
+        subSubCategories={subSubCategories}
+        brands={brands}
+      />
+      <ProductAdditional formData={formData} handleChange={handleChange} />
+      <ProductVideo formData={formData} handleChange={handleChange} />
+      <ProductImageWrapper
+        thumbnail={thumbnail}
+        setThumbnail={setThumbnail}
+        images={images}
+        setImages={setImages}
+      />
+      <SeoSection formData={formData} handleChange={handleChange} />
+
+      <div className="flex justify-end m-5">
+        <button
+          type="submit"
+          className="btn mt-3 flex justify-end btn-submit bg-primary outline-none"
+          style={{ color: "white", background: "green" }}
+        >
+          Update Product
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default InhouseProductUpdate;
+
+
+
+// import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 // import {
 //   fetchCategories,
@@ -8,50 +257,36 @@
 //   fetchSubCategories,
 //   fetchSubSubCategories,
 // } from "../../../../../redux/slices/admin/categorybrandSlice";
-
 // import "react-quill/dist/quill.snow.css";
 // import "../addProduct/form.css";
-
-// import Swal from 'sweetalert2';
-// import apiConfig from '../../../../../config/apiConfig';
-// import { getAuthData } from '../../../../../utils/authHelper';
-// import ProductForm from "../addProduct/addProductFormComponent/productForm";
-// import ProductGeneral from "../addProduct/addProductFormComponent/productGeneral";
-// import ProductAdditional from "../addProduct/addProductFormComponent/productAdditional";
-// import ProductVideo from "../addProduct/addProductFormComponent/productVideo";
-// import ProductImageWrapper from "../addProduct/addProductFormComponent/productImageUpload";
-// import SeoSection from "../addProduct/addProductFormComponent/SeoSection";
+// import ProductImageWrapper from "./addProductFormComponent/productImageUpload";
+// import ProductForm from "./addProductFormComponent/productForm";
+// import ProductGeneral from "./addProductFormComponent/productGeneral";
+// import ProductAdditional from "./addProductFormComponent/productAdditional";
+// import ProductVideo from "./addProductFormComponent/productVideo";
+// import SeoSection from "./addProductFormComponent/SeoSection";
+// import Swal from "sweetalert2";
+// import apiConfig from "../../../../../config/apiConfig";
+// import { getAuthData } from "../../../../../utils/authHelper";
+// import { toast } from "react-toastify";
+// import uploadProductImagesToS3 from "../addProduct/uploadImages";
 
 // const API_URL = `${apiConfig.seller}/products`;
 
 // const InhouseProductUpdate = () => {
-//   const { productId } = useParams();
+//   const { id } = useParams();
 //   const dispatch = useDispatch();
-
-//   const { loading, error, products } = useSelector((state) => state.product);
-
-//   useEffect(() => {
-//     dispatch(fetchProductById({ productId }));
-//   }, [dispatch, productId]);
-
-//   const {
-//     categories,
-//     subCategories,
-//     subSubCategories,
-//     brands,
-//     colors,
-//     attributes,
-//   } = useSelector((state) => state.category);
+//   const { categories, subCategories, subSubCategories, brands, colors, attributes } = useSelector((state) => state.category);
 
 //   const initialFormState = {
 //     name: "",
 //     description: "",
 //     brand: "",
 //     productType: "",
-//     digitalProductType: "physical",
+//     digitalProductType: "",
 //     sku: "",
 //     unit: "",
-//     tags: "",
+//     tags: [""],
 //     price: "",
 //     discount: "",
 //     discountType: "percent",
@@ -75,6 +310,8 @@
 //   const [selectedAttribute, setSelectedAttribute] = useState("");
 //   const [productAttributes, setProductAttributes] = useState([]);
 //   const [errorMessage, setErrorMessage] = useState("");
+//   const [initialThumbnail, setInitialThumbnail] = useState(null);
+//   const [initialImages, setInitialImages] = useState([]);
 
 //   useEffect(() => {
 //     dispatch(fetchCategories());
@@ -95,12 +332,57 @@
 //     }
 //   }, [dispatch, formData.subCategory]);
 
+//   useEffect(() => {
+//     const fetchProduct = async () => {
+//       try {
+//         const { token } = getAuthData();
+//         const response = await fetch(`${API_URL}/${id}`, {
+//           headers: { Authorization: `Bearer ${token}` },
+//         });
+//         if (!response.ok) throw new Error("Failed to fetch product data");
+  
+//         const product = await response.json();
+  
+//         setFormData({
+//           ...product.doc,
+//           category: product.doc.category._id,
+//           subCategory: product.doc.subCategory,
+//           subSubCategory: product.doc.subSubCategory,
+//           brand: product.doc.brand._id,
+//           tags: product.doc.tags || [],
+//         });
+  
+//         setThumbnail(product.doc.thumbnail);
+//         setImages(product.doc.images);
+//         setInitialThumbnail(product.doc.thumbnail);
+//         setInitialImages(product.doc.images);
+  
+//         if (product.doc.category._id) {
+//           dispatch(fetchSubCategories(product.doc.category._id));
+//         }
+//         if (product.doc.subCategory) {
+//           dispatch(fetchSubSubCategories(product.doc.subCategory));
+//         }
+//       } catch (error) {
+//         console.error("Error fetching product data:", error);
+//       }
+//     };
+//     fetchProduct();
+//   }, [id, dispatch]);
+
 //   const handleChange = (e) => {
 //     const { name, value, type, checked } = e.target;
-//     setFormData((prev) => ({
-//       ...prev,
-//       [name]: type === "checkbox" ? checked : value,
-//     }));
+//     if (name === "tags") {
+//       setFormData((prev) => ({
+//         ...prev,
+//         tags: value.split(",").map((tag) => tag.trim()),
+//       }));
+//     } else {
+//       setFormData((prev) => ({
+//         ...prev,
+//         [name]: type === "checkbox" ? checked : value,
+//       }));
+//     }
 //   };
 
 //   const handleDescriptionChange = (value) => {
@@ -110,119 +392,73 @@
 //     }));
 //   };
 
-//   const handleImageChange = (e, isThumbnail = false) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onloadend = () => {
-//         if (isThumbnail) {
-//           setThumbnail(reader.result);
-//           console.log("in change function thubnail", thumbnail)
-//         } else {
-//           setImages((prevImages) => [...prevImages, reader.result]);
-//           console.log("in change function images", images)
-
-//         }
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   const handleColorChange = (color) => {
-//     setSelectedColors((prevColors) =>
-//       prevColors.includes(color)
-//         ? prevColors.filter((c) => c !== color)
-//         : [...prevColors, color]
-//     );
-//   };
-
-//   const handleAttributeChange = (e) => {
-//     setSelectedAttribute(e.target.value);
-//   };
-
-//   const addAttribute = () => {
-//     if (selectedAttribute) {
-//       const selectedAttr = attributes.find(
-//         (attr) => attr._id === selectedAttribute
-//       );
-//       if (selectedAttr) {
-//         setProductAttributes((prevAttrs) => [
-//           ...prevAttrs,
-//           { _id: selectedAttr._id, name: selectedAttr.name },
-//         ]);
-//         setSelectedAttribute("");
-//       }
-//     }
-//   };
-
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-
+  
+//     // Initializing keys with existing data (in case no new files are uploaded)
+//     let thumbnailKey = initialThumbnail;
+//     let imageKeys = initialImages;
+  
+//     // Check if a new thumbnail file is provided
+//     if (thumbnail && thumbnail.file && thumbnail.file !== initialThumbnail) {
+//       const uploadResult = await uploadProductImagesToS3(thumbnail.file, images);
+//       if (!uploadResult) {
+//         console.error("Thumbnail upload failed.");
+//         return;
+//       }
+//       thumbnailKey = uploadResult.thumbnailKey; // Update only if new file is uploaded
+//     }
+  
+//     // Check for updated additional images, avoiding re-upload if unchanged
+//     if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i])) {
+//       const uploadResult = await uploadProductImagesToS3(null, images); // null for thumbnail if not uploading
+//       if (!uploadResult) {
+//         console.error("Image upload failed.");
+//         return;
+//       }
+//       imageKeys = uploadResult.imageKeys; // Update only if new files are uploaded
+//     }
+  
+//     // Proceed with submitting form data using the new or existing keys
 //     try {
 //       const { token, user } = getAuthData();
 //       const userId = user?._id;
-
-//       if (!userId) {
-//         throw new Error("admin does not exist or is not authenticated.");
-//       }
-
+//       if (!userId) throw new Error("User not authenticated.");
+  
 //       const productData = {
 //         ...formData,
 //         userId,
-//         thumbnail,
-//         images,
+//         thumbnail: thumbnailKey,
+//         images: imageKeys,
 //         colors: selectedColors.map((color) => color._id),
 //         attributes: productAttributes.map((attr) => attr._id),
 //         category: formData.category,
-//         subCategory: formData.subCategorySlug,
-//         subSubCategory: formData.subSubCategorySlug,
+//         subCategory: formData.subCategory,
+//         subSubCategory: formData.subSubCategory,
 //       };
-
-//       console.log("Submitting Product Data:", productData);
-
-//       const response = await fetch(API_URL, {
-//         method: 'PUT',
+  
+//       const response = await fetch(`${API_URL}/${id}`, {
+//         method: "PUT",
 //         headers: {
-//           'Content-Type': 'application/json',
+//           "Content-Type": "application/json",
 //           Authorization: `Bearer ${token}`,
 //         },
 //         body: JSON.stringify(productData),
 //       });
-
-//       const data = await response.json();
-
-//       if (!response.ok) {
-//         throw new Error(data.message || "Something went wrong!");
+  
+//       if (response.ok) {
+//         Swal.fire("Success", "Product updated successfully", "success");
+//       } else {
+//         throw new Error("Failed to update product");
 //       }
-
-//       Swal.fire({
-//         icon: 'success',
-//         title: 'Product created successfully!',
-//         showConfirmButton: false,
-//         timer: 2000,
-//       });
-
-//       // Reset form
-//       setThumbnail(null);
-//       setImages([]);
-//       setSelectedColors([]);
-//       setProductAttributes([]);
-//       setFormData({ ...initialFormState });
-
 //     } catch (error) {
-//       console.error("Product creation failed:", error);
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Failed to create product',
-//         text: error.message || 'Please try again.',
-//         showConfirmButton: true,
-//       });
-//       setErrorMessage("Failed to create product. Please try again.");
+//       console.error("Error updating product:", error);
 //     }
 //   };
+  
 
 //   return (
-//     <form onSubmit={handleSubmit} className="update-product-form p-6">
+//     <form onSubmit={handleSubmit} className="Update Product p-6">
 //       <ProductForm
 //         formData={formData}
 //         handleChange={handleChange}
@@ -240,26 +476,21 @@
 //       />
 //       <ProductAdditional formData={formData} handleChange={handleChange} />
 //       <ProductVideo formData={formData} handleChange={handleChange} />
-//       {/* <ProductImageWrapper
+//       <ProductImageWrapper
 //         thumbnail={thumbnail}
 //         setThumbnail={setThumbnail}
 //         images={images}
-//         handleImageChange={handleImageChange}
-//       /> */}
-//       <ProductImageWrapper
-//   thumbnail={thumbnail}
-//   setThumbnail={setThumbnail}
-//   images={images}
-//   setImages={setImages} // Pass the setter function to update images
-// />
+//         setImages={setImages}
+//       />
 //       <SeoSection formData={formData} handleChange={handleChange} />
+
 //       <div className="flex justify-end m-5">
 //         <button
 //           type="submit"
 //           className="btn mt-3 flex justify-end btn-submit bg-primary outline-none"
-//           style={{ color: "white" , background:"green"}}
+//           style={{ color: "white", background: "green" }}
 //         >
-//           Submit Product
+//           Update Product
 //         </button>
 //       </div>
 //     </form>
@@ -267,240 +498,3 @@
 // };
 
 // export default InhouseProductUpdate;
-
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import apiConfig from "../../../../../config/apiConfig";
-import { getAuthData } from "../../../../../utils/authHelper";
-import ProductForm from "../addProduct/addProductFormComponent/productForm";
-import ProductGeneral from "../addProduct/addProductFormComponent/productGeneral";
-import ProductAdditional from "../addProduct/addProductFormComponent/productAdditional";
-import ProductVideo from "../addProduct/addProductFormComponent/productVideo";
-import ProductImageWrapper from "../addProduct/addProductFormComponent/productImageUpload";
-import SeoSection from "../addProduct/addProductFormComponent/SeoSection";
-import {
-  fetchCategories,
-  fetchBrands,
-  fetchColors,
-  fetchAttributes,
-  fetchSubCategories,
-  fetchSubSubCategories,
-} from "../../../../../redux/slices/admin/categorybrandSlice";
-import {
-  fetchProductById,
-  updateProductStatus,
-} from "../../../../../redux/slices/seller/productSlice";
-const API_URL = `${apiConfig.seller}/products`;
-
-const InhouseProductUpdate = () => {
-  const dispatch = useDispatch();
-  const { productId } = useParams(); // Get productId from the URL params
-  const {
-    categories,
-    subCategories,
-    subSubCategories,
-    brands,
-    colors,
-    attributes,
-  } = useSelector((state) => state.category);
-
-  const { loading, error, products } = useSelector((state) => state.product); // Assuming 'product' holds the fetched product
-  const product = products.find((prod) => prod._id === productId); // Assuming products is an array
-
-  console.log("product id from param", productId);
-  console.log("product by fetch by id", product);
-  // Form states
-  const initialFormState = {
-    name: "",
-    description: "",
-    brand: "",
-    productType: "",
-    digitalProductType: "physical",
-    sku: "",
-    unit: "",
-    tags: "",
-    price: "",
-    discount: "",
-    discountType: "percent",
-    discountAmount: "",
-    taxAmount: "",
-    taxIncluded: false,
-    minimumOrderQty: "3",
-    shippingCost: "",
-    stock: "",
-    isFeatured: false,
-    videoLink: "",
-    metaTitle: "",
-    metaDescription: "",
-    userType: "in-house",
-  };
-
-  const [formData, setFormData] = useState(initialFormState);
-  const [thumbnail, setThumbnail] = useState(null);
-  const [images, setImages] = useState([]);
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [productAttributes, setProductAttributes] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // Fetch categories, brands, etc.
-  useEffect(() => {
-    dispatch(fetchCategories());
-    dispatch(fetchBrands());
-    dispatch(fetchColors());
-    dispatch(fetchAttributes());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchProductById(productId));
-  }, [dispatch, productId]);
-  // Populate form when product data is fetched
-  useEffect(() => {
-    if (product) {
-      setFormData({
-        ...initialFormState,
-        ...product, // Assuming your API response structure matches the form structure
-      });
-      setThumbnail(product.thumbnail);
-      setImages(product.images || []);
-      setSelectedColors(product.colors || []);
-      setProductAttributes(product.attributes || []);
-    }
-  }, [product]);
-
-  // Handle input changes
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const handleDescriptionChange = (value) => {
-    setFormData((prev) => ({
-      ...prev,
-      description: value,
-    }));
-  };
-
-  const handleImageChange = (e, isThumbnail = false) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (isThumbnail) {
-          setThumbnail(reader.result);
-        } else {
-          setImages((prevImages) => [...prevImages, reader.result]);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const { token, user } = getAuthData();
-      const userId = user?._id;
-
-      if (!userId) {
-        throw new Error("Admin not authenticated.");
-      }
-
-      const productData = {
-        ...formData,
-        userId,
-        thumbnail,
-        images,
-        colors:
-          selectedColors.length > 0
-            ? selectedColors.map((color) => color._id)
-            : null,
-        attributes:
-          Array.isArray(productAttributes) && productAttributes.length > 0
-            ? productAttributes.map((attr) => attr._id)
-            : null,
-      };
-
-      const response = await fetch(`${API_URL}/${productId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(productData),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to update product");
-      }
-
-      Swal.fire({
-        icon: "success",
-        title: "Product updated successfully!",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-
-      // Reset form
-      setFormData(initialFormState);
-      setThumbnail(null);
-      setImages([]);
-      setSelectedColors([]);
-      setProductAttributes([]);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Update failed",
-        text: error.message || "Please try again.",
-      });
-    }
-  };
-  console.log("formData=====", formData);
-  return (
-    <form onSubmit={handleSubmit} className="update-product-form p-6">
-      <ProductForm
-        formData={formData}
-        handleChange={handleChange}
-        handleDescriptionChange={handleDescriptionChange}
-        errorMessage={errorMessage}
-      />
-      <ProductGeneral
-        formData={formData}
-        handleChange={handleChange}
-        setFormData={setFormData}
-        categories={categories}
-        subCategories={subCategories}
-        subSubCategories={subSubCategories}
-        brands={brands}
-      />
-      <ProductAdditional formData={formData} handleChange={handleChange} />
-      <ProductVideo formData={formData} handleChange={handleChange} />
-      <ProductImageWrapper
-        thumbnail={thumbnail}
-        setThumbnail={setThumbnail}
-        images={images}
-        setImages={setImages}
-        handleImageChange={handleImageChange}
-      />
-      <SeoSection formData={formData} handleChange={handleChange} />
-      <div className="flex justify-end m-5">
-        <button
-          type="submit"
-          className="btn mt-3 flex justify-end btn-submit bg-primary outline-none"
-          style={{ color: "white", background: "green" }}
-        >
-          Submit Product
-        </button>
-      </div>
-    </form>
-  );
-};
-
-export default InhouseProductUpdate;

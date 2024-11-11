@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <>
       <div className=" flex justify-center flex-wrap gap-2  lg:flex-row lg:justify-between md:mx-8  items-center my-6">
-        <div className="text-nowrap ">Bazzar CMS. Copyright LHD@2024</div>
+        <div className="text-nowrap ">VistaMart CMS. Copyright@2024</div>
         <div className=" flex justify-center flex-col md:flex-row gap-4">
           <div>
             <Link
