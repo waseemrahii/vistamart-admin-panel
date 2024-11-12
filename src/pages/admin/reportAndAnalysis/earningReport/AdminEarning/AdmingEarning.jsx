@@ -48,150 +48,150 @@ const AdmingEarning = () => {
   /////------------------------------
   //   ==========
   const data = [
-    {
-      sl: 1,
-      duration: "Jan",
-      inHouse: "$-250.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      duration: "Feb",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 3,
-      duration: "Mar",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 4,
-      duration: "Apr",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 5,
-      duration: "May",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 6,
-      duration: "Jun",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 7,
-      duration: "July",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 8,
-      duration: "Agu",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 9,
-      duration: "Sep",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 10,
-      duration: "Oct",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 11,
-      duration: "Nov",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 12,
-      duration: "Dev",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
+    // {
+    //   sl: 1,
+    //   duration: "Jan",
+    //   inHouse: "$-250.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 2,
+    //   duration: "Feb",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 3,
+    //   duration: "Mar",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 4,
+    //   duration: "Apr",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 5,
+    //   duration: "May",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 6,
+    //   duration: "Jun",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 7,
+    //   duration: "July",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 8,
+    //   duration: "Agu",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 9,
+    //   duration: "Sep",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 10,
+    //   duration: "Oct",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 11,
+    //   duration: "Nov",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 12,
+    //   duration: "Dev",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
   ];
   return (
     <>
@@ -230,23 +230,23 @@ const AdmingEarning = () => {
                     className="h-10 w-10 "
                   />
                   <div>
-                    <p className="text-xl font-bold">$51,945.97</p>
+                    <p className="text-xl font-bold">PKR 0</p>
                     <h2 className="font-semibold text-sm">Total earnings</h2>
                   </div>
                 </div>
                 <div className="flex justify-center gap-2 mt-4">
                   <div className="text-red-500 text-[1rem] font-semibold">
-                    $2,280.97 <br />{" "}
+                    PKR 0 <br />{" "}
                     <span className="text-gray-400 text-[.8rem]">
                       Commission
                     </span>
                   </div>
                   <div className=" text-[1em] text-blue-500 font-semibold">
-                    $57,225.00 <br />{" "}
+                    PKR 0 <br />{" "}
                     <span className="text-gray-400 text-[.8rem]">In House</span>
                   </div>
                   <div className="text-green-500 text-[1rem] font-semibold">
-                    $570.00 <br />{" "}
+                    PKR 0 <br />{" "}
                     <span className="text-gray-400 text-[.8rem]">
                       {" "}
                       Shipping
@@ -304,10 +304,10 @@ const AdmingEarning = () => {
                   </div>
                 </div>
                 <ul className="mt-4 space-y-2">
-                  <li>Cash payments ($195,512.81)</li>
-                  <li>Digital payments ($19,786.00)</li>
-                  <li>Offline payments ($0.00)</li>
-                  <li>Wallet ($6,355.00)</li>
+                  <li>Cash payments (PKR 0)</li>
+                  <li>Digital payments (PKR 0)</li>
+                  <li>Offline payments (PKR 0)</li>
+                  <li>Wallet (PKR 0)</li>
                 </ul>
               </div>
             </div>

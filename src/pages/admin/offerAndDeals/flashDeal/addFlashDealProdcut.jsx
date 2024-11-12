@@ -11,6 +11,7 @@ import { fetchProducts } from "../../../../redux/slices/admin/productSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
+import apiConfig from "../../../../config/apiConfig";
 
 const AddFlashDealProduct = () => {
   const { id } = useParams();
@@ -155,13 +156,13 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
                                 >
                                   <img
                                     className="h-10 w-10 rounded border"
-                                    src={product.thumbnail}
+                                    src={`${apiConfig.bucket}/${product?.thumbnail}`}
                                     alt="product"
                                   />
                                   <div className="ml-2 flex-1">
-                                    <h5 className="text-gray-800">{product.name}</h5>
+                                    <h5 className="text-gray-800">{product?.name}</h5>
                                     <div className="text-gray-500 text-sm">
-                                      {product.category} - {product.brand}
+                                      {/* {product?.category} - {product?.brand} */}
                                     </div>
                                   </div>
                                   <div>
@@ -220,7 +221,7 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
                         <td>{index + 1}</td>
                         <td>
                           <img
-                            src={product.thumbnail}
+                            src={`${apiConfig.bucket}/${product?.thumbnail}`}
                             alt={product.name}
                             className="h-16 w-16 rounded"
                           />

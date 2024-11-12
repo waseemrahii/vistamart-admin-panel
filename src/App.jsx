@@ -16,6 +16,7 @@ import { checkAuth } from "./redux/slices/admin/authSlice"; // Adjust the import
 import AllRoutes from "./Routes.jsx";
 import "./App.css";
 import Sidebar from "./components/Layout/sidebar/sidebar.jsx";
+import LoadingSpinner from "./components/LoodingSpinner/LoadingSpinner.jsx";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -24,12 +25,16 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true); // Local loading state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Check for authentication on mount
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true); // User is logged in
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      setUser(storedUser); // Set user data from local storage
+
     }
     setLoading(false); // Finished loading
   }, []);
@@ -37,8 +42,13 @@ function App() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
-  if (loading) return <div>Loading...</div>; // Show a loading state
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setUser(null);
+  };
+  if (loading) return <div><LoadingSpinner /></div>; // Show a loading state
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -46,7 +56,7 @@ function App() {
         <div className="flex flex-col min-h-screen">
           {isLoggedIn ? (
             <>
-              <Header />
+              <Header user={user} handleLogout={handleLogout} />
               <div className="flex flex-1">
                 <div
                   className={`fixed inset-0 z-30 ${isSidebarOpen ? "block" : "hidden"} lg:block lg:relative lg:w-2/12`}

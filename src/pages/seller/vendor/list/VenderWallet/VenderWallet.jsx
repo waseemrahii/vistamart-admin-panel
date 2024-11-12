@@ -8,24 +8,24 @@ import ActionButton from "../../../../../components/ActionButton/Action";
 const VenderWallet = () => {
   // Your array of withdraw requests data (example)
   const withdrawRequests = [
-    {
-      sl: 1,
-      amount: "$500.00",
-      name: "Not found",
-      requestTime: "2022-11-20 01:41:01",
-      status: "Pending",
-      actionLink: "/venderwalletdetail",
-      actionIcon: <FaEye />,
-    },
-    {
-      sl: 2,
-      amount: "$500.00",
-      name: "Not found",
-      requestTime: "2022-11-20 01:41:01",
-      status: "Complete",
-      actionLink: "/venderwalletdetail",
-      actionIcon: <FaEye />,
-    },
+    // {
+    //   sl: 1,
+    //   amount: "$500.00",
+    //   name: "Not found",
+    //   requestTime: "2022-11-20 01:41:01",
+    //   status: "Pending",
+    //   actionLink: "/venderwalletdetail",
+    //   actionIcon: <FaEye />,
+    // },
+    // {
+    //   sl: 2,
+    //   amount: "$500.00",
+    //   name: "Not found",
+    //   requestTime: "2022-11-20 01:41:01",
+    //   status: "Complete",
+    //   actionLink: "/venderwalletdetail",
+    //   actionIcon: <FaEye />,
+    // },
     // Add more data items as needed
   ];
 
@@ -51,7 +51,7 @@ const VenderWallet = () => {
                     {" "}
                     Withdraw request table{" "}
                     <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-                      12
+                      
                     </span>
                   </h5>
                 </div>

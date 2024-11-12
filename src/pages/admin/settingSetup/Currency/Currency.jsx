@@ -3,22 +3,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 // Sample data
 const initialCurrencies = [
-  {
-    id: 1,
-    name: "USD",
-    symbol: "$",
-    code: "USD",
-    exchangeRate: 1,
-    status: "Default",
-  },
-  {
-    id: 2,
-    name: "BDT",
-    symbol: "৳",
-    code: "BDT",
-    exchangeRate: 84.5,
-    status: "Active",
-  },
+ 
   // Add more currencies as needed
 ];
 
@@ -70,7 +55,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                   name="name"
                   className="form-control outline-none hover:border-primary"
                   id="name"
-                  placeholder="Ex: United States Dollar"
+                  placeholder=""
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -87,7 +72,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                   name="symbol"
                   className="form-control outline-none hover:border-primary"
                   id="symbol"
-                  placeholder="Ex: $"
+                  placeholder=""
                   value={symbol}
                   onChange={(e) => setSymbol(e.target.value)}
                   required
@@ -104,7 +89,7 @@ const CurrencyForm = ({ onAddCurrency }) => {
                   name="code"
                   className="form-control outline-none hover:border-primary"
                   id="code"
-                  placeholder="Ex: USD"
+                  placeholder=""
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   required
@@ -163,7 +148,7 @@ const CurrencyList = ({ currencies }) => {
               <th>Currency name</th>
               <th>Currency symbol</th>
               <th>Currency code</th>
-              <th>Exchange rate (1 USD =?)</th>
+              <th>Exchange rate</th>
               <th>Status</th>
               <th className="text-center">Action</th>
             </tr>

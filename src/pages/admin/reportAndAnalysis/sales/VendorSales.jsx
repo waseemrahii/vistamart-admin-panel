@@ -48,150 +48,31 @@ const VendorSales = () => {
   /////------------------------------
   //   ==========
   const data = [
-    {
-      sl: 1,
-      duration: "Abc Abc",
-      inHouse: "$-250.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      duration: "Web seller",
-      inHouse: "$10.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 3,
-      duration: "Digital Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 4,
-      duration: "App Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 5,
-      duration: "Marketing",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 6,
-      duration: "Juneer",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 7,
-      duration: "Julyrer",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 8,
-      duration: "Aguere",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 9,
-      duration: "Seprer seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 10,
-      duration: "Octa",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 11,
-      duration: "News",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 12,
-      duration: "Devevv",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
+    // {
+    //   sl: 1,
+    //   duration: "Abc Abc",
+    //   inHouse: "$-250.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 2,
+    //   duration: "Web seller",
+    //   inHouse: "$10.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+   
   ];
   return (
     <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
@@ -251,7 +132,7 @@ const VendorSales = () => {
                   className="h-10 w-10 "
                 />
                 <div>
-                  <p className="text-xl font-bold">12</p>
+                  <p className="text-xl font-bold"></p>
                   <h2 className="font-semibold text-[.7rem] ">
                     Total Vendor Products
                   </h2>
@@ -259,11 +140,11 @@ const VendorSales = () => {
               </div>
               <div className="flex justify-center gap-2 mt-4">
                 <div className="text-red-500 text-[1rem] font-semibold">
-                  11 <br />{" "}
+                   <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Cancel</span>
                 </div>
                 <div className="text-blue-500 text-[1rem] font-semibold">
-                  43 <br />{" "}
+                   <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Ongoing</span>
                 </div>
                 {/* <div className=" text-[1em] text-blue-500 font-semibold">
@@ -273,7 +154,7 @@ const VendorSales = () => {
               </span>
             </div> */}
                 <div className="text-green-500 text-[1rem] font-semibold">
-                  57 <br />{" "}
+                   <br />{" "}
                   <span className="text-gray-400 text-[.8rem]"> Complated</span>
                 </div>
               </div>
@@ -312,7 +193,7 @@ const VendorSales = () => {
                 alt=""
               />
               <p className="text-[1rem]">Total Shop Earnings</p>
-              <h1 className="text-xl font-semibold">$159,457.84</h1>
+              <h1 className="text-xl font-semibold">PKR 0</h1>
             </div>
           </div>
         </div>
@@ -325,7 +206,7 @@ const VendorSales = () => {
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
               Total Vendor{" "}
               <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-                2
+                
               </span>
             </h5>
 

@@ -9,27 +9,27 @@ const LanguageTable = () => {
       status: true,
       defaultStatus: true,
     },
-    {
-      id: 2,
-      name: "Arabic (rtl)",
-      code: "sa",
-      status: true,
-      defaultStatus: false,
-    },
-    {
-      id: 3,
-      name: "Bangla (ltr)",
-      code: "bd",
-      status: true,
-      defaultStatus: false,
-    },
-    {
-      id: 4,
-      name: "Hindi (ltr)",
-      code: "in",
-      status: true,
-      defaultStatus: false,
-    },
+    // {
+    //   id: 2,
+    //   name: "Arabic (rtl)",
+    //   code: "sa",
+    //   status: true,
+    //   defaultStatus: false,
+    // },
+    // {
+    //   id: 3,
+    //   name: "Bangla (ltr)",
+    //   code: "bd",
+    //   status: true,
+    //   defaultStatus: false,
+    // },
+    // {
+    //   id: 4,
+    //   name: "Hindi (ltr)",
+    //   code: "in",
+    //   status: true,
+    //   defaultStatus: false,
+    // },
   ]);
 
   const toggleStatus = (id) => {
@@ -75,7 +75,7 @@ const LanguageTable = () => {
               </span>
             </div>
             <div className="col-sm-8 col-md-6 col-lg-4">
-              <div className="d-flex gap-10 justify-content-sm-end">
+              {/* <div className="d-flex gap-10 justify-content-sm-end">
                 <button
                   className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark btn-icon-split flex align-items-center gap-2"
                   style={{ color: "white" }}
@@ -85,7 +85,7 @@ const LanguageTable = () => {
                   <FaPlus />
                   <span className="text">Add new language</span>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ const LanguageTable = () => {
                 <th>Code</th>
                 <th className="text-center">Status</th>
                 <th className="text-center">Default status</th>
-                <th className="text-center">Action</th>
+                {/* <th className="text-center">Action</th> */}
               </tr>
             </thead>
             <tbody>
@@ -134,7 +134,7 @@ const LanguageTable = () => {
                       <span className="switcher_control"></span>
                     </label>
                   </td>
-                  <td className="text-center">
+                  {/* <td className="text-center">
                     <div className="dropdown flex align-items-center gap-2">
                       <button
                         className="btn btn-secondary btn-sm dropdown-toggle"
@@ -165,7 +165,7 @@ const LanguageTable = () => {
                         </a>
                       </div>
                     </div>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

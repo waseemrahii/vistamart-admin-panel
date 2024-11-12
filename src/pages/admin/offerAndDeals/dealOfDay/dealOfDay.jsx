@@ -12,6 +12,7 @@ import {
 import { fetchProducts } from "../../../../redux/slices/admin/productSlice";
 import ActionButton from "../../../../components/ActionButton/Action";
 import { AiOutlineCheckCircle, AiOutlineSearch } from "react-icons/ai";
+import apiConfig from "../../../../config/apiConfig";
 
 const DealOfTheDay = () => {
   const dispatch = useDispatch();
@@ -272,20 +273,16 @@ const DealOfTheDay = () => {
                                   >
                                     <img
                                       className="w-10 h-10 border border-gray-200 rounded"
-                                      src={product?.thumbnail}
+                                      src={`${apiConfig.bucket}/${product?.thumbnail}`}
                                       alt="product"
                                     />
                                     <div className="flex-1">
                                       <h5 className="text-sm font-medium text-gray-900">
                                         {product.name.length > 20
-                                          ? `${product.name.slice(0, 20)}...`
-                                          : product.name}
+                                          ? `${product?.name.slice(0, 20)}...`
+                                          : product?.name}
                                       </h5>
-                                      <div className="text-xs text-gray-500">
-                                        {product.category?.name ||
-                                          "No category"}{" "}
-                                        - {product.brand?.name || "No brand"}
-                                      </div>
+                                     
                                     </div>
                                     <AiOutlineCheckCircle className="text-green-500" />
                                   </div>

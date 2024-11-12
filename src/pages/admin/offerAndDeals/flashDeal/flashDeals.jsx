@@ -16,6 +16,7 @@ import { getUploadUrl, uploadImageToS3 } from "../../../../utils/helpers";
 import ExportButton from "../../../../components/ActionButton/Export";
 import ActionButton from "../../../../components/ActionButton/Action";
 import { Link } from "react-router-dom";
+import apiConfig from "../../../../config/apiConfig";
 
 const FlashDeals = () => {
   const dispatch = useDispatch();
@@ -260,8 +261,9 @@ const FlashDeals = () => {
                             {new Date(deal.startDate).toLocaleDateString()}
                           </td>
                           <td>{new Date(deal.endDate).toLocaleDateString()}</td>
+                            {console.log("flash deal ", deal)}
                           <td>
-                            <img src={deal.image} alt={deal.title} width="50" />
+                            <img src={`${apiConfig.bucket}/${deal.image}`} alt={deal.title} width="50" />
                           </td>
                           <td>
                             <div className="d-flex justify-content-center gap-2">

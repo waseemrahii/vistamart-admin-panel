@@ -4,38 +4,38 @@ import { FaSearch, FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 const FaqList = () => {
   // Define your FAQ data array
   const [faqs, setFaqs] = useState([
-    {
-      id: 1,
-      question: "How do I handle customer inquiries?",
-      answer:
-        "You can manage customer inquiries directly through our platform's messaging system, ensuring quick and efficient communication.",
-      priority: 4,
-      status: true,
-    },
-    {
-      id: 2,
-      question: "How do I upload products?",
-      answer:
-        'Log in to your seller account, go to the "Upload Products" section, and fill in the product details and images.',
-      priority: 3,
-      status: true,
-    },
-    {
-      id: 3,
-      question: "What are the fees for selling?",
-      answer:
-        "Our platform charges a small commission on each sale. There are no upfront listing fees.",
-      priority: 2,
-      status: true,
-    },
-    {
-      id: 4,
-      question: "How do I register as a seller?",
-      answer:
-        'To register, click on the "Sign Up" button, fill in your details, and verify your account via email.',
-      priority: 1,
-      status: true,
-    },
+    // {
+    //   id: 1,
+    //   question: "How do I handle customer inquiries?",
+    //   answer:
+    //     "You can manage customer inquiries directly through our platform's messaging system, ensuring quick and efficient communication.",
+    //   priority: 4,
+    //   status: true,
+    // },
+    // {
+    //   id: 2,
+    //   question: "How do I upload products?",
+    //   answer:
+    //     'Log in to your seller account, go to the "Upload Products" section, and fill in the product details and images.',
+    //   priority: 3,
+    //   status: true,
+    // },
+    // {
+    //   id: 3,
+    //   question: "What are the fees for selling?",
+    //   answer:
+    //     "Our platform charges a small commission on each sale. There are no upfront listing fees.",
+    //   priority: 2,
+    //   status: true,
+    // },
+    // {
+    //   id: 4,
+    //   question: "How do I register as a seller?",
+    //   answer:
+    //     'To register, click on the "Sign Up" button, fill in your details, and verify your account via email.',
+    //   priority: 1,
+    //   status: true,
+    // },
   ]);
 
   const handleStatusToggle = (id) => {
@@ -74,18 +74,19 @@ const FaqList = () => {
                   className="form-control"
                   placeholder="Search by question & answer"
                 />
-                <button type="submit" className="btn btn--primary">
+                <button type="submit" className="btn bg-primary text-white"
+                 style={{color:"white"}}
+                >
                   Search
                 </button>
               </div>
             </form>
-            <button
+            {/* <button
               type="button"
               className="btn btn--primary flex gap-2 justify-center align-items-center"
             >
-              {/* <FaPlus /> Add FAQ */}
               Add FAQ
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

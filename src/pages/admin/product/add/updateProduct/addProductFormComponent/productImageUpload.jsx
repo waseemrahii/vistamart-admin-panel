@@ -8,8 +8,7 @@ import apiConfig from "../../../../../../config/apiConfig";
 
 const ProductImageWrapper = ({ thumbnail, setThumbnail, images, setImages }) => {
   const [additionalImages, setAdditionalImages] = useState([]);
-  
-  // Validate image file format and size
+
   const validateFile = (file) => {
     const allowedTypes = [
       "image/jpeg",
@@ -20,6 +19,10 @@ const ProductImageWrapper = ({ thumbnail, setThumbnail, images, setImages }) => 
       "image/tiff",
     ];
     const maxSize = 2 * 1024 * 1024; // 2 MB
+    if (!file) {
+      toast.error("No file selected.");
+      return false;
+    }
     if (!allowedTypes.includes(file.type)) {
       toast.error(
         "Invalid file format. Please upload a JPG, PNG, WEBP, GIF, BMP, or TIFF image."
@@ -33,7 +36,6 @@ const ProductImageWrapper = ({ thumbnail, setThumbnail, images, setImages }) => 
     return true;
   };
 
-  // Handle image change for both thumbnail and additional images
   const handleImageChange = (e, isThumbnail = false, index = null) => {
     const file = e.target.files[0];
     if (!file || !validateFile(file)) return;
@@ -43,18 +45,22 @@ const ProductImageWrapper = ({ thumbnail, setThumbnail, images, setImages }) => 
     if (isThumbnail) {
       setThumbnail({ preview: previewUrl, file });
     } else {
-      // Update additional images and main images array with new preview
       const updatedAdditionalImages = [...additionalImages];
-      updatedAdditionalImages[index ?? additionalImages.length] = { preview: previewUrl, file };
+      updatedAdditionalImages[index ?? additionalImages.length] = {
+        preview: previewUrl,
+        file,
+      };
       setAdditionalImages(updatedAdditionalImages);
 
       const updatedImages = [...images];
-      updatedImages[index ?? images.length] = { preview: previewUrl, file };
+      updatedImages[index ?? images.length] = {
+        preview: previewUrl,
+        file,
+      };
       setImages(updatedImages);
     }
   };
 
-  // Handle deleting an image from the additional images list
   const handleDeleteImage = (index) => {
     const updatedImages = additionalImages.filter((_, idx) => idx !== index);
     setAdditionalImages(updatedImages);
@@ -64,7 +70,6 @@ const ProductImageWrapper = ({ thumbnail, setThumbnail, images, setImages }) => 
   return (
     <div className="flex items-start mt-6 mb-3">
       <ToastContainer />
-      {/* Thumbnail Section */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="md:w-96 h-96">
           <FileUpload
@@ -78,7 +83,6 @@ const ProductImageWrapper = ({ thumbnail, setThumbnail, images, setImages }) => 
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Additional Images */}
           {images?.map((img, idx) => (
             <FileUpload
               key={idx}

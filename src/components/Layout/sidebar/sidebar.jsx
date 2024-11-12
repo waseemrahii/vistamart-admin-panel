@@ -170,7 +170,8 @@ const Sidebar = ({ toggleSidebar }) => {
           item.title !== "Pages & Media" &&
           item.title !== "3rd Party" &&
           item.title !== "Business Setup" &&
-          item.title !== "System Setup" &&
+          item.title !== "System settings" &&
+          item.title !== "Customers" &&
           item.title !== "Subscribers"
         );
       }

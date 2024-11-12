@@ -50,34 +50,21 @@ const ExpenceTranscation = () => {
   /////------------------------------
   //   ==========
   const data = [
-    {
-      sl: 1,
-      orderid: "100187",
-      duration: "Abc Abc",
-      inHouse: "$-250.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      orderid: "100187",
-      duration: "Web seller",
-      inHouse: "$10.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
+    // {
+    //   sl: 1,
+    //   orderid: "100187",
+    //   duration: "Abc Abc",
+    //   inHouse: "$-250.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   deliverd: "admin",
+    //   total: "$0.00",
+    // },
+  
   ];
   return (
     <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
@@ -117,7 +104,7 @@ const ExpenceTranscation = () => {
                   className="h-10 w-10 "
                 />
                 <div>
-                  <p className="text-xl font-bold pb-3">$1,050.00</p>
+                  <p className="text-xl font-bold pb-3">PKR 0</p>
                   <h2 className="font-bold text-[.9rem] ">Total Expense</h2>
                 </div>
               </div>
@@ -131,7 +118,7 @@ const ExpenceTranscation = () => {
                   className="h-10 w-10 "
                 />
                 <div>
-                  <p className="text-xl font-bold pb-3">$1,000.00</p>
+                  <p className="text-xl font-bold pb-3">PKR 0</p>
                   <h2 className="font-bold text-[.9rem] ">Free Delivery</h2>
                 </div>
               </div>
@@ -144,7 +131,7 @@ const ExpenceTranscation = () => {
                   className="h-10 w-10 "
                 />
                 <div>
-                  <p className="text-xl font-bold pb-3">$50.00</p>
+                  <p className="text-xl font-bold pb-3">PKR 0</p>
                   <h2 className="font-bold text-[.9rem] ">Coupon Discount </h2>
                 </div>
               </div>

@@ -6,7 +6,7 @@ const AdminLoginPage = () => {
   return (
     <div className="col-md-12 snipcss-FTALo">
       <form
-        action="https://6valley.6amtech.com/admin/business-settings/web-config/login-url-setup"
+        action="/login-url-setup"
         method="post"
       >
         <input
@@ -34,13 +34,13 @@ const AdminLoginPage = () => {
               </label>
               <div className="input-group mb-3">
                 <span className="input-group-text radius-0 border-right-0">
-                  https://6valley.6amtech.com/login/
+                https://vistamart.biz/login/
                 </span>
                 <input
                   type="text"
                   className="form-control outline-none hover:border-primary"
                   name="url"
-                  defaultValue="admin"
+                  defaultValue=""
                 />
                 <input
                   type="hidden"
@@ -64,13 +64,13 @@ const AdminLoginPage = () => {
         </div>
       </form>
       <form
-        action="https://6valley.6amtech.com/admin/business-settings/web-config/login-url-setup"
+        action="#"
         method="post"
       >
         <input
           type="hidden"
           name="_token"
-          value="SXCvNFDWFKXZV15a7JHIE5kfiR2iPzrxGf9Jdemb"
+          value=""
           autoComplete="off"
         />
         <div className="card h-100">
@@ -92,13 +92,14 @@ const AdminLoginPage = () => {
               </label>
               <div className="input-group mb-3">
                 <span className="input-group-text radius-0 border-right-0">
-                  https://6valley.6amtech.com/login/
+                https://vistamart.biz/login/
+
                 </span>
                 <input
                   type="text"
                   className="form-control outline-none hover:border-primary"
                   name="url"
-                  defaultValue="admin"
+                  defaultValue=""
                 />
                 <input
                   type="hidden"

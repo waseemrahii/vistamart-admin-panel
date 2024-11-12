@@ -6,84 +6,25 @@ import { FaDownload } from "react-icons/fa";
 const WalletManagement = () => {
   // Define your own array for transactions (replace with your actual data)
   const transactions = [
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
-    {
-      id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
-      customer: "Devid Jack",
-      credit: "$500.00",
-      debit: "$0.00",
-      balance: "$1,725.00",
-      type: "Add fund",
-      reference: "Add funds to wallet",
-      createdAt: "2023/10/12",
-    },
+    // {
+    //   id: "05f4fb07-e72a-48e4-825c-2aa2b14e1b5a",
+    //   customer: "Devid Jack",
+    //   credit: "$500.00",
+    //   debit: "$0.00",
+    //   balance: "$1,725.00",
+    //   type: "Add fund",
+    //   reference: "Add funds to wallet",
+    //   createdAt: "2023/10/12",
+    // },
+  
     // Add more transactions as needed
   ];
 
   // Placeholder for customers array
   const customers = [
-    { id: 1, name: "Customer 1" },
-    { id: 2, name: "Customer 2" },
-    // Add more customers as needed
+    // { id: 1, name: "Customer 1" },
+    // { id: 2, name: "Customer 2" },
+    // // Add more customers as needed
   ];
 
   return (
@@ -130,12 +71,12 @@ const WalletManagement = () => {
                 alignItems: "center",
               }}
             >
-              <h5
+              {/* <h5
                 className="modal-title text-capitalize"
                 id="exampleModalLongTitle"
               >
                 Add fund
-              </h5>
+              </h5> */}
               <button
                 type="button"
                 className="close"
@@ -327,7 +268,7 @@ const WalletManagement = () => {
             {" "}
             Transaction{" "}
             <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-              14
+              
             </span>{" "}
           </h4>
           <div className="d-flex justify-content-end">
@@ -391,7 +332,7 @@ const WalletManagement = () => {
                     {transaction.credit}{" "}
                     <span className="text-sm badge badge-soft-success">
                       {" "}
-                      + $150.00 Admin bonus{" "}
+                      {/* + $150.00 Admin bonus{" "} */}
                     </span>
                   </td>
                   <td>{transaction.debit}</td>

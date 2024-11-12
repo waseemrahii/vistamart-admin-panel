@@ -70,6 +70,7 @@ const AddNewProductComponent = () => {
 
    const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("id====", selectedProduct?._id)
     if (selectedProduct) {
       try {
         await axios.put(
@@ -189,7 +190,7 @@ const handleDeleteProduct = async (productId) => {
             >
               <img
                 className="w-10 h-10 border border-gray-200 rounded"
-                src={product?.thumbnail}
+                src={`${apiConfig.bucket}/${product?.thumbnail}`}
                 alt="product"
               />
               <div className="flex-1">
@@ -255,7 +256,7 @@ const handleDeleteProduct = async (productId) => {
                         {console.log("product in table ====", product)}
                         <td>
                           <img
-                            src={product?.thumbnail}
+                            src={`${apiConfig.bucket}/${product?.thumbnail}`}
                             alt="Product"
                             className="avatar avatar-md border"
                           />
@@ -271,7 +272,7 @@ const handleDeleteProduct = async (productId) => {
                         <td className="text-center">
                           <AiOutlineDelete
                             className="text-danger cursor-pointer"
-                            onClick={() => handleDeleteProduct(product._id)}
+                            onClick={() => handleDeleteProduct(product?._id)}
                           />
                         </td>
                       </tr>

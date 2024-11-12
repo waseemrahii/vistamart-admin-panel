@@ -9,44 +9,17 @@ import {
 } from "react-icons/fa";
 const InHouseSales = () => {
   const data = [
-    {
-      id: 1,
-      name: "Women's long-sleeve lightweight french terry fleece quarter-zip top",
-      sales: 7,
-    },
-    {
-      id: 2,
-      name: "Crossbody Shoulder Bag Soft Leather Bag Female Fashion",
-      sales: 7,
-    },
-    {
-      id: 3,
-      name: "Progress lighting P4009-10 5-light chandelier, polished brass",
-      sales: 2,
-    },
-    {
-      id: 4,
-      name: "Simple Mobile Carrier-Locked Galaxy A50 4G LTE Prepaid Smartphone - Blac",
-      sales: 12,
-    },
-    {
-      id: 5,
-      name: "Timex marlin stainless steel hand-wound movement",
-      sales: 1,
-    },
-    { id: 6, name: "Fastest Electric Spice Grinder and Blender", sales: 1 },
-    {
-      id: 5,
-      name: "Timex marlin stainless steel hand-wound movement",
-      sales: 1,
-    },
-    { id: 6, name: "Fastest Electric Spice Grinder and Blender", sales: 1 },
-    {
-      id: 5,
-      name: "Timex marlin stainless steel hand-wound movement",
-      sales: 1,
-    },
-    { id: 6, name: "Fastest Electric Spice Grinder and Blender", sales: 1 },
+    // {
+    //   id: 1,
+    //   name: "Women's long-sleeve lightweight french terry fleece quarter-zip top",
+    //   sales: 7,
+    // },
+    // {
+    //   id: 2,
+    //   name: "Crossbody Shoulder Bag Soft Leather Bag Female Fashion",
+    //   sales: 7,
+    // },
+   
   ];
   return (
     <>

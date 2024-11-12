@@ -9,46 +9,46 @@ import ExportButton from "../../../components/ActionButton/Export";
 const CustomerLoyaltyReport = () => {
   // State for transactions
   const [transactions, setTransactions] = useState([
-    {
-      id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
-      customer: "Devid Jack",
-      credit: 237,
-      debit: 0,
-      balance: 989,
-      type: "Order place",
-      reference: 100187,
-      date: "2024/01/10",
-    },
-    {
-      id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
-      customer: "Devid Jack",
-      credit: 237,
-      debit: 0,
-      balance: 989,
-      type: "Order place",
-      reference: 100187,
-      date: "2024/01/10",
-    },
-    {
-      id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
-      customer: "Devid Jack",
-      credit: 237,
-      debit: 0,
-      balance: 989,
-      type: "Order place",
-      reference: 100187,
-      date: "2024/01/10",
-    },
-    {
-      id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
-      customer: "Devid Jack",
-      credit: 237,
-      debit: 0,
-      balance: 989,
-      type: "Order place",
-      reference: 100187,
-      date: "2024/01/10",
-    },
+    // {
+    //   id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
+    //   customer: "Devid Jack",
+    //   credit: 237,
+    //   debit: 0,
+    //   balance: 989,
+    //   type: "Order place",
+    //   reference: 100187,
+    //   date: "2024/01/10",
+    // },
+    // {
+    //   id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
+    //   customer: "Devid Jack",
+    //   credit: 237,
+    //   debit: 0,
+    //   balance: 989,
+    //   type: "Order place",
+    //   reference: 100187,
+    //   date: "2024/01/10",
+    // },
+    // {
+    //   id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
+    //   customer: "Devid Jack",
+    //   credit: 237,
+    //   debit: 0,
+    //   balance: 989,
+    //   type: "Order place",
+    //   reference: 100187,
+    //   date: "2024/01/10",
+    // },
+    // {
+    //   id: "bfcc9291-6276-4a3f-b287-b484f67d48f5",
+    //   customer: "Devid Jack",
+    //   credit: 237,
+    //   debit: 0,
+    //   balance: 989,
+    //   type: "Order place",
+    //   reference: 100187,
+    //   date: "2024/01/10",
+    // },
     // Add more transactions here as needed
   ]);
 
@@ -164,8 +164,6 @@ const CustomerLoyaltyReport = () => {
                 <h6 className="order-stats__subtitle">Debit</h6>
               </div>
               <span className="order-stats__title fz-14 text--primary">
-                {" "}
-                116{" "}
               </span>
             </div>
             <div className="order-stats flex-grow-1">
@@ -175,7 +173,6 @@ const CustomerLoyaltyReport = () => {
               </div>
               <span className="order-stats__title fz-14 text-warning">
                 {" "}
-                1763{" "}
               </span>
             </div>
             <div className="order-stats flex-grow-1">
@@ -185,7 +182,6 @@ const CustomerLoyaltyReport = () => {
               </div>
               <span className="order-stats__title fz-14 text-success">
                 {" "}
-                1647{" "}
               </span>
             </div>
           </div>
@@ -254,7 +250,7 @@ const CustomerLoyaltyReport = () => {
                   <td>{transaction.id}</td>
                   <td>
                     <a
-                      href={`https://6valley.6amtech.com/admin/customer/view/${transaction.id}`}
+                      href={`/${transaction.id}`}
                       className="title-color hover-c1"
                     >
                       {transaction.customer}

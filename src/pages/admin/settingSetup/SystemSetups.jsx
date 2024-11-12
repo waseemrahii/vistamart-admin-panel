@@ -58,11 +58,11 @@ const SystemSetups = () => {
         Currency
       </button>
     </li>
-    <li className={activeSection === "cookies" ? "border-b-2 border-green-500" : ""}>
+    {/* <li className={activeSection === "cookies" ? "border-b-2 border-green-500" : ""}>
       <button onClick={() => handleSectionClick("cookies")}>
         DB Clean
       </button>
-    </li>
+    </li> */}
     <li className={activeSection === "dbcleaning" ? "border-b-2 border-green-500" : ""}>
       <button onClick={() => handleSectionClick("dbcleaning")}>
         Cookies

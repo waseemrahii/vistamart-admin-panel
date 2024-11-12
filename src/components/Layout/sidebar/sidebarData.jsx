@@ -208,11 +208,11 @@ export const sidebarItems = [
         icon: <FaMessage />,
         link: "/messagesupport",
       },
-      {
-        title: "Support Ticket",
-        icon: <FaHeadset />,
-        link: "/ticketsupport",
-      },
+      // {
+      //   title: "Support Ticket",
+      //   icon: <FaHeadset />,
+      //   link: "/ticketsupport",
+      // },
     ],
   },
 
@@ -254,7 +254,7 @@ export const sidebarItems = [
       { title: "Customers List", link: "/customerlist" },
       { title: "Customers Review", link: "/customerreviews" },
       { title: "Wallet", link: "/walletmanagement" },
-      { title: "Wallet Bonus Setup", link: "/customerbonussetup" },
+      // { title: "Wallet Bonus Setup", link: "/customerbonussetup" },
       { title: "Loyalty Points", link: "/customerloyaltyreport" },
     ],
   },
@@ -298,7 +298,7 @@ export const sidebarItems = [
     subItems: [
       { title: "Business Setup", link: "/businesssetup" },
       // { title: "Business Setup", link: "/appsettings" },
-      { title: "Inhouse Shop", link: "/businessinhouse" },
+      // { title: "Inhouse Shop", link: "/businessinhouse" },
     ],
   },
   {

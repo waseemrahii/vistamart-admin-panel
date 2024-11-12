@@ -11,54 +11,54 @@ import ActionButton from "../../../../../components/ActionButton/Action";
 
 // Sample data array
 const withdrawMethods = [
-  {
-    id: 1,
-    name: "Bank",
-    fields: [
-      {
-        label: "Name",
-        type: "string",
-        placeholder: "1234 5667 8976",
-        isRequired: true,
-      },
-    ],
-    isActive: true,
-    isDefault: true,
-  },
-  {
-    id: 2,
-    name: "bkash",
-    fields: [
-      {
-        label: "Mobile number",
-        type: "number",
-        placeholder: "+8**********",
-        isRequired: true,
-      },
-    ],
-    isActive: true,
-    isDefault: false,
-  },
-  {
-    id: 3,
-    name: "VISA Card",
-    fields: [
-      {
-        label: "Name",
-        type: "string",
-        placeholder: "John Doe",
-        isRequired: true,
-      },
-      {
-        label: "Card number",
-        type: "string",
-        placeholder: "1234 5678 9876",
-        isRequired: true,
-      },
-    ],
-    isActive: true,
-    isDefault: false,
-  },
+  // {
+  //   id: 1,
+  //   name: "Bank",
+  //   fields: [
+  //     {
+  //       label: "Name",
+  //       type: "string",
+  //       placeholder: "1234 5667 8976",
+  //       isRequired: true,
+  //     },
+  //   ],
+  //   isActive: true,
+  //   isDefault: true,
+  // },
+  // {
+  //   id: 2,
+  //   name: "bkash",
+  //   fields: [
+  //     {
+  //       label: "Mobile number",
+  //       type: "number",
+  //       placeholder: "+8**********",
+  //       isRequired: true,
+  //     },
+  //   ],
+  //   isActive: true,
+  //   isDefault: false,
+  // },
+  // {
+  //   id: 3,
+  //   name: "VISA Card",
+  //   fields: [
+  //     {
+  //       label: "Name",
+  //       type: "string",
+  //       placeholder: "John Doe",
+  //       isRequired: true,
+  //     },
+  //     {
+  //       label: "Card number",
+  //       type: "string",
+  //       placeholder: "1234 5678 9876",
+  //       isRequired: true,
+  //     },
+  //   ],
+  //   isActive: true,
+  //   isDefault: false,
+  // },
 ];
 
 const VenderWalletMethod = () => {

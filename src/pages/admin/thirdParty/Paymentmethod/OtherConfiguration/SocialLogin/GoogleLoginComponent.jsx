@@ -25,7 +25,7 @@ const GoogleLoginComponent = () => {
   return (
     <div className="card overflow-hidden">
       <form
-        action="https://6valley.6amtech.com/admin/social-login/update/google"
+        // action="vistamart.biz/login//social-login/update/google"
         method="post"
       >
         <input
@@ -63,7 +63,7 @@ const GoogleLoginComponent = () => {
           </div>
           <div className="form-control d-flex align-items-center justify-content-between py-1 pl-3 pr-2 outline-none hover:border-primary">
             <span className="form-ellipsis d-flex" id="id_google">
-              https://6valley.6amtech.com/customer/auth/login/google/callback
+            vistamart.biz/customer/auth/login/google/callback
             </span>
             <span className="btn-link copy-to-clipboard" data-id="#id_google">
               <i className="tio-copy"></i>

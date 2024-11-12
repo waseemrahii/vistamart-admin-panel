@@ -27,7 +27,6 @@ const InstagramLoginComponent = () => {
   return (
     <div className="card overflow-hidden">
       <form
-        action="https://6valley.6amtech.com/admin/social-login/update/instagram"
         method="post"
       >
         <input
@@ -100,7 +99,7 @@ const InstagramLoginComponent = () => {
             </div>
             <div className="form-control d-flex align-items-center justify-content-between py-1 pl-3 pr-2 outline-none hover:border-primary">
               <span className="form-ellipsis d-flex" id="id_instagram">
-                https://6valley.6amtech.com/customer/auth/login/instagram/callback
+              vistamart.biz/instagram/callback
               </span>
               <span className="btn-link copy-to-clipboard" data-id="#id_instagram">
                 <i className="tio-copy"></i>

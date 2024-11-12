@@ -24,7 +24,6 @@ const TwitterLoginComponent = () => {
   return (
     <div className="card overflow-hidden">
       <form
-        action="https://6valley.6amtech.com/admin/social-login/update/twitter"
         method="post"
       >
         <input
@@ -95,7 +94,7 @@ const TwitterLoginComponent = () => {
             </div>
             <div className="form-control d-flex align-items-center justify-content-between py-1 pl-3 pr-2 outline-none hover:border-primary">
               <span className="form-ellipsis d-flex" id="id_twitter">
-                https://6valley.6amtech.com/customer/auth/login/twitter/callback
+              vistamart.biz/facebook/callback/
               </span>
               <span className="btn-link copy-to-clipboard" data-id="#id_twitter">
                 <i className="tio-copy"></i>

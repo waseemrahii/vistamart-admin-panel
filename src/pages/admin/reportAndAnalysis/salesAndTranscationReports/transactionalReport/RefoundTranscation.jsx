@@ -11,48 +11,21 @@ import { IoMdDownload } from "react-icons/io";
 import ExportButton from "../../../../../components/ActionButton/Export";
 const RefoundTranscation = () => {
   const data = [
-    {
-      sl: 1,
-      orderid: "100187",
-      duration: "Abc Abc",
-      inHouse: "$-250.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      orderid: "100187",
-      duration: "Web seller",
-      inHouse: "$10.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      orderid: "100187",
-      duration: "Web seller",
-      inHouse: "$10.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
+    // {
+    //   sl: 1,
+    //   orderid: "100187",
+    //   duration: "Abc Abc",
+    //   inHouse: "$-250.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   deliverd: "admin",
+    //   total: "$0.00",
+    // },
+
   ];
   return (
     <div className="card">
@@ -61,7 +34,7 @@ const RefoundTranscation = () => {
           <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
             Total Transactions{" "}
             <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-              2
+              
             </span>
           </h5>
 
@@ -163,11 +136,11 @@ const RefoundTranscation = () => {
                   />{" "}
                   <span>Women's Long-Sleeve...</span>
                 </td>
-                <td>3</td>
+                <td></td>
                 {/* <td>
               <div>{item.duration}</div>
             </td> */}
-                <td className="">100095</td>
+                <td className=""></td>
                 <td>
                   <div className="">
                     <span>Inhouse</span>
@@ -180,7 +153,7 @@ const RefoundTranscation = () => {
                 </td>
                 <td>Paid</td>
                 <td>Admin</td>
-                <td>$475.00 </td>
+                <td>PKR  </td>
                 <td>Refunded</td>
               </tr>
             ))}

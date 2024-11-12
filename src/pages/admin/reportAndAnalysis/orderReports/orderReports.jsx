@@ -48,150 +48,43 @@ const OrderReports = () => {
   /////------------------------------
   //   ==========
   const data = [
-    {
-      sl: 1,
-      duration: "Abc Abc",
-      inHouse: "$-250.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      duration: "Web seller",
-      inHouse: "$10.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 3,
-      duration: "Digital Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 4,
-      duration: "App Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 5,
-      duration: "Marketing",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 6,
-      duration: "Juneer",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 7,
-      duration: "Julyrer",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 8,
-      duration: "Aguere",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 9,
-      duration: "Seprer seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 10,
-      duration: "Octa",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 11,
-      duration: "News",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
-    {
-      sl: 12,
-      duration: "Devevv",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      total: "$0.00",
-    },
+    // {
+    //   sl: 1,
+    //   duration: "Abc Abc",
+    //   inHouse: "$-250.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 6,
+    //   duration: "Juneer",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+    // {
+    //   sl: 7,
+    //   duration: "Julyrer",
+    //   inHouse: "$0.00",
+    //   commission: "$0.00",
+    //   shipping: "$0.00",
+    //   incentive: "$0.00",
+    //   discount: "$0.00",
+    //   tax: "$0.00",
+    //   refound: "$0.00",
+    //   total: "$0.00",
+    // },
+   
   ];
   return (
     <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5 mx-5">
@@ -269,11 +162,11 @@ const OrderReports = () => {
               </div>
               <div className="flex justify-center gap-2 mt-4">
                 <div className="text-red-500 text-[1rem] font-semibold">
-                  8 <br />{" "}
+                  0 <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Cancel</span>
                 </div>
                 <div className="text-blue-500 text-[1rem] font-semibold">
-                  7 <br />{" "}
+                  0 <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Ongoing</span>
                 </div>
                 {/* <div className=" text-[1em] text-blue-500 font-semibold">
@@ -283,7 +176,7 @@ const OrderReports = () => {
               </span>
             </div> */}
                 <div className="text-green-500 text-[1rem] font-semibold">
-                  57
+                  0
                   <br />{" "}
                   <span className="text-gray-400 text-[.8rem]"> Complated</span>
                 </div>
@@ -298,7 +191,7 @@ const OrderReports = () => {
                   className="w-10 h-10"
                 />
                 <div>
-                  <p className="text-xl  font-bold">$434,444.31</p>
+                  <p className="text-xl  font-bold">PKR 0</p>
                   <h2 className="text-[.8rem] font-semibold">
                     Total Order Amount
                   </h2>{" "}
@@ -308,7 +201,7 @@ const OrderReports = () => {
               <br />
               <div className="flex gap-3">
                 <div className="text-red-500 text-[1rem] font-semibold">
-                  $212,790.50
+                  PKR0
                   <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">
                     {" "}
@@ -316,7 +209,7 @@ const OrderReports = () => {
                   </span>
                 </div>
                 <div className="text-green-500 text-[1rem] font-semibold">
-                  $221,653.81
+                  PKR 0
                   <br />{" "}
                   <span className="text-gray-400 text-[.7rem]">
                     {" "}
@@ -341,15 +234,15 @@ const OrderReports = () => {
               <div className="flex justify-center mt-4">
                 <div className="w-32 h-32 bg-blue-500 rounded-full relative">
                   <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold">
-                    $221.7K+
+                    PKR 0
                   </div>
                 </div>
               </div>
               <ul className="mt-4 space-y-2">
-                <li>Cash payments ($195,512.81)</li>
-                <li>Digital payments ($19,786.00)</li>
-                <li>Offline payments ($0.00)</li>
-                <li>Wallet ($6,355.00)</li>
+                <li>Cash payments (PKR 0)</li>
+                <li>Digital payments (PKR 0)</li>
+                <li>Offline payments (PKR 0)</li>
+                <li>Wallet (PKR 0)</li>
               </ul>
             </div>
           </div>
@@ -363,7 +256,7 @@ const OrderReports = () => {
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
               Total Vendor{" "}
               <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-                2
+                
               </span>
             </h5>
 

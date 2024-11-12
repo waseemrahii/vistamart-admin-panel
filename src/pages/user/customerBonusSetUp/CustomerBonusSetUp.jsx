@@ -5,30 +5,30 @@ import ExportButton from "../../../components/ActionButton/Export";
 import ActionButton from "../../../components/ActionButton/Action";
 const CustomerBonusSetUp = () => {
   const [bonuses, setBonuses] = useState([
-    {
-      id: 1,
-      title: "Add fund Bonus",
-      info: {
-        minAmount: 1000,
-        maxBonus: 5000,
-      },
-      amount: "35%",
-      startDate: "12 Oct, 2023",
-      endDate: "26 Nov, 2031",
-      status: true,
-    },
-    {
-      id: 2,
-      title: "Flat Bonus",
-      info: {
-        minAmount: 500,
-        maxBonus: null,
-      },
-      amount: "$150.00",
-      startDate: "12 Oct, 2023",
-      endDate: "22 Nov, 2030",
-      status: true,
-    },
+    // {
+    //   id: 1,
+    //   title: "Add fund Bonus",
+    //   info: {
+    //     minAmount: 1000,
+    //     maxBonus: 5000,
+    //   },
+    //   amount: "35%",
+    //   startDate: "12 Oct, 2023",
+    //   endDate: "26 Nov, 2031",
+    //   status: true,
+    // },
+    // {
+    //   id: 2,
+    //   title: "Flat Bonus",
+    //   info: {
+    //     minAmount: 500,
+    //     maxBonus: null,
+    //   },
+    //   amount: "$150.00",
+    //   startDate: "12 Oct, 2023",
+    //   endDate: "22 Nov, 2030",
+    //   status: true,
+    // },
   ]);
 
   return (
@@ -153,7 +153,7 @@ const CustomerBonusSetUp = () => {
                       htmlFor="min_add_money_amount"
                       className="title-color text-capitalize d-flex"
                     >
-                      Minimum add amount ($)
+                      Minimum add amount
                     </label>
                     <input
                       type="number"
@@ -176,7 +176,7 @@ const CustomerBonusSetUp = () => {
                       htmlFor="max_bonus_amount"
                       className="title-color text-capitalize d-flex"
                     >
-                      Maximum bonus ($)
+                      Maximum bonus
                     </label>
                     <input
                       type="number"

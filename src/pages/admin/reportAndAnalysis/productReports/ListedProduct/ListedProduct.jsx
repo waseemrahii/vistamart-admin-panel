@@ -9,96 +9,7 @@ import {
 } from "react-icons/fa";
 const ListedProduct = () => {
   const data = [
-    {
-      sl: 1,
-      product: "Chicken and Egg Pupp...",
-      orderid: "100187",
-      duration: "Abc Abc",
-      inHouse: "$-250.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 2,
-      orderid: "100187",
-      product: "15 IN 1 MAKEUP COMBO...",
-      duration: "Web seller",
-      inHouse: "$10.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 3,
-      orderid: "100187",
-      product: "Voltage Tester 100-5...",
-      duration: "Digital Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 4,
-      orderid: "100187",
-      product: "Voltage Tester 100-5...",
-      duration: "Digital Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 5,
-      orderid: "100187",
-      product: "Voltage Tester 100-5...",
-      duration: "Digital Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
-    {
-      sl: 6,
-      orderid: "100187",
-      product: "Voltage Tester 100-5...",
-      duration: "Digital Seller",
-      inHouse: "$0.00",
-      commission: "$0.00",
-      shipping: "$0.00",
-      incentive: "$0.00",
-      discount: "$0.00",
-      tax: "$0.00",
-      refound: "$0.00",
-      deliverd: "admin",
-      total: "$0.00",
-    },
+  
   ];
   return (
     <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
@@ -209,7 +120,7 @@ const ListedProduct = () => {
                 <tr key={item.sl}>
                   <td>{index + 1}</td>
                   <td>{item.product}</td>
-                  <td>13 Jun 2023</td>
+                  <td></td>
                   <td>0</td>
 
                   {/* <td className="   text-green-500 ">
