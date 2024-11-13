@@ -87,6 +87,8 @@ export const uploadImageToS3 = async (uploadUrl, file) => {
 				"Content-Type": file.type,
 			},
 		});
+		return true;
+
 	} catch (error) {
 		console.error("Error uploading image", error);
 		throw new Error("Failed to upload image");

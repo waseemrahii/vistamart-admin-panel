@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { getAuthData } from "../../../../utils/authHelper";
 import apiConfig from "../../../../config/apiConfig";
+import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 // const ApiUrl = apiConfig.admin
 const ApiUrl = `${apiConfig.admin}`;
 
@@ -47,7 +48,7 @@ const EmployeeList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Add a loading state as needed
+    return <div><LoadingSpinner /></div>; // Add a loading state as needed
   }
 
   return (
@@ -109,7 +110,7 @@ const EmployeeList = () => {
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Role</th>
-                  <th>Status</th>
+                  {/* <th>Status</th> */}
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
@@ -126,12 +127,12 @@ const EmployeeList = () => {
                     <td>{employee.email}</td>
                     <td>{employee.phone}</td>
                     <td>{employee.role}</td>
-                    <td>
+                    {/* <td>
                       <label className="switcher">
                         <input type="checkbox" className="switcher_input" checked={employee.status} onChange={() => {}} />
                         <span className="switcher_control"></span>
                       </label>
-                    </td>
+                    </td> */}
                     <td className="text-center">
                       <div className="d-flex gap-10 justify-content-center">
                         {/* <Link to={`/update/${employee.id}`} className="btn btn-outline--primary btn-sm square-btn" title="Edit">

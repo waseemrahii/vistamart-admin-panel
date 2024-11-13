@@ -6,7 +6,7 @@ import MostCustomers from "./MostP/MostP";
 const TopCustomersSection = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-5 ">
     <TopCustomers />
-    <MostCustomers />
+    {/* <MostCustomers /> */}
     {/* <MostCustomers /> */}
   </div>
 );

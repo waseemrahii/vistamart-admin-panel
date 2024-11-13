@@ -20,8 +20,8 @@ const Dashboard = () => {
         <BussniesWallet />
         <Adminwallet />
         <OrderStatistic />
-        <TopCustomersSection />
         <TopProductSection />
+        <TopCustomersSection />
       </div>
     </div>
   );

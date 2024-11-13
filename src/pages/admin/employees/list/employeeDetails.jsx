@@ -5,12 +5,12 @@ import axios from 'axios';
 import './employeeDetail.css';
 import { getAuthData } from '../../../../utils/authHelper';
 import apiConfig from '../../../../config/apiConfig';
+import LoadingSpinner from '../../../../components/LoodingSpinner/LoadingSpinner';
 
 const ApiUrl = `${apiConfig.admin}`;
 
 const EmployeeDetails = () => {
   const { id } = useParams();
-  // const  id  = '670b5cf5c9e51b6f1ba88534';
   const [employee, setEmployee] = useState(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const EmployeeDetails = () => {
     fetchEmployeeData();
   }, [id]);
 
-  if (!employee) return <div>Loading...</div>;
+  if (!employee) return <div><LoadingSpinner /></div>;
 
   const { name, email, role, image, phoneNumber, createdAt } = employee;
 
@@ -47,7 +47,7 @@ const EmployeeDetails = () => {
       </div>
       <div className="card mt-3">
         <div className="card-body">
-          <h3 className="mb-3 text-primary">#EMP {employee._id}</h3>
+          <h3 className="mb-3 text-primary">#EMP {employee?._id}</h3>
           <div className="row g-2">
             <div className="col-lg-7 col-xl-8">
               <div className="media align-items-center flex-wrap flex-sm-nowrap gap-3">
@@ -83,10 +83,10 @@ const EmployeeDetails = () => {
             <div className="col-lg-5 col-xl-4">
               <div className="bg-primary-light rounded p-3">
                 <div className="bg-white rounded p-3">
-                  <div className="d-flex gap-2 align-items-center">
+                  {/* <div className="d-flex gap-2 align-items-center">
                     <FaCalendarAlt />
                     <span className="text-dark">Join: {new Date(createdAt).toLocaleDateString()}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="bg-white rounded p-3 mt-3">
                   <div className="d-flex justify-content-between gap-3">
