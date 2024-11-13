@@ -239,7 +239,7 @@ const AddNewProduct = () => {
           disabled={loading} // Disable button while loading
 
         >
-          Submitting
+          
           {loading ? "Submitting..." : "Submit Product"} 
           </button>
       
