@@ -5,18 +5,18 @@ import { FaSearch } from 'react-icons/fa'; // Importing icons
 const VenderReview = () => {
   const [reviews, setReviews] = useState([
     // Add your review data here
-    {
-      id: 1,
-      product: 'Product A',
-      review: 'Great product!',
-      rating: 5
-    },
-    {
-      id: 2,
-      product: 'Product B',
-      review: 'Not bad',
-      rating: 3
-    },
+    // {
+    //   id: 1,
+    //   product: 'Product A',
+    //   review: 'Great product!',
+    //   rating: 5
+    // },
+    // {
+    //   id: 2,
+    //   product: 'Product B',
+    //   review: 'Not bad',
+    //   rating: 3
+    // },
     // Add more reviews as needed
   ]);
   const [searchValue, setSearchValue] = useState('');

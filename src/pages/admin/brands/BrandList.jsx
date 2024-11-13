@@ -13,6 +13,7 @@ import ConfirmationModal from "../../../components/FormInput/ConfirmationModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import apiConfig from "../../../config/apiConfig";
+import LoadingSpinner from "../../../components/LoodingSpinner/LoadingSpinner";
 
 // Lazy load TableList for performance
 const LazyTableList = lazy(() =>
@@ -103,7 +104,7 @@ const BrandList = () => {
 
 	return (
 		<div>
-			<React.Suspense fallback={<div>Loading...</div>}>
+			<React.Suspense fallback={<div><LoadingSpinner /></div>}>
 				<LazyTableList
 					title="Brand List"
 					tableTitle="Brand List"

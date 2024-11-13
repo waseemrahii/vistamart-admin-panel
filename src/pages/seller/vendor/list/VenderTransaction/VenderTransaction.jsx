@@ -4,38 +4,38 @@ import { FaSearch, FaFilter } from 'react-icons/fa'; // Importing icons
 const TransactionTable = () => {
   const [transactions, setTransactions] = useState([
     // Add your transaction data here
-    {
-      id: 1,
-      vendorName: 'Vendor A',
-      customerName: 'Customer A',
-      orderId: '12345',
-      transactionId: '54321',
-      orderAmount: '100.00',
-      vendorAmount: '80.00',
-      adminCommission: '20.00',
-      receivedBy: 'John Doe',
-      deliveredBy: 'Jane Doe',
-      deliveryCharge: '5.00',
-      paymentMethod: 'Credit Card',
-      tax: '10.00',
-      status: 'Delivered',
-    },
-    {
-      id: 1,
-      vendorName: 'Vendor A',
-      customerName: 'Customer A',
-      orderId: '12345',
-      transactionId: '54321',
-      orderAmount: '100.00',
-      vendorAmount: '80.00',
-      adminCommission: '20.00',
-      receivedBy: 'John Doe',
-      deliveredBy: 'Jane Doe',
-      deliveryCharge: '5.00',
-      paymentMethod: 'Credit Card',
-      tax: '10.00',
-      status: 'Hold',
-    },
+    // {
+    //   id: 1,
+    //   vendorName: 'Vendor A',
+    //   customerName: 'Customer A',
+    //   orderId: '12345',
+    //   transactionId: '54321',
+    //   orderAmount: '100.00',
+    //   vendorAmount: '80.00',
+    //   adminCommission: '20.00',
+    //   receivedBy: 'John Doe',
+    //   deliveredBy: 'Jane Doe',
+    //   deliveryCharge: '5.00',
+    //   paymentMethod: 'Credit Card',
+    //   tax: '10.00',
+    //   status: 'Delivered',
+    // },
+    // {
+    //   id: 1,
+    //   vendorName: 'Vendor A',
+    //   customerName: 'Customer A',
+    //   orderId: '12345',
+    //   transactionId: '54321',
+    //   orderAmount: '100.00',
+    //   vendorAmount: '80.00',
+    //   adminCommission: '20.00',
+    //   receivedBy: 'John Doe',
+    //   deliveredBy: 'Jane Doe',
+    //   deliveryCharge: '5.00',
+    //   paymentMethod: 'Credit Card',
+    //   tax: '10.00',
+    //   status: 'Hold',
+    // },
     // Add more transactions as needed
   ]);
   const [searchValue, setSearchValue] = useState('');
@@ -70,9 +70,9 @@ const TransactionTable = () => {
             <div className="col-lg-4 mb-3 mb-lg-0">
               <h5 className="mb-0 text-capitalize d-flex gap-1 align-items-center">
                 Transaction table
-                <span className="badge badge-soft-dark fz-12">
-                  {transactions.length}
-                </span>
+                 {/* <span className="badge badge-soft-dark fz-12">
+                   {transactions.length} 
+                </span>  */}
               </h5>
             </div>
             <div className="col-md-6 col-lg-4 mb-3 mb-md-3">

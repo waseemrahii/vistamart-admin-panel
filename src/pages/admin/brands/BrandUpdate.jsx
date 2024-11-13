@@ -5,6 +5,7 @@ import { fetchBrandById, updateBrand } from '../../../redux/slices/admin/brandSl
 import { toast } from 'react-toastify';
 import { getUploadUrl, uploadImageToS3 } from '../../../utils/helpers';
 import apiConfig from '../../../config/apiConfig';
+import LoadingSpinner from '../../../components/LoodingSpinner/LoadingSpinner';
 
 const BrandUpdate = () => {
   const { id } = useParams();
@@ -61,7 +62,7 @@ const BrandUpdate = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p><LoadingSpinner /></p>;
   }
 
   if (error) {

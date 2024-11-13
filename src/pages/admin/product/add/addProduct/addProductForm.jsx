@@ -24,6 +24,9 @@ import { getAuthData } from "../../../../../utils/authHelper";
 
 import { toast } from "react-toastify";
 import uploadProductImagesToS3 from "./uploadImages";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
+import Uploading from "../../../../../components/LoodingSpinner/Uploading";
 
 const API_URL = `${apiConfig.seller}/products`;
 
@@ -38,6 +41,7 @@ const AddNewProduct = () => {
     colors,
     attributes,
   } = useSelector((state) => state.category);
+  const navigate = useNavigate();
 
   const initialFormState = {
     name: "",
@@ -72,6 +76,7 @@ const AddNewProduct = () => {
   const [selectedAttribute, setSelectedAttribute] = useState("");
   const [productAttributes, setProductAttributes] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -109,11 +114,15 @@ const AddNewProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true at the start of submission
+
     const uploadResult = await uploadProductImagesToS3(thumbnail, images);
 
     // Check if the uploadResult is null before destructuring
     if (!uploadResult) {
       console.error("Image upload failed.");
+      setLoading(false);
+
       return; // Exit the function if upload failed
     }
 
@@ -132,8 +141,8 @@ const AddNewProduct = () => {
         userId,
         thumbnail: thumbnailKey,
         images: imageKeys,
-        colors: selectedColors.map((color) => color._id),
-        attributes: productAttributes.map((attr) => attr._id),
+        // colors: selectedColors.map((color) => color._id),
+        // attributes: productAttributes.map((attr) => attr._id),
         category: formData.category,
         subCategory: formData.subCategory,
         subSubCategory: formData.subSubCategory,
@@ -163,15 +172,19 @@ const AddNewProduct = () => {
         icon: "success",
         title: "Product created successfully!",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1000,
+      }).then(() => {
+        // This will execute after Swal notification is completed
+        navigate("/inhouseproductlist");
       });
-
       // Reset form
       setThumbnail(null);
       setImages([]);
       setSelectedColors([]);
       setProductAttributes([]);
       setFormData({ ...initialFormState });
+      navigate("/inhouseproductlist");
+
     } catch (error) {
       console.error("Product creation failed:", error);
       Swal.fire({
@@ -182,10 +195,15 @@ const AddNewProduct = () => {
       });
       setErrorMessage("Failed to create product. Please try again.");
     }
+    finally {
+      setLoading(false); // Set loading to false after submission
+    }
   };
-
   return (
     <form onSubmit={handleSubmit} className="add-product-form p-6">
+      {loading && <Uploading />}
+      
+
       <ProductForm
         formData={formData}
         handleChange={handleChange}
@@ -217,10 +235,15 @@ const AddNewProduct = () => {
           type="submit"
           className="btn mt-3 flex justify-end btn-submit bg-primary outline-none"
           style={{ color: "white", background: "green" }}
+          disabled={loading} // Disable button while loading
+
         >
-          Submit Product
-        </button>
+          Submitting
+          {loading ? "Submitting..." : "Submit Product"} 
+          </button>
+      
       </div>
+
     </form>
   );
 };
