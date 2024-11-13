@@ -13,7 +13,7 @@ const ProductForm = ({
     <div>      
       {/* {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>} */}
 
-      <FormSection title="Add Product">
+      <FormSection title="Update Product">
         <FormInput
           label="Product Name"
           name="name"

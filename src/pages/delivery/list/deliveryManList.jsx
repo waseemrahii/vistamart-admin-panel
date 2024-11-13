@@ -5,9 +5,7 @@ import { CiImport } from "react-icons/ci";
 import { BiHide } from "react-icons/bi";
 import Switcher from "../../../components/FormInput/Switcher";
 const DeliveryManList = () => {
-  {
-    ("------------------------------DeleveryMan---------------------------------------------");
-  }
+ 
   const list = [
     {
       id: 27,
@@ -15,123 +13,33 @@ const DeliveryManList = () => {
       img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881969b0222.png",
       priority: 3,
     },
-    {
-      id: 26,
-      name: "Mobile Accessories",
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881b1462dd9.png",
-      priority: 4,
-    },
-    {
-      id: 25,
-      name: "Beauty, Health & Hair",
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881a1265b65.png",
-      priority: 5,
-    },
-    {
-      id: 24,
-      name: "Jewelry & Watches",
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-6488655ea7f52.png",
-      priority: 6,
-    },
-    { id: 16, name: "ebook", priority: 7 },
-    {
-      id: 15,
-      name: "Women's fashion",
-      priority: 8,
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881db930473.png",
-    },
-    {
-      id: 14,
-      name: "Outdoor Fun & Sports",
-      priority: 9,
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881db930473.png",
-    },
-    {
-      id: 13,
-      name: "Men's fashion",
-      priority: 10,
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881db930473.png",
-    },
-    {
-      id: 12,
-      name: "Toys, Kids & Babies",
-      priority: 5,
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881db930473.png",
-    },
-    {
-      id: 11,
-      name: "Home Improvement & Tools",
-      priority: 5,
-      img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881db930473.png",
-    },
+    // {
+    //   id: 26,
+    //   name: "Mobile Accessories",
+    //   img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881b1462dd9.png",
+    //   priority: 4,
+    // },
+    // {
+    //   id: 25,
+    //   name: "Beauty, Health & Hair",
+    //   img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881a1265b65.png",
+    //   priority: 5,
+    // },
+  
   ];
   const deliveryMen = [
-    {
-      id: 1,
-      name: "Will Smith",
-      email: "w********@gmail.com",
-      phone: "8**********",
-      orders: 13,
-      rating: 4.5,
-      status: true,
-      image:
-        "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
-    },
-    {
-      id: 2,
-      name: "Demo Deliveryman",
-      email: "t********@gmail.com",
-      phone: "8**********",
-      orders: 2,
-      rating: 0,
-      status: true,
-      image:
-        "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
-    },
-    {
-      id: 3,
-      name: "Test test",
-      email: "t********@gmail.com",
-      phone: "000000345",
-      orders: 0,
-      rating: 0,
-      status: true,
-      image:
-        "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
-    },
-    {
-      id: 3,
-      name: "Test test",
-      email: "t********@gmail.com",
-      phone: "000000345",
-      orders: 0,
-      rating: 0,
-      status: true,
-      image:
-        "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
-    },
-    {
-      id: 3,
-      name: "Test test",
-      email: "t********@gmail.com",
-      phone: "000000345",
-      orders: 0,
-      rating: 0,
-      status: true,
-      image:
-        "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
-    },
-    {
-      id: 3,
-      name: "Test test",
-      email: "t********@gmail.com",
-      phone: "000000345",
-      orders: 0,
-      rating: 0,
-      status: true,
-      image:
-        "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
-    },
+    // {
+    //   id: 1,
+    //   name: "Will Smith",
+    //   email: "w********@gmail.com",
+    //   phone: "8**********",
+    //   orders: 13,
+    //   rating: 4.5,
+    //   status: true,
+    //   image:
+    //     "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
+    // },
+   
     // Add more delivery men as needed
   ];
   return (

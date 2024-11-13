@@ -36,7 +36,7 @@ const OtherConfiguration = () => {
       case "socialMediaChat":
         return (
           <form
-      action="https://6valley.6amtech.com/admin/social-media-chat/update/whatsapp"
+      action="#"
       method="post"
     >
       <input

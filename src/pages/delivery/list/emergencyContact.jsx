@@ -19,83 +19,29 @@ import Switcher from "../../../components/FormInput/Switcher";
 
 const EmergencyContact = () => {
   const list = [
-    {
-      id: 1,
-      name: "Admin",
-      phone: "o************",
-    },
-    {
-      id: 2,
-      name: "Help Admin",
-      phone: "0***************",
-    },
+   
   ];
   const staticProducts = [
-    {
-      id: 1,
-      name: "Product A",
-      image:
-        "https://6valley.6amtech.com/storage/app/public/banner/2024-01-14-65a370a244906.webp",
-      type: "Electronics",
-      price: 100,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 2,
-      name: "Product B",
-      image: "https://via.placeholder.com/50",
-      type: "Furniture",
-      price: 200,
-      featured: false,
-      active: false,
-    },
-    {
-      id: 3,
-      name: "Product C",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 4,
-      name: "Product D",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 5,
-      name: "Product E",
-      image:
-        "https://th.bing.com/th/id/OIP.yuIhGQGVmD9pCQd22TKOWAHaHd?rs=1&pid=ImgDetMain",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 6,
-      name: "Product F",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 7,
-      name: "Product G",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
+    // {
+    //   id: 1,
+    //   name: "Product A",
+    //   image:
+    //     "https://6valley.6amtech.com/storage/app/public/banner/2024-01-14-65a370a244906.webp",
+    //   type: "Electronics",
+    //   price: 100,
+    //   featured: true,
+    //   active: true,
+    // },
+    // {
+    //   id: 2,
+    //   name: "Product B",
+    //   image: "https://via.placeholder.com/50",
+    //   type: "Furniture",
+    //   price: 200,
+    //   featured: false,
+    //   active: false,
+    // },
+   
     // Add more products as needed
   ];
 

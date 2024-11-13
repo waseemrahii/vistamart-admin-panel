@@ -16,7 +16,6 @@ async function uploadImage(uploadConfig, file) {
 	}
 }
 
-
 const uploadProductImagesToS3 = async (thumbnail, images, maxRetries = 3) => {
     let thumbnailKey = null;
     const imageKeys = [];
@@ -24,22 +23,20 @@ const uploadProductImagesToS3 = async (thumbnail, images, maxRetries = 3) => {
     const retryDelays = [500, 1000, 2000];
     const folder = "products"; // Specify folder for product images
 
-    // Check if thumbnail is provided
-    if (thumbnail?.file) {
+    if (thumbnail && thumbnail.file) {
         try {
-            console.log("folder====", folder);
+			 console.log("folder====", folder)
             const thumbnailConfig = await getProductUploadUrl(thumbnail.file.type, folder);
-            imageUploadConfigs.push({ type: "thumbnail", config: thumbnailConfig, file: thumbnail.file });
-        } catch (error) {
+           
+			imageUploadConfigs.push({ type: "thumbnail", config: thumbnailConfig, file: thumbnail.file });
+        
+		} catch (error) {
             console.error("Failed to get upload URL for thumbnail.", error);
             toast.error("Unable to get upload URL for thumbnail. Please check permissions.");
             return null;
         }
-    } else if (thumbnail === null && initialThumbnail) {
-        thumbnailKey = initialThumbnail; // If no new thumbnail, use the existing one
     }
 
-    // Upload images if provided
     for (const img of images) {
         if (img.file) {
             try {
@@ -53,7 +50,6 @@ const uploadProductImagesToS3 = async (thumbnail, images, maxRetries = 3) => {
         }
     }
 
-    // Retry upload logic
     const uploadWithRetry = async (config, file, retries = 0) => {
         try {
             return await uploadImage(config, file);

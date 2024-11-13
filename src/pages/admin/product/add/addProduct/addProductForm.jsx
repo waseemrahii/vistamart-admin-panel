@@ -172,6 +172,7 @@ const AddNewProduct = () => {
         icon: "success",
         title: "Product created successfully!",
         showConfirmButton: false,
+        
         timer: 1000,
       }).then(() => {
         // This will execute after Swal notification is completed

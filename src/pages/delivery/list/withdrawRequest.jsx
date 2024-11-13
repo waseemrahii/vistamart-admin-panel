@@ -8,86 +8,32 @@ import ExportButton from "../../../components/ActionButton/Export";
 
 const WithdrawRequest = () => {
   const list = [
-    {
-      id: 1,
-      name: "Will Smith",
-      price: "$500.00",
-      img: "Pending",
-      priority: "20-Nov-2022, 01:41:01 AM",
-    },
-    {
-      id: 2,
-      price: "$4,000.00",
-      name: "Will Smith",
-      img: "Approud",
-      priority: "20-Nov-2022, 01:40:43 AM",
-    },
+    // {
+    //   id: 1,
+    //   name: "Will Smith",
+    //   price: "$500.00",
+    //   img: "Pending",
+    //   priority: "20-Nov-2022, 01:41:01 AM",
+    // },
+    // {
+    //   id: 2,
+    //   price: "$4,000.00",
+    //   name: "Will Smith",
+    //   img: "Approud",
+    //   priority: "20-Nov-2022, 01:40:43 AM",
+    // },
   ];
   const staticProducts = [
-    {
-      id: 1,
-      name: "Product A",
-      image: "https://via.placeholder.com/50",
-      type: "Electronics",
-      price: 100,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 2,
-      name: "Product B",
-      image: "https://via.placeholder.com/50",
-      type: "Furniture",
-      price: 200,
-      featured: false,
-      active: false,
-    },
-    {
-      id: 3,
-      name: "Product C",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 4,
-      name: "Product D",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 5,
-      name: "Product E",
-      image:
-        "https://th.bing.com/th/id/OIP.yuIhGQGVmD9pCQd22TKOWAHaHd?rs=1&pid=ImgDetMain",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 6,
-      name: "Product F",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
-    {
-      id: 7,
-      name: "Product G",
-      image: "https://via.placeholder.com/50",
-      type: "Clothing",
-      price: 50,
-      featured: true,
-      active: true,
-    },
+    // {
+    //   id: 1,
+    //   name: "Product A",
+    //   image: "https://via.placeholder.com/50",
+    //   type: "Electronics",
+    //   price: 100,
+    //   featured: true,
+    //   active: true,
+    // },
+   
     // Add more products as needed
   ];
   // State to manage form inputs and filtered products
@@ -262,33 +208,7 @@ const WithdrawRequest = () => {
           </div>
         </div>
 
-        <div className="page-area">
-          <nav aria-label="Page navigation">
-            <ul className="pagination flex gap-2">
-              <li className="page-item">
-                <button className="page-link">
-                  {/* <FiChevronLeft /> Prev */}
-                  Prev
-                </button>
-              </li>
-              <li className="page-item active">
-                <button className="page-link">1</button>
-              </li>
-              <li className="page-item">
-                <button className="page-link">2</button>
-              </li>
-              <li className="page-item">
-                <button className="page-link">3</button>
-              </li>
-              <li className="page-item">
-                <button className="page-link">
-                  {/* Next <FiChevronRight /> */}
-                  Next
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
+      
       </div>
     </div>
   );

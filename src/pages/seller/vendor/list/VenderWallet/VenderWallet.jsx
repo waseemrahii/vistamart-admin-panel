@@ -50,9 +50,9 @@ const VenderWallet = () => {
                   <h5 className="text-capitalize">
                     {" "}
                     Withdraw request table{" "}
-                    <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
+                    {/* <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
                       
-                    </span>
+                    </span> */}
                   </h5>
                 </div>
                 <div className="d-flex col-auto gap-3">

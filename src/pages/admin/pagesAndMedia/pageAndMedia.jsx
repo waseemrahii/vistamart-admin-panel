@@ -17,8 +17,8 @@ const PageAndMedia = () => {
     switch (currentTab) {
       case "header":
         return <HeaderMedia />;
-      case "whysellwithus":
-        return <HeaderMedia />;
+      // case "whysellwithus":
+      //   return <HeaderMedia />;
       case "busnessproces":
         return <BusinessProcess />;
       case "downloadapp":
