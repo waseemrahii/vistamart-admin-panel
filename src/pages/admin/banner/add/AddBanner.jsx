@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import { FiSkipBack } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +10,7 @@ import FileUpload from "../../../../components/FormInput/FileUpload";
 import apiConfig from "../../../../config/apiConfig";
 import { getAuthData } from "../../../../utils/authHelper";
 import { getUploadUrl, uploadImageToS3 } from "../../../../utils/helpers";
+import Uploading from "../../../../components/LoodingSpinner/Uploading";
 
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
 
@@ -16,8 +18,8 @@ const ApiUrl = `${apiConfig.admin}`;
 const ApiUrls = `${apiConfig.seller}`;
 
 const AddBannerForm = () => {
-  const [bannerType, setBannerType] = useState("Main Section Banner");
-  const [resourceType, setResourceType] = useState("product");
+  const [bannerType, setBannerType] = useState("main-banner");
+  const [resourceType, setResourceType] = useState("");
   const [productId, setProductId] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
@@ -27,13 +29,16 @@ const AddBannerForm = () => {
   const [brands, setBrands] = useState([]);
   const [token, setToken] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false); // New loading state
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Retrieve token from local storage
     const { token } = getAuthData();
     setToken(token);
 
     const fetchData = async () => {
+      if (!resourceType) return;
       try {
         const endpoints = {
           product: `${ApiUrls}/products/`,
@@ -44,10 +49,12 @@ const AddBannerForm = () => {
         const response = await axios.get(endpoints[resourceType], {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         if (resourceType === "product") setProducts(response.data.doc);
         else if (resourceType === "category") setCategories(response.data.doc);
         else if (resourceType === "brand") setBrands(response.data.doc);
       } catch (error) {
+        toast.error("Error fetching data.");
         console.error("Error fetching data:", error);
       }
     };
@@ -68,55 +75,51 @@ const AddBannerForm = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      if (file.size > MAX_IMAGE_SIZE) {
-        toast.error("Image is too large. Maximum size is 2MB.");
-        return;
-      }
-
+    if (file && file.size <= MAX_IMAGE_SIZE) {
       setSelectedFile(file);
-      const objectUrl = URL.createObjectURL(file);
-      setBannerImage(objectUrl);
-
-      // const reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // reader.onloadend = () => {
-      // 	setBannerImage(reader.result); // Set base64 image data for preview
-      // };
+      setBannerImage(URL.createObjectURL(file));
+    } else {
+      toast.error("Image size exceeds 2MB.");
     }
   };
 
   async function uploadImage(uploadConfig, file) {
     try {
       await uploadImageToS3(uploadConfig.url, file);
-      return uploadConfig.key; // Return the key if successful
+      return uploadConfig.key;
     } catch (error) {
-      console.error(`Failed to upload ${file.name}:`, error);
-      return null; // Return null on failure
+      console.error("Failed to upload:", error);
+      return null;
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show loading spinner
+
+    if (!selectedFile) {
+      toast.error("Please upload an image.");
+      setLoading(false); // Hide loading spinner if error occurs
+      return;
+    }
 
     const uploadConfig = await getUploadUrl(selectedFile.type, "banners");
-
     const imageKey = await uploadImage(uploadConfig, selectedFile);
+
+    if (!imageKey) {
+      toast.error("Image upload failed.");
+      setLoading(false); // Hide loading spinner if error occurs
+      return;
+    }
 
     const data = {
       bannerType,
       resourceType,
-      resourceId: {
-        product: productId,
-        category,
-        brand,
-      }[resourceType],
+      resourceId: { product: productId, category, brand }[resourceType],
       url: e.target.url.value,
-      publish: false, // Example publish value
-      bannerImage: imageKey, // Base64 image
+      publish: false,
+      bannerImage: imageKey,
     };
-
-    console.log(data);
 
     try {
       const response = await axios.post(`${ApiUrl}/banners`, data, {
@@ -126,30 +129,28 @@ const AddBannerForm = () => {
         },
       });
 
-      if (response.status === 200 || response.status === 201) {
+      if (response.status === 201) {
         toast.success("Banner submitted successfully");
-        e.target.reset(); // Clear the form after successful submission
-        setBannerType("Main Section Banner");
-        setResourceType("product");
-        setProductId("");
-        setCategory("");
-        setBrand("");
-        setBannerImage(null);
+        setTimeout(() => {
+          setLoading(false); // Hide loading spinner
+          navigate("/bannersetup"); // Navigate to banner list
+        }, 2000);
       } else {
-        toast.error("Failed to submit banner");
+        toast.error("Failed to submit banner.");
+        setLoading(false); // Hide loading spinner if error occurs
       }
     } catch (error) {
-      toast.error("Error submitting banner");
-      console.error(
-        "Error submitting banner:",
-        error.response ? error.response.data : error.message
-      );
+      toast.error("Submission error.");
+      console.error("Error submitting banner:", error.response?.data || error);
+      setLoading(false); // Hide loading spinner if error occurs
     }
   };
 
   return (
     <div className="content container-fluid">
       <ToastContainer />
+      {loading && <Uploading />} {/* Show loading indicator */}
+
       <div className="d-flex justify-content-between mb-3">
         <div>
           <h2 className="h1 mb-1 text-capitalize d-flex align-items-center gap-2">
@@ -177,135 +178,128 @@ const AddBannerForm = () => {
             <div className="card-body">
               <form onSubmit={handleSubmit} className="banner_form">
                 <div className="row g-3">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label
-                        htmlFor="banner_type"
-                        className="title-color text-capitalize"
-                      >
-                        Banner Type
-                      </label>
-                      <select
-                        className="form-control outline-none hover:border-primary"
-                        name="banner_type"
-                        id="banner_type"
-                        value={bannerType}
-                        onChange={handleBannerTypeChange}
-                      >
-                        <option value="main-banner">Main Banner</option>
-                        <option value="popup-banner">Popup Banner</option>
-                        <option value="footer-banner">Footer Banner</option>
-                        <option value="main-section-banner">
-                          Main Section Banner
-                        </option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label
-                        htmlFor="url"
-                        className="title-color text-capitalize"
-                      >
-                        Banner URL
-                      </label>
-                      <input
-                        type="url"
-                        name="url"
-                        className="form-control outline-none hover:border-primary"
-                        id="url"
-                        required
-                        placeholder="Enter URL"
-                        defaultValue="https://example.com"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label
-                        htmlFor="resource_type"
-                        className="title-color text-capitalize"
-                      >
-                        Resource Type
-                      </label>
-                      <select
-                        className="form-control outline-none hover:border-primary"
-                        name="resource_type"
-                        id="resource_type"
-                        value={resourceType}
-                        onChange={handleResourceTypeChange}
-                      >
-                        <option value="product">Product</option>
-                        <option value="category">Category</option>
-                        <option value="brand">Brand</option>
-                      </select>
-                    </div>
-                    {resourceType === "product" && (
-                      <div className="form-group">
-                        <label
-                          htmlFor="product_id"
-                          className="title-color text-capitalize"
-                        >
-                          Product
-                        </label>
-                        <select
-                          className="form-control outline-none hover:border-primary"
-                          name="product_id"
-                          id="product_id"
-                          value={productId}
-                          onChange={handleProductChange}
-                        >
-                          {products.map((product) => (
-                            <option key={product._id} value={product._id}>
-                              {product.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-                    {resourceType === "category" && (
-                      <div className="form-group">
-                        <label
-                          htmlFor="category_id"
-                          className="title-color text-capitalize"
-                        >
-                          Category
-                        </label>
-                        <select
-                          className="form-control outline-none hover:border-primary"
-                          name="category_id"
-                          id="category_id"
-                          value={category}
-                          onChange={handleCategoryChange}
-                        >
-                          {categories.map((cat) => (
-                            <option key={cat._id} value={cat._id}>
-                              {cat.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-                    {resourceType === "brand" && (
-                      <div className="form-group">
-                        <label
-                          htmlFor="brand_id"
-                          className="title-color text-capitalize"
-                        >
-                          Brand
-                        </label>
-                        <select
-                          className="form-control outline-none hover:border-primary"
-                          name="brand_id"
-                          id="brand_id"
-                          value={brand}
-                          onChange={handleBrandChange}
-                        >
-                          {brands.map((brandItem) => (
-                            <option key={brandItem._id} value={brandItem._id}>
-                              {brandItem.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-                  </div>
+                 
+                
+  <div className="col-md-6">
+      <div className="form-group">
+        <label htmlFor="banner_type" className="title-color text-capitalize">
+          Banner Type
+        </label>
+        <select
+          className="form-control outline-none hover:border-primary"
+          name="banner_type"
+          id="banner_type"
+          value={bannerType}
+          onChange={handleBannerTypeChange}
+        >
+          <option value="">Select Banner Type</option>
+          <option value="main-banner">Main Banner</option>
+          <option value="popup-banner">Popup Banner</option>
+          <option value="footer-banner">Footer Banner</option>
+          <option value="main-section-banner">Main Section Banner</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="url" className="title-color text-capitalize">
+          Banner URL
+        </label>
+        <input
+          type="url"
+          name="url"
+          className="form-control outline-none hover:border-primary"
+          id="url"
+          required
+          placeholder="Enter URL"
+          defaultValue=""
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="resource_type" className="title-color text-capitalize">
+          Resource Type
+        </label>
+        <select
+          className="form-control outline-none hover:border-primary"
+          name="resource_type"
+          id="resource_type"
+          value={resourceType}
+          onChange={handleResourceTypeChange}
+        >
+          <option value="">Select Resource Type</option>
+          <option value="product">Product</option>
+          <option value="category">Category</option>
+          <option value="brand">Brand</option>
+        </select>
+      </div>
+
+      {resourceType === "product" && (
+        <div className="form-group">
+          <label htmlFor="product_id" className="title-color text-capitalize">
+            Product
+          </label>
+          <select
+            className="form-control outline-none hover:border-primary"
+            name="product_id"
+            id="product_id"
+            value={productId}
+            onChange={handleProductChange}
+          >
+            <option value="">Select Product</option>
+            {products.map((product) => (
+              <option key={product._id} value={product._id}>
+                {product.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {resourceType === "category" && (
+        <div className="form-group">
+          <label htmlFor="category_id" className="title-color text-capitalize">
+            Category
+          </label>
+          <select
+            className="form-control outline-none hover:border-primary"
+            name="category_id"
+            id="category_id"
+            value={category}
+            onChange={handleCategoryChange}
+          >
+            <option value="">Select Category</option>
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {resourceType === "brand" && (
+        <div className="form-group">
+          <label htmlFor="brand_id" className="title-color text-capitalize">
+            Brand
+          </label>
+          <select
+            className="form-control outline-none hover:border-primary"
+            name="brand_id"
+            id="brand_id"
+            value={brand}
+            onChange={handleBrandChange}
+          >
+            <option value="">Select Brand</option>
+            {brands.map((brandItem) => (
+              <option key={brandItem._id} value={brandItem._id}>
+                {brandItem.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+    </div>
+
                   <div className="col-lg-6">
                     <PreviewImage
                       image={bannerImage}

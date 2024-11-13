@@ -14,13 +14,13 @@ const BusinessProcess = () => {
                             <div className="col-lg-6">
                                 <div className="form-group">
                                     <label className="title-color">Title</label>
-                                    <input type="text" name="title" className="form-control" defaultValue="3 Easy Steps To Start Selling" placeholder="Enter title" />
+                                    <input type="text" name="title" className="form-control outline-none hover:border-primary" defaultValue="3 Easy Steps To Start Selling" placeholder="Enter title" />
                                 </div>
                             </div>
                             <div className="col-lg-6">
                                 <div className="form-group">
                                     <label className="title-color">Sub title</label>
-                                    <input type="text" name="sub_title" className="form-control" defaultValue="Start selling quickly! Register, upload your products with detailed info and images, and reach millions of buyers instantly." placeholder="Enter sub title" />
+                                    <input type="text" name="sub_title" className="form-control outline-none hover:border-primary" defaultValue="Start selling quickly! Register, upload your products with detailed info and images, and reach millions of buyers instantly." placeholder="Enter sub title" />
                                 </div>
                             </div>
                         </div>
@@ -34,11 +34,11 @@ const BusinessProcess = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="title-color">Title</label>
-                                    <input type="text" name="section_1_title" className="form-control" defaultValue="Get Registered" placeholder="messages.enter_title" />
+                                    <input type="text" name="section_1_title" className="form-control outline-none hover:border-primary" defaultValue="Get Registered" placeholder="messages.enter_title" />
                                 </div>
                                 <div className="form-group">
                                     <label className="title-color text-capitalize">Short description</label>
-                                    <textarea name="section_1_description" className="form-control" rows="4" placeholder="Write description...">Sign up easily and create your seller account in just a few minutes. It's fast and simple to get started.</textarea>
+                                    <textarea name="section_1_description" className="form-control outline-none hover:border-primary" rows="4" placeholder="Write description...">Sign up easily and create your seller account in just a few minutes. It's fast and simple to get started.</textarea>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -76,11 +76,11 @@ const BusinessProcess = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="title-color">Title</label>
-                                    <input type="text" name="section_2_title" className="form-control" defaultValue="Upload Products" placeholder="messages.enter_title" />
+                                    <input type="text" name="section_2_title" className="form-control outline-none hover:border-primary" defaultValue="Upload Products" placeholder="messages.enter_title" />
                                 </div>
                                 <div className="form-group">
                                     <label className="title-color text-capitalize">Short description</label>
-                                    <textarea name="section_2_description" className="form-control" rows="4" placeholder="messages.write_description...">List your products with detailed descriptions and high-quality images to attract more buyers effortlessly.</textarea>
+                                    <textarea name="section_2_description" className="form-control outline-none hover:border-primary" rows="4" placeholder="messages.write_description...">List your products with detailed descriptions and high-quality images to attract more buyers effortlessly.</textarea>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -118,11 +118,11 @@ const BusinessProcess = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="title-color">Title</label>
-                                    <input type="text" name="section_3_title" className="form-control" defaultValue="Start Selling" placeholder="messages.enter_title" />
+                                    <input type="text" name="section_3_title" className="form-control outline-none hover:border-primary" defaultValue="Start Selling" placeholder="messages.enter_title" />
                                 </div>
                                 <div className="form-group">
                                     <label className="title-color text-capitalize">Short description</label>
-                                    <textarea name="section_3_description" className="form-control" rows="4" placeholder="messages.write_description...">Go live and start reaching millions of potential buyers immediately. Watch your sales grow with our vast audience.</textarea>
+                                    <textarea name="section_3_description" className="form-control outline-none hover:border-primary" rows="4" placeholder="messages.write_description...">Go live and start reaching millions of potential buyers immediately. Watch your sales grow with our vast audience.</textarea>
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -155,7 +155,8 @@ const BusinessProcess = () => {
 
                 <div className="row justify-content-end gap-3 mt-3 mx-1">
                     <button type="reset" className="btn btn-secondary px-5">Reset</button>
-                    <button type="submit" className="btn btn--primary px-5">Submit</button>
+                    <button type="submit" className="btn btn--primary bg-primary hover:bg-primary-dark px-5"
+                    style={{color:"white"}}>Submit</button>
                 </div>
             </div>
         </div>

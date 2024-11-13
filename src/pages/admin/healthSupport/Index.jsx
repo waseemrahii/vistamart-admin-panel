@@ -15,7 +15,7 @@ const IndexMessage = () => {
           <p className="text-slate-900 text-lg font-semibold">Inbox</p>
         </div>
 
-        <div className="flex pl-6 gap-6 pt-5">
+        <div className="flex flex-col md:flex-row  gap-6 pt-5">
           <div className="bg-white h-[80vh] w-60 rounded-lg">
             <form className="relative pt-5 pl-2 pr-2 justify-center">
               {/* <input
@@ -45,8 +45,8 @@ const IndexMessage = () => {
 
           </div>
 
-          <div className="bg-white h-[80vh] w-[50vw] rounded-lg">
-          <div className="bg-white h-[80vh] w-[50vw] rounded-lg flex flex-col items-center justify-center">
+          <div className="bg-white h-[80vh] w-full rounded-lg">
+          <div className="bg-white h-full w-full rounded-lg flex flex-col items-center justify-center">
   <img
     src="https://6valley.6amtech.com/public/assets/back-end/img/empty-message.png"
     alt="Empty Message"

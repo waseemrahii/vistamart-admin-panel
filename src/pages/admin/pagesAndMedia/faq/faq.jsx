@@ -4,30 +4,7 @@ import { FaSearch, FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 const FaqList = () => {
   // Define your FAQ data array
   const [faqs, setFaqs] = useState([
-    // {
-    //   id: 1,
-    //   question: "How do I handle customer inquiries?",
-    //   answer:
-    //     "You can manage customer inquiries directly through our platform's messaging system, ensuring quick and efficient communication.",
-    //   priority: 4,
-    //   status: true,
-    // },
-    // {
-    //   id: 2,
-    //   question: "How do I upload products?",
-    //   answer:
-    //     'Log in to your seller account, go to the "Upload Products" section, and fill in the product details and images.',
-    //   priority: 3,
-    //   status: true,
-    // },
-    // {
-    //   id: 3,
-    //   question: "What are the fees for selling?",
-    //   answer:
-    //     "Our platform charges a small commission on each sale. There are no upfront listing fees.",
-    //   priority: 2,
-    //   status: true,
-    // },
+   
     // {
     //   id: 4,
     //   question: "How do I register as a seller?",
@@ -55,9 +32,9 @@ const FaqList = () => {
           <div className="">
             <h5 className="text-capitalize d-flex gap-2">
               FAQ list{" "}
-              <span className="badge badge-soft-dark radius-50 fz-12">
-                {faqs.length}
-              </span>
+              {/* <span className="badge badge-soft-dark radius-50 fz-12">
+                 {faqs.length} 
+              </span> */}
             </h5>
           </div>
           <div className="d-flex flex-wrap gap-3 align-items-center">
@@ -71,22 +48,23 @@ const FaqList = () => {
                 <input
                   type="search"
                   name="searchValue"
-                  className="form-control"
+                  className="form-control outline-none hover:border-primary"
                   placeholder="Search by question & answer"
                 />
-                <button type="submit" className="btn bg-primary text-white"
-                 style={{color:"white"}}
-                >
+                <button type="submit" className="btn btn--primary bg-primary hover:bg-primary-dark"
+                style={{color:"white"}}>
                   Search
                 </button>
               </div>
             </form>
-            {/* <button
+            <button
               type="button"
-              className="btn btn--primary flex gap-2 justify-center align-items-center"
+              className="btn btn--primary bg-primary hover:bg-primary-dark flex gap-2 justify-center align-items-center"
+              style={{color:"white"}}
             >
+              {/* <FaPlus /> Add FAQ */}
               Add FAQ
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

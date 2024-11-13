@@ -196,19 +196,19 @@ const OrderList = () => {
             </div>
           </div>
 
-          <div className="">
+          <div className="" style={{overflowX:"scroll"}}>
             <table className="table  table-hover mb-0">
               <thead className="table-light  bg-secondary">
                 <tr className="w-full ">
                   <th onClick={() => requestSort("orderId")} scope="flex">
-                    Order ID
+                    ID
                   </th>
 
                   <th onClick={() => requestSort("createdAt")} scope="flex">
                     Date
                   </th>
                   <th onClick={() => requestSort("customerName")} scope="flex">
-                    Customer Name
+                    C_Name
                   </th>
                   {/* <th onClick={() => requestSort("store")} scope="flex">
                     Store

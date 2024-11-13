@@ -371,7 +371,7 @@ data={filteredSubSubCategories}
                 </div>
               </div>
             </div>
-            <div className="card-body text-start">
+            <div className="card-body text-start overflow-x-scroll">
               <table className="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>

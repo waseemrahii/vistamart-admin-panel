@@ -102,10 +102,10 @@ const SocialMedia = () => {
                   <div className="row">
                     <div className="col-md-12">
                       <label htmlFor="name" className="title-color">
-                        Social Media Type
+                        Name
                       </label>
                       <select
-                        className="form-control w-100"
+                        className="form-control outline-none hover:border-primary w-100"
                         name="name"
                         id="name"
                         value={formData.name}
@@ -134,7 +134,7 @@ const SocialMedia = () => {
                       <input
                         type="url"
                         name="link"
-                        className="form-control"
+                        className="form-control outline-none hover:border-primary"
                         id="link"
                         placeholder="Enter Social Media Link"
                         value={formData.link}
@@ -187,7 +187,7 @@ const SocialMedia = () => {
                   <thead className="thead-light thead-50 text-capitalize">
                     <tr>
                       <th>Sl</th>
-                      <th>Social Media Type</th>
+                      <th>Name</th>
                       <th>Link</th>
                       <th className="text-center">Status</th>
                       <th>Action</th>

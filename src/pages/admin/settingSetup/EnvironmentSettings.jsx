@@ -121,7 +121,8 @@ const EnvironmentSettings = () => {
                   </button>
                   <button
                     type="button"
-                    className="btn  py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] px-4 call-demo"
+                    className="btn  py-2 bg-primary text-white hover:bg-[#7e9f37] px-4 call-demo"
+                    style={{color:"white"}}
                   >
                     Submit
                   </button>

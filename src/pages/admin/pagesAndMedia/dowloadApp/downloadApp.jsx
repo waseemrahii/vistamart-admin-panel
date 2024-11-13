@@ -16,11 +16,11 @@ const DownloadAppSection = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="title-color">Title</label>
-                                    <input type="text" name="title" className="form-control" defaultValue="Download Free Vendor App" placeholder="Enter title" />
+                                    <input type="text" name="title" className="form-control outline-none hover:border-primary" defaultValue="Download Free Vendor App" placeholder="Enter title" />
                                 </div>
                                 <div className="form-group">
                                     <label className="title-color text-capitalize">Sub title</label>
-                                    <input type="text" name="sub_title" className="form-control" defaultValue="Download our free seller app and start reaching millions of buyers on the go! Easy setup, manage listings, and boost sales anywhere." placeholder="Enter title" />
+                                    <input type="text" name="sub_title" className="form-control outline-none hover:border-r-primary" defaultValue="Download our free seller app and start reaching millions of buyers on the go! Easy setup, manage listings, and boost sales anywhere." placeholder="Enter title" />
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -63,7 +63,7 @@ const DownloadAppSection = () => {
                                     <div className="d-flex justify-content-between align-items-center gap-2 mb-2">
                                         <span className="title-color text-capitalize">
                                             Download link 
-                                            <span className="input-label-secondary cursor-pointer" data-toggle="tooltip" data-placement="right" title="If enabled, the Google Play Store will be visible in the website footer section">
+                                            <span className="input-label-secondary  cursor-pointer" data-toggle="tooltip" data-placement="right" title="If enabled, the Google Play Store will be visible in the website footer section">
                                                 <FiInfo size={16} />
                                             </span>
                                         </span>
@@ -72,7 +72,7 @@ const DownloadAppSection = () => {
                                             <span className="switcher_control"></span>
                                         </label>
                                     </div>
-                                    <input type="url" name="download_google_app" className="form-control" placeholder="Ex: https://play.google.com/store/apps" />
+                                    <input type="url" name="download_google_app" className="form-control outline-none hover:border-primary" placeholder="Ex: https://play.google.com/store/apps" />
                                 </div>
                             </div>
                             <div className="col-lg-6">
@@ -93,7 +93,7 @@ const DownloadAppSection = () => {
                                             <span className="switcher_control"></span>
                                         </label>
                                     </div>
-                                    <input type="url" name="download_apple_app" className="form-control" placeholder="Ex: https://www.apple.com/app-store/" />
+                                    <input type="url" name="download_apple_app" className="form-control outline-none hover:border-primary" placeholder="Ex: https://www.apple.com/app-store/" />
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,8 @@ const DownloadAppSection = () => {
 
                 <div className="row justify-content-end gap-3 mt-3 mx-1">
                     <button type="reset" className="btn btn-secondary px-5">reset</button>
-                    <button type="submit" className="btn btn--primary px-5">submit</button>
+                    <button type="submit" className="btn btn--primary bg-primary hover:bg-primary-dark px-5"
+                    style={{color:"white"}}>submit</button>
                 </div>
             </div>
         </div>

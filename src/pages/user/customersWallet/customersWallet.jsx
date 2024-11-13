@@ -40,13 +40,15 @@ const WalletManagement = () => {
         </h2>
         <button
           type="button"
-          className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-capitalize"
+          className="btn px-4 py-2 bg-primary text-white hover:bg-[#7e9f37] text-capitalize"
+          
           data-toggle="modal"
           data-target="#add-fund-modal"
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            color:"white"
           }}
         >
           <FiPlus /> Add fund
@@ -250,8 +252,9 @@ const WalletManagement = () => {
                 <div className="d-flex justify-content-end">
                   <button
                     type="submit"
-                    className="btn px-4 py-2 bg-[#A1CB46] flex gap-1 items-center text-white hover:bg-[#7e9f37]"
-                  >
+                    className="btn px-4 py-2 bg-primary flex gap-1 items-center text-white hover:bg-[#7e9f37]"
+                   style={{color:"white"}}
+                >
                     <FiFilter className="" />
                     Filter
                   </button>

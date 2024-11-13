@@ -87,8 +87,6 @@ const OrderDetails = () => {
   if (status === 'failed') {
     return <div>Error fetching orders details: {error}</div>;
   }
- // Find the specific order based on the ID
- // Find the specific order based on the ID
  const Orders = orders.find((order) => order._id === id);
 //  console.log("orderdtail====", Orders)
  // Check if orders exists

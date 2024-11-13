@@ -120,6 +120,7 @@ import AddNewProductComponent from "./pages/admin/offerAndDeals/featureDeal/addF
 import AddEmployee from "./pages/admin/employees/add/addemploye.jsx";
 import EmployeeDetails from "./pages/admin/employees/list/employeeDetails.jsx";
 import UpdateEmployee from "./pages/admin/employees/add/updateEmploye.jsx";
+import UpdateVendor from "./pages/seller/vendor/add/addVender/UpdateVendor.jsx";
 
 function AllRoutes() {
   return (
@@ -246,6 +247,7 @@ function AllRoutes() {
         <Route path="/image" element={<ShopStoreDetails />} />
         <Route path="/orderdetail" element={<OrderDetails />} />
         <Route path="/addvenderform" element={<AddVendorForm />} />
+        <Route path="/edit/:id" element={<UpdateVendor />} />
         <Route path="/addvenderwallet" element={<VenderWallet />} />
         <Route path="/addvenderwalletmethod" element={<VenderWalletMethod />} />
         <Route

@@ -11,18 +11,18 @@ const PageGallery = () => {
             alt="Gallery"
             className="w-8 h-8 md:w-[2vw] md:h-[4vh]"
           />
-          <p className="text-[#334257] pl-3 text-lg md:text-[1rem] font-semibold">
+          <p className="text-[#334257] pl-3  text-lg md:text-[1rem] font-semibold">
             File Manager
           </p>
         </div>
 
         {/* Title and button */}
-        <div className="flex justify-between items-center pl-10 pt-5 pr-10">
-          <p className="text-lg md:text-[1rem] font-semibold text-[#334257]">
+        <div className="flex justify-between gap-2 items-center pl-10 pt-5 pr-10">
+          <p className="text-lg  text-nowrap  md:text-[1rem] font-semibold text-[#334257]">
             File Manager
           </p>
           <button
-            className="bg-primary rounded text-sm text-white px-4 py-2 hover:bg-primary-dark"
+            className="bg-primary text-nowrap rounded text-sm text-white px-4 py-2 hover:bg-primary-dark"
             style={{ color: "white" }}
           >
             + Add New
@@ -30,7 +30,7 @@ const PageGallery = () => {
         </div>
 
         {/* Main content container */}
-        <div className="bg-white shadow-xl w-full md:w-[71vw] ml-9 mt-5 rounded-lg p-6 hover:shadow-2xl">
+        <div className="bg-white shadow-xl w-full  mt-5 rounded-lg p-6 hover:shadow-2xl">
           {/* Folder section title */}
           <div className="flex items-center">
             <p className="text-lg text-[#334257] font-semibold">Public</p>
@@ -43,7 +43,7 @@ const PageGallery = () => {
           <p className="border-2 border-[#F9F9FB] mt-3"></p>
 
           {/* Folders grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 ml-8 mt-8">
             {[
               "review",
               "seller",

@@ -65,12 +65,13 @@ const BannerSetup = () => {
   };
 
   const columns = [
+
     {
       key: "_id",
-      label: "SL",
-      render: (banner, index, currentPage, itemsPerPage) =>
-        index + 1 + (currentPage - 1) * itemsPerPage,
+      label: "ID",
+      render: (banner) => `${banner?._id.substring(0, 6)}`,
     },
+
     {
       key: "bannerImage",
       label: "Image",
@@ -99,7 +100,7 @@ const BannerSetup = () => {
       label: "Action",
       render: (banner) => (
         <div className="flex justify-center gap-2">
-          <ActionButton to={`/editbannerform/${banner._id}`} icon={FaEdit} />
+          {/* <ActionButton to={`/editbannerform/${banner._id}`} icon={FaEdit} /> */}
           <ActionButton
             onClick={() => handleDeleteBanner(banner._id)}
             icon={FaTrash}

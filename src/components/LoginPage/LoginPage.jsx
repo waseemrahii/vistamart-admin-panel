@@ -126,11 +126,11 @@ const LoginPage = ({ setIsLoggedIn }) => {
               </label>
             </div>
           </div>
-          <div
+          {/* <div
             id="recaptcha_element"
             className="w-full mb-0"
             style={{ height: "100px" }}
-          ></div>
+          ></div> */}
           <button
             type="submit"
             className={`btn btn-block p-3 rounded bg-green-300 hover:bg-green-200 hover:text-black text-white font-semibold mt-0 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}

@@ -33,7 +33,7 @@ const HeaderMedia = () => {
                   <input
                     type="text"
                     name="title"
-                    className="form-control"
+                    className="form-control outline-none hover:border-primary"
                     defaultValue="Vendor Registration"
                     placeholder="Enter title"
                   />
@@ -47,7 +47,7 @@ const HeaderMedia = () => {
                   <input
                     type="text"
                     name="sub_title"
-                    className="form-control"
+                    className="form-control outline-none hover:border-primary"
                     defaultValue="Create your own store. Already have a store?"
                     placeholder="Enter sub title"
                   />

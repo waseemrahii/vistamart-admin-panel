@@ -94,8 +94,8 @@ const CategoryForm = ({
             </div>
           </div>
           <div className="col-lg-6 mt-4 mt-lg-0 from_part_2">
-            <div className="form-group flex justify-center">
-              <div className="text-center" style={{ width: "50%" }}>
+            <div className="form-group flex justify-center items-center">
+              <div className="text-center flex justify-center items-center">
                 <img
                   className="upload-img-view"
                   id="viewer"

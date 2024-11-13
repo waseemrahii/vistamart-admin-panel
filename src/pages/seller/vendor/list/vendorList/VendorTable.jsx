@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { FaEye, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import TableList from "../../../../../components/FormInput/TableList";
 import { ToastContainer } from "react-toastify"; // Import ToastContainer for notifications
 import ActionButton from "../../../../../components/ActionButton/Action";
@@ -70,6 +70,10 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
           <ActionButton
             to={`/vendordetail/${vendor._id}`} // Dynamic link
             icon={FaEye} // Pass dynamic icon
+          />
+          <ActionButton
+            to={`/edit/${vendor._id}`} // Dynamic link
+            icon={FaEdit} // Pass dynamic icon
           />
           <ActionButton
             onClick={() => onDeleteVendor(vendor._id)} // Handle the delete action

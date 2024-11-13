@@ -8,28 +8,28 @@ const Ticket_Support = () => {
 
   // Sample data for tickets
   const tickets = [
-    {
-      id: 1,
-      name: "Devid Jack",
-      priority: "Low",
-      status: "Pending",
-      type: "Complaint",
-      date: "10 Jan 2023 02:38:AM",
-      message: "While adding product",
-      image:
-        "https://6valley.6amtech.com/storage/app/public/profile/2022-10-12-63464cd299fc3.png",
-    },
-    {
-      id: 2,
-      name: "Alice Brown",
-      priority: "Medium",
-      status: "Open",
-      type: "Issue",
-      date: "12 Jan 2023 11:15:AM",
-      message: "Payment issue",
-      image:
-        "https://6valley.6amtech.com/storage/app/public/profile/2022-10-12-63464cd299fc3.png",
-    },
+    // {
+    //   id: 1,
+    //   name: "Devid Jack",
+    //   priority: "Low",
+    //   status: "Pending",
+    //   type: "Complaint",
+    //   date: "10 Jan 2023 02:38:AM",
+    //   message: "While adding product",
+    //   image:
+    //     "https://6valley.6amtech.com/storage/app/public/profile/2022-10-12-63464cd299fc3.png",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Alice Brown",
+    //   priority: "Medium",
+    //   status: "Open",
+    //   type: "Issue",
+    //   date: "12 Jan 2023 11:15:AM",
+    //   message: "Payment issue",
+    //   image:
+    //     "https://6valley.6amtech.com/storage/app/public/profile/2022-10-12-63464cd299fc3.png",
+    // },
     // Add more tickets as needed
   ];
 

@@ -8,20 +8,20 @@ const OfflinePaymentMethods = () => {
 
   // Sample data - Replace with your actual data or fetch from API
   const methods = [
-    {
-      id: 1,
-      name: "MFTS",
-      paymentInfo: "Service Name : Mobile Banking",
-      requiredInfo: ["Mobile Number", "Reference", "Date"],
-      status: true, // Example status, true for active, false for inactive
-    },
-    {
-      id: 2,
-      name: "Bank Payment",
-      paymentInfo: "Bank Name : EX: Bank XYZ",
-      requiredInfo: ["Account Number", "Amount", "Reference"],
-      status: true, // Example status, true for active, false for inactive
-    },
+    // {
+    //   id: 1,
+    //   name: "MFTS",
+    //   paymentInfo: "Service Name : Mobile Banking",
+    //   requiredInfo: ["Mobile Number", "Reference", "Date"],
+    //   status: true, // Example status, true for active, false for inactive
+    // },
+    // {
+    //   id: 2,
+    //   name: "Bank Payment",
+    //   paymentInfo: "Bank Name : EX: Bank XYZ",
+    //   requiredInfo: ["Account Number", "Amount", "Reference"],
+    //   status: true, // Example status, true for active, false for inactive
+    // },
     // Add more methods as needed
   ];
 
