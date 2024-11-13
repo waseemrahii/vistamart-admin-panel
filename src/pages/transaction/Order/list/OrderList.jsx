@@ -210,9 +210,9 @@ const OrderList = () => {
                   <th onClick={() => requestSort("customerName")} scope="flex">
                     Customer Name
                   </th>
-                  <th onClick={() => requestSort("store")} scope="flex">
+                  {/* <th onClick={() => requestSort("store")} scope="flex">
                     Store
-                  </th>
+                  </th> */}
                   <th onClick={() => requestSort("totalAmount")} scope="flex">
                     Amount
                   </th>
@@ -232,7 +232,7 @@ const OrderList = () => {
                         ? `${order.customer.firstName} ${order.customer.lastName}`
                         : "Unknown Customer"}
                     </td>
-                    <td>{order.vendors?.[0]?.shopName || "Unknown Store"}</td>
+                    {/* <td>{order.vendors?.[0]?.shopName || "Unknown Store"}</td> */}
                     <td>{order.totalAmount}</td>
                     <td>
                       {(() => {

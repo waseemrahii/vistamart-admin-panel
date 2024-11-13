@@ -29,7 +29,7 @@ const OrderDetails = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    console.log('Order details:', orders); // Check if order data is populated
+    // console.log('Order details:', orders); // Check if order data is populated
   }, [orders]);
   const printInvoice = () => {
     window.print();
@@ -90,7 +90,7 @@ const OrderDetails = () => {
  // Find the specific order based on the ID
  // Find the specific order based on the ID
  const Orders = orders.find((order) => order._id === id);
- console.log("orderdtail====", Orders)
+//  console.log("orderdtail====", Orders)
  // Check if orders exists
   if (!orders) {
     return <div>No orders details found.</div>;
@@ -130,7 +130,7 @@ const OrderDetails = () => {
                 <p>{new Date(Orders.createdAt).toLocaleString()}</p>
               </div>
               <div className="flex items-center gap-2">
-                <div>
+                {/* <div>
                   <Button variant="primary" onClick={handleShow}>
                     Show Product
                   </Button>
@@ -141,7 +141,7 @@ const OrderDetails = () => {
                   style={{ color: "white" }}
                 >
                   <IoIosPrint className="text-white" /> Print Invoice
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="text-end pt-2">
