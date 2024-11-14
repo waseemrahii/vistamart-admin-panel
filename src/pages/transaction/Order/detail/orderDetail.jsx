@@ -216,23 +216,22 @@ const OrderDetails = () => {
             <div>{product?.name}</div>
             <div>Qty: {product?.qty}</div>
             <div>
-              Unit price: ${product?.price} (Tax:{" "}
-              {product?.taxAmount}%)
+              Unit price: PKR{product?.price} (Tax:  {product?.taxAmount}%)
             </div>
           </div>
         </div>
       </td>
       <td className="px-4 py-2 text-center">
-        ${product?.price}
+        PKR{product?.price}
       </td>
       <td className="px-4 py-2 text-center">
-        ${product?.taxAmount}
+        PKR{product?.taxAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        ${product?.discountAmount}
+        PKR{product?.discountAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        ${(product?.price + product?.taxAmount)}
+        PKR{(product?.price + product?.taxAmount)}
       </td>
     </tr>
   ))
@@ -250,31 +249,31 @@ const OrderDetails = () => {
               <div className="mt-4">
                 <div className="flex justify-between border-t pt-2">
                   <span>Item price</span>
-                  <span>${totalAmount}</span>
+                  <span>PKR{totalAmount}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Item Discount</span>
-                  <span>- $0.00</span>
+                  <span>- PKR0.00</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sub Total</span>
-                  <span>${totalAmount}</span>
+                  <span>PKR{totalAmount}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Coupon discount</span>
-                  <span>- $0.00</span>
+                  <span>- PKR0.00</span>
                 </div>
-                <div className="flex justify-between">
+                {/* <div className="flex justify-between">
                   <span>VAT/TAX</span>
-                  {/* <span>${order.vatTax.toFixed(2)}</span> */}
-                </div>
-                <div className="flex justify-between">
+                   <span>${order.vatTax.toFixed(2)}</span>
+                </div> */}
+                {/* <div className="flex justify-between">
                   <span>Delivery Fee</span>
-                  {/* <span>${order.deliveryFee.toFixed(2)}</span> */}
-                </div>
+                   <span>${order.deliveryFee.toFixed(2)}</span> 
+                </div> */}
                 <div className="flex justify-between font-bold border-t pt-2">
                   <span>Total</span>
-                  <span>${totalAmount}</span>
+                  <span>PKR{totalAmount}</span>
                 </div>
               </div>
             </div>
