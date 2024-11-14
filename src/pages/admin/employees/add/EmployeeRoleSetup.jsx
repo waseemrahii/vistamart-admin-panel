@@ -4,6 +4,7 @@ import { getAuthData } from '../../../../utils/authHelper';
 import apiConfig from '../../../../config/apiConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const EmployeeRoleSetup = () => {
     const API_URL = `${apiConfig.admin}/roles`;
@@ -271,12 +272,13 @@ const EmployeeRoleSetup = () => {
                                         </td> */}
                                         <td>
                                             <div className="d-flex justify-content-center gap-2">
-                                            {/* <button 
-                                            onClick={() => handleEditRole(role)} 
-                                            className="btn btn-outline--primary btn-sm square-btn"
-                                        >
+                                            <Link
+                        to={`/employeedit/${role?._id}`}
+                        className="btn border-primary text-primary"
+                        title="Edit"
+                      >
                                             <FaEdit />
-                                        </button> */}
+                                        </Link >
                                         <button 
                                             onClick={() => handleDeleteRole(role._id)} 
                                             className="btn btn-outline-danger btn-sm square-btn"

@@ -133,9 +133,10 @@ const LoginPage = ({ setIsLoggedIn }) => {
           ></div> */}
           <button
             type="submit"
-            className={`btn btn-block p-3 rounded bg-green-300 hover:bg-green-200 hover:text-black text-white font-semibold mt-0 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`btn btn-block p-3 rounded bg-primary hover:bg-green-400 hover:text-black text-white font-semibold mt-0 ${loading ? "opacity-50 cursor-not-allowed" : ""}` }
             disabled={loading} // Disable button while loading
-          >
+           style={{color:"white"}}
+       >
             {loading ? "Loading..." : "Login"}
           </button>
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}

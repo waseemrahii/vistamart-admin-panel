@@ -23,8 +23,8 @@ const Sidebar = ({ toggleSidebar }) => {
 
 useEffect(() => {
   if (!user || !user.role || !user.role.modules) return;
-  console.log("User modules:", user.role.modules);
-  console.log("Sidebar item keys:", allSidebarItems.map(item => item.key));
+  // console.log("User modules:", user.role.modules);
+  // console.log("Sidebar item keys:", allSidebarItems.map(item => item.key));
 
   const role = user.role.name || "admin";
 
@@ -39,7 +39,7 @@ useEffect(() => {
     title: formatModuleName(item.key),
   }));
 
-  console.log("Filtered Items:", formattedItems);
+  // console.log("Filtered Items:", formattedItems);
   setSidebarItems(formattedItems);
 }, [user]);
 
@@ -47,7 +47,7 @@ useEffect(() => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
   
-  console.log("sidebar itemss====", sidebarItems)
+  // console.log("sidebar itemss====", sidebarItems)
   // Filtering sidebar items based on search term
   const filteredSidebarItems = sidebarItems.filter((item) => {
     const searchQuery = searchTerm.toLowerCase();

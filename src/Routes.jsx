@@ -121,6 +121,7 @@ import AddEmployee from "./pages/admin/employees/add/addemploye.jsx";
 import EmployeeDetails from "./pages/admin/employees/list/employeeDetails.jsx";
 import UpdateEmployee from "./pages/admin/employees/add/updateEmploye.jsx";
 import UpdateVendor from "./pages/seller/vendor/add/addVender/UpdateVendor.jsx";
+import UpdateEmployeeRole from "./pages/admin/employees/add/updateEmployeRole.jsx";
 
 function AllRoutes() {
   return (
@@ -183,9 +184,10 @@ function AllRoutes() {
           element={<CustomerLoyaltyReport />}
         />
         <Route path="/employeerolesetup" element={<EmployeeRoleSetup />} />
+        <Route path="/employeedit/:id" element={<UpdateEmployeeRole />} />
         <Route path="/addemploye" element={<AddEmployee />} />
         <Route path="/employeelist" element={<EmployeeList />} />
-        <Route path="/update/:id" element={<UpdateEmployee />} />
+        <Route path="/employeedit/:id" element={<UpdateEmployee />} />
         <Route path="/view/:id" element={<EmployeeDetails />} />
         <Route path="/subscriberlist" element={<SubscriberList />} />
         <Route path="/systemsetup" element={<SystemSetup />} />

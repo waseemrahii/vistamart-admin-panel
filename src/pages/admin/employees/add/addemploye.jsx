@@ -12,6 +12,7 @@ import FormSelect from "../../../../components/FormInput/FormSelect"; // Import 
 import axios from "axios";
 import { getUploadUrl, uploadImageToS3 } from "../../../../utils/helpers";
 import { getAuthData } from "../../../../utils/authHelper";
+import apiConfig from "../../../../config/apiConfig";
 
 const AddEmployee = () => {
   const [formData, setFormData] = useState({
@@ -31,14 +32,15 @@ const AddEmployee = () => {
   const [selectedIdentityFile, setSelectedIdentityFile] = useState(null);
   const [roles, setRoles] = useState([]); // State for roles
   const [loadingRoles, setLoadingRoles] = useState(true); // Loading state for roles
-
+  const API_URL = `${apiConfig.admin}/roles`;
  // Fetch roles with token
  useEffect(() => {
   const fetchRoles = async () => {
+
     const { token } = getAuthData(); // Retrieve the token
 
     try {
-      const response = await axios.get("https://www.api2.vistamart.biz/api/v1/admin/roles/", {
+      const response = await axios.get(API_URL, {
         headers: {
           Authorization: `Bearer ${token}`, // Include token in the request
         },
@@ -95,7 +97,7 @@ const AddEmployee = () => {
       const { token } = getAuthData();
 
       const response = await axios.post(
-        "https://www.api2.vistamart.biz/api/v1/admin/employees",
+        API_URL,
         employeeData,
         {
           headers: {
@@ -105,6 +107,7 @@ const AddEmployee = () => {
         }
       );
 
+      console.log("response=====", response)
       if (response.status === 201) {
         toast.success("Employee added successfully!");
         setFormData({
@@ -256,13 +259,15 @@ const AddEmployee = () => {
         <FormSection icon={<FiInfo className="mb-1" />} title="Identification">
           <div className="row p-4">
             <div className="col-lg-6">
-              <FormInput
+            <FormSelect
                 label="Identification Type"
                 name="identifyType"
-                type="text"
-                placeholder="Enter ID type (NID, Passport)"
                 value={formData.identifyType}
                 onChange={handleInputChange}
+                options={[
+                  { value: "nid", label: "NID" },
+                  { value: "passport", label: "Passport" },
+                ]}
                 required
               />
               <FormInput
@@ -274,7 +279,6 @@ const AddEmployee = () => {
                 onChange={handleInputChange}
                 required
               />
-              {/* Add Role Selection */}
              
             </div>
             <div className="col-lg-6">
@@ -309,3 +313,8 @@ const AddEmployee = () => {
 };
 
 export default AddEmployee;
+
+
+
+
+
