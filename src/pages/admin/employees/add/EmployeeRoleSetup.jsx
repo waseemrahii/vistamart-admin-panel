@@ -114,17 +114,33 @@ const EmployeeRoleSetup = () => {
     };
 
     const availableModules = [
-        // 'Overview',
+        'dashboard',
         'Order management',
-        'Product management',
-        'User management',
+        'Refund management',
+        'Category management',
+        'Brand management',
+        'Product attribute',
+        'Inhouse Product ',
         'Vendor management',
-        'Promotion management',
-        'System Settings',
-        'Employee management',
-        'Reports And Analysis',
+        'Vendor product',
+        'Banner setup',
+        'Offer and deals',
+        'Notifications',
+        'Announcement',
+        'Inbox',
+        'Message',
+        'Sales and transaction',
+        'Product report',
+        'Order report',
         'Customer management',
         'Delivery management',
+        'Employee management',
+        'Subscribers',
+        
+        'Business setup',
+        'System setup',
+        'ThirdParty',
+        'Page and media',
     ];
     return (
         <div className="content container-fluid">
@@ -172,7 +188,7 @@ const EmployeeRoleSetup = () => {
                         </div>
                         <div className="row">
                             {availableModules.map((module, index) => (
-                                <div key={index} className="col-md-4 col-sm-4">
+                                <div key={index} className="col-md-4 col-sm-3">
                                     <div className="form-group d-flex gap-2">
                                         <input
                                             type="checkbox"

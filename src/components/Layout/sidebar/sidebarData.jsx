@@ -41,9 +41,9 @@ import { ImStatsBars } from "react-icons/im";
 export const sidebarItems = [
   {
     title: "Dashboard",
-    key: "overview",
+    key: "dashboard",
 
-    SubHeading: "Overview",
+    // SubHeading: "dashboard",
     icon: <IoHome />,
     link: "/",
     isDropdown: false,
@@ -67,8 +67,7 @@ export const sidebarItems = [
     ],
   },
   {
-    key: "order-management",
-
+    key: "refund-management",
     title: "Refund Requests",
     icon: <CgNotes />,
     isDropdown: true,
@@ -84,7 +83,7 @@ export const sidebarItems = [
     
     title: "Categories Setup",
     SubHeading: "Product management",
-    key: "product-management",
+    key: "category-management",
     icon: <TbCategory2 />,
     isDropdown: true,
     subItems: [
@@ -97,6 +96,8 @@ export const sidebarItems = [
   {
     title: "Brand",
     icon: <FaStar />,
+    key:"brand-management",
+
     isDropdown: true,
     subItems: [
       { title: "Add New", link: "/addnewbrand" },
@@ -105,12 +106,16 @@ export const sidebarItems = [
   },
   {
     title: "Product Attribute Setup",
+    key:"product-attribute",
+
     icon: <FaNetworkWired />,
     link: "/productattributesetup",
     isDropdown: false,
   },
   {
     title: "In-house Products",
+    key:"inhouse-product",
+
     icon: <FaWarehouse />,
     isDropdown: true,
     subItems: [
@@ -135,6 +140,8 @@ export const sidebarItems = [
   },
   {
     title: "Vendor Products",
+    key:"vendor-product",
+
     icon: <AiOutlineSpotify />,
     isDropdown: true,
     subItems: [
@@ -154,7 +161,7 @@ export const sidebarItems = [
 
   {
     SubHeading: "Promotion management",
-    key: "promotion-management",
+    key: "banner-setup",
 
     title: "Banner Setup",
 
@@ -165,6 +172,8 @@ export const sidebarItems = [
 
   {
     title: "Offers & Deals",
+    key:"offer-and-deals",
+
     icon: <BsFillPersonFill />,
     isDropdown: true,
     subItems: [
@@ -177,6 +186,8 @@ export const sidebarItems = [
 
   {
     title: "Notifications",
+    key:"notifications",
+
     icon: <IoIosNotifications />,
     isDropdown: true,
     subItems: [
@@ -187,6 +198,7 @@ export const sidebarItems = [
 
   {
     title: "Announcement",
+    key:"announcement",
 
     icon: <FaMicrophoneLines />,
     link: "/announcement",
@@ -195,16 +207,19 @@ export const sidebarItems = [
 
   {
     title: "Help and Support",
+    
     isDropdown: true,
     icon: <MdHealthAndSafety />,
     subItems: [
       {
         title: "Inbox",
+        key:"inbox",
         icon: <CiInboxOut />,
         link: "/indexmessage",
       },
       {
         title: "Messages",
+        key:"message",
         icon: <FaMessage />,
         link: "/messagesupport",
       },
@@ -217,10 +232,12 @@ export const sidebarItems = [
   },
 
   {
-    key: "reports-and-analysis",
+    
 
     SubHeading: "Reports & Analysis",
     title: "Sales & Transaction",
+    key:"sales-and-transaction",
+
     icon: <MdBarChart />,
     isDropdown: true,
     subItems: [
@@ -233,12 +250,14 @@ export const sidebarItems = [
 
   {
     title: "Product Report",
+     key:"product-report",
     icon: <MdOutlineBarChart />,
     link: "/productreport",
     isDropdown: false,
   },
   {
     title: "Order Report",
+     key:"order-report",
     icon: <ImStatsBars />,
     link: "/orderreport",
     isDropdown: false,
@@ -246,7 +265,7 @@ export const sidebarItems = [
 
   {
     title: "Customers",
-    key : "user-management",
+   key:"customer-management",
     SubHeading: "Customers",
     icon: <MdOutlineFolderZip />,
     isDropdown: true,
@@ -272,7 +291,7 @@ export const sidebarItems = [
   },
   {
     title: "Employees",
-    key:"employees-management",
+    key:"employee-management",
     // SubHeading: "Employee management",
     icon: <IoPersonOutline />,
     isDropdown: true,
@@ -283,7 +302,7 @@ export const sidebarItems = [
   },
   {
     title: "Subscribers",
-    key:"subscriber",
+    key:"subscribers",
     SubHeading: "Subscriber",
     icon: <IoMdPerson />,
     link: "/subscriberlist",
@@ -292,7 +311,7 @@ export const sidebarItems = [
 
   {
     title: "Business Setup",
-    key:"system-settings",
+    key:"business-settings",
     SubHeading: "System Setup",
     icon: <TbWorld />,
     isDropdown: true,
@@ -305,7 +324,7 @@ export const sidebarItems = [
   {
     title: "System settings",
     // SubHeading: "System Setup",
-
+     key:"system-setup",
     icon: <IoSettingsOutline />,
     isDropdown: true,
     subItems: [
@@ -316,6 +335,8 @@ export const sidebarItems = [
   },
   {
     title: "3rd Party",
+    key:"thirdparty",
+
     icon: <FaKey />,
     isDropdown: true,
     subItems: [
@@ -325,6 +346,7 @@ export const sidebarItems = [
   },
   {
     title: "Pages & Media",
+     key:"pages-and-media",
     icon: <BsReverseLayoutSidebarInsetReverse />,
     isDropdown: true,
     subItems: [

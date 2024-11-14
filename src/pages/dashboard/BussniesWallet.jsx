@@ -84,8 +84,8 @@ const BusinessAnalytics = () => {
         <div className="col-sm-3 col-lg-2">
           <a className="business-analytics get-view-by-onclick card">
             <h5 className="business-analytics__subtitle">Total Stores</h5>
-            {/* <h2 className="business-analytics__title">{businessAnalytics.totalStores}</h2> */}
-            <h2 className="business-analytics__title">0</h2>
+            <h2 className="business-analytics__title">{businessAnalytics.totalStores}</h2>
+            {/* <h2 className="business-analytics__title">0</h2> */}
             <img
               src="https://6valley.6amtech.com/public/assets/back-end/img/total-stores.png"
               width="30"
@@ -98,8 +98,8 @@ const BusinessAnalytics = () => {
         <div className="col-sm-3 col-lg-2">
           <a className="business-analytics card">
             <h5 className="business-analytics__subtitle">Total Products</h5>
-            {/* <h2 className="business-analytics__title">{businessAnalytics.totalProducts}</h2> */}
-            <h2 className="business-analytics__title">0</h2>
+            <h2 className="business-analytics__title">{businessAnalytics.totalProducts}</h2>
+            {/* <h2 className="business-analytics__title">0</h2> */}
             <img
               src="https://6valley.6amtech.com/public/assets/back-end/img/total-product.png"
               width="30"
@@ -112,9 +112,9 @@ const BusinessAnalytics = () => {
         <div className="col-sm-3 col-lg-2">
           <a className="business-analytics card">
             <h5 className="business-analytics__subtitle">Total Customers</h5>
-            {/* <h2 className="business-analytics__title">{businessAnalytics.totalCustomers
-            }</h2> */}
-            <h2 className="business-analytics__title">0</h2>
+            <h2 className="business-analytics__title">{businessAnalytics.totalCustomers
+            }</h2>
+            {/* <h2 className="business-analytics__title">0</h2> */}
             <img
               src="https://6valley.6amtech.com/public/assets/back-end/img/total-customer.png"
               width="30"
@@ -134,8 +134,8 @@ const BusinessAnalytics = () => {
               />
               <h6 className="order-stats__subtitle">Pending</h6>
             </div>
-            {/* <span className="order-stats__title">{businessAnalytics.ordersByStatus.pending}</span> */}
-            <span className="order-stats__title">0</span>
+            <span className="order-stats__title">{businessAnalytics.ordersByStatus.pending}</span>
+            {/* <span className="order-stats__title">0</span> */}
           </a>
         </div>
         <div className="col-sm-3 col-lg-2">
@@ -148,8 +148,8 @@ const BusinessAnalytics = () => {
               />
               <h6 className="order-stats__subtitle">Confirmed</h6>
             </div>
-            {/* <span className="order-stats__title">{businessAnalytics.ordersByStatus.confirmed}</span> */}
-            <span className="order-stats__title">0</span>
+            <span className="order-stats__title">{businessAnalytics.ordersByStatus.confirmed}</span>
+            {/* <span className="order-stats__title">0</span> */}
           </a>
         </div>
         <div className="col-sm-3 col-lg-2">
@@ -162,8 +162,8 @@ const BusinessAnalytics = () => {
               />
               <h6 className="order-stats__subtitle">Packaging</h6>
             </div>
-            {/* <span className="order-stats__title">{businessAnalytics.ordersByStatus.packaging}</span> */}
-            <span className="order-stats__title">0</span>
+            <span className="order-stats__title">{businessAnalytics.ordersByStatus.packaging}</span>
+            {/* <span className="order-stats__title">0</span> */}
           </a>
         </div>
         <div className="col-sm-3 col-lg-2">
