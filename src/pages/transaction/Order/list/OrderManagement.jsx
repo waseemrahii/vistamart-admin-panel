@@ -243,11 +243,11 @@ const OrderManagement = ({ status, title }) => {
                           to={`/orderdetail/${order?._id}`}
                           icon={FaEye}
                         />
-                        {/* <ActionButton
+                        <ActionButton
                             onClick={() => handleDeleteOrder(order?._id)}
                             icon={FaTrash}
                             label="Delete"
-                          /> */}
+                          />
                       </td>
                     </tr>
                   ))

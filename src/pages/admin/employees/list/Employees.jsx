@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { getAuthData } from "../../../../utils/authHelper";
 import apiConfig from "../../../../config/apiConfig";
 import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
-// const ApiUrl = apiConfig.admin
 const ApiUrl = `${apiConfig.admin}`;
 
 const EmployeeList = () => {

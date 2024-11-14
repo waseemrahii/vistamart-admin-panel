@@ -246,7 +246,7 @@ import TableList from "../../../../../components/FormInput/TableList";
 import { Link } from "react-router-dom";
 import apiConfig from "../../../../../config/apiConfig";
 import Switcher from "../../../../../components/FormInput/Switcher";
-import { FiEye, FiTrash } from "react-icons/fi";
+import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
 
 const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {} }) => {
   const dispatch = useDispatch();
@@ -415,6 +415,13 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
                         title="View"
                       >
                         <FiEye />
+                      </Link>
+                      <Link
+                        to={`/product/${product?._id}`}
+                        className="btn border-primary text-primary"
+                        title="Edit"
+                      >
+                        <FiEdit />
                       </Link>
                       <button
                         className="btn btn-sm border-red-400 text-red-400 hover:bg-red-500 hover:text-white"

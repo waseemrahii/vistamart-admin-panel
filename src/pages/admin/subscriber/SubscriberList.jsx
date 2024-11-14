@@ -100,7 +100,7 @@ const SubscriberList = () => {
                   <tr>
                     <th>SL</th>
                     <th scope="col">Email</th>
-                    <th>Subscription date</th>
+                    {/* <th>Subscription date</th> */}
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -111,7 +111,7 @@ const SubscriberList = () => {
                         <td>{index + 1}</td>
                         <td>{subscriber.email}</td>
                         {console.log(" create date", createAt)}
-                        <td>{new Date(createAt).toLocaleString()}</td>
+                        {/* <td>{new Date(createAt).toLocaleString()}</td> */}
                         <td>
                           <ActionButton
                             onClick={() => handleDelete(subscriber._id)}

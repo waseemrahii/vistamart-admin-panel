@@ -247,7 +247,7 @@ export const sidebarItems = [
   {
     title: "Customers",
     key : "user-management",
-    SubHeading: "User management",
+    SubHeading: "Customers",
     icon: <MdOutlineFolderZip />,
     isDropdown: true,
     subItems: [
@@ -261,6 +261,7 @@ export const sidebarItems = [
   {
     title: "Delivery Man",
     icon: <MdGroups2 />,
+    key : "delivery-management",
     isDropdown: true,
     subItems: [
       { title: "Add New", link: "/addnewdelivery" },
@@ -271,8 +272,8 @@ export const sidebarItems = [
   },
   {
     title: "Employees",
-    key:"employee-managementt",
-    SubHeading: "Employee management",
+    key:"employees-management",
+    // SubHeading: "Employee management",
     icon: <IoPersonOutline />,
     isDropdown: true,
     subItems: [

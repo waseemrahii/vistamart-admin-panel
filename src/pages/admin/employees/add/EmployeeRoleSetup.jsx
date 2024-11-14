@@ -123,7 +123,8 @@ const EmployeeRoleSetup = () => {
         'System Settings',
         'Employee management',
         'Reports And Analysis',
-        // 'Customer management',
+        'Customer management',
+        'Delivery management',
     ];
     return (
         <div className="content container-fluid">
@@ -230,7 +231,6 @@ const EmployeeRoleSetup = () => {
                                     <th>SL</th>
                                     <th>Role name</th>
                                     <th>Modules</th>
-                                    <th>Created at</th>
                                     {/* <th>Status</th> */}
                                     <th className="text-center">Action</th>
                                 </tr>
@@ -242,7 +242,6 @@ const EmployeeRoleSetup = () => {
                                         <td>{role.name}</td>
                                         <td className='w-80'>{Array.isArray(role.modules) ? role.modules.join(', ') : ''}</td>
 
-                                        <td>{new Date(role.createdAt).toLocaleString()}</td> {/* Format date */}
                                         {/* <td>
                                             <label className="switcher">
                                                 <input

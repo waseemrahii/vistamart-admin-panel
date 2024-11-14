@@ -155,7 +155,7 @@ const Sidebar = ({ toggleSidebar }) => {
 
   useEffect(() => {
     if (!user) return; // Prevent further execution if user data is not available
-    console.log("user ====", user)  
+    // console.log("user ====", user)  
     const role = user?.role?.name || "admin";
 
     // Filter sidebar items based on role
@@ -171,7 +171,8 @@ const Sidebar = ({ toggleSidebar }) => {
           item.title !== "3rd Party" &&
           item.title !== "Business Setup" &&
           item.title !== "System settings" &&
-          item.title !== "Customers" &&
+          // item.title !== "Customers" &&
+          item.title !== "Delivery-man" &&
           item.title !== "Subscribers"
         );
       }

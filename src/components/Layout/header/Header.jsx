@@ -1,21 +1,22 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { FaGlobe, FaCommentDots, FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/slices/admin/authSlice";
+import { getAuthData } from "../../../utils/authHelper";
 
 
-const Header = ({ user, handleLogout }) => {
+const Header = ({ handleLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+  const { user } = useMemo(() => getAuthData(), []); // Empty array to ensure it only runs once
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
   const handleUserLogout = () => {
     dispatch(logout());
     handleLogout(); // Logout and redirect to login page
@@ -49,9 +50,8 @@ const Header = ({ user, handleLogout }) => {
             <div className="relative" id="dropdown">
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
                 {/* <img src={user?.vendorImage || "man.jpg"} alt="User" className="w-8 h-8 rounded-full" /> */}
-                <span className="ml-2">{user?.name || "Employee"}</span>
+                <span className="ml-2">{user?.role?.name || "Employee"}</span>
               </div>
-
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50">
                   <div className="flex gap-2 p-4">

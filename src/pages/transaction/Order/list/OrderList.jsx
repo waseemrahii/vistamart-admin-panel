@@ -8,6 +8,8 @@ import {
   FaChevronRight,
   FaChevronLeft,
   FaSortDown,
+  FaTrashAlt,
+  FaTrash,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -266,12 +268,14 @@ const OrderList = () => {
                         icon={FaEye} // Pass dynamic icon
                         className="ml-4"
                       />
-                      {/* <button
-                          className="btn bg-red-300 text-white btn-sm ml-2"
-                          onClick={() => handleDeleteOrder(order._id)}
+                      <button
+                          className="btn border-red-300 text-red-400 btn-sm ml-2 "
+
+                             style={{color:"red"}}
+                           onClick={() => handleDeleteOrder(order._id)}
                         >
-                          <FaTrashAlt size={18} />
-                        </button>  */}
+                          <FaTrash size={18} />
+                        </button> 
                     </td>
                   </tr>
                 ))}
