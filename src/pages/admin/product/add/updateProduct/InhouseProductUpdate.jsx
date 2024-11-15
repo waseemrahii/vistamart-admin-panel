@@ -126,13 +126,30 @@ const InhouseProductUpdate = () => {
            JSON.stringify(images) !== JSON.stringify(initialImages);
   };
 
+  // const handleChange = (e) => {
+  //   const { name, value, type, checked } = e.target;
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // };
+
+
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+		const { name, value, type, checked } = e.target;
+	  
+		setFormData((prev) => ({
+		  ...prev,
+		  [name]: type === "checkbox" 
+			? checked 
+			: (["price", "discountAmount", "taxAmount", "discount"].includes(name) 
+				? parseInt(value, 10) || 0 
+				: value),
+		  // Reset dependent fields if parent category changes
+		  ...(name === "category" && { subCategory: null, subSubCategory: null }),
+		  ...(name === "subCategory" && { subSubCategory: null }),
+		}));
+	  };
 
   const handleDescriptionChange = (value) => {
     setFormData((prevFormData) => ({
