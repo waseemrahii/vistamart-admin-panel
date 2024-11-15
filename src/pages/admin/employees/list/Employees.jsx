@@ -190,6 +190,7 @@ const ApiUrl = `${apiConfig.admin}`;
 //           },
 //         });
 
+//          console.log("emplyeee===",response)
 //         if (response.status === 200) {
 //           const formattedEmployees = response.data.doc.map(emp => ({
 //             id: emp?._id,
@@ -367,6 +368,32 @@ const EmployeeList = () => {
     fetchEmployees();
   }, []);
 
+  
+  const handleDelete = async (employeeId) => {
+    const { isConfirmed } = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to delete this employee?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (isConfirmed) {
+      try {
+        const { token } = getAuthData();
+        await axios.delete(`${ApiUrl}/employees/${employeeId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setEmployees(employees.filter(emp => emp.id !== employeeId));
+        toast.success("Employee deleted successfully!");
+      } catch (error) {
+        console.error("Error deleting employee:", error);
+        toast.error("Failed to delete employee!");
+      }
+    }
+  };
   const columns = [
     { key: "index", label: "SL", render: (_, index) => index + 1 },
     { key: "name", label: "Name" },

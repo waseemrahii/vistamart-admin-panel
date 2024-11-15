@@ -68,7 +68,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="text-center mb-5">
             <h1 className="text-3xl font-bold">Sign in</h1>
-            <span className="text-gray-500">(Admin Login)</span>
+            {/* <span className="text-gray-500">(Admin Login)</span> */}
           </div>
           <div className="form-group">
             <label className="input-label" htmlFor="email">
@@ -76,9 +76,9 @@ const LoginPage = ({ setIsLoggedIn }) => {
             </label>
             <input
               type="email"
-              className="form-control form-control-lg mb-4 p-3 rounded border border-gray-300 w-full"
+              className="form-control form-control-lg mb-4 p-3 rounded border border-gray-300 outline-none w-full"
               id="email"
-              placeholder="admin23@mail.com"
+              placeholder="Email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -86,15 +86,17 @@ const LoginPage = ({ setIsLoggedIn }) => {
             />
           </div>
           <div className="form-group">
-            <label className="input-label" htmlFor="password">
+            <label className="input-label " htmlFor="password">
               Password
             </label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                className="form-control form-control-lg mb-4 p-3 rounded border border-gray-300 w-full"
+                className="form-control form-control-lg mb-4 p-3 rounded border border-gray-300 w-full
+                outline-none
+                "
                 id="password"
-                placeholder="test12345"
+                placeholder="Password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

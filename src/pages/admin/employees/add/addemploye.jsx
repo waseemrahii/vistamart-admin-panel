@@ -33,6 +33,7 @@ const AddEmployee = () => {
   const [roles, setRoles] = useState([]); // State for roles
   const [loadingRoles, setLoadingRoles] = useState(true); // Loading state for roles
   const API_URL = `${apiConfig.admin}/roles`;
+  const API_EMP = `${apiConfig.admin}/employees`;
  // Fetch roles with token
  useEffect(() => {
   const fetchRoles = async () => {
@@ -97,7 +98,7 @@ const AddEmployee = () => {
       const { token } = getAuthData();
 
       const response = await axios.post(
-        API_URL,
+        API_EMP,
         employeeData,
         {
           headers: {
@@ -107,7 +108,7 @@ const AddEmployee = () => {
         }
       );
 
-      console.log("response=====", response)
+      // console.log("response=====", response)
       if (response.status === 201) {
         toast.success("Employee added successfully!");
         setFormData({

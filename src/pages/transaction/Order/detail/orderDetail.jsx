@@ -197,41 +197,42 @@ const OrderDetails = () => {
                   </thead>
                   <tbody>
                   {(products && products?.length > 0) ? (
-  products?.map((product, index) => (
-    <tr className="hover:bg-gray-100" key={product?._id}>
+  products?.map((item, index) => (
+    <tr className="hover:bg-gray-100" key={item?.product?._id}>
       <td className="px-4 py-2 text-center">{index + 1}</td>
       <td className="px-4 py-2 w-full">
         <div className="flex items-center whitespace-nowrap">
-          <img
-            src={
-              product?.thumbnail
-                ? `{product.thumbnail}`
-                : fallbackImage
-            }
-            alt={product?.name}
-            className="w-10 h-10 object-cover rounded mr-3"
-            onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
-          />
+        <img
+  src={
+    item?.product?.thumbnail
+      ? `${apiConfig.bucket}/${item.product.thumbnail}`
+      : fallbackImage
+  }
+  alt={item?.product?.name || "Product Image"}
+  className="w-10 h-10 object-cover rounded mr-3"
+  onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
+/>
+
           <div>
-            <div>{product?.name}</div>
-            <div>Qty: {product?.qty}</div>
+            <div>{item?.product?.name}</div>
+            <div>Qty: {item?.quantity}</div>
             <div>
-              Unit price: PKR{product?.price} (Tax:  {product?.taxAmount}%)
+              Unit price: PKR{item?.product?.price} (Tax:  {item?.product?.taxAmount}%)
             </div>
           </div>
         </div>
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{product?.price}
+        PKR{item?.product?.price}
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{product?.taxAmount}
+        PKR{item?.product?.taxAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{product?.discountAmount}
+        PKR{item?.product?.discountAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{(product?.price + product?.taxAmount)}
+        PKR{(item?.product?.price +item?.product?.taxAmount)}
       </td>
     </tr>
   ))

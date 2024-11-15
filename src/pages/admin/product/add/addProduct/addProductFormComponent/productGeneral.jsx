@@ -124,7 +124,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             />
           </div>
           {/* Sub-Category */}
-          <div className="flex flex-col px-2">
+          {/* <div className="flex flex-col px-2">
             <FormSelect
               label="Sub-Category"
               name="subCategory"
@@ -141,10 +141,31 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                   : [{ value: "", label: "Not Sub-Category Found" }]
               }
             />
-          </div>
+          </div> */}
+          <div className="flex flex-col px-2">
+  <FormSelect
+    label="Sub-Category"
+    name="subCategory"
+    value={formData.subCategory} // Corrected the key to match its singular form
+    onChange={(e) =>
+      setFormData({ ...formData, subCategory: e.target.value })
+    }
+    options={
+      filteredSubCategories.length > 0
+        ? filteredSubCategories.map((subCategory) => ({
+            value: subCategory._id, // Ensure you're setting the correct _id here
+            label: subCategory.name,
+          }))
+        : []
+    }
+  
+    disabled={filteredSubCategories.length === 0} // Disable if no options are available
+  />
+</div>
+
 
           {/* Sub-Sub-Category */}
-          <div className="flex flex-col px-2">
+          {/* <div className="flex flex-col px-2">
             <FormSelect
               label="Sub-Sub-Category"
               name="subSubCategory"
@@ -159,7 +180,25 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                   : [{ value: "", label: "Not Sub-Sub-Category Found" }]
               }
             />
-          </div>
+          </div> */}
+
+<div className="flex flex-col px-2">
+  <FormSelect
+    label="Sub-Sub-Category"
+    name="subSubCategory"
+    value={formData.subSubCategory}
+    onChange={handleChange}
+    options={
+      filteredSubSubCategories.length > 0
+        ? filteredSubSubCategories.map((subSubCategory) => ({
+            value: subSubCategory._id, // Ensure correct field here
+            label: subSubCategory.name,
+          }))
+        : [] // Leave empty array if no options are available
+    }
+  />
+</div>
+
           {/* Brand */}
           <div className="flex flex-col px-2">
             <FormSelect

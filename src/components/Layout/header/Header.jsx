@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/slices/admin/authSlice";
 import { getAuthData } from "../../../utils/authHelper";
+import apiConfig from "../../../config/apiConfig";
 
 
 const Header = ({ handleLogout }) => {
@@ -49,16 +50,21 @@ const Header = ({ handleLogout }) => {
           <div className="right flex items-center space-x-4">
             <div className="relative" id="dropdown">
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
+              {/* <img
+  src={user?.image ? `${apiConfig.bucket}/${user?.image}` : "https://cdn.vectorstock.com/i/1000x1000/23/85/courier-checks-parcels-list-boxes-for-sending-vector-13222385.webp"}
+  className="w-15 h-10"
+  alt="admin"
+/> */}
                 {/* <img src={user?.vendorImage || "man.jpg"} alt="User" className="w-8 h-8 rounded-full" /> */}
                 <span className="ml-2 " style={{fontWeight:"500", textTransform:"uppercase"}}>{user?.role?.name || "Employee"}</span>
               </div>
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50">
+                <div className="absolute right-0 mt-2 w-66 bg-white border rounded-lg shadow-lg z-50">
                   <div className="flex gap-2 p-4">
                   {/* <img
-  src={user?.vendorImage ? `${apiConfig.bucket}/${user.}` : "https://cdn.vectorstock.com/i/1000x1000/23/85/courier-checks-parcels-list-boxes-for-sending-vector-13222385.webp"}
-  className="w-10 h-10"
-  alt="seller"
+  src={user?.image ? `${apiConfig.bucket}/${user?.image}` : "https://cdn.vectorstock.com/i/1000x1000/23/85/courier-checks-parcels-list-boxes-for-sending-vector-13222385.webp"}
+  className="w-12 h-10"
+  alt="admin"
 /> */}
 
                     <div>

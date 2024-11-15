@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 
 const EmployeeRoleSetup = () => {
-    const API_URL = `${apiConfig.admin}/roles`;
+    const API_URL = `${apiConfig.admin}/roles/`;
     const { token } = getAuthData();
     const [roles, setRoles] = useState([]);
     const [selectedModules, setSelectedModules] = useState([]);
@@ -115,13 +115,13 @@ const EmployeeRoleSetup = () => {
     };
 
     const availableModules = [
-        'dashboard',
+        'Dashboard',
         'Order management',
         'Refund management',
         'Category management',
         'Brand management',
         'Product attribute',
-        'Inhouse Product ',
+        'Inhouse Product',
         'Vendor management',
         'Vendor product',
         'Banner setup',
@@ -137,7 +137,6 @@ const EmployeeRoleSetup = () => {
         'Delivery management',
         'Employee management',
         'Subscribers',
-        
         'Business setup',
         'System setup',
         'ThirdParty',

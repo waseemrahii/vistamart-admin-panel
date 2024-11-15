@@ -5,7 +5,7 @@ import LoadingSpinner from "../../components/LoodingSpinner/LoadingSpinner";
 import apiConfig from '../../config/apiConfig';
 // import { getAuthData } from '../../utils/authHelper';
 
-const ApiUrl = `${apiConfig.transaction}`;
+const ApiUrl = `${apiConfig.admin}`;
 
 const BusinessAnalytics = () => {
   
@@ -17,7 +17,7 @@ const BusinessAnalytics = () => {
     async function walletAnalytics(){
       try {
         const token = getToken();
-        const response  =await axios.get(`${ApiUrl}/admin-wallet/analytics` ,{
+        const response  =await axios.get(`${ApiUrl}/business-analytics` ,{
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,6 +39,7 @@ const BusinessAnalytics = () => {
     // if(loading) {
     //   return  <LoadingSpinner/>
     // }
+    console.log("business analytics",businessAnalytics)
   return (
     <div className="card-body snipcss-ti2xq">
       <div className="row flex-between align-items-center g-2 mb-3">
@@ -71,8 +72,8 @@ const BusinessAnalytics = () => {
         <div className="col-sm-3 col-lg-2">
           <a className="business-analytics card">
             <h5 className="business-analytics__subtitle">Total order</h5>
-            {/* <h2 className="business-analytics__title">{businessAnalytics.totalOrders}</h2> */}
-            <h2 className="business-analytics__title">0</h2>
+            <h2 className="business-analytics__title">{businessAnalytics.totalOrders}</h2>
+            {/* <h2 className="business-analytics__title">0</h2> */}
             <img
               src="https://6valley.6amtech.com/public/assets/back-end/img/all-orders.png"
               width="30"
