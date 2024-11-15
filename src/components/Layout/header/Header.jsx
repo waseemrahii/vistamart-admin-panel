@@ -50,7 +50,7 @@ const Header = ({ handleLogout }) => {
             <div className="relative" id="dropdown">
               <div className="flex items-center cursor-pointer" onClick={toggleDropdown}>
                 {/* <img src={user?.vendorImage || "man.jpg"} alt="User" className="w-8 h-8 rounded-full" /> */}
-                <span className="ml-2">{user?.role?.name || "Employee"}</span>
+                <span className="ml-2 " style={{fontWeight:"500", textTransform:"uppercase"}}>{user?.role?.name || "Employee"}</span>
               </div>
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg z-50">

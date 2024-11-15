@@ -74,115 +74,256 @@ const UpdateVendor = () => {
     fetchVendor();
   }, [id, backendUrl]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true); // Start loading when form is submitted
-    const uploadedKeys = [];
+
+
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     setLoading(true); // Start loading on form submission
+
+//     const { token } = getAuthData();
+//     const uploadedKeys = [];
+    
+//     // Extract files from formData
+//     const { logo, banner, vendorImage } = formData;
+    
+//     // Prepare files for upload: filter for new files, keep existing URLs for unchanged
+//     const filesToUpload = [
+//         { file: logo, name: 'logo', initialUrl: logoPreview },
+//         { file: banner, name: 'banner', initialUrl: bannerPreview },
+//         { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
+//     ];
+    
+//     // Filter only files that are new (File objects) and not existing URLs
+//     const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
+    
+//     try {
+//         // Get upload URLs for new files
+//         const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
+//             getUploadUrl(fileObj.file.type, "vendors")
+//         ));
+        
+//         // Upload each new file and save the resulting keys
+//         for (let i = 0; i < validFiles.length; i++) {
+//             const uploadConfig = uploadConfigs[i];
+//             const file = validFiles[i].file;
+//             await uploadImageToS3(uploadConfig.url, file); // Pass only the URL and file
+//             uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
+//         }
+        
+//         // Construct vendor data, using uploaded keys or existing URLs for unchanged images
+//         const vendorData = {
+//             ...formData,
+//             logo: uploadedKeys.find(key => key.name === 'logo')?.key || logoPreview,
+//             banner: uploadedKeys.find(key => key.name === 'banner')?.key || bannerPreview,
+//             vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || vendorPreview,
+//         };
+
+//         // Update the vendor data on the server
+//         const response = await axiosInstance.put(
+//             `${apiConfig.seller}/vendors/${id}`, // Ensure this URL is correct
+//             vendorData,
+//             {
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                     Authorization: `Bearer ${token}`,
+//                 },
+//             }
+//         );
+
+//         if (response.data.doc) {
+//             toast.success("Vendor updated successfully!");
+//             // Clear form and previews
+//             setFormData({
+//                 firstName: "",
+//                 lastName: "",
+//                 phoneNumber: "",
+//                 email: "",
+//                 password: "",
+//                 shopName: "",
+//                 address: "",
+//                 vendorImage: null,
+//                 logo: null,
+//                 banner: null,
+//             });
+//             setLogoPreview(null);
+//             setBannerPreview(null);
+//             setVendorPreview(null);
+//             navigate("/venderlist"); // Redirect on success
+//         }
+//     } catch (error) {
+//         console.error("Error updating vendor:", error);
+//         toast.error("Failed to update vendor!");
+//     } finally {
+//         setLoading(false); // Stop loading
+//     }
+// };
+
+// const handleSubmit = async (event) => {
+//   event.preventDefault();
+//   setLoading(true); // Start loading on form submission
+
+//   const { token } = getAuthData();
+//   const uploadedKeys = [];
   
-    // // Validate password
-    // if (!validatePassword(formData.password)) {
-    //   toast.error("Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character (e.g., 123Abs@)");
-    //   setLoading(false); // Stop loading on validation failure
-    //   return;
-    // }
+//   // Extract files from formData
+//   const { logo, banner, vendorImage } = formData;
+    
+//   // Prepare files for upload: filter for new files, keep existing URLs for unchanged
+//   const filesToUpload = [
+//       { file: logo, name: 'logo', initialUrl: logoPreview },
+//       { file: banner, name: 'banner', initialUrl: bannerPreview },
+//       { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
+//   ];
+//   console.log("files to upaldo ", filesToUpload)
+//   // Filter only files that are new (File objects) and not existing URLs
+//   const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
   
-    const { token } = getAuthData();
-    // Get files from formData
-    const logoFile = formData.logo || null;
-    const bannerFile = formData.banner || null;
-    const vendorFile = formData.vendorImage || null;
-  
-    console.log("logoFile", logoFile);
-    console.log("bannerFile", bannerFile);
-    console.log("vendorFile", vendorFile);
-  
-    try {
-      // Check if the files are valid before calling getUploadUrl
-      const filesToUpload = [
-        { file: logoFile, name: 'logo' },
-        { file: bannerFile, name: 'banner' },
-        { file: vendorFile, name: 'vendorImage' },
-      ];
-  
-      // Filter out null or undefined files
-      const validFiles = filesToUpload.filter(fileObj => fileObj.file);
-  
-      // If there are no valid files, do not proceed
-      if (validFiles.length === 0) {
-        toast.error("No valid images to upload.");
-        setLoading(false);
-        return;
-      }
-  
-      // Get upload URLs for each valid file
+//   try {
+//       // Get upload URLs for new files
+//       const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
+//           getUploadUrl(fileObj.file.type, "vendors")
+//       ));
+      
+//       // Upload each new file and save the resulting keys
+//       for (let i = 0; i < validFiles.length; i++) {
+//           const uploadConfig = uploadConfigs[i];
+//           const file = validFiles[i].file;
+//           await uploadImageToS3(uploadConfig.url, file); // Pass only the URL and file
+//           uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
+//       }
+      
+//       // Construct vendor data, using uploaded keys for changed images or keeping existing URLs for unchanged images
+//       const vendorData = {
+//           ...formData,
+//           logo: uploadedKeys.find(key => key.name === 'logo')?.key || logoPreview,
+//           banner: uploadedKeys.find(key => key.name === 'banner')?.key || bannerPreview,
+//           vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || vendorPreview,
+//       };
+
+//       // Update the vendor data on the server
+//       const response = await axiosInstance.put(
+//           `${apiConfig.seller}/vendors/${id}`, // Ensure this URL is correct
+//           vendorData,
+//           {
+//               headers: {
+//                   "Content-Type": "application/json",
+//                   Authorization: `Bearer ${token}`,
+//               },
+//           }
+//       );
+
+//       if (response.data.doc) {
+//           toast.success("Vendor updated successfully!");
+//           // Clear form and previews
+//           setFormData({
+//               firstName: "",
+//               lastName: "",
+//               phoneNumber: "",
+//               email: "",
+//               password: "",
+//               shopName: "",
+//               address: "",
+//               vendorImage: null,
+//               logo: null,
+//               banner: null,
+//           });
+//           setLogoPreview(null);
+//           setBannerPreview(null);
+//           setVendorPreview(null);
+//           navigate("/venderlist"); // Redirect on success
+//       }
+//   } catch (error) {
+//       console.error("Error updating vendor:", error);
+//       toast.error("Failed to update vendor!");
+//   } finally {
+//       setLoading(false); // Stop loading
+//   }
+// };
+
+
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  setLoading(true); // Start loading on form submission
+
+  const { token } = getAuthData();
+  const uploadedKeys = [];
+
+  // Extract files from formData
+  const { logo, banner, vendorImage } = formData;
+
+  // Prepare files for upload: filter for new files, keep existing URLs for unchanged
+  const filesToUpload = [
+      { file: logo, name: 'logo', initialUrl: logoPreview },
+      { file: banner, name: 'banner', initialUrl: bannerPreview },
+      { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
+  ];
+
+  // Filter only files that are new (File objects) and not existing URLs
+  const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
+
+  try {
+      // Get upload URLs for new files
       const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
-        getUploadUrl(fileObj.file?.type, "vendors")
+          getUploadUrl(fileObj.file.type, "vendors")
       ));
-  
-      // Upload files
+
+      // Upload each new file and save the resulting keys
       for (let i = 0; i < validFiles.length; i++) {
-        const uploadConfig = uploadConfigs[i];
-        const file = validFiles[i].file;
-        const uploadedKey = await uploadImageToS3(uploadConfig, file);
-        uploadedKeys.push(uploadedKey);
+          const uploadConfig = uploadConfigs[i];
+          const file = validFiles[i].file;
+          await uploadImageToS3(uploadConfig.url, file); // Pass only the URL and file
+          uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
       }
-  
-      const successfulUploads = uploadedKeys.filter((key) => key !== null);
-  
-      if (successfulUploads.length < validFiles.length) {
-        await deleteUploadedImages(successfulUploads);
-        toast.error("Image upload failed, deleted previously uploaded images.");
-        setLoading(false);
-        return;
-      }
-  
+
+      // Construct vendor data, using uploaded keys for changed images or keeping existing URLs for unchanged images
       const vendorData = {
-        ...formData,
-        logo: successfulUploads[0] || formData.logo,
-        banner: successfulUploads[1] || formData.banner,
-        vendorImage: successfulUploads[2] || formData.vendorImage,
+          ...formData,
+          logo: uploadedKeys.find(key => key.name === 'logo')?.key || logoPreview, // Use uploaded key or existing preview
+          banner: uploadedKeys.find(key => key.name === 'banner')?.key || bannerPreview,
+          vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || vendorPreview,
       };
-  
+
+      // Update the vendor data on the server
       const response = await axiosInstance.put(
-        `${apiConfig.seller}/vendors/${id}`,
-        vendorData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+          `${apiConfig.seller}/vendors/${id}`, // Ensure this URL is correct
+          vendorData,
+          {
+              headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+              },
+          }
       );
-  
+
       if (response.data.doc) {
-        toast.success("Vendor updated successfully!");
-        setFormData({
-          firstName: "",
-          lastName: "",
-          phoneNumber: "",
-          email: "",
-          password: "",
-          shopName: "",
-          address: "",
-          vendorImage: null,
-          logo: null,
-          banner: null,
-        });
-        setLogoPreview(null);
-        setBannerPreview(null);
-        setVendorPreview(null);
-        event.target.reset();
-        navigate("/venderlist"); // Redirect after success
+          toast.success("Vendor updated successfully!");
+          // Clear form and previews
+          setFormData({
+              firstName: "",
+              lastName: "",
+              phoneNumber: "",
+              email: "",
+              password: "",
+              shopName: "",
+              address: "",
+              vendorImage: null,
+              logo: null,
+              banner: null,
+          });
+          setLogoPreview(null);
+          setBannerPreview(null);
+          setVendorPreview(null);
+          navigate("/venderlist"); // Redirect on success
       }
-    } catch (error) {
+  } catch (error) {
       console.error("Error updating vendor:", error);
-      const errorMessage = error.response?.data?.message || "Failed to update vendor!";
-      toast.error(errorMessage);
-    } finally {
-      setLoading(false); // Stop loading after submission
-    }
-  };
-  
+      toast.error("Failed to update vendor!");
+  } finally {
+      setLoading(false); // Stop loading
+  }
+};
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];

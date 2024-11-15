@@ -409,7 +409,7 @@ const EmployeeList = () => {
               <ActionButton
                 to="/addemploye"
                 className="px-4 py-2 rounded-md"
-                label="Add Banner"
+                label="Add Employee"
               />
             </>
           }

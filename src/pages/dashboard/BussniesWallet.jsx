@@ -8,6 +8,7 @@ import apiConfig from '../../config/apiConfig';
 const ApiUrl = `${apiConfig.transaction}`;
 
 const BusinessAnalytics = () => {
+  
   const getToken = () => localStorage.getItem('token');
   const [businessAnalytics, setBusinessAnalytics] = useState() ;
 
