@@ -19,7 +19,6 @@ const OrderDetails = () => {
   const { orders, status, error } = useSelector((state) => state.vendorOrder);
   const navigate = useNavigate(); // Initialize useNavigate hook
 
-    // console.log("order in component ------", orders)
   const [showModal, setShowModal] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(true);
   const fallbackImage = "/image-place-holder.png"; // Replace with the path to your fallback image
@@ -29,7 +28,6 @@ const OrderDetails = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    // console.log('Order details:', orders); // Check if order data is populated
   }, [orders]);
   const printInvoice = () => {
     window.print();
@@ -88,7 +86,6 @@ const OrderDetails = () => {
     return <div>Error fetching orders details: {error}</div>;
   }
  const Orders = orders.find((order) => order._id === id);
-//  console.log("orderdtail====", Orders)
  // Check if orders exists
   if (!orders) {
     return <div>No orders details found.</div>;
@@ -104,7 +101,6 @@ const OrderDetails = () => {
     shippingAddress,
     billingAddress,
   } = Orders;
-  console.log("order status ====", Orders)
   return (
     <>
       <div className="bg-[#F9F9FB] w-full px-4 py-8">
@@ -148,7 +144,6 @@ const OrderDetails = () => {
                 <span
                   className={`bg-green-100 font-bold p-1 rounded border text-primary`}
                 >
-                  {/* {console.log("orderStatus====", orderStatus)} */}
                   {status}
                 </span>
               </h1>

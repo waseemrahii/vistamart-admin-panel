@@ -57,8 +57,6 @@ const SubCategoriess = () => {
     async (e) => {
       e.preventDefault();
       try {
-        // Prepare data for submission
-        // console.log("formdata ====", formData);
 
         // Check if we are in edit mode
         if (editMode && !formData?.id) {
@@ -74,8 +72,6 @@ const SubCategoriess = () => {
             priority: formData.priority,
           },
         };
-        // console.log("data to submitedd", dataToSubmit);
-        // Dispatch create or update action
         await dispatch(
           editMode
             ? updateSubCategory(dataToSubmit)
@@ -91,7 +87,6 @@ const SubCategoriess = () => {
         resetForm();
         await loadData();
       } catch (error) {
-        console.error("Submit Error:", error);
         Swal.fire("Error!", "Failed to process the request.", "error");
       }
     },
@@ -126,7 +121,6 @@ const SubCategoriess = () => {
   );
 
   const handleEdit = useCallback((subCategory) => {
-    console.log("subcategory ----", subCategory);
     setFormData({
       id: subCategory?._id,
       name: subCategory?.name,

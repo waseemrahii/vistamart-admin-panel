@@ -187,7 +187,7 @@ function AllRoutes() {
         <Route path="/employeedit/:id" element={<UpdateEmployeeRole />} />
         <Route path="/addemploye" element={<AddEmployee />} />
         <Route path="/employeelist" element={<EmployeeList />} />
-        <Route path="/employeedit/:id" element={<UpdateEmployee />} />
+        <Route path="/employeesdit/:id" element={<UpdateEmployee />} />
         <Route path="/view/:id" element={<EmployeeDetails />} />
         <Route path="/subscriberlist" element={<SubscriberList />} />
         <Route path="/systemsetup" element={<SystemSetup />} />

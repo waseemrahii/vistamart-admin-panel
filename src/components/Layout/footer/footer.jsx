@@ -9,7 +9,7 @@ const Footer = () => {
       <div className=" flex justify-center flex-wrap gap-2  lg:flex-row lg:justify-between md:mx-8  items-center my-6">
         <div className="text-nowrap ">VistaMart CMS. Copyright@2024</div>
         <div className=" flex justify-center flex-col md:flex-row gap-4">
-          <div>
+          {/* <div>
             <Link
               to={"/businesssetup"}
               className="flex items-center text-nowrap gap-2"
@@ -17,7 +17,7 @@ const Footer = () => {
               <IoSettings />
               <h1>Bussniess Setup</h1>
             </Link>
-          </div>
+          </div> */}
           <div>
             <Link
               to={"/profileinformation"}

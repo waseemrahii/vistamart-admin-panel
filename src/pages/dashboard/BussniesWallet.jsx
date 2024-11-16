@@ -39,7 +39,6 @@ const BusinessAnalytics = () => {
     // if(loading) {
     //   return  <LoadingSpinner/>
     // }
-    console.log("business analytics",businessAnalytics)
   return (
     <div className="card-body snipcss-ti2xq">
       <div className="row flex-between align-items-center g-2 mb-3">

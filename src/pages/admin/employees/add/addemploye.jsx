@@ -34,6 +34,9 @@ const AddEmployee = () => {
   const [loadingRoles, setLoadingRoles] = useState(true); // Loading state for roles
   const API_URL = `${apiConfig.admin}/roles`;
   const API_EMP = `${apiConfig.admin}/employees`;
+     // Password validation regex: 8-16 characters, uppercase, lowercase, number, special character
+     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+
  // Fetch roles with token
  useEffect(() => {
   const fetchRoles = async () => {
@@ -65,7 +68,12 @@ const AddEmployee = () => {
 }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    if (!passwordRegex.test(formData.password)) {
+      toast.error(
+        "Password must be 8-16 characters long and include uppercase, lowercase, number, and special character."
+      );
+      return;
+    }
     try {
       const employeeData = {
         name: formData.name,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const LoadingGifCard = () => {
   const [loaderGif, setLoaderGif] = useState(
-    'https://6valley.6amtech.com/storage/app/public/company/2022-04-23-62640d298e373.png'
+    'loader1.gif'
   );
 
   const handleFileChange = (event) => {
@@ -18,7 +18,7 @@ const LoadingGifCard = () => {
       <div className="p-3 bg-white shadow-md flex items-center gap-2">
         <h5 className="mb-0 text-sm font-bold flex items-center gap-2 capitalize">
           <img
-            src="https://6valley.6amtech.com/public/assets/back-end/img/footer-logo.png"
+            src="/footer-logo.png"
             alt="Loading GIF Icon"
           />
           Loading gif

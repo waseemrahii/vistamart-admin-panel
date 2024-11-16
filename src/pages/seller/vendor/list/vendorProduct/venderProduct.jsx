@@ -51,7 +51,6 @@ const VenderProduct = () => {
 
   const handleToggleFeatured = (product) => {
     if (typeof product.isFeatured !== 'boolean') {
-    //   console.error(`Product ID: ${product._id} does not have a defined isFeatured property.`);
       return; // Prevent further action if the property is not defined
     }
   

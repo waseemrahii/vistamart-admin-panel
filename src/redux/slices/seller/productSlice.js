@@ -20,7 +20,6 @@ export const fetchProducts = createAsyncThunk(
           Authorization: `Bearer ${token}`
         }
       });
-      console.log("Fetched products data:", response);
       return response.data; // Return the entire response data
     } catch (error) {
       return rejectWithValue(ErrorMessage(error)); // Utilize ErrorMessage utility

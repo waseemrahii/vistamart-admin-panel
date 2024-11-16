@@ -36,6 +36,10 @@ const UpdateEmployee = () => {
   const [roles, setRoles] = useState([]);
   const [loadingRoles, setLoadingRoles] = useState(true);
 
+   // Password validation regex: 8-16 characters, uppercase, lowercase, number, special character
+   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+
+
   // Fetch roles
   useEffect(() => {
     const fetchRoles = async () => {
@@ -55,7 +59,6 @@ const UpdateEmployee = () => {
           setRoles(formattedRoles);
         }
       } catch (error) {
-        console.error("Error fetching roles:", error);
         toast.error("Failed to fetch roles!");
       } finally {
         setLoadingRoles(false);
@@ -84,14 +87,14 @@ const UpdateEmployee = () => {
             phoneNumber: employee.phoneNumber,
             identifyType: employee.identifyType,
             identifyNumber: employee.identifyNumber,
-            role: employee.roleId,
+            role: employee?.role?._id,
+            
           });
           setImagePreview(`${apiConfig.bucket}/${employee?.image}`); // Set image URL for preview
         setIdentityImagePreview(`${apiConfig.bucket}/${employee?.identityImage}`); // Set identity image URL for preview
      
         }
       } catch (error) {
-        console.error("Error fetching employee data:", error);
         toast.error("Failed to fetch employee data!");
       }
     };
@@ -101,66 +104,76 @@ const UpdateEmployee = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // Additional validation before submission
+    if (!passwordRegex.test(formData.password)) {
+      toast.error(
+        "Password must be 8-16 characters long and include uppercase, lowercase, number, and special character."
+      );
+      return;
+    }
+    const { token } = getAuthData(); // Get authorization token
+    const uploadedKeys = []; // To store keys of uploaded images
+  
+    // Files to upload: Include new files and keep existing URLs for unchanged files
+    const filesToUpload = [
+      { file: selectedFile, name: 'image', initialUrl: imagePreview },
+      { file: selectedIdentityFile, name: 'identityImage', initialUrl: identityImagePreview },
+    ];
+  
+    // Filter files that are new (File objects)
+    const validFiles = filesToUpload.filter((fileObj) => fileObj.file instanceof File);
   
     try {
-      const employeeData = {
-        name: formData.name,
-        email: formData.email,
-        phoneNumber: formData.phoneNumber,
-        password: formData.password,
-        identifyType: formData.identifyType,
-        identifyNumber: formData.identifyNumber,
-        role: formData.role,
-      };
-
-      let imageKey = null;
-      if (selectedFile) {
-        const uploadUrlResponse = await getUploadUrl(selectedFile.type, 'employees');
-        imageKey = uploadUrlResponse.key;
-        await uploadImageToS3(uploadUrlResponse.url, selectedFile);
-      }
-
-      if (selectedIdentityFile) {
-        const identityUploadUrlResponse = await getUploadUrl(selectedIdentityFile.type, 'identity');
-        const identityImageKey = identityUploadUrlResponse.key;
-        await uploadImageToS3(identityUploadUrlResponse.url, selectedIdentityFile);
-        employeeData.identityImage = identityImageKey;
-      }
-
-      if (imageKey) {
-        employeeData.image = imageKey;
-      }
-
-      const { token } = getAuthData();
-
-      const response = await axios.put(
-        `/employees/${id}`,
-        employeeData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      // Get upload URLs for new files
+      const uploadConfigs = await Promise.all(
+        validFiles.map((fileObj) => getUploadUrl(fileObj.file.type, fileObj.name === 'identityImage' ? 'identity' : 'employees'))
       );
-
+  
+      // Upload each file and collect their keys
+      for (let i = 0; i < validFiles.length; i++) {
+        const uploadConfig = uploadConfigs[i];
+        const file = validFiles[i].file;
+        await uploadImageToS3(uploadConfig.url, file);
+        uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
+      }
+      // Construct employee data
+      const employeeData = {
+        ...formData,
+        image: uploadedKeys.find((key) => key.name === 'image')?.key || (typeof imagePreview === 'string' ? imagePreview.split(`${apiConfig.bucket}/`)[1] : null),
+        identityImage: uploadedKeys.find((key) => key.name === 'identityImage')?.key || (typeof identityImagePreview === 'string' ? identityImagePreview.split(`${apiConfig.bucket}/`)[1] : null),
+      };
+  
+      // Send the data to the server
+      const response = await axios.put(`${ApiUrl}/employees/${id}`, employeeData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
       if (response.status === 200) {
         toast.success("Employee updated successfully!");
       }
     } catch (error) {
-      console.error("Error updating employee:", error);
       toast.error(error.response?.data?.message || "Failed to update employee!");
     }
   };
-
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+  
+
+    if (name === "identifyNumber" && (value.length < 0 || value.length > 16)) {
+      formData.error("Identification number must be between 1-16 characters.");
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -283,13 +296,15 @@ const UpdateEmployee = () => {
         <FormSection icon={<FiInfo className="mb-1" />} title="Identification">
           <div className="row p-4">
             <div className="col-lg-6">
-              <FormInput
+            <FormSelect
                 label="Identification Type"
                 name="identifyType"
-                type="text"
-                placeholder="Enter ID type (NID, Passport)"
                 value={formData.identifyType}
                 onChange={handleInputChange}
+                options={[
+                  { value: "nid", label: "NID" },
+                  { value: "passport", label: "Passport" },
+                ]}
                 required
               />
               <FormInput
@@ -326,7 +341,7 @@ const UpdateEmployee = () => {
             className="btn bg-primary text-white"
             style={{color:"white"}}
           >
-            Add Employee
+            Upate Employee
           </button>
         </div>
       </form>

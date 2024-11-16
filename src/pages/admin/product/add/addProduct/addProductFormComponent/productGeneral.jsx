@@ -21,11 +21,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   const { categories, subCategories, subSubCategories, brands } = useSelector(
     (state) => state.category
   );
-   console.log("formdata=====",formData)
-  // const [tags, setTags] = useState(
-  //   formData.tags ? formData.tags.split(",") : []
-  // );
-  // Use formData.tags directly as an array
+ 
   const [tags, setTags] = useState(
     (formData.tags || []).filter((tag) => tag.trim() !== "")
   );

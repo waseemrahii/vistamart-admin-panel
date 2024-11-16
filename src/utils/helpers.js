@@ -48,6 +48,8 @@ export const getUploadUrl = async (type, folder) => {
 
 
 // Modify getProductUploadUrl to accept a folder parameter
+
+
 export const getProductUploadUrl = async (type, folder) => {
      console.log("file ", type)
      console.log("folder to uplaod", folder)

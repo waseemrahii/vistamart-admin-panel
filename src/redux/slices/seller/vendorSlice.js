@@ -76,7 +76,6 @@ export const fetchVendorById = createAsyncThunk(
   async (vendorId, { rejectWithValue }) => {
     const { token } = getAuthData(); // Get the token from auth data
     try {
-      console.log("venodr id ", vendorId)
       const response = await axiosInstance.get(`${API_URL}/${vendorId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });

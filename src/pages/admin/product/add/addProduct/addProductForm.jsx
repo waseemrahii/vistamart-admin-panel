@@ -136,7 +136,6 @@ const AddNewProduct = () => {
 
     // Check if the uploadResult is null before destructuring
     if (!uploadResult) {
-      console.error("Image upload failed.");
       setLoading(false);
 
       return; // Exit the function if upload failed
@@ -167,7 +166,6 @@ const AddNewProduct = () => {
         }),
       };
 
-      console.log("Submitting Product Data:", productData);
 
       const response = await fetch(API_URL, {
         method: "POST",
@@ -203,7 +201,6 @@ const AddNewProduct = () => {
       navigate("/inhouseproductlist");
 
     } catch (error) {
-      console.error("Product creation failed:", error);
       Swal.fire({
         icon: "error",
         title: "Failed to create product",

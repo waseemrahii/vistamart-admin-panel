@@ -55,7 +55,6 @@ export const fetchOrderById = createAsyncThunk(
           Authorization: `Bearer ${token}`, // Include the token in the header
         },
       });
-      console.log("order in slice response  ====", response)
       return response.data.doc; // Assuming the response contains the order in data.doc
       
     } catch (error) {
