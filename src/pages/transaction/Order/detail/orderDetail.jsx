@@ -93,7 +93,7 @@ const OrderDetails = () => {
 
   const {
     customer,
-    vendors,
+    vendor,
     products,
     orderStatus,
     totalAmount,
@@ -101,6 +101,7 @@ const OrderDetails = () => {
     shippingAddress,
     billingAddress,
   } = Orders;
+  console.log("vendor =====", vendor)
   return (
     <>
       <div className="bg-[#F9F9FB] w-full px-4 py-8">
@@ -193,41 +194,41 @@ const OrderDetails = () => {
                   <tbody>
                   {(products && products?.length > 0) ? (
   products?.map((item, index) => (
-    <tr className="hover:bg-gray-100" key={item?.product?._id}>
+    <tr className="hover:bg-gray-100" key={item?._id}>
       <td className="px-4 py-2 text-center">{index + 1}</td>
       <td className="px-4 py-2 w-full">
         <div className="flex items-center whitespace-nowrap">
         <img
   src={
-    item?.product?.thumbnail
-      ? `${apiConfig.bucket}/${item.product.thumbnail}`
+    item?.thumbnail
+      ? `${apiConfig.bucket}/${item.thumbnail}`
       : fallbackImage
   }
-  alt={item?.product?.name || "Product Image"}
+  alt={item?.name || "Product Image"}
   className="w-10 h-10 object-cover rounded mr-3"
   onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
 />
 
           <div>
-            <div>{item?.product?.name}</div>
+            <div>{item?.name}</div>
             <div>Qty: {item?.quantity}</div>
             <div>
-              Unit price: PKR{item?.product?.price} (Tax:  {item?.product?.taxAmount}%)
+              Unit price: PKR{item?.price} (Tax:  {item?.taxAmount}%)
             </div>
           </div>
         </div>
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{item?.product?.price}
+        PKR{item?.price}
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{item?.product?.taxAmount}
+        PKR{item?.taxAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{item?.product?.discountAmount}
+        PKR{item?.discountAmount}
       </td>
       <td className="px-4 py-2 text-center">
-        PKR{(item?.product?.price +item?.product?.taxAmount)}
+        PKR{(item?.price +item?.taxAmount)}
       </td>
     </tr>
   ))
@@ -399,9 +400,9 @@ const OrderDetails = () => {
 
             <div className="mt-8">
               <h2 className="text-xl font-semibold mb-4">Vendor Information</h2>
-              {vendors && vendors.length > 0 ? (
-  vendors.map((vendor, index) => (
-    <div key={index} className="mb-4 p-4 bg-white rounded shadow-md">
+           
+  
+    <div  className="mb-4 p-4 bg-white rounded shadow-md">
       <h3 className="text-lg font-semibold">
         Name: {vendor?.firstName || "N/A"}
       </h3>
@@ -420,10 +421,6 @@ const OrderDetails = () => {
         </p>
       </div>
     </div>
-  ))
-) : (
-  <p>No vendors available</p>
-)}
 
             </div>
           </div>

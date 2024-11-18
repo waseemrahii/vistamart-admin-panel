@@ -40,7 +40,6 @@ const BrandUpdate = () => {
         await uploadImageToS3(url, imageFile);
         logoKey = key;
       } catch (error) {
-        console.error("Error uploading image:", error);
         toast.error("Failed to upload image");
         return;
       }
@@ -56,7 +55,6 @@ const BrandUpdate = () => {
       toast.success("Brand updated successfully!");
       navigate(`/brandlist`);
     } catch (error) {
-      console.error("Error updating brand:", error);
       toast.error(`Failed to update brand: ${error.message}`);
     }
   };

@@ -279,7 +279,7 @@ const UpdateEmployee = () => {
               />
             </div>
              
-            <div className="col-lg-6 mb-4 mb-lg-0">
+            {/* <div className="col-lg-6 mb-4 mb-lg-0">
               <FormInput
                 label="Password"
                 name="password"
@@ -289,7 +289,7 @@ const UpdateEmployee = () => {
                 onChange={handleInputChange}
                 required
               />
-            </div>
+            </div> */}
           </div>
         </FormSection>
 

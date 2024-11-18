@@ -29,7 +29,7 @@ const UpdateVendor = () => {
     lastName: "",
     phoneNumber: "",
     email: "",
-    password: "",
+    // password: "",
     shopName: "",
     address: "",
     vendorImage: null,
@@ -77,253 +77,7 @@ const UpdateVendor = () => {
 
 
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     setLoading(true); // Start loading on form submission
 
-//     const { token } = getAuthData();
-//     const uploadedKeys = [];
-    
-//     // Extract files from formData
-//     const { logo, banner, vendorImage } = formData;
-    
-//     // Prepare files for upload: filter for new files, keep existing URLs for unchanged
-//     const filesToUpload = [
-//         { file: logo, name: 'logo', initialUrl: logoPreview },
-//         { file: banner, name: 'banner', initialUrl: bannerPreview },
-//         { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
-//     ];
-    
-//     // Filter only files that are new (File objects) and not existing URLs
-//     const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
-    
-//     try {
-//         // Get upload URLs for new files
-//         const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
-//             getUploadUrl(fileObj.file.type, "vendors")
-//         ));
-        
-//         // Upload each new file and save the resulting keys
-//         for (let i = 0; i < validFiles.length; i++) {
-//             const uploadConfig = uploadConfigs[i];
-//             const file = validFiles[i].file;
-//             await uploadImageToS3(uploadConfig.url, file); // Pass only the URL and file
-//             uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
-//         }
-        
-//         // Construct vendor data, using uploaded keys or existing URLs for unchanged images
-//         const vendorData = {
-//             ...formData,
-//             logo: uploadedKeys.find(key => key.name === 'logo')?.key || logoPreview,
-//             banner: uploadedKeys.find(key => key.name === 'banner')?.key || bannerPreview,
-//             vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || vendorPreview,
-//         };
-
-//         // Update the vendor data on the server
-//         const response = await axiosInstance.put(
-//             `${apiConfig.seller}/vendors/${id}`, // Ensure this URL is correct
-//             vendorData,
-//             {
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     Authorization: `Bearer ${token}`,
-//                 },
-//             }
-//         );
-
-//         if (response.data.doc) {
-//             toast.success("Vendor updated successfully!");
-//             // Clear form and previews
-//             setFormData({
-//                 firstName: "",
-//                 lastName: "",
-//                 phoneNumber: "",
-//                 email: "",
-//                 password: "",
-//                 shopName: "",
-//                 address: "",
-//                 vendorImage: null,
-//                 logo: null,
-//                 banner: null,
-//             });
-//             setLogoPreview(null);
-//             setBannerPreview(null);
-//             setVendorPreview(null);
-//             navigate("/venderlist"); // Redirect on success
-//         }
-//     } catch (error) {
-//         console.error("Error updating vendor:", error);
-//         toast.error("Failed to update vendor!");
-//     } finally {
-//         setLoading(false); // Stop loading
-//     }
-// };
-
-// const handleSubmit = async (event) => {
-//   event.preventDefault();
-//   setLoading(true); // Start loading on form submission
-
-//   const { token } = getAuthData();
-//   const uploadedKeys = [];
-  
-//   // Extract files from formData
-//   const { logo, banner, vendorImage } = formData;
-    
-//   // Prepare files for upload: filter for new files, keep existing URLs for unchanged
-//   const filesToUpload = [
-//       { file: logo, name: 'logo', initialUrl: logoPreview },
-//       { file: banner, name: 'banner', initialUrl: bannerPreview },
-//       { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
-//   ];
-//   console.log("files to upaldo ", filesToUpload)
-//   // Filter only files that are new (File objects) and not existing URLs
-//   const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
-  
-//   try {
-//       // Get upload URLs for new files
-//       const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
-//           getUploadUrl(fileObj.file.type, "vendors")
-//       ));
-      
-//       // Upload each new file and save the resulting keys
-//       for (let i = 0; i < validFiles.length; i++) {
-//           const uploadConfig = uploadConfigs[i];
-//           const file = validFiles[i].file;
-//           await uploadImageToS3(uploadConfig.url, file); // Pass only the URL and file
-//           uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
-//       }
-      
-//       // Construct vendor data, using uploaded keys for changed images or keeping existing URLs for unchanged images
-//       const vendorData = {
-//           ...formData,
-//           logo: uploadedKeys.find(key => key.name === 'logo')?.key || logoPreview,
-//           banner: uploadedKeys.find(key => key.name === 'banner')?.key || bannerPreview,
-//           vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || vendorPreview,
-//       };
-
-//       // Update the vendor data on the server
-//       const response = await axiosInstance.put(
-//           `${apiConfig.seller}/vendors/${id}`, // Ensure this URL is correct
-//           vendorData,
-//           {
-//               headers: {
-//                   "Content-Type": "application/json",
-//                   Authorization: `Bearer ${token}`,
-//               },
-//           }
-//       );
-
-//       if (response.data.doc) {
-//           toast.success("Vendor updated successfully!");
-//           // Clear form and previews
-//           setFormData({
-//               firstName: "",
-//               lastName: "",
-//               phoneNumber: "",
-//               email: "",
-//               password: "",
-//               shopName: "",
-//               address: "",
-//               vendorImage: null,
-//               logo: null,
-//               banner: null,
-//           });
-//           setLogoPreview(null);
-//           setBannerPreview(null);
-//           setVendorPreview(null);
-//           navigate("/venderlist"); // Redirect on success
-//       }
-//   } catch (error) {
-//       console.error("Error updating vendor:", error);
-//       toast.error("Failed to update vendor!");
-//   } finally {
-//       setLoading(false); // Stop loading
-//   }
-// };
-
-
-
-// const handleSubmit = async (event) => {
-//   event.preventDefault();
-//   setLoading(true); // Start loading indicator
-
-//   const { token } = getAuthData();
-//   const uploadedKeys = [];
-
-//   // Extract files and initial URLs from formData
-//   const { logo, banner, vendorImage } = formData;
-
-//   // Files to upload: Include new files and keep existing URLs for unchanged files
-//   const filesToUpload = [
-//       { file: logo, name: 'logo', initialUrl: logoPreview },
-//       { file: banner, name: 'banner', initialUrl: bannerPreview },
-//       { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
-//   ];
-
-//   // Filter files that are new (File objects)
-//   const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
-
-//   try {
-//       // Get upload URLs for new files
-//       const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
-//           getUploadUrl(fileObj.file.type, "vendors")
-//       ));
-
-//       // Upload each file and collect their keys
-//       for (let i = 0; i < validFiles.length; i++) {
-//           const uploadConfig = uploadConfigs[i];
-//           const file = validFiles[i].file;
-//           await uploadImageToS3(uploadConfig.url, file);
-//           uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
-//       }
-
-//       // Construct vendor data
-//       const vendorData = {
-//           ...formData,
-//           logo: uploadedKeys.find(key => key.name === 'logo')?.key || (logo instanceof File ? null : logoPreview),
-//           banner: uploadedKeys.find(key => key.name === 'banner')?.key || (banner instanceof File ? null : bannerPreview),
-//           vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || (vendorImage instanceof File ? null : vendorPreview),
-//       };
-
-//       // Send the data to the server
-//       const response = await axiosInstance.put(
-//           `${apiConfig.seller}/vendors/${id}`, // Ensure this URL is correct
-//           vendorData,
-//           {
-//               headers: {
-//                   "Content-Type": "application/json",
-//                   Authorization: `Bearer ${token}`,
-//               },
-//           }
-//       );
-
-//       if (response.data.doc) {
-//           toast.success("Vendor updated successfully!");
-//           // Reset form and previews
-//           setFormData({
-//               firstName: "",
-//               lastName: "",
-//               phoneNumber: "",
-//               email: "",
-//               password: "",
-//               shopName: "",
-//               address: "",
-//               vendorImage: null,
-//               logo: null,
-//               banner: null,
-//           });
-//           setLogoPreview(null);
-//           setBannerPreview(null);
-//           setVendorPreview(null);
-//           navigate("/venderlist");
-//       }
-//   } catch (error) {
-//       console.error("Error updating vendor:", error);
-//       toast.error("Failed to update vendor!");
-//   } finally {
-//       setLoading(false); // Stop loading indicator
-//   }
-// };
 
 
 const handleSubmit = async (event) => {
@@ -388,7 +142,7 @@ const handleSubmit = async (event) => {
               lastName: "",
               phoneNumber: "",
               email: "",
-              password: "",
+              // password: "",
               shopName: "",
               address: "",
               vendorImage: null,
@@ -529,7 +283,7 @@ const handleSubmit = async (event) => {
                 required
               />
             </div>
-            <div className="col-lg-4">
+            {/* <div className="col-lg-4">
               <FormInput
                 label="Password"
                 name="password"
@@ -539,7 +293,7 @@ const handleSubmit = async (event) => {
                 onChange={handleInputChange}
                 required
               />
-            </div>
+            </div> */}
           </div>
         </FormSection>
 

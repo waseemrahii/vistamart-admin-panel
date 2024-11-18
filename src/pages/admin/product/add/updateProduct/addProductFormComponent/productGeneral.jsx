@@ -138,7 +138,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
         : []),
     ]}
   />
-</div>
+</div> 
 
           {/* Sub-Category */}
           {/* <div className="flex flex-col px-2">
