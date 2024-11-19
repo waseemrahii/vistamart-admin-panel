@@ -299,7 +299,7 @@ const AdmingEarning = () => {
                 <div className="flex justify-center mt-4">
                   <div className="w-32 h-32 bg-blue-500 rounded-full relative">
                     <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold">
-                      $221.7K+
+                      PKR 0
                     </div>
                   </div>
                 </div>
@@ -320,15 +320,13 @@ const AdmingEarning = () => {
             <div className="d-flex flex-wrap gap-3 align-items-center">
               <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
                 Total Earnings{" "}
-                <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-                  2
-                </span>
+             
               </h5>
 
               <div>
                 <button
                   type="button"
-                  className="rounded  px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-nowrap btn-block flex gap-2 "
+                  className="rounded  px-4 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
                   style={{
                     display: "flex",
                     color: "white",

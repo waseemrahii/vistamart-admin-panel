@@ -101,7 +101,6 @@ const OrderDetails = () => {
     shippingAddress,
     billingAddress,
   } = Orders;
-  console.log("vendor =====", vendor)
   return (
     <>
       <div className="bg-[#F9F9FB] w-full px-4 py-8">

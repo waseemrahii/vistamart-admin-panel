@@ -138,7 +138,7 @@ const OrderStatistic = () => {
         ticks: {
           stepSize: 100,
           callback: function (value) {
-            return `$${value}`;
+            return `PKR${value}`;
           },
         },
       },
@@ -154,7 +154,7 @@ const OrderStatistic = () => {
             if (label) {
               label += ": ";
             }
-            label += `$${context.raw}`;
+            label += `PKR${context.raw}`;
             return label;
           },
           footer: function (context) {
@@ -162,7 +162,7 @@ const OrderStatistic = () => {
             context.forEach((item) => {
               total += item.raw;
             });
-            return `Total: $${total}`;
+            return `Total: PKR${total}`;
           },
         },
         displayColors: true,
