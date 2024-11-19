@@ -61,39 +61,73 @@ const TableList = memo(
 
 
 
+///// second 
+//     useEffect(() => {
+//   // Filter data based on search query
+//   const filtered = searchQuery
+//     ? listData.filter((item) =>
+//         columns.some((col) => {
+//           if (col.key && item[col.key]) {
+//             return String(item[col.key])
+//               .toLowerCase()
+//               .includes(searchQuery.toLowerCase());
+//           }
+//           return false;
+//         })
+//       )
+//     : listData;
 
-    useEffect(() => {
-      // Filter data based on search query
-      const filtered = searchQuery
-        ? listData.filter((item) =>
-            columns.some((col) => {
-              if (col.key && item[col.key]) {
-                return String(item[col.key])
-                  .toLowerCase()
-                  .includes(searchQuery.toLowerCase());
-              }
-              return false;
-            })
-          )
-        : listData;
-    
-      // Sort filtered data
-      let sortedData = [...filtered];
-      if (sortConfig.key) {
-        sortedData.sort((a, b) => {
-          if (a[sortConfig.key] < b[sortConfig.key]) {
-            return sortConfig.direction === "ascending" ? -1 : 1;
-          }
-          if (a[sortConfig.key] > b[sortConfig.key]) {
-            return sortConfig.direction === "ascending" ? 1 : -1;
-          }
-          return 0;
-        });
-      }
-    
-      setFilteredData(sortedData);
-    }, [listData, searchQuery, sortConfig, columns]);
-    
+//   // Sort filtered data
+//   let sortedData = [...filtered];
+//   if (sortConfig.key) {
+//     sortedData.sort((a, b) => {
+//       if (a[sortConfig.key] < b[sortConfig.key]) {
+//         return sortConfig.direction === "ascending" ? -1 : 1;
+//       }
+//       if (a[sortConfig.key] > b[sortConfig.key]) {
+//         return sortConfig.direction === "ascending" ? 1 : -1;
+//       }
+//       return 0;
+//     });
+//   }
+
+//   setFilteredData(sortedData);
+// }, [listData, searchQuery, sortConfig, columns]);
+
+
+
+  // Filter and sort data based on `searchQuery`, `columns`, and `sortConfig`
+  useEffect(() => {
+    const filtered = searchQuery
+      ? listData.filter((item) =>
+          columns.some((col) => {
+            if (col.key && item[col.key]) {
+              return String(item[col.key])
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase());
+            }
+            return false;
+          })
+        )
+      : listData;
+
+    let sortedData = [...filtered];
+    if (sortConfig.key) {
+      sortedData.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === "ascending" ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === "ascending" ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+
+    setFilteredData(sortedData);
+    setCurrentPage(1); // Reset to the first page whenever the data changes
+  }, [listData, searchQuery, sortConfig, columns]);
+
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
     const handleSort = (key) => {

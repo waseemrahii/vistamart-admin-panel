@@ -181,15 +181,23 @@ const AddEmployee = () => {
         <FormSection icon={<FiInfo className="mb-1" />} title="Employee Information">
           <div className="row align-items-center p-4">
             <div className="col-lg-6 mb-4 mb-lg-0">
-              <FormInput
-                label="Name"
-                name="name"
-                type="text"
-                placeholder="Enter full name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
+            <FormInput
+  label="Name"
+  name="name"
+  type="text"
+  placeholder="Enter full name"
+  value={formData.name}
+  onChange={handleInputChange}
+  onKeyPress={(event) => {
+    const isValid = /^[a-zA-Z\s]*$/.test(event.key);
+    if (!isValid) {
+      event.preventDefault();
+    }
+  }}
+  required
+/>
+
+
               <FormInput
                 label="Email"
                 name="email"
