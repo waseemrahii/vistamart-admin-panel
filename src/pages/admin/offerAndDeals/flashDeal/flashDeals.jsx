@@ -110,9 +110,16 @@
 //     });
 //   };
 
-//   const filteredDeals = flashDeals.filter((deal) =>
-//     deal.title.toLowerCase().includes(searchQuery.toLowerCase())
-//   );
+//   // const filteredDeals = flashDeals.filter((deal) =>
+//   //   deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+//   // );
+
+
+//   const filteredDeals = Array.isArray(flashDeals)
+//   ? flashDeals.filter((deal) =>
+//       deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+//     )
+//   : [];
 
 //   const formatDate = (dateString) => {
 //     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -411,8 +418,8 @@ const FlashDeals = () => {
   };
   
   
-  const handleDelete = (id) => {
-    Swal.fire({
+  const handleDelete = async (id) => {
+    const confirmResult = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -420,17 +427,39 @@ const FlashDeals = () => {
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteFlashDeal(id));
-        Swal.fire("Deleted!", "Your flash deal has been deleted.", "success");
-      }
     });
+  
+    if (confirmResult.isConfirmed) {
+      try {
+        // Optimistically remove the deal from the local state or dispatch a Redux action
+        await dispatch(deleteFlashDeal(id)).unwrap();
+  
+        Swal.fire("Deleted!", "Your flash deal has been deleted.", "success");
+      } catch (error) {
+        Swal.fire("Error!", "Failed to delete flash deal. Please try again.", "error");
+      }
+    }
   };
+  
 
-  const filteredDeals = flashDeals.filter((deal) =>
-    deal.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredDeals = flashDeals.filter((deal) =>
+  //   deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
+  
+  
+
+  const filteredDeals = Array.isArray(flashDeals)
+  ? flashDeals.filter((deal) =>
+      deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  : Object.values(flashDeals).filter(
+      (deal) =>
+        typeof deal === "object" && // Ensure it's not the `products` array
+        deal.title &&
+        deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+
 
   return (
     <div className="content container-fluid">
