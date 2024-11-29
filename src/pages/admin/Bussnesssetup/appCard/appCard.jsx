@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import Switcher from '../../../../components/FormInput/Switcher';
 
-const AppDownloadInfoCard = () => {
+const AppDownloadInfoCard = ({ appLinks, onInputChange }) => {
   const [appStoreEnabled, setAppStoreEnabled] = useState(true);
   const [playStoreEnabled, setPlayStoreEnabled] = useState(true);
 
   const handleToggle = (store) => {
     if (store === 'appStore') {
       setAppStoreEnabled(!appStoreEnabled);
+      onInputChange("appStoreEnabled", !appStoreEnabled);  // Pass the change to the parent
     } else if (store === 'playStore') {
       setPlayStoreEnabled(!playStoreEnabled);
+      onInputChange("playStoreEnabled", !playStoreEnabled);  // Pass the change to the parent
     }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    onInputChange(name, value); // Pass the changed input value back to the parent
   };
 
   return (
@@ -37,29 +44,17 @@ const AppDownloadInfoCard = () => {
                     <img width="16" src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="Info" />
                   </span>
                 </span>
-
-                {/* <label className="flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={appStoreEnabled}
-                    onChange={() => handleToggle('appStore')}
-                    className="toggle-switch hidden"
-                  />
-                 
-                  <span className="w-10 h-5 bg-gray-300 rounded-full shadow-inner flex-shrink-0 transition-transform duration-200 relative">
-                    <span className={`absolute left-1 top-1 h-3 w-3 rounded-full bg-white transition-transform ${appStoreEnabled ? 'translate-x-5' : 'translate-x-0'}`} />
-                  </span>
-                </label> */}
                 <div className='ml-10'>
-                 <Switcher/>
-                 </div>
+                  <Switcher checked={appStoreEnabled} onChange={() => handleToggle('appStore')} />
+                </div>
               </div>
 
               <input
                 type="url"
-                name="app_store_download_url"
+                name="appleStoreLink"
                 className="form-input w-full p-2 border rounded"
-                value="https://vistamart.biz"
+                value={appLinks.appleStoreLink || ""}
+                onChange={handleInputChange}  // Bind the input field to handle changes
                 placeholder="Ex: https://www.apple.com/app-store/"
               />
             </div>
@@ -69,40 +64,28 @@ const AppDownloadInfoCard = () => {
           <div className="space-y-3">
             <div className="flex gap-2 items-center text-capitalize mb-3">
               <img width="22" src="https://6valley.6amtech.com/public/assets/back-end/img/play_store.png" alt="Play Store" />
-              Google play store:
+              Google Play Store:
             </div>
-
             <div className="bg-aliceblue p-3 rounded">
-              <div className="flex justify-between items-center gap-2 mb-2">
+              <div className="flex justify-between  items-center w-full gap-4 mb-2">
                 <span className="text-gray-700 text-sm font-medium flex gap-1 items-center">
                   Download link
-                  <span className="cursor-pointer" title="If enabled the Google Play Store will be visible in the website footer section">
+                  <span className="cursor-pointer" title="If enabled the download button from the Play Store will be visible in the Footer section">
                     <img width="16" src="https://6valley.6amtech.com/public/assets/back-end/img/info-circle.svg" alt="Info" />
                   </span>
                 </span>
-
-                {/* <label className="flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={playStoreEnabled}
-                    onChange={() => handleToggle('playStore')}
-                    className="toggle-switch hidden"
-                  />
-                  <span className="w-10 h-5 bg-gray-300 rounded-full shadow-inner flex-shrink-0 transition-transform duration-200 relative">
-                    <span className={`absolute left-1 top-1 h-3 w-3 rounded-full bg-white transition-transform ${playStoreEnabled ? 'translate-x-5' : 'translate-x-0'}`} />
-                  </span>
-                </label> */}
-                <div>
-                    <Switcher/>
+                <div className='ml-10'>
+                  <Switcher checked={playStoreEnabled} onChange={() => handleToggle('playStore')} />
                 </div>
               </div>
 
               <input
                 type="url"
-                name="play_store_download_url"
+                name="googlePlayStoreLink"
                 className="form-input w-full p-2 border rounded"
-                value="https://vistamart.biz"
-                placeholder="Ex: https://play.google.com/store/apps"
+                value={appLinks.googlePlayStoreLink || ""}
+                onChange={handleInputChange}  // Bind the input field to handle changes
+                placeholder="Ex: https://play.google.com/store"
               />
             </div>
           </div>

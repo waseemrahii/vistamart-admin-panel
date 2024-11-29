@@ -25,28 +25,28 @@ const BusinessSetupShop = () => {
       case "General":
         return <MaintenanceCard/>
         // return <ShippingSettings />;
-      case "PaymentOptions":
-        return <PaymentMethods />;
+      // case "PaymentOptions":
+      //   return <PaymentMethods />;
       case "Products":
         return <PaymentOption />;
-      case "PrioritySetup":
-        return <Priority />;
-      case "Orders":
-        return <OrderSettingsCard />;
-      case "Vendors":
-        return <BussnessVendorSetup />;
-      case "Customers":
-        return <CustomerSettings />;
-      case "DeliveryMen":
+      // case "PrioritySetup":
+      //   return <Priority />;
+      // case "Orders":
+      //   return <OrderSettingsCard />;
+      // case "Vendors":
+      //   return <BussnessVendorSetup />;
+      // case "Customers":
+      //   return <CustomerSettings />;
+      // case "DeliveryMen":
         return <DeliveryManSettings />;
       case "ShippingMethod":
         return <ShippingSettings />;
-      case "DeliveryRestriction":
-        return <BDeliverySettings />;
-      case "Invoice":
-        return <InvoiceSettings />;
+      // case "DeliveryRestriction":
+      //   return <BDeliverySettings />;
+      // case "Invoice":
+      //   return <InvoiceSettings />;
       default:
-        return <ShippingSettings />;
+        return <MaintenanceCard />;
     }
   };
 
@@ -85,7 +85,7 @@ const BusinessSetupShop = () => {
         </div>
       </div>
       <div className="inline-page-menu my-4">
-  <ul className="list-unstyled flex gap-4 p-2 text-nowrap w-96 md:w-full overflow-x-scroll md:overflow-x-hidden scroll-smooth ">
+  <ul className="list-unstyled flex gap-4 p-2 text-nowrap w-96 md:w-full overflow-x-scroll md:overflow-x-scroll scroll-smooth ">
     <li className={`${activeSection === "General" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
@@ -94,14 +94,14 @@ const BusinessSetupShop = () => {
         General
       </button>
     </li>
-    <li className={`text-capitalize ${activeSection === "PaymentOptions" ? "border-b-2 border-green-500" : ""}`}>
+    {/* <li className={`text-capitalize ${activeSection === "PaymentOptions" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
         onClick={() => setActiveSection("PaymentOptions")}
       >
         Payment options
       </button>
-    </li>
+    </li> */}
     <li className={`${activeSection === "Products" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
@@ -110,14 +110,14 @@ const BusinessSetupShop = () => {
         Products
       </button>
     </li>
-    <li className={`text-capitalize ${activeSection === "PrioritySetup" ? "border-b-2 border-green-500" : ""}`}>
+    {/* <li className={`text-capitalize ${activeSection === "PrioritySetup" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
         onClick={() => setActiveSection("PrioritySetup")}
       >
         Priority setup
       </button>
-    </li>
+    </li> */}
     <li className={`${activeSection === "Orders" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
@@ -126,30 +126,30 @@ const BusinessSetupShop = () => {
         Orders
       </button>
     </li>
-    <li className={`text-capitalize ${activeSection === "Vendors" ? "border-b-2 border-green-500" : ""}`}>
+    {/* <li className={`text-capitalize ${activeSection === "Vendors" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
         onClick={() => setActiveSection("Vendors")}
       >
         Vendors
       </button>
-    </li>
-    <li className={`text-capitalize ${activeSection === "Customers" ? "border-b-2 border-green-500" : ""}`}>
+    </li> */}
+    {/* <li className={`text-capitalize ${activeSection === "Customers" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
         onClick={() => setActiveSection("Customers")}
       >
         Customers
       </button>
-    </li>
-    <li className={`text-capitalize ${activeSection === "DeliveryMen" ? "border-b-2 border-green-500" : ""}`}>
+    </li> */}
+    {/* <li className={`text-capitalize ${activeSection === "DeliveryMen" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
         onClick={() => setActiveSection("DeliveryMen")}
       >
         Delivery men
       </button>
-    </li>
+    </li> */}
     <li className={`text-capitalize ${activeSection === "ShippingMethod" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
@@ -166,14 +166,14 @@ const BusinessSetupShop = () => {
         Delivery restriction
       </button>
     </li>
-    <li className={`text-capitalize ${activeSection === "Invoice" ? "border-b-2 border-green-500" : ""}`}>
+    {/* <li className={`text-capitalize ${activeSection === "Invoice" ? "border-b-2 border-green-500" : ""}`}>
       <button
         className="btn-link"
         onClick={() => setActiveSection("Invoice")}
       >
         Invoice
       </button>
-    </li>
+    </li> */}
   </ul>
 </div>
 

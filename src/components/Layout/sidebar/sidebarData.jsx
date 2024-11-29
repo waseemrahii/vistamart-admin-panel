@@ -311,48 +311,48 @@ export const sidebarItems = [
 
   {
     title: "Business Setup",
-    key:"business-settings",
+    key:"business-setup",
     SubHeading: "System Setup",
     icon: <TbWorld />,
     isDropdown: true,
     subItems: [
       { title: "Business Setup", link: "/businesssetup" },
-      // { title: "Business Setup", link: "/appsettings" },
+      // { title: "app  Setup", link: "/appsettings" },
       // { title: "Inhouse Shop", link: "/businessinhouse" },
     ],
   },
-  {
-    title: "System settings",
-    // SubHeading: "System Setup",
-     key:"system-setup",
-    icon: <IoSettingsOutline />,
-    isDropdown: true,
-    subItems: [
-      { title: "System Settings", link: "/systemsetups" },
-      { title: "Login Settings", link: "/loginsetups" },
-      // { title: "Themes & Addons", link: "/theemsetup" },
-    ],
-  },
-  {
-    title: "3rd Party",
-    key:"thirdparty",
+  // {
+  //   title: "System settings",
+  //   // SubHeading: "System Setup",
+  //    key:"system-setup",
+  //   icon: <IoSettingsOutline />,
+  //   isDropdown: true,
+  //   subItems: [
+  //     { title: "System Settings", link: "/systemsetups" },
+  //     { title: "Login Settings", link: "/loginsetups" },
+  //     { title: "Themes & Addons", link: "/theemsetup" },
+  //   ],
+  // },
+  // {
+  //   title: "3rd Party",
+  //   key:"thirdparty",
 
-    icon: <FaKey />,
-    isDropdown: true,
-    subItems: [
-      { title: "Payment Methods", link: "/thirdparty" },
-      { title: "Other Configurations", link: "/otherconfiguration" },
-    ],
-  },
+  //   icon: <FaKey />,
+  //   isDropdown: true,
+  //   subItems: [
+  //     { title: "Payment Methods", link: "/thirdparty" },
+  //     { title: "Other Configurations", link: "/otherconfiguration" },
+  //   ],
+  // },
   {
     title: "Pages & Media",
-     key:"pages-and-media",
+     key:"page-and-media",
     icon: <BsReverseLayoutSidebarInsetReverse />,
     isDropdown: true,
     subItems: [
+      { title: "Pages And Media", link: "/pagemedia" },
       { title: "Social Media Links", link: "/pagesocialmedia" },
-      { title: "Gallery", link: "/pagegallery" },
-      { title: "Vendor Registration", link: "/pagemedia" },
+      // { title: "Gallery", link: "/pagegallery" },
     ],
   },
 ];

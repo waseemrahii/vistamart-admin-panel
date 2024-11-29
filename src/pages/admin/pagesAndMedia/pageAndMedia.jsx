@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import SocialMedia from "./socialMedia/socialMedia";
-import HeaderMedia from "./headerMedia/headerMedia";
+import HeaderMedia from "./headerMedia/TermAndCondition";
 import BusinessProcess from "./businessProcess/businessProcess";
 import DownloadAppSection from "./dowloadApp/downloadApp";
 import FAQ from "./faq/Faq";
 import FaqList from "./faq/Faq";
+import TermsAndConditions from "./headerMedia/TermAndCondition";
+import Privacy from "./headerMedia/Privacy";
+import ReturnPolicy from "./headerMedia/ReturnPolicy";
+import CancellationPolicy from "./headerMedia/CancellationPolicy.JSX";
+import AboutUs from "./headerMedia/AboutUs";
+import RefundPolicy from "./headerMedia/RefundPolicy";
 
 const PageAndMedia = () => {
   const [currentTab, setCurrentTab] = useState("header"); // State to manage active tab
@@ -15,14 +21,18 @@ const PageAndMedia = () => {
 
   const renderContent = () => {
     switch (currentTab) {
-      case "header":
-        return <HeaderMedia />;
-      case "whysellwithus":
-        return <HeaderMedia />;
-      case "busnessproces":
-        return <BusinessProcess />;
-      case "downloadapp":
-        return <DownloadAppSection />;
+      case "Terms & Conditions":
+        return <TermsAndConditions />;
+      case "Privacy Policy":
+        return <Privacy />;
+      case "Return Policy":
+        return <ReturnPolicy />;
+      case "Cancellation Policy":
+        return <CancellationPolicy />;
+      case "Refund Policy":
+        return <RefundPolicy />;
+      case "About Us":
+        return <AboutUs />;
       case "FAQ":
         return <FaqList />;
       default:
@@ -36,9 +46,9 @@ const PageAndMedia = () => {
         <h2 className="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
           <img
             src="https://6valley.6amtech.com/public/assets/back-end/img/3rd-party.png"
-            alt="Vendor Registration"
+            alt="Pages"
           />{" "}
-          Vendor Registration
+          Pages
         </h2>
       </div>
 
@@ -47,76 +57,110 @@ const PageAndMedia = () => {
         <ul className="flex flex-col md:flex-row font-semibold md:items-center gap-4">
           <li
             className={`relative ${
-              currentTab === "header" ? "text-primary" : ""
+              currentTab === "Terms & Conditions" ? "text-primary" : ""
             }`}
           >
             <button
               className={`text-capitalize ${
-                currentTab === "header" ? "text-primary" : "text-gray-600"
+                currentTab === "Terms & Conditions" ? "text-primary" : "text-gray-600"
               }`}
-              onClick={() => handleTabChange("header")}
+              onClick={() => handleTabChange("Terms & Conditions")}
             >
-              Header
+              Terms & Conditions
             </button>
-            {currentTab === "header" && (
+            {currentTab === "Terms & Conditions" && (
               <span className="absolute -bottom-1 left-0 w-10 md:w-full  h-1 rounded bg-primary-dark"></span>
             )}
           </li>
 
           <li
             className={`relative ${
-              currentTab === "whysellwithus" ? "text-primary" : ""
+              currentTab === "Privacy Policy" ? "text-primary" : ""
             }`}
           >
             <button
               className={`text-capitalize ${
-                currentTab === "whysellwithus"
+                currentTab === "Privacy Policy"
                   ? "text-primary"
                   : "text-gray-600"
               }`}
-              onClick={() => handleTabChange("whysellwithus")}
+              onClick={() => handleTabChange("Privacy Policy")}
             >
-              Why Sell With Us
+            Privacy Policy
             </button>
-            {currentTab === "whysellwithus" && (
+            {currentTab === "Privacy Policy" && (
               <span className="absolute -bottom-1 left-0 w-10 md:w-full  h-1 rounded bg-primary-dark"></span>
             )}
           </li>
 
           <li
             className={`relative ${
-              currentTab === "busnessproces" ? "text-primary" : ""
+              currentTab === "Return Policy" ? "text-primary" : ""
             }`}
           >
             <button
               className={`text-capitalize ${
-                currentTab === "busnessproces"
+                currentTab === "Return Policy"
                   ? "text-primary"
                   : "text-gray-600"
               }`}
-              onClick={() => handleTabChange("busnessproces")}
+              onClick={() => handleTabChange("Return Policy")}
             >
-              Business Process
+              Return Policy
             </button>
-            {currentTab === "busnessproces" && (
+            {currentTab === "Return Policy" && (
               <span className="absolute -bottom-1 left-0 w-10 md:w-full  h-1 rounded bg-primary-dark"></span>
             )}
           </li>
 
           <li
             className={`relative ${
-              currentTab === "downloadapp" ? "text-primary" : ""
+              currentTab === "Cancellation Policy" ? "text-primary" : ""
             }`}
           >
             <button
               className={`text-capitalize ${
-                currentTab === "downloadapp" ? "text-primary" : "text-gray-600"
+                currentTab === "Cancellation Policy" ? "text-primary" : "text-gray-600"
               }`}
-              onClick={() => handleTabChange("downloadapp")}
+              onClick={() => handleTabChange("Cancellation Policy")}
             >
-              Download App
+              Cancellation Policy
             </button>
-            {currentTab === "downloadapp" && (
+            {currentTab === "Cancellation Policy" && (
+              <span className="absolute -bottom-1 left-0 w-10 md:w-full  h-1 rounded bg-primary-dark"></span>
+            )}
+          </li>
+          <li
+            className={`relative ${
+              currentTab === "Refund Policy" ? "text-primary" : ""
+            }`}
+          >
+            <button
+              className={`text-capitalize ${
+                currentTab === "Refund Policy" ? "text-primary" : "text-gray-600"
+              }`}
+              onClick={() => handleTabChange("Refund Policy")}
+            >
+              Refund  Policy
+            </button>
+            {currentTab === "Refund Policy" && (
+              <span className="absolute -bottom-1 left-0 w-10 md:w-full  h-1 rounded bg-primary-dark"></span>
+            )}
+          </li>
+          <li
+            className={`relative ${
+              currentTab === "About Us" ? "text-primary" : ""
+            }`}
+          >
+            <button
+              className={`text-capitalize ${
+                currentTab === "About Us" ? "text-primary" : "text-gray-600"
+              }`}
+              onClick={() => handleTabChange("About Us")}
+            >
+              About Us
+            </button>
+            {currentTab === "About Us" && (
               <span className="absolute -bottom-1 left-0 w-10 md:w-full  h-1 rounded bg-primary-dark"></span>
             )}
           </li>
