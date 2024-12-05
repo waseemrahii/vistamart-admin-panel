@@ -13,6 +13,7 @@ import { getUploadUrl, uploadImageToS3 } from "../../../utils/helpers";
 
 const AddNewBrand = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
+
   const [imagePreview, setImagePreview] = useState(null);
   const [brandName, setBrandName] = useState("");
   const [status, setStatus] = useState("inactive");
@@ -40,20 +41,58 @@ const AddNewBrand = () => {
     }
   }
 
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     setSelectedFile(file);
+  //     const objectUrl = URL.createObjectURL(file);
+  //     setImagePreview(objectUrl);
+
+  //     // const reader = new FileReader();
+  //     // reader.readAsDataURL(file);
+  //     // reader.onloadend = () => {
+  //     //   setImageBase64(reader.result);
+  //     // };
+  //   }
+  // };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-      const objectUrl = URL.createObjectURL(file);
-      setImagePreview(objectUrl);
+    const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
 
-      // const reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // reader.onloadend = () => {
-      //   setImageBase64(reader.result);
-      // };
+    if (!file) return;
+
+    // File Type Validation
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Invalid file type. Only JPG, PNG, and GIF are allowed.");
+      return;
     }
+
+    // File Size Validation
+    if (file.size > maxSizeInBytes) {
+      toast.error("File size exceeds 5MB limit.");
+      return;
+    }
+
+    // Set the selected file
+    setSelectedFile(file);
+
+    // Generate object URL for preview and set it
+    const objectUrl = URL.createObjectURL(file);
+    setImagePreview(objectUrl);
+
+    // Optional: Convert the image file to Base64 format
+    // const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    // reader.onloadend = () => {
+    //   setImageBase64(reader.result);
+    // };
+
+    // Revoke object URL when the component unmounts or file changes to avoid memory leaks
+    return () => URL.revokeObjectURL(objectUrl);
   };
+  // ------------------------------------
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +131,48 @@ const AddNewBrand = () => {
     setImageAltText("");
   };
 
+  const handleBrandNameChange = (e) => {
+    const value = e.target.value;
+    const alphabetRegex = /^[a-zA-Z\s]*$/; // Regex for alphabetic characters and spaces
+
+    if (!alphabetRegex.test(value)) {
+      toast.error("Brand Name must contain only alphabetic characters.");
+      return;
+    }
+
+    if (value.length > 50) {
+      toast.error("Brand Name must not exceed 50 characters.");
+      return;
+    }
+
+    setBrandName(value);
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!brandName.trim()) {
+  //     toast.error("Brand Name is required.");
+  //     return;
+  //   }
+
+  //   const data = {
+  //     name: brandName,
+  //   };
+
+  //   dispatch(createBrand(data))
+  //     .unwrap()
+  //     .then(() => {
+  //       toast.success("Brand added successfully!");
+  //       dispatch(fetchBrands());
+  //       setTimeout(() => {
+  //         navigate("/brandlist");
+  //       }, 3000);
+  //     })
+  //     .catch((err) => {
+  //       toast.error(`Error adding brand: ${err.message}`);
+  //     });
+  // };
   return (
     <div className="content container-fluid snipcss-AwJk2">
       <ToastContainer /> {/* Toast notifications container */}
@@ -171,7 +252,7 @@ const AddNewBrand = () => {
                             *
                           </span> (EN){" "}
                         </label>
-                        <input
+                        {/* <input
                           type="text"
                           name="name-en"
                           className="form-control outline-none hover:border-primary"
@@ -180,6 +261,17 @@ const AddNewBrand = () => {
                           required
                           value={brandName}
                           onChange={(e) => setBrandName(e.target.value)}
+                        /> */}
+
+                        <input
+                          type="text"
+                          name="brandName"
+                          className="form-control outline-none hover:border-primary"
+                          id="name-en"
+                          placeholder="Ex: LUX"
+                          required
+                          value={brandName}
+                          onChange={handleBrandNameChange}
                         />
                       </div>
                     </div>
