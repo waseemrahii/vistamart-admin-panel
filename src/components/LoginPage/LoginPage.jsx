@@ -146,7 +146,9 @@ const LoginPage = ({ setIsLoggedIn }) => {
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         </form>
       <div className="text-center mt-4">
-  <Link to="/forgot-password" className="text-green-500 hover:underline">
+  <Link to="/forgot-password" className="text-green-500 hover:underline"
+  style={{color:"white"}}
+  >
     Forgot Password?
   </Link>
 </div>

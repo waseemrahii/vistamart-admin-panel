@@ -105,12 +105,12 @@ const UpdateEmployee = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Additional validation before submission
-    if (!passwordRegex.test(formData.password)) {
-      toast.error(
-        "Password must be 8-16 characters long and include uppercase, lowercase, number, and special character."
-      );
-      return;
-    }
+    // if (!passwordRegex.test(formData.password)) {
+    //   toast.error(
+    //     "Password must be 8-16 characters long and include uppercase, lowercase, number, and special character."
+    //   );
+    //   return;
+    // }
     const { token } = getAuthData(); // Get authorization token
     const uploadedKeys = []; // To store keys of uploaded images
   

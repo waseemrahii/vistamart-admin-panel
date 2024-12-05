@@ -55,6 +55,7 @@
 
 
 // React Component for WebsiteHeaderLogoCard
+
 import React, { useState } from "react";
 import { FaUpload } from "react-icons/fa";
 import { getUploadUrl, uploadImageToS3 } from "../../../../utils/helpers";
@@ -64,27 +65,35 @@ const WebsiteHeaderLogoCard = ({ headerLogo, onImageChange }) => {
   const [loading, setLoading] = useState(false);
 
   const handleFileChange = async (event) => {
+    console.log("Event Target:", event.target); // Check if event.target is the correct input element
+    console.log("Files:", event.target.files); // Ensure event.target.files is not undefined
+  
     const file = event.target.files[0];
-    if (!file) return;
-
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+  
     try {
       setLoading(true);
-
+  
       // Fetch the upload URL configuration from the server
       const uploadConfig = await getUploadUrl(file.type, "business");
-
+  
+      console.log("Upload Config:", uploadConfig); // Check if the URL config is valid
+  
       if (!uploadConfig || !uploadConfig.url) {
         throw new Error("Failed to get a valid upload URL.");
       }
-
+  
       // Upload the image to S3 using the provided upload URL
       const uploadResponse = await uploadImageToS3(uploadConfig.url, file);
-
+  
       if (uploadResponse) {
         // Construct the uploaded URL using the S3 file key
         const uploadedUrl = `${uploadConfig.baseUrl}/${uploadResponse.key}`;
         setLogo(uploadedUrl);
-
+  
         // Notify the parent component about the change
         if (onImageChange) {
           onImageChange(uploadedUrl);
@@ -98,6 +107,8 @@ const WebsiteHeaderLogoCard = ({ headerLogo, onImageChange }) => {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="border border-gray-300 rounded-lg shadow-lg h-[49vh] w-full md:w-2/4">

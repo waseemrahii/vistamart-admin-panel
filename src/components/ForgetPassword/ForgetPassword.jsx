@@ -1,14 +1,29 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import apiConfig from "../../config/apiConfig"; // Importing apiConfig
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
 
-  const handlePasswordReset = (e) => {
+  const handlePasswordReset = async (e) => {
     e.preventDefault();
-    // Placeholder for password reset logic
-    toast.success("Password reset link has been sent to your email");
+    try {
+        
+      const response = await axios.post(
+        `${apiConfig.admin}/employees/forgot-password`,
+        { email }
+      );
+      if (response.data.status === "success") {
+        toast.success("Password reset link has been sent to your email");
+      } else {
+        toast.error(response.data.message || "Error sending reset link");
+      }
+    } catch (error) {
+      toast.error("Something went wrong, please try again later");
+      console.error(error);
+    }
   };
 
   return (
@@ -34,8 +49,8 @@ const ForgotPassword = () => {
           <button
             type="submit"
             className="btn btn-block p-3 rounded bg-primary hover:bg-green-400 hover:text-black text-white font-semibold"
-           style={{color:"white"}}
-          >
+          style= {{color:"white"}}
+         >
             Send Reset Link
           </button>
         </form>
@@ -45,34 +60,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-
-
-
-// import React from 'react';
-
-// const ForgotPassword = () => {
-//   return (
-//     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-//       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
-//         <h1 className="text-2xl font-bold mb-4">Forgot Password</h1>
-//         <p className="mb-4">Enter your email address to reset your password.</p>
-//         <form>
-//           <input
-//             type="email"
-//             placeholder="Email"
-//             className="w-full mb-4 p-3 rounded border border-primary outline-none"
-//           />
-//           <button
-//             type="submit"
-//             className="w-full bg-green-500 text-white p-3 rounded"
-//             style={{color:"white"}}
-//           >
-//             Submit
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ForgotPassword;

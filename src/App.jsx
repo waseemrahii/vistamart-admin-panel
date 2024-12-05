@@ -18,6 +18,7 @@ import "./App.css";
 import Sidebar from "./components/Layout/sidebar/sidebar.jsx";
 import LoadingSpinner from "./components/LoodingSpinner/LoadingSpinner.jsx";
 import ForgotPassword from "./components/ForgetPassword/forgetPassword.jsx";
+import ResetPassword from "./components/ForgetPassword/ResetPassword.jsx";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -80,6 +81,7 @@ function App() {
           ) : (
             <Routes>
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/auth/reset-password/:token" element={<ResetPassword />} />
               <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
 
               <Route path="*" element={<Navigate to="/login" />} />
