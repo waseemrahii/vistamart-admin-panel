@@ -198,7 +198,7 @@ const OrderList = () => {
             </div>
           </div>
 
-          <div className="" style={{overflowX:"scroll"}}>
+          <div className="" style={{ overflowX: "scroll" }}>
             <table className="table  table-hover mb-0">
               <thead className="table-light  bg-secondary">
                 <tr className="w-full ">
@@ -235,7 +235,7 @@ const OrderList = () => {
                         : "Unknown Customer"}
                     </td>
                     {/* <td>{order.vendors?.[0]?.shopName || "Unknown Store"}</td> */}
-                    <td>{order.totalAmount}</td>
+                    <td>PKR {order.totalAmount}</td>
                     <td>
                       {(() => {
                         const statusClass =
@@ -269,13 +269,12 @@ const OrderList = () => {
                         className="ml-4"
                       />
                       <button
-                          className="btn border-red-300 text-red-400 btn-sm ml-2 "
-
-                             style={{color:"red"}}
-                           onClick={() => handleDeleteOrder(order._id)}
-                        >
-                          <FaTrash size={18} />
-                        </button> 
+                        className="btn border-red-300 text-red-400 btn-sm ml-2 "
+                        style={{ color: "red" }}
+                        onClick={() => handleDeleteOrder(order._id)}
+                      >
+                        <FaTrash size={18} />
+                      </button>
                     </td>
                   </tr>
                 ))}
