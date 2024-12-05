@@ -54,35 +54,48 @@
 // export default WebsiteHeaderLogoCard;
 
 
-import React, { useState } from 'react';
-import { uploadImageToS3, getUploadUrl } from '../../../seller/vendor/add/addVender/helpers';  // Make sure this path is correct
+// React Component for WebsiteHeaderLogoCard
+import React, { useState } from "react";
+import { FaUpload } from "react-icons/fa";
+import { getUploadUrl, uploadImageToS3 } from "../../../../utils/helpers";
 
 const WebsiteHeaderLogoCard = ({ headerLogo, onImageChange }) => {
-  const [logo, setLogo] = useState(headerLogo);
+  const [logo, setLogo] = useState(headerLogo || '/default-header-logo.png');
   const [loading, setLoading] = useState(false);
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      try {
-        setLoading(true);
-        const uploadConfig = await getUploadUrl(file.type, 'business');
-        const uploadedKey = await uploadImageToS3(uploadConfig, file);
+    if (!file) return;
 
-        if (uploadedKey) {
-          const uploadedUrl = `${uploadConfig.baseUrl}/${uploadedKey}`;  // Construct the URL from the returned key
-          setLogo(uploadedUrl);  // Update the logo state with the new image URL
-          if (onImageChange) {
-            onImageChange(uploadedUrl);  // If passed as a prop, notify the parent component about the updated logo
-          }
-        } else {
-          throw new Error('Failed to upload image');
-        }
-      } catch (error) {
-        console.error('Error uploading image:', error);
-      } finally {
-        setLoading(false);
+    try {
+      setLoading(true);
+
+      // Fetch the upload URL configuration from the server
+      const uploadConfig = await getUploadUrl(file.type, "business");
+
+      if (!uploadConfig || !uploadConfig.url) {
+        throw new Error("Failed to get a valid upload URL.");
       }
+
+      // Upload the image to S3 using the provided upload URL
+      const uploadResponse = await uploadImageToS3(uploadConfig.url, file);
+
+      if (uploadResponse) {
+        // Construct the uploaded URL using the S3 file key
+        const uploadedUrl = `${uploadConfig.baseUrl}/${uploadResponse.key}`;
+        setLogo(uploadedUrl);
+
+        // Notify the parent component about the change
+        if (onImageChange) {
+          onImageChange(uploadedUrl);
+        }
+      } else {
+        throw new Error("Failed to upload image.");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -118,6 +131,7 @@ const WebsiteHeaderLogoCard = ({ headerLogo, onImageChange }) => {
           </label>
         </div>
       </div>
+      {loading && <div className="mt-2 text-center">Uploading...</div>}
     </div>
   );
 };

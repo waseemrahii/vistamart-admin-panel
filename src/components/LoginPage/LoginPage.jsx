@@ -1,8 +1,10 @@
+
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { login, selectAuthLoading, selectAuthError } from "../../redux/slices/admin/authSlice";
 
@@ -143,6 +145,11 @@ const LoginPage = ({ setIsLoggedIn }) => {
           </button>
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         </form>
+      <div className="text-center mt-4">
+  <Link to="/forgot-password" className="text-green-500 hover:underline">
+    Forgot Password?
+  </Link>
+</div>
       </div>
     </div>
   );
