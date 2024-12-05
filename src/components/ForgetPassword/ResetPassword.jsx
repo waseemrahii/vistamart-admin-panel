@@ -24,7 +24,9 @@ const ResetPassword = () => {
       );
       if (response.data.status === "success") {
         toast.success("Password has been reset successfully!");
-        navigate("/login"); // Redirect to login page
+        setTimeout(() => {
+            navigate("/login");
+          }, 2000);
       } else {
         toast.error(response.data.message || "Failed to reset password");
       }
