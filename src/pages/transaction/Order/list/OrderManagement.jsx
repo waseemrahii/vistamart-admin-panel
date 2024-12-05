@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   FaChevronLeft,
@@ -220,7 +219,7 @@ const OrderManagement = ({ status, title }) => {
                       <td>
                         {order?.customer?.firstName} {order?.customer?.lastName}
                       </td>
-                      <td>${order?.totalAmount}</td>
+                      <td> PKR {order?.totalAmount}</td>
                       <td>
                         <span
                           className={`badge ${
@@ -244,10 +243,10 @@ const OrderManagement = ({ status, title }) => {
                           icon={FaEye}
                         />
                         <ActionButton
-                            onClick={() => handleDeleteOrder(order?._id)}
-                            icon={FaTrash}
-                            label="Delete"
-                          />
+                          onClick={() => handleDeleteOrder(order?._id)}
+                          icon={FaTrash}
+                          label="Delete"
+                        />
                       </td>
                     </tr>
                   ))
