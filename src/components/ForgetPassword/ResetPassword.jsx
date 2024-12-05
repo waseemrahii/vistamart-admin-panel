@@ -18,7 +18,7 @@ const ResetPassword = () => {
       return;
     }
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         `${apiConfig.admin}/employees/reset-password/${token}`,
         { passwordNew, passwordConfirm }
       );
