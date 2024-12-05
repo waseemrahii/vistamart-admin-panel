@@ -72,11 +72,10 @@ const Categories = () => {
 		}
 	}
 
-	// const handleInputChange = (e) => {
-	// 	setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
-	// };
+	const handleInputChange = (e) => {
+		setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
+	};
 
-	
 	const handleFileChange = (logoString) => {
 		setNewCategory({ ...newCategory, logo: logoString });
 	};

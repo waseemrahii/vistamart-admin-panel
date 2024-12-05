@@ -122,6 +122,7 @@ import EmployeeDetails from "./pages/admin/employees/list/employeeDetails.jsx";
 import UpdateEmployee from "./pages/admin/employees/add/updateEmploye.jsx";
 import UpdateVendor from "./pages/seller/vendor/add/addVender/UpdateVendor.jsx";
 import UpdateEmployeeRole from "./pages/admin/employees/add/updateEmployeRole.jsx";
+import ForgotPassword from "./components/ForgetPassword/forgetPassword.jsx";
 
 function AllRoutes() {
   return (
