@@ -31,7 +31,7 @@ const Pagination = ({
         className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
           currentPage === 1
             ? "bg-black text-white cursor-not-allowed"
-            : "bg-primary hover:bg-primary-dark text-white"
+            : "bg-primary-500 hover:bg-primary-dark-500 text-white"
         }`}
         style={{ color: "white" }}
       >
@@ -47,8 +47,8 @@ const Pagination = ({
             onClick={() => paginate(page)}
             className={`w-6 h-6 flex items-center justify-center rounded-full font-medium transition-all ${
               currentPage === page
-                ? "bg-primary text-white shadow-md"
-                : "bg-primary-dark hover:bg-primary text-white"
+                ? "bg-primary-500 text-white shadow-md"
+                : "bg-primary-dark-500 hover:bg-primary-500 text-white"
             }`}
             style={{ color: "white" }}
           >
@@ -64,7 +64,7 @@ const Pagination = ({
         className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
           currentPage === totalPages
             ? "bg-black cursor-not-allowed"
-            : "bg-primary hover:bg-primary-dark text-white"
+            : "bg-primary-500 hover:bg-primary-dark-500 text-white"
         }`}
         style={{ color: "white" }}
       >

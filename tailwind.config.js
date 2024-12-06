@@ -8,10 +8,14 @@ export default {
     extend: {
       colors: {
         'primary': '#009444',
-        'primary-dark': '#7e9f37', // Darker shade of the primary color
-        'secondary': '#F7FAFF', // Secondary color (another green shade)
+        'primary-500':'#009444',
+        'primary-dark': '#4CAF50', // Darker shade of the primary color
+        'primary-dark-500':'#4CAF50',
+        'secondary': '#F7FAFF', // Secondary color table header (another green shade)
+        'secondary-500': '#F7FAFF', // Secondary color table header (another green shade)
         'alert': '#d33', // Red color for alerts or warnings
         'confirm': '#3085d6', // Blue color for confirmation buttons
+        'tbheader-500':'#F7FAFF'//table header color like lightblue
       },
     },
   },

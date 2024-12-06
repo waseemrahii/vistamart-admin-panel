@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const SubCategoryForm = ({
@@ -81,18 +80,16 @@ const SubCategoryForm = ({
       <div className="d-flex flex-wrap gap-2 justify-content-end">
         <button
           type="reset"
-          className="btn bg-secondary border border-secondary"
+          className="btn bg-secondary-500 border border-secondary-500"
         >
           Reset
         </button>
         <button
           type="submit"
-          className="btn bg-primary text-white hover:bg-primary-dark hover:text-white"
-          style={
-            {
-              color:"white",
-            }
-          }
+          className="btn bg-primary-500 text-white hover:bg-primary-dark-500 hover:text-white"
+          style={{
+            color: "white",
+          }}
         >
           Submit
         </button>

@@ -45,7 +45,7 @@ const CategoryForm = ({
                 <input
                   type="text"
                   name="name"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   placeholder="New Category"
                   required={lang === "en"} // Required only for English
                   value={newCategory.name}
@@ -58,7 +58,7 @@ const CategoryForm = ({
                 Priority
               </label>
               <select
-                className="form-control outline-none hover:border-primary"
+                className="form-control outline-none hover:border-primary-500"
                 name="priority"
                 required
                 value={newCategory.priority}
@@ -112,14 +112,14 @@ const CategoryForm = ({
             <button
               type="reset"
               id="reset"
-              className="btn bg-secondary text-white border border-secondary rounded-md"
+              className="btn bg-secondary-500 text-white border border-secondary-500 rounded-md"
               onClick={() => setPreview(null)} // Clear preview on reset
             >
               Reset
             </button>
             <button
               type="submit"
-              className="btn bg-primary hover:bg-primary-dark text-white"
+              className="btn bg-primary-500 hover:bg-primary-dark-500 text-white"
               style={{ color: "white" }}
             >
               Submit

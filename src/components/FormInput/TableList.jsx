@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, lazy, memo } from "react";
 import { FiSearch } from "react-icons/fi";
 import { ToastContainer } from "react-toastify";
@@ -8,7 +7,6 @@ import TableHeader from "./TableHeader";
 import Pagination from "../Pagination";
 
 const ExportButton = lazy(() => import("../ActionButton/Export"));
-
 
 const TableList = memo(
   ({
@@ -59,39 +57,37 @@ const TableList = memo(
     //   setFilteredData(sortedData);
     // }, [listData, searchQuery, sortConfig]);
 
+    // Filter and sort data based on `searchQuery`, `columns`, and `sortConfig`
+    useEffect(() => {
+      const filtered = searchQuery
+        ? listData.filter((item) =>
+            columns.some((col) => {
+              if (col.key && item[col.key]) {
+                return String(item[col.key])
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase());
+              }
+              return false;
+            })
+          )
+        : listData;
 
+      let sortedData = [...filtered];
+      if (sortConfig.key) {
+        sortedData.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            return sortConfig.direction === "ascending" ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            return sortConfig.direction === "ascending" ? 1 : -1;
+          }
+          return 0;
+        });
+      }
 
-  // Filter and sort data based on `searchQuery`, `columns`, and `sortConfig`
-  useEffect(() => {
-    const filtered = searchQuery
-      ? listData.filter((item) =>
-          columns.some((col) => {
-            if (col.key && item[col.key]) {
-              return String(item[col.key])
-                .toLowerCase()
-                .includes(searchQuery.toLowerCase());
-            }
-            return false;
-          })
-        )
-      : listData;
-
-    let sortedData = [...filtered];
-    if (sortConfig.key) {
-      sortedData.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-
-    setFilteredData(sortedData);
-    setCurrentPage(1); // Reset to the first page whenever the data changes
-  }, [listData, searchQuery, sortConfig, columns]);
+      setFilteredData(sortedData);
+      setCurrentPage(1); // Reset to the first page whenever the data changes
+    }, [listData, searchQuery, sortConfig, columns]);
 
     const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
@@ -113,10 +109,10 @@ const TableList = memo(
     };
 
     return (
-      <div className="mt-3 bg-[#F9F9FB] pr-2 pl-2 md:p-2 md:pl-4 w-full">
+      <div className="mt-3 mb-2 pr-2 pl-2 md:p-2 md:pl-4 w-full">
         <ToastContainer />
         <TableHeader imageSrc={imageSrc} title={title} />
-        <div className="card bg-white shadow-lg rounded-lg">
+        <div className="card bg-white shadow-sm">
           <div className="flex items-start justify-between flex-col md:flex-row gap-4 px-3 py-4">
             <div className="flex gap-3 justify-center items-center">
               <h4 className="font-semibold text-lg">{tableTitle}</h4>
@@ -144,15 +140,15 @@ const TableList = memo(
                 data={filteredData}
                 filename={exportFileName}
                 title="Export"
-                className="bg-primary text-white hover:bg-primary-dark px-4 py-2 rounded-md"
+                className="bg-primary-500 text-white hover:bg-primary-dark-500 px-4 py-2 rounded-md"
                 label="Export"
-                style={{color:"white"}}
+                style={{ color: "white" }}
               />
             </div>
           </div>
           <div className="overflow-x-auto text-nowrap">
             <table className="min-w-full bg-white shadow-md rounded-lg">
-              <thead className="bg-[#F7FAFF] text-white">
+              <thead className="bg-secondary-500 text-white">
                 <tr>
                   {columns.map((col) => (
                     <th
@@ -216,4 +212,3 @@ const TableList = memo(
 );
 
 export default TableList;
-

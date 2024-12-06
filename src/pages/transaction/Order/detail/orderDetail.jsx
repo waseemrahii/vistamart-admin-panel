@@ -7,7 +7,10 @@ import { MdEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOrderStatus, fetchOrderById } from "../../../../redux/slices/transaction/orderSlice";
+import {
+  updateOrderStatus,
+  fetchOrderById,
+} from "../../../../redux/slices/transaction/orderSlice";
 import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 import ImageApiUrl from "../../../../ImageApiUrl";
 import apiConfig from "../../../../config/apiConfig";
@@ -22,18 +25,15 @@ const OrderDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(true);
   const fallbackImage = "/image-place-holder.png"; // Replace with the path to your fallback image
-  
+
   useEffect(() => {
     dispatch(fetchOrderById(id)); // Fetch order details via Redux
   }, [dispatch, id]);
 
-  useEffect(() => {
-  }, [orders]);
+  useEffect(() => {}, [orders]);
   const printInvoice = () => {
     window.print();
   };
-
-
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -42,19 +42,13 @@ const OrderDetails = () => {
     try {
       await dispatch(updateOrderStatus({ orderId, status })).unwrap();
       toast.success("Order status updated successfully!");
-       if (status === "confirmed") {
+      if (status === "confirmed") {
         navigate("/confirmedorder");
-      }
-       else if (status === "packaging") {
+      } else if (status === "packaging") {
         navigate("/packagingorder");
-
-      } 
-       else if (status === "pending") {
+      } else if (status === "pending") {
         navigate("/pendingorder");
-
-      } 
-      
-      else if (status === "out_for_delivery") {
+      } else if (status === "out_for_delivery") {
         navigate("/outfordelivery");
       } else if (status === "delivered") {
         navigate("/deliveredorder");
@@ -75,18 +69,17 @@ const OrderDetails = () => {
   };
   const order = orders.find((order) => order._id === id);
 
-
   // Check the loading state
-  if (status === 'loading') {
+  if (status === "loading") {
     return <LoadingSpinner />;
   }
 
   // Check for errors
-  if (status === 'failed') {
+  if (status === "failed") {
     return <div>Error fetching orders details: {error}</div>;
   }
- const Orders = orders.find((order) => order._id === id);
- // Check if orders exists
+  const Orders = orders.find((order) => order._id === id);
+  // Check if orders exists
   if (!orders) {
     return <div>No orders details found.</div>;
   }
@@ -105,11 +98,7 @@ const OrderDetails = () => {
     <>
       <div className="bg-[#F9F9FB] w-full px-4 py-8">
         <div className="flex items-center gap-2">
-          <img
-            src="/all-orders.png"
-            alt=""
-            className="w-5 h-5"
-          />
+          <img src="/all-orders.png" alt="" className="w-5 h-5" />
           <h1 className="text-xl font-bold">Order Details</h1>
         </div>
         <br />
@@ -142,7 +131,7 @@ const OrderDetails = () => {
               <h1>
                 Status :
                 <span
-                  className={`bg-green-100 font-bold p-1 rounded border text-primary`}
+                  className={`bg-secondary-500 font-bold p-1 rounded border text-primary-500`}
                 >
                   {status}
                 </span>
@@ -153,111 +142,108 @@ const OrderDetails = () => {
               </h1>
               <h1 className="pt-3 text-md">
                 Payment Status :
-                <span className={`font-bold text-primary ms-3`}>
+                <span className={`font-bold text-primary-500 ms-3`}>
                   {paymentStatus ? "Paid" : "Unpaid"}
                 </span>
               </h1>
               <h1 className="pt-3 text-md">
                 orders verification code :
-                <span className="font-bold ms-3">
-                  {" "}
-                  {Orders?.orderId}
-                </span>
+                <span className="font-bold ms-3"> {Orders?.orderId}</span>
               </h1>
             </div>
             <div className="container p-4">
               <div className="overflow-x-auto">
                 <table className="min-w-full">
                   <thead>
-                    <tr className="bg-[#F7FAFF] text-gray-700">
-                      <th className="px-4 py-2 text-center font-semibold text-lg whitespace-nowrap">
+                    <tr className="bg-secondary-500 text-gray-500">
+                      <th className="px-4 py-2 text-center font-semibold text-sm whitespace-nowrap">
                         SL
                       </th>
-                      <th className="px-4 py-2 text-center font-semibold text-lg whitespace-nowrap">
+                      <th className="px-4 py-2 text-center font-semibold text-sm whitespace-nowrap">
                         Item Details
                       </th>
-                      <th className="px-4 py-2 text-center font-semibold text-lg whitespace-nowrap">
+                      <th className="px-4 py-2 text-center font-semibold text-sm whitespace-nowrap">
                         Item Price
                       </th>
-                      <th className="px-4 py-2 text-center font-semibold text-lg whitespace-nowrap">
+                      <th className="px-4 py-2 text-center font-semibold text-sm whitespace-nowrap">
                         Tax
                       </th>
-                      <th className="px-4 py-2 text-center font-semibold text-lg whitespace-nowrap">
+                      <th className="px-4 py-2 text-center font-semibold text-sm whitespace-nowrap">
                         Item Discount
                       </th>
-                      <th className="px-4 py-2 text-center font-bold text-lg whitespace-nowrap">
+                      <th className="px-4 py-2 text-center font-bold text-sm whitespace-nowrap">
                         Total Price
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                  {(products && products?.length > 0) ? (
-  products?.map((item, index) => (
-    <tr className="hover:bg-gray-100" key={item?._id}>
-      <td className="px-4 py-2 text-center">{index + 1}</td>
-      <td className="px-4 py-2 w-full">
-        <div className="flex items-center whitespace-nowrap">
-        <img
-  src={
-    item?.thumbnail
-      ? `${apiConfig.bucket}/${item.thumbnail}`
-      : fallbackImage
-  }
-  alt={item?.name || "Product Image"}
-  className="w-10 h-10 object-cover rounded mr-3"
-  onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
-/>
+                    {products && products?.length > 0 ? (
+                      products?.map((item, index) => (
+                        <tr className="hover:bg-gray-100" key={item?._id}>
+                          <td className="px-4 py-2 text-center">{index + 1}</td>
+                          <td className="px-4 py-2 w-full">
+                            <div className="flex items-center whitespace-nowrap">
+                              <img
+                                src={
+                                  item?.thumbnail
+                                    ? `${apiConfig.bucket}/${item.thumbnail}`
+                                    : fallbackImage
+                                }
+                                alt={item?.name || "Product Image"}
+                                className="w-10 h-10 object-cover rounded mr-3"
+                                onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
+                              />
 
-          <div>
-            <div>{item?.name}</div>
-            <div>Qty: {item?.quantity}</div>
-            <div>
-              Unit price: PKR{item?.price} (Tax:  {item?.taxAmount}%)
-            </div>
-          </div>
-        </div>
-      </td>
-      <td className="px-4 py-2 text-center">
-        PKR{item?.price}
-      </td>
-      <td className="px-4 py-2 text-center">
-        PKR{item?.taxAmount}
-      </td>
-      <td className="px-4 py-2 text-center">
-        PKR{item?.discountAmount}
-      </td>
-      <td className="px-4 py-2 text-center">
-        PKR{(item?.price +item?.taxAmount)}
-      </td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan="6" className="text-center py-4">
-      No products available
-    </td>
-  </tr>
-)}
-
+                              <div>
+                                <div>{item?.name}</div>
+                                <div>Qty: {item?.quantity}</div>
+                                <div>
+                                  Unit price: PKR {item?.price} (Tax:{" "}
+                                  {item?.taxAmount}%)
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-2 text-center">
+                            PKR {item?.price}
+                          </td>
+                          <td className="px-4 py-2 text-center">
+                            PKR {item?.taxAmount}
+                          </td>
+                          <td className="px-4 py-2 text-center">
+                            PKR {item?.discountAmount}
+                          </td>
+                          <td className="px-4 py-2 text-center">
+                            PKR {item?.price + item?.taxAmount}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="6" className="text-center py-4">
+                          No products available
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
               <div className="mt-4">
                 <div className="flex justify-between border-t pt-2">
                   <span>Item price</span>
-                  <span>PKR{totalAmount}</span>
+                  <span>PKR {totalAmount}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Item Discount</span>
-                  <span>- PKR0.00</span>
+                  <span>- PKR 0.00</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sub Total</span>
-                  <span>PKR{totalAmount}</span>
+                  <span>PKR {totalAmount}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Coupon discount</span>
-                  <span>- PKR0.00</span>
+                  <span>- PKR 0.00</span>
                 </div>
                 {/* <div className="flex justify-between">
                   <span>VAT/TAX</span>
@@ -269,7 +255,7 @@ const OrderDetails = () => {
                 </div> */}
                 <div className="flex justify-between font-bold border-t pt-2">
                   <span>Total</span>
-                  <span>PKR{totalAmount}</span>
+                  <span>PKR {totalAmount}</span>
                 </div>
               </div>
             </div>
@@ -287,7 +273,7 @@ const OrderDetails = () => {
                       Change Order Status
                     </span>
                     <select
-                      className="form-select mt-1 bg-white borders border-gray-400 px-3 py-2 rounded block w-full"
+                      className="form-select mt-1 border bg-white borders border-gray-400 px-3 py-2 rounded block w-full"
                       value={Orders.status}
                       onChange={(e) =>
                         handleUpdateStatus(Orders._id, e.target.value)
@@ -308,7 +294,7 @@ const OrderDetails = () => {
                   <label className="mt-3 flex justify-between items-center bg-white border border-gray-400 px-3 py-2 rounded">
                     <span className="text-gray-700">Payment Status</span>
                     <div className="flex items-center mt-1">
-                      <span className="mr-2 text-primary">Paid</span>
+                      <span className="mr-2 text-primary-500">Paid</span>
                       <button
                         onClick={togglePaymentStatus}
                         className={`relative inline-flex items-center h-6 rounded-full w-11 focus:outline-none ${
@@ -334,8 +320,12 @@ const OrderDetails = () => {
                 <div className="flex items-center space-x-4">
                   <div>
                     <img
-        src={customer?.image ? `${apiConfig.bucket}/${customer?.image}` : fallbackImage}
-        alt="Avatar"
+                      src={
+                        customer?.image
+                          ? `${apiConfig.bucket}/${customer?.image}`
+                          : fallbackImage
+                      }
+                      alt="Avatar"
                       className="w-16 h-16 rounded-full"
                     />
                   </div>
@@ -399,28 +389,34 @@ const OrderDetails = () => {
 
             <div className="mt-8">
               <h2 className="text-xl font-semibold mb-4">Vendor Information</h2>
-           
-  
-    <div  className="mb-4 p-4 bg-white rounded shadow-md">
-      <h3 className="text-lg font-semibold">
-        Name: {vendor?.firstName || "N/A"}
-      </h3>
-      <img
-        src={vendor?.vendorImage ? `${apiConfig.bucket}/${vendor?.vendorImage}` : fallbackImage}
-        alt={vendor?.name || "N/A"}
-        className="w-16 h-16 object-cover rounded mb-2"
-      />
-      <div>
-        <p className="text-lg font-bold">Shop: {vendor?.shopName || "N/A"}</p>
-        {/* <p className="text-gray-500 pt-3">Vendor Orders: 9 Orders Served</p> */}
-        <p className="text-gray-500">Vendor No: {vendor?.phoneNumber || "N/A"}</p>
-        <p className="text-gray-500 flex justify-center gap-2">
-          <FaMapMarkerAlt className="text-xl" />
-          {vendor?.address || "N/A"}
-        </p>
-      </div>
-    </div>
 
+              <div className="mb-4 p-4 bg-white rounded shadow-md">
+                <h3 className="text-lg font-semibold">
+                  Name: {vendor?.firstName || "N/A"}
+                </h3>
+                <img
+                  src={
+                    vendor?.vendorImage
+                      ? `${apiConfig.bucket}/${vendor?.vendorImage}`
+                      : fallbackImage
+                  }
+                  alt={vendor?.name || "N/A"}
+                  className="w-16 h-16 object-cover rounded mb-2"
+                />
+                <div>
+                  <p className="text-lg font-bold">
+                    Shop: {vendor?.shopName || "N/A"}
+                  </p>
+                  {/* <p className="text-gray-500 pt-3">Vendor Orders: 9 Orders Served</p> */}
+                  <p className="text-gray-500">
+                    Vendor No: {vendor?.phoneNumber || "N/A"}
+                  </p>
+                  <p className="text-gray-500 flex justify-center gap-2">
+                    <FaMapMarkerAlt className="text-xl" />
+                    {vendor?.address || "N/A"}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
