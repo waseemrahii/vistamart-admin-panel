@@ -544,7 +544,7 @@ const AddVendorForm = () => {
       }
   
       // Limit length to 50 characters
-      if (value.length > 50) {
+      if (value.length > 30) {
         toast.error(`${name.replace(/^\w/, (c) => c.toUpperCase())} is limited to 50 characters.`);
         return;
       }

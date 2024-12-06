@@ -105,21 +105,34 @@ const AddNewProduct = () => {
   //   }));
   // };
 
-  const handleChange = (e) => {
-		const { name, value, type, checked } = e.target;
+  // const handleChange = (e) => {
+	// 	const { name, value, type, checked } = e.target;
 	  
-		setFormData((prev) => ({
-		  ...prev,
-		  [name]: type === "checkbox" 
-			? checked 
-			: (["price", "discountAmount", "taxAmount", "discount"].includes(name) 
-				? parseInt(value, 10) || 0 
-				: value),
-		  // Reset dependent fields if parent category changes
-		  ...(name === "category" && { subCategory: null, subSubCategory: null }),
-		  ...(name === "subCategory" && { subSubCategory: null }),
-		}));
-	  };
+	// 	setFormData((prev) => ({
+	// 	  ...prev,
+	// 	  [name]: type === "checkbox" 
+	// 		? checked 
+	// 		: (["price", "discountAmount", "taxAmount", "discount"].includes(name) 
+	// 			? parseInt(value, 10) || 0 
+	// 			: value),
+	// 	  // Reset dependent fields if parent category changes
+	// 	  ...(name === "category" && { subCategory: null, subSubCategory: null }),
+	// 	  ...(name === "subCategory" && { subSubCategory: null }),
+	// 	}));
+	//   };
+
+
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : 
+             name === "discountType" && !value ? "percent" : // Default to 'percent'
+             (["price", "discountAmount", "taxAmount", "discount"].includes(name) ? parseInt(value, 10) || 0 : value),
+    }));
+  };
+  
 
   const handleDescriptionChange = (value) => {
     setFormData((prev) => ({
@@ -194,7 +207,7 @@ const AddNewProduct = () => {
       });
       // Reset form
       setThumbnail(null);
-      setImages([]);
+      // setImages([]);
       setSelectedColors([]);
       setProductAttributes([]);
       setFormData({ ...initialFormState });

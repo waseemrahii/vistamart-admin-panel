@@ -167,6 +167,7 @@ const ProductDetail = () => {
     brand = { name: "No Brand" },
     category = { name: "No Category" },
     sold = 0,
+    vendor = 'vendor',
     totalSoldAmount = 0,
     productType = "No Type",
     sku = "No SKU",
@@ -313,6 +314,10 @@ const ProductDetail = () => {
                 <div className="d-flex justify-between mb-1">
                   <h6 className="font-semibold text-capitalize">Category:</h6>
                   <h3 className="mb-0">{category?.name}</h3>
+                </div>
+                <div className="d-flex justify-between mb-1">
+                  <h6 className="font-semibold text-capitalize">Shop:</h6>
+                  <h3 className="mb-0">{vendor?.shopName}</h3>
                 </div>
               </div>
               <div className="border rounded-md space-y-4 p-3 ">
