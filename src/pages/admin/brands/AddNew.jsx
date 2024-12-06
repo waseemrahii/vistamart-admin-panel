@@ -266,7 +266,7 @@ const AddNewBrand = () => {
                         <input
                           type="text"
                           name="brandName"
-                          className="form-control outline-none hover:border-primary"
+                          className="form-control outline-none hover:border-primary-500"
                           id="name-en"
                           placeholder="Ex: LUX"
                           required
@@ -292,7 +292,7 @@ const AddNewBrand = () => {
                         <input
                           type="text"
                           name="alt-text-en"
-                          className="form-control outline-none hover:border-primary"
+                          className="form-control outline-none hover:border-primary-500"
                           id="alt-text-en"
                           placeholder="Ex : Brand Logo"
                           required
@@ -323,14 +323,14 @@ const AddNewBrand = () => {
                 <div className="d-flex justify-content-end">
                   <button
                     type="reset"
-                    className="btn border border-secondary bg-secondary mx-2"
+                    className="btn border border-secondary-500 bg-secondary-500 mx-2"
                     onClick={handleReset}
                   >
                     Reset
                   </button>
                   <button
                     type="submit"
-                    className="btn bg-primary hover:bg-primary-dark text-white"
+                    className="btn bg-primary-500 hover:bg-primary-dark-500 text-white"
                     style={{ color: "white" }}
                     disabled={loading}
                   >

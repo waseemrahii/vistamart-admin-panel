@@ -16,7 +16,7 @@ const ProfileInformation = () => {
     vendorImage: "",
   });
 
-  const { token,user } = getAuthData();
+  const { token, user } = getAuthData();
 
   // State for password fields
   const [passwords, setPasswords] = useState({
@@ -58,9 +58,9 @@ const ProfileInformation = () => {
       );
       alert("Password updated successfully!");
       setPasswords({ currentPassword: "", newPassword: "" });
-       // Clear token and user data from localStorage
-       localStorage.removeItem("token");
-       localStorage.removeItem("user");
+      // Clear token and user data from localStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     } catch (error) {
       console.error("Error updating password:", error);
       alert("Failed to update password. Please try again.");
@@ -75,9 +75,9 @@ const ProfileInformation = () => {
           <IoPerson className="text-2xl font-semibold" />
           <h1 className="font-bold text-xl">Profile Information</h1>
         </div>
-        <div className="px-3 py-2 rounded bg-green-400 hover:bg-green-600 text-white">
+        <div className="px-3 py-2 rounded bg-primary-500 hover:bg-primary-dark-500 text-white">
           <Link to={"/"} className="flex gap-2 md:gap-4 items-center">
-            <IoHomeSharp className="font-semibold hover:text-green-500" />
+            <IoHomeSharp className="font-semibold text-white" />
             <h1 className="text-white font-semibold">Dashboard</h1>
           </Link>
         </div>
@@ -86,7 +86,11 @@ const ProfileInformation = () => {
       <div className="flex flex-col md:flex-row mx-4 md:mx-16 gap-1">
         {/* Profile Image */}
         <div className="w-full h-[35vh] md:w-1/4 bg-white shadow-md p-4 rounded mb-4 md:mb-0">
-          <img src={`${apiConfig.bucket}/${user?.image}`} alt=""  className="h-full"/>
+          <img
+            src={`${apiConfig.bucket}/${user?.image}`}
+            alt=""
+            className="h-full"
+          />
         </div>
 
         {/* Profile Details */}
@@ -100,10 +104,10 @@ const ProfileInformation = () => {
               <div className="flex items-center gap-2 px-4 py-3">
                 <Link
                   to={`/employeesdit/${user?._id}`}
-                  className="btn border border-primary text-primary"
+                  className="btn border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white "
                   title="Edit info"
                 >
-                  <FaEdit className="text-primary" style={{ color: "green" }} />
+                  <FaEdit className="" />
                 </Link>
               </div>
             </div>
@@ -170,8 +174,8 @@ const ProfileInformation = () => {
               <div>
                 <button
                   type="submit"
-                  className="px-3 py-2 bg-green-400 hover:bg-green-600 text-white rounded"
-                  style={{color:"white"}}
+                  className="px-3 py-2 bg-primary-500 hover:bg-primary-dark-500 text-white rounded"
+                  style={{ color: "white" }}
                 >
                   Update Password
                 </button>

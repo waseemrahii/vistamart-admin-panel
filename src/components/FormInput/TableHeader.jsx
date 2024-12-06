@@ -8,7 +8,7 @@ const TableHeader = ({ imageSrc, title }) => {
         {imageSrc && (
           <img src={imageSrc} alt="Table Heading Icon" className="w-8 h-8" />
         )}
-        <span className="form-label text-[1.5rem] font-semibold text-green-600">
+        <span className="form-label text-[1.5rem] font-semibold text-primary-500">
           {title}
         </span>
       </h2>

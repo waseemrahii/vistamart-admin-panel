@@ -52,15 +52,19 @@ const Sub_Sub_Categories = () => {
     e.preventDefault();
     try {
       await dispatch(addSubSubCategory(formData));
-      Swal.fire("Success!", "Sub-sub-category created successfully.", "success");
-  
+      Swal.fire(
+        "Success!",
+        "Sub-sub-category created successfully.",
+        "success"
+      );
+
       setFormData({
         name: "",
         mainCategory: "",
         subCategory: "",
         priority: "",
       });
-  
+
       dispatch(fetchCategories());
       dispatch(fetchSubCategories());
       dispatch(fetchSubSubCategories({}));
@@ -92,7 +96,11 @@ const Sub_Sub_Categories = () => {
       if (result.isConfirmed) {
         try {
           await dispatch(deleteSubSubCategory(subSubCategoryId));
-          Swal.fire("Deleted!", "Your sub-sub-category has been deleted.", "success");
+          Swal.fire(
+            "Deleted!",
+            "Your sub-sub-category has been deleted.",
+            "success"
+          );
         } catch (error) {
           console.error("Error deleting sub-sub-category:", error);
           Swal.fire("Error!", "Failed to delete sub-sub-category.", "error");
@@ -106,8 +114,11 @@ const Sub_Sub_Categories = () => {
   };
 
   const filteredSubSubCategories = subSubCategories.doc.filter((item) => {
-    const mainCategoryName = categories.find((cat) => cat._id === item.mainCategory)?.name || '';
-    const subCategoryName = subCategories.find((subCat) => subCat._id === item.subCategory)?.name || '';
+    const mainCategoryName =
+      categories.find((cat) => cat._id === item.mainCategory)?.name || "";
+    const subCategoryName =
+      subCategories.find((subCat) => subCat._id === item.subCategory)?.name ||
+      "";
     return (
       mainCategoryName.toLowerCase().includes(searchValue.toLowerCase()) ||
       subCategoryName.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -117,7 +128,10 @@ const Sub_Sub_Categories = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentSubSubCategories = filteredSubSubCategories.slice(indexOfFirstItem, indexOfLastItem);
+  const currentSubSubCategories = filteredSubSubCategories.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   const totalPages = Math.ceil(filteredSubSubCategories.length / itemsPerPage);
 
@@ -261,28 +275,28 @@ const Sub_Sub_Categories = () => {
                         />
                       </div> */}
 
-<div className="form-group col-md-6 col-lg-4">
-              <label className="title-color" htmlFor="priority">
-                Priority
-              </label>
-              <select
-                className="form-control"
-                name="priority"
-                value={formData.priority}
-                onChange={handleChange}
-                id="priority"
-                required
-              >
-                <option value="" disabled>
-                  Set Priority
-                </option>
-                {Array.from({ length: 11 }, (_, i) => (
-                  <option key={i} value={i}>
-                    {i}
-                  </option>
-                ))}
-              </select>
-            </div>
+                      <div className="form-group col-md-6 col-lg-4">
+                        <label className="title-color" htmlFor="priority">
+                          Priority
+                        </label>
+                        <select
+                          className="form-control"
+                          name="priority"
+                          value={formData.priority}
+                          onChange={handleChange}
+                          id="priority"
+                          required
+                        >
+                          <option value="" disabled>
+                            Set Priority
+                          </option>
+                          {Array.from({ length: 11 }, (_, i) => (
+                            <option key={i} value={i}>
+                              {i}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
                     <div className="form-group col-md-12 col-lg-4 justify-end flex">
                       <button
@@ -310,7 +324,7 @@ const Sub_Sub_Categories = () => {
                   {/* <img src="/sub-category.png" alt="Sub Sub Category List" /> */}
                   Sub Sub Category Table
                   <span className="badge badge-soft-dark radius-50 fz-12">
-                  {subSubCategories?.doc?.length}
+                    {subSubCategories?.doc?.length}
                   </span>
                 </h5>
               </div>
@@ -335,8 +349,8 @@ const Sub_Sub_Categories = () => {
                         type="button"
                         onClick={handleSearchChange}
                         className="rounded-r-md px-4 py-2 bg-primary text-white hover:bg-primary-dark"
-                     style={{color:"white"}}
-                    >
+                        style={{ color: "white" }}
+                      >
                         Search
                       </button>
                     </div>
@@ -361,8 +375,8 @@ const Sub_Sub_Categories = () => {
                 </div>
                 <div className="hs-unfold">
                   <ExportButton
-data={filteredSubSubCategories}   
-                 filename="refundList" // Optional filename for the exported file
+                    data={filteredSubSubCategories}
+                    filename="refundList" // Optional filename for the exported file
                     icon={FaDownload} // Icon for the button
                     label="Export " // Button label
                     className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
@@ -421,7 +435,6 @@ data={filteredSubSubCategories}
                 paginate={paginate}
                 pageRange={5}
               />
-           
             </div>
           </div>
         </div>

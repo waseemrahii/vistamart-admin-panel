@@ -66,7 +66,7 @@ const RefundRequests = ({ status, title }) => {
               onSubmit={(e) => e.preventDefault()}
               className="w-full md:w-auto"
             >
-              <div className="input-group input-group-merge input-group-custom border border-primary">
+              <div className="input-group input-group-merge input-group-custom border border-primary-500">
                 <div className="input-group-prepend">
                   <div className="input-group-text">
                     <FaSearch />
@@ -75,14 +75,14 @@ const RefundRequests = ({ status, title }) => {
                 <input
                   type="search"
                   name="searchValue"
-                  className="form-control outline-none border border-primary"
+                  className="form-control outline-none border border-primary-500"
                   placeholder="Search by Title, Code, or Customer"
                   // value={searchValue}
                   // onChange={handleSearchChange}
                 />
                 <button
                   type="submit"
-                  className=" rounded-r-md px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                  className=" rounded-r-md px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                   style={{ color: "white" }}
                 >
                   Search

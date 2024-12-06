@@ -164,7 +164,7 @@ const OrderList = () => {
                 </span>
               </h5>
               <div className="flex flex-col md:flex-row items-end gap-4">
-                <div className="input-group input-group-merge input-group-custom border border-primary">
+                <div className="input-group input-group-merge input-group-custom border border-primary-500">
                   <div className="input-group-prepend">
                     <div className="input-group-text">
                       <FaSearch />
@@ -173,14 +173,14 @@ const OrderList = () => {
                   <input
                     type="search"
                     name="searchValue"
-                    className="form-control outline-none border border-primary"
+                    className="form-control outline-none border border-primary-500"
                     placeholder="Search by Title, Code, or Customer"
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                   />
                   <button
                     type="submit"
-                    className="rounded-r-md px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                    className="rounded-r-md px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     Search
@@ -191,7 +191,7 @@ const OrderList = () => {
                   filename="OrderList"
                   icon={FaDownload}
                   label="Export"
-                  className="bg-primary text-white hover:bg-primary-dark"
+                  className="bg-primary-500 text-white hover:bg-primary-dark-500"
                   style={{ color: "white" }}
                 />
               </div>
@@ -200,7 +200,7 @@ const OrderList = () => {
 
           <div className="" style={{ overflowX: "scroll" }}>
             <table className="table  table-hover mb-0">
-              <thead className="table-light  bg-secondary">
+              <thead className="table-light  bg-secondary-500">
                 <tr className="w-full ">
                   <th onClick={() => requestSort("orderId")} scope="flex">
                     ID
@@ -240,11 +240,11 @@ const OrderList = () => {
                       {(() => {
                         const statusClass =
                           {
-                            pending: "bg-primary",
+                            pending: "bg-primary-500",
                             confirmed: "bg-blue-300",
                             packaging: "bg-yellow-300",
                             out_for_delivery: "bg-orange-300",
-                            delivered: "bg-primary",
+                            delivered: "bg-primary-500",
                             failed_to_deliver: "bg-red-500",
                             returned: "bg-gray-500",
                             canceled: "bg-red-300",
@@ -256,7 +256,7 @@ const OrderList = () => {
                         );
                       })()}
                     </td>
-                    <td>
+                    <td className="flex items-center gap-2">
                       {/* <Link
                         to={`/orderdetail/${order._id}`}
                           className="btn border-green-300 text-green-500 btn-sm"
@@ -269,11 +269,11 @@ const OrderList = () => {
                         className="ml-4"
                       />
                       <button
-                        className="btn border-red-300 text-red-400 btn-sm ml-2 "
-                        style={{ color: "red" }}
+                        className="btn border-alert text-alert hover:bg-alert hover:text-white "
+                        // style={{ color: "red" }}
                         onClick={() => handleDeleteOrder(order._id)}
                       >
-                        <FaTrash size={18} />
+                        <FaTrash />
                       </button>
                     </td>
                   </tr>
@@ -291,7 +291,7 @@ const OrderList = () => {
               className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
                 currentPage === 1
                   ? "bg-black text-white cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-dark text-white"
+                  : "bg-primary-500 hover:bg-primary-dark-500 text-white"
               }`}
               style={{ color: "white" }}
             >
@@ -307,8 +307,8 @@ const OrderList = () => {
                   onClick={() => paginate(page)}
                   className={`w-6 h-6 flex items-center justify-center rounded-full font-medium transition-all ${
                     currentPage === page
-                      ? "bg-primary text-white shadow-md"
-                      : "bg-primary-dark hover:bg-primary text-white"
+                      ? "bg-primary-500 text-white shadow-md"
+                      : "bg-primary-dark-500 hover:bg-primary-500 text-white"
                   }`}
                   style={{ color: "white" }}
                 >
@@ -324,7 +324,7 @@ const OrderList = () => {
               className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
                 currentPage === totalPages
                   ? "bg-black cursor-not-allowed"
-                  : "bg-primary hover:bg-primary-dark text-white"
+                  : "bg-primary-500 hover:bg-primary-dark-500 text-white"
               }`}
               style={{ color: "white" }}
             >

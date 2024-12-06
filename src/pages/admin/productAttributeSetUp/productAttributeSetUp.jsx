@@ -117,7 +117,7 @@ const AttributeSetup = () => {
                       <input
                         type="text"
                         name="name"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         id={`type-en`}
                         placeholder="Enter Attribute Name"
                         value={newAttribute.name}
@@ -130,7 +130,7 @@ const AttributeSetup = () => {
                   <div className="d-flex flex-wrap gap-2 justify-content-end">
                     <button
                       type="submit"
-                      className="btn bg-primary text-white hover:bg-primary-dark"
+                      className="btn bg-primary-500 text-white hover:bg-primary-dark-500"
                       style={{ color: "white" }}
                     >
                       {editingAttribute ? "Update" : "Submit"}
@@ -155,7 +155,7 @@ const AttributeSetup = () => {
                   <div className="">
                     <div className="flex flex-col md:flex-row items-end gap-4">
                       <form method="GET">
-                        <div className="input-group input-group-custom input-group-merge border-green-600">
+                        <div className="input-group input-group-custom input-group-merge border-primary-500">
                           <div className="input-group-prepend">
                             <div className="input-group-text">
                               <FaSearch />
@@ -164,7 +164,7 @@ const AttributeSetup = () => {
                           <input
                             type="search"
                             name="searchValue"
-                            className="form-control border-green-400 outline-none"
+                            className="form-control border-primary-500 outline-none"
                             placeholder="Search by Attribute Name"
                             aria-label="Search attributes"
                             value={searchValue}
@@ -172,7 +172,7 @@ const AttributeSetup = () => {
                           />
                           <button
                             type="button"
-                            className="btn bg-primary text-white hover:bg-primary-dark"
+                            className="btn bg-primary-500 text-white hover:bg-primary-dark-500"
                             style={{ color: "white" }}
                           >
                             Search
@@ -184,7 +184,7 @@ const AttributeSetup = () => {
                         filename="ProductAttributeList" // Optional filename for the exported file
                         icon={FaDownload} // Icon for the button
                         label="Export " // Button label
-                        className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                        className="bg-primary-500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
                         style={{ color: "white" }} // Optional inline styles
                       />
                     </div>

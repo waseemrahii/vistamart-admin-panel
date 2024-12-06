@@ -57,7 +57,6 @@ const SubCategoriess = () => {
     async (e) => {
       e.preventDefault();
       try {
-
         // Check if we are in edit mode
         if (editMode && !formData?.id) {
           throw new Error("Sub-category ID is missing for update.");
@@ -135,7 +134,12 @@ const SubCategoriess = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  if (loading) return <div><LoadingSpinner /></div>;
+  if (loading)
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -147,7 +151,7 @@ const SubCategoriess = () => {
             alt="Table Heading Icon"
             className="w-8 h-8"
           />
-          <span className="form-label text-[1.5rem] font-semibold text-green-600">
+          <span className="form-label text-[1.5rem] font-semibold text-primary-500">
             Sub Categories
           </span>
         </h2>

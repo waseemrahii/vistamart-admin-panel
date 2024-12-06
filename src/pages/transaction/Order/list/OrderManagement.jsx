@@ -138,7 +138,7 @@ const OrderManagement = ({ status, title }) => {
               </div>
               <div className="flex flex-col md:flex-row items-end gap-4">
                 <form className="mr-2">
-                  <div className="input-group input-group-merge input-group-custom border border-primary">
+                  <div className="input-group input-group-merge input-group-custom border border-primary-500">
                     <div className="input-group-prepend">
                       <div className="input-group-text">
                         <FaSearch />
@@ -149,12 +149,12 @@ const OrderManagement = ({ status, title }) => {
                       name="searchValue"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="form-control outline-none border border-primary"
+                      className="form-control outline-none border border-primary-500"
                       placeholder="Search by Order ID, Customer"
                     />
                     <button
                       type="submit"
-                      className="rounded-r-md px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                      className="rounded-r-md px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                       style={{ color: "white" }}
                     >
                       Search
@@ -166,7 +166,7 @@ const OrderManagement = ({ status, title }) => {
                   filename="OrderManagement"
                   icon={FaDownload}
                   label="Export"
-                  className="bg-primary text-white hover:bg-primary-dark"
+                  className="bg-primary-500 text-white hover:bg-primary-dark-500"
                   style={{ color: "white" }}
                 />
               </div>
@@ -174,7 +174,7 @@ const OrderManagement = ({ status, title }) => {
           </div>
           <div className="overflow-auto mt-4">
             <table className="table table-striped text-nowrap">
-              <thead className="bg-secondary">
+              <thead className="bg-secondary-500">
                 <tr>
                   <th>SL</th>
                   <th className="text-center">
@@ -206,7 +206,7 @@ const OrderManagement = ({ status, title }) => {
               <tbody>
                 {paginatedOrders?.length === 0 ? (
                   <tr>
-                    <td colSpan="5" className="text-center">
+                    <td colSpan="20" className="text-center">
                       No orders found
                     </td>
                   </tr>
@@ -261,7 +261,7 @@ const OrderManagement = ({ status, title }) => {
                 className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
                   currentPage === 1
                     ? "bg-black text-white cursor-not-allowed"
-                    : "bg-primary hover:bg-primary-dark text-white"
+                    : "bg-primary-500 hover:bg-primary-dark-500 text-white"
                 }`}
                 style={{ color: "white" }}
               >
@@ -277,8 +277,8 @@ const OrderManagement = ({ status, title }) => {
                     onClick={() => paginate(page)}
                     className={`w-6 h-6 flex items-center justify-center rounded-full font-medium transition-all ${
                       currentPage === page
-                        ? "bg-primary text-white shadow-md"
-                        : "bg-primary-dark hover:bg-primary text-white"
+                        ? "bg-primary-500 text-white shadow-md"
+                        : "bg-primary-dark-500 hover:bg-primary-500 text-white"
                     }`}
                     style={{ color: "white" }}
                   >
@@ -294,7 +294,7 @@ const OrderManagement = ({ status, title }) => {
                 className={`w-6 h-6 flex items-center justify-center rounded-full transition-all ${
                   currentPage === totalPages
                     ? "bg-black cursor-not-allowed"
-                    : "bg-primary hover:bg-primary-dark text-white"
+                    : "bg-primary-500 hover:bg-primary-dark-500 text-white"
                 }`}
                 style={{ color: "white" }}
               >
