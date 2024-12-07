@@ -106,33 +106,35 @@ const AddNewProduct = () => {
   // };
 
   // const handleChange = (e) => {
-	// 	const { name, value, type, checked } = e.target;
-	  
-	// 	setFormData((prev) => ({
-	// 	  ...prev,
-	// 	  [name]: type === "checkbox" 
-	// 		? checked 
-	// 		: (["price", "discountAmount", "taxAmount", "discount"].includes(name) 
-	// 			? parseInt(value, 10) || 0 
-	// 			: value),
-	// 	  // Reset dependent fields if parent category changes
-	// 	  ...(name === "category" && { subCategory: null, subSubCategory: null }),
-	// 	  ...(name === "subCategory" && { subSubCategory: null }),
-	// 	}));
-	//   };
+  // 	const { name, value, type, checked } = e.target;
 
-
+  // 	setFormData((prev) => ({
+  // 	  ...prev,
+  // 	  [name]: type === "checkbox"
+  // 		? checked
+  // 		: (["price", "discountAmount", "taxAmount", "discount"].includes(name)
+  // 			? parseInt(value, 10) || 0
+  // 			: value),
+  // 	  // Reset dependent fields if parent category changes
+  // 	  ...(name === "category" && { subCategory: null, subSubCategory: null }),
+  // 	  ...(name === "subCategory" && { subSubCategory: null }),
+  // 	}));
+  //   };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : 
-             name === "discountType" && !value ? "percent" : // Default to 'percent'
-             (["price", "discountAmount", "taxAmount", "discount"].includes(name) ? parseInt(value, 10) || 0 : value),
+      [name]:
+        type === "checkbox"
+          ? checked
+          : name === "discountType" && !value
+          ? "percent" // Default to 'percent'
+          : ["price", "discountAmount", "taxAmount", "discount"].includes(name)
+          ? parseInt(value, 10) || 0
+          : value,
     }));
   };
-  
 
   const handleDescriptionChange = (value) => {
     setFormData((prev) => ({
@@ -179,7 +181,6 @@ const AddNewProduct = () => {
         }),
       };
 
-
       const response = await fetch(API_URL, {
         method: "POST",
         headers: {
@@ -199,7 +200,7 @@ const AddNewProduct = () => {
         icon: "success",
         title: "Product created successfully!",
         showConfirmButton: false,
-        
+
         timer: 1000,
       }).then(() => {
         // This will execute after Swal notification is completed
@@ -212,7 +213,6 @@ const AddNewProduct = () => {
       setProductAttributes([]);
       setFormData({ ...initialFormState });
       navigate("/inhouseproductlist");
-
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -221,15 +221,13 @@ const AddNewProduct = () => {
         showConfirmButton: true,
       });
       setErrorMessage("Failed to create product. Please try again.");
-    }
-    finally {
+    } finally {
       setLoading(false); // Set loading to false after submission
     }
   };
   return (
     <form onSubmit={handleSubmit} className="add-product-form p-6">
       {loading && <Uploading />}
-      
 
       <ProductForm
         formData={formData}
@@ -260,17 +258,13 @@ const AddNewProduct = () => {
       <div className="flex justify-end m-5">
         <button
           type="submit"
-          className="btn mt-3 flex justify-end btn-submit bg-primary outline-none"
-          style={{ color: "white", background: "green" }}
+          className="btn mt-3 flex justify-end text-white btn-submit bg-primary--500 hover:bg-primary-dark-500 outline-none"
           disabled={loading} // Disable button while loading
-
+          style={{ color: "white" }}
         >
-          
-          {loading ? "Submitting..." : "Submit Product"} 
-          </button>
-      
+          {loading ? "Submitting..." : "Submit Product"}
+        </button>
       </div>
-
     </form>
   );
 };

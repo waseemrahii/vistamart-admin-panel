@@ -195,7 +195,7 @@ const AdmingEarning = () => {
   ];
   return (
     <>
-      <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
+      <div className="bg-secondary-500  flex flex-col gap-4 px-5 py-5">
         <div className="rounded-md border bg-white border-gray-300 shadow-md hover:shadow-md px-5 py-5">
           <h1 className="font-bold text-md">Filter Data</h1> <br />
           <div className="flex items-center gap-8">
@@ -320,13 +320,12 @@ const AdmingEarning = () => {
             <div className="d-flex flex-wrap gap-3 align-items-center">
               <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
                 Total Earnings{" "}
-             
               </h5>
 
               <div>
                 <button
                   type="button"
-                  className="rounded  px-4 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
+                  className="rounded  px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 text-nowrap btn-block flex gap-2 "
                   style={{
                     display: "flex",
                     color: "white",

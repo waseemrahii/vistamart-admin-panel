@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBrandById, updateBrand } from '../../../redux/slices/admin/brandSlice';
-import { toast } from 'react-toastify';
-import { getUploadUrl, uploadImageToS3 } from '../../../utils/helpers';
-import apiConfig from '../../../config/apiConfig';
-import LoadingSpinner from '../../../components/LoodingSpinner/LoadingSpinner';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchBrandById,
+  updateBrand,
+} from "../../../redux/slices/admin/brandSlice";
+import { toast } from "react-toastify";
+import { getUploadUrl, uploadImageToS3 } from "../../../utils/helpers";
+import apiConfig from "../../../config/apiConfig";
+import LoadingSpinner from "../../../components/LoodingSpinner/LoadingSpinner";
 
 const BrandUpdate = () => {
   const { id } = useParams();
@@ -60,7 +63,11 @@ const BrandUpdate = () => {
   };
 
   if (loading) {
-    return <p><LoadingSpinner /></p>;
+    return (
+      <p>
+        <LoadingSpinner />
+      </p>
+    );
   }
 
   if (error) {
@@ -79,10 +86,12 @@ const BrandUpdate = () => {
           <div className="card">
             <div className="card-body text-start">
               <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className='row'>
-                  <div className='col-lg-6 p-4'>
+                <div className="row">
+                  <div className="col-lg-6 p-4">
                     <div className="form-group">
-                      <label className="title-color" htmlFor="name">Brand Name</label>
+                      <label className="title-color" htmlFor="name">
+                        Brand Name
+                      </label>
                       <input
                         type="text"
                         name="name"
@@ -95,15 +104,24 @@ const BrandUpdate = () => {
                       />
                     </div>
                   </div>
-                  <div className='col-lg-6 p-4'>
+                  <div className="col-lg-6 p-4">
                     <div className="text-center flex justify-center">
                       {brandImage && (
-                        <img className="upload-img-view" src={brandImage} alt="Brand Preview" />
+                        <img
+                          className="upload-img-view"
+                          src={brandImage}
+                          alt="Brand Preview"
+                        />
                       )}
                     </div>
                     <div className="form-group">
-                      <label className="title-color" htmlFor="brand">Brand Logo</label>
-                      <span className="ml-2 text-info"> Ratio 1:1 (500 x 500 px) </span>
+                      <label className="title-color" htmlFor="brand">
+                        Brand Logo
+                      </label>
+                      <span className="ml-2 text-info">
+                        {" "}
+                        Ratio 1:1 (500 x 500 px){" "}
+                      </span>
                       <div className="custom-file text-left">
                         <input
                           type="file"
@@ -113,16 +131,29 @@ const BrandUpdate = () => {
                           accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
                           onChange={(e) => {
                             setImageFile(e.target.files[0]);
-                            setBrandImage(URL.createObjectURL(e.target.files[0]));
+                            setBrandImage(
+                              URL.createObjectURL(e.target.files[0])
+                            );
                           }}
                         />
-                        <label className="custom-file-label" htmlFor="brand-image">Choose file</label>
+                        <label
+                          className="custom-file-label"
+                          htmlFor="brand-image"
+                        >
+                          Choose file
+                        </label>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="d-flex justify-content-end gap-3 mt-4">
-                  <button type="submit" className="btn bg-primary text-white px-4" style={{ color: "white" }}>Update</button>
+                  <button
+                    type="submit"
+                    className="btn bg-primary-500 text-white px-4"
+                    style={{ color: "white" }}
+                  >
+                    Update
+                  </button>
                 </div>
               </form>
             </div>

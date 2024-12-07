@@ -114,7 +114,6 @@
 //   //   deal.title.toLowerCase().includes(searchQuery.toLowerCase())
 //   // );
 
-
 //   const filteredDeals = Array.isArray(flashDeals)
 //   ? flashDeals.filter((deal) =>
 //       deal.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -314,15 +313,16 @@
 
 // export default FlashDeals;
 
-
-
-
 import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 import { MdFlashOn } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { fetchFlashDeals, createFlashDeal, deleteFlashDeal } from "../../../../redux/slices/admin/flashDealSlice";
+import {
+  fetchFlashDeals,
+  createFlashDeal,
+  deleteFlashDeal,
+} from "../../../../redux/slices/admin/flashDealSlice";
 import FileUpload from "../../../../components/FormInput/FileUpload";
 import PreviewImage from "../../../../components/FormInput/PreviewImage";
 import { toast, ToastContainer } from "react-toastify";
@@ -335,7 +335,9 @@ import apiConfig from "../../../../config/apiConfig";
 
 const FlashDeals = () => {
   const dispatch = useDispatch();
-  const { flashDeals, loading, error } = useSelector((state) => state.flashDeals);
+  const { flashDeals, loading, error } = useSelector(
+    (state) => state.flashDeals
+  );
   const defaultImage = "/image-place-holder.png"; // Set your default image URL here
   const [formData, setFormData] = useState({
     title: "",
@@ -375,30 +377,36 @@ const FlashDeals = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-  
+
     try {
       let imageKey;
-  
+
       if (selectedFile) {
         console.log("Selected file:", selectedFile);
-  
+
         // Get the S3 upload URL for the flash deal image
-        const uploadConfig = await getUploadUrl(selectedFile.type, "flash-deals");
-  
+        const uploadConfig = await getUploadUrl(
+          selectedFile.type,
+          "flash-deals"
+        );
+
         // Use the URL to upload the image
-        const uploadSuccessful = await uploadImageToS3(uploadConfig.url, selectedFile);
+        const uploadSuccessful = await uploadImageToS3(
+          uploadConfig.url,
+          selectedFile
+        );
         imageKey = uploadConfig.key; // Directly retrieve the image key from uploadConfig
-  
+
         if (uploadSuccessful && imageKey) {
           formData.image = imageKey;
         } else {
           throw new Error("Failed to retrieve image key from upload.");
         }
       }
-  
+
       // Dispatch createFlashDeal with formData containing the image key if available
       await dispatch(createFlashDeal(formData)).unwrap();
-  
+
       toast.success("Flash deal added successfully!");
       setFormData({
         title: "",
@@ -408,7 +416,6 @@ const FlashDeals = () => {
       });
       setSelectedFile(null);
       dispatch(fetchFlashDeals());
-  
     } catch (err) {
       console.error("Error during form submission:", err);
       toast.error(`Error adding flash deal: ${err.message}`);
@@ -416,8 +423,7 @@ const FlashDeals = () => {
       setIsSubmitting(false);
     }
   };
-  
-  
+
   const handleDelete = async (id) => {
     const confirmResult = await Swal.fire({
       title: "Are you sure?",
@@ -428,38 +434,37 @@ const FlashDeals = () => {
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
     });
-  
+
     if (confirmResult.isConfirmed) {
       try {
         // Optimistically remove the deal from the local state or dispatch a Redux action
         await dispatch(deleteFlashDeal(id)).unwrap();
-  
+
         Swal.fire("Deleted!", "Your flash deal has been deleted.", "success");
       } catch (error) {
-        Swal.fire("Error!", "Failed to delete flash deal. Please try again.", "error");
+        Swal.fire(
+          "Error!",
+          "Failed to delete flash deal. Please try again.",
+          "error"
+        );
       }
     }
   };
-  
 
   // const filteredDeals = flashDeals.filter((deal) =>
   //   deal.title.toLowerCase().includes(searchQuery.toLowerCase())
   // );
-  
-  
 
   const filteredDeals = Array.isArray(flashDeals)
-  ? flashDeals.filter((deal) =>
-      deal.title.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  : Object.values(flashDeals).filter(
-      (deal) =>
-        typeof deal === "object" && // Ensure it's not the `products` array
-        deal.title &&
+    ? flashDeals.filter((deal) =>
         deal.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-
+      )
+    : Object.values(flashDeals).filter(
+        (deal) =>
+          typeof deal === "object" && // Ensure it's not the `products` array
+          deal.title &&
+          deal.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
   return (
     <div className="content container-fluid">
@@ -473,17 +478,24 @@ const FlashDeals = () => {
         <div className="col-md-12">
           <div className="card">
             <div className="card-body">
-              <form onSubmit={handleFormSubmit} className="text-start" encType="multipart/form-data">
+              <form
+                onSubmit={handleFormSubmit}
+                className="text-start"
+                encType="multipart/form-data"
+              >
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <label htmlFor="title" className="title-color font-weight-medium text-capitalize">
+                      <label
+                        htmlFor="title"
+                        className="title-color font-weight-medium text-capitalize"
+                      >
                         Title
                       </label>
                       <input
                         type="text"
                         name="title"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         placeholder="Enter title"
                         value={formData.title}
                         onChange={handleInputChange}
@@ -491,26 +503,32 @@ const FlashDeals = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="start-date" className="title-color font-weight-medium text-capitalize">
+                      <label
+                        htmlFor="start-date"
+                        className="title-color font-weight-medium text-capitalize"
+                      >
                         Start Date
                       </label>
                       <input
                         type="date"
                         name="startDate"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         value={formData.startDate}
                         onChange={handleInputChange}
                         required
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="end-date" className="title-color font-weight-medium text-capitalize">
+                      <label
+                        htmlFor="end-date"
+                        className="title-color font-weight-medium text-capitalize"
+                      >
                         End Date
                       </label>
                       <input
                         type="date"
                         name="endDate"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         value={formData.endDate}
                         onChange={handleInputChange}
                         required
@@ -519,12 +537,16 @@ const FlashDeals = () => {
                   </div>
                   <div className="col-lg-6">
                     <PreviewImage image={formData.image} />
-                    <FileUpload label="Image" name="image" onChange={handleImageChange} />
+                    <FileUpload
+                      label="Image"
+                      name="image"
+                      onChange={handleImageChange}
+                    />
                   </div>
                   <div className="flex justify-end m-5 w-full">
                     <button
                       type="submit"
-                      className="btn bg-primary hover:bg-primary-dark"
+                      className="btn bg-primary-500 hover:bg-primary-dark-500"
                       style={{ color: "white" }}
                       disabled={isSubmitting}
                     >
@@ -567,7 +589,7 @@ const FlashDeals = () => {
               ) : (
                 <div className="table-responsive">
                   <table className="table table-hover text-nowrap">
-                    <thead className="bg-green-200">
+                    <thead className="bg-secondary-500">
                       <tr>
                         <th>Title</th>
                         <th>Start Date</th>
@@ -580,14 +602,23 @@ const FlashDeals = () => {
                       {filteredDeals.map((deal) => (
                         <tr key={deal._id}>
                           <td>{deal.title}</td>
-                          <td>{new Date(deal.startDate).toLocaleDateString()}</td>
+                          <td>
+                            {new Date(deal.startDate).toLocaleDateString()}
+                          </td>
                           <td>{new Date(deal.endDate).toLocaleDateString()}</td>
                           <td>
-                            <img src={`${apiConfig.bucket}/${deal.image}`} alt={deal.title} width="50" />
+                            <img
+                              src={`${apiConfig.bucket}/${deal.image}`}
+                              alt={deal.title}
+                              width="50"
+                            />
                           </td>
                           <td>
                             <div className="d-flex justify-content-center gap-2">
-                              <Link to={`/add-flashproduct/${deal._id}`} className="btn btn-soft-info btn-sm border-green-500">
+                              <Link
+                                to={`/add-flashproduct/${deal._id}`}
+                                className="btn btn-soft-info btn-sm border-primary-500"
+                              >
                                 Add product
                               </Link>
                               <ActionButton

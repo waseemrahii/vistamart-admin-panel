@@ -90,12 +90,12 @@ const WithdrawalMethods = () => {
             Withdrawal methods
           </h2>
           <button
-            className="btn  text-capitalize remove gap-2"
+            className="btn  text-capitalize bg-primary-500 remove gap-2"
             id="add-more-field"
-            style={{ backgroundColor: "green-400", display: "flex" }}
+            style={{ backgroundColor: "", display: "flex" }}
             onClick={handleAddField}
           >
-            <FaPlus className="tio-add " /> Add fields
+            <FaPlus className="tio-add text-white " /> Add fields
           </button>
         </div>
       </div>
@@ -303,8 +303,8 @@ const WithdrawalMethods = () => {
                 </button>
                 <button
                   type="submit"
-                  className="btn btn--primary demo_check"
-                  style={{ backgroundColor: "green-400" }}
+                  className="btn bg-primary-500 hover:bg-primary-dark-500 demo_check"
+                  style={{ color: "white" }}
                 >
                   Submit
                 </button>

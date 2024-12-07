@@ -5,10 +5,7 @@ import { FaInfoCircle } from "react-icons/fa";
 const AdminLoginPage = () => {
   return (
     <div className="col-md-12 snipcss-FTALo">
-      <form
-        action="/login-url-setup"
-        method="post"
-      >
+      <form action="/login-url-setup" method="post">
         <input
           type="hidden"
           name="_token"
@@ -34,11 +31,11 @@ const AdminLoginPage = () => {
               </label>
               <div className="input-group mb-3">
                 <span className="input-group-text radius-0 border-right-0">
-                https://vistamart.biz/login/
+                  https://vistamart.biz/login/
                 </span>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="url"
                   defaultValue=""
                 />
@@ -54,8 +51,8 @@ const AdminLoginPage = () => {
               <button
                 type="submit"
                 id="submit"
-                className="btn py-2 bg-primary text-white hover:bg-primary-dark px-4"
-                style={{color:"white"}}
+                className="btn py-2 bg-primary-500 text-white hover:bg-primary-dark-500 px-4"
+                style={{ color: "white" }}
               >
                 Submit
               </button>
@@ -63,16 +60,8 @@ const AdminLoginPage = () => {
           </div>
         </div>
       </form>
-      <form
-        action="#"
-        method="post"
-      >
-        <input
-          type="hidden"
-          name="_token"
-          value=""
-          autoComplete="off"
-        />
+      <form action="#" method="post">
+        <input type="hidden" name="_token" value="" autoComplete="off" />
         <div className="card h-100">
           <div className="card-header">
             <h5 className="text-capitalize mb-0"> Employee Login Page </h5>
@@ -92,12 +81,11 @@ const AdminLoginPage = () => {
               </label>
               <div className="input-group mb-3">
                 <span className="input-group-text radius-0 border-right-0">
-                https://vistamart.biz/login/
-
+                  https://vistamart.biz/login/
                 </span>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="url"
                   defaultValue=""
                 />
@@ -113,8 +101,8 @@ const AdminLoginPage = () => {
               <button
                 type="submit"
                 id="submit"
-                className="btn  py-2 bg-primary text-white hover:bg-primary-dark px-4"
-                style={{color:"white"}}
+                className="btn  py-2 bg-primary-500 text-white hover:bg-primary-dark-500 px-4"
+                style={{ color: "white" }}
               >
                 Submit
               </button>

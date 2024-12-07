@@ -16,7 +16,6 @@ const WalletManagement = () => {
     //   reference: "Add funds to wallet",
     //   createdAt: "2023/10/12",
     // },
-  
     // Add more transactions as needed
   ];
 
@@ -40,15 +39,14 @@ const WalletManagement = () => {
         </h2>
         <button
           type="button"
-          className="btn px-4 py-2 bg-primary text-white hover:bg-[#7e9f37] text-capitalize"
-          
+          className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 text-capitalize"
           data-toggle="modal"
           data-target="#add-fund-modal"
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color:"white"
+            color: "white",
           }}
         >
           <FiPlus /> Add fund
@@ -167,7 +165,7 @@ const WalletManagement = () => {
                   <button
                     type="submit"
                     id="submit"
-                    className="btn px-4 py-2 bg-[#A1CB46] text-white hover:bg-[#7e9f37] "
+                    className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 "
                   >
                     Submit
                   </button>
@@ -252,9 +250,9 @@ const WalletManagement = () => {
                 <div className="d-flex justify-content-end">
                   <button
                     type="submit"
-                    className="btn px-4 py-2 bg-primary flex gap-1 items-center text-white hover:bg-[#7e9f37]"
-                   style={{color:"white"}}
-                >
+                    className="btn px-4 py-2 bg-primary-500 flex gap-1 items-center text-white hover:bg-primary-dark-500"
+                    style={{ color: "white" }}
+                  >
                     <FiFilter className="" />
                     Filter
                   </button>
@@ -270,9 +268,7 @@ const WalletManagement = () => {
           <h4 className="mb-0 text-[1rem] font-semibold text-nowrap ">
             {" "}
             Transaction{" "}
-            <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-              
-            </span>{" "}
+            <span className="badge badge-soft-dark radius-50 fz-12 ml-1"></span>{" "}
           </h4>
           <div className="d-flex justify-content-end">
             <div className="dropdown text-nowrap">
@@ -293,7 +289,7 @@ const WalletManagement = () => {
                 filename="CustomerWallet" // Optional filename for the exported file
                 icon={FaDownload} // Icon for the button
                 label="Export " // Button label
-                className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                className="bg-primary-500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
                 style={{ color: "white" }} // Optional inline styles
               />
             </div>
@@ -304,7 +300,7 @@ const WalletManagement = () => {
             id="datatable"
             className="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table text-left"
           >
-            <thead className="thead-light thead-50 text-capitalize">
+            <thead className="thead-light bg-secondary-500 thead-50 text-capitalize">
               <tr>
                 <th>SL</th>
                 <th>Transaction ID</th>

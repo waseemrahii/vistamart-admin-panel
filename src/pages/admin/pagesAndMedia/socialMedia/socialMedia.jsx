@@ -370,7 +370,7 @@ const SocialMedia = () => {
           <ActionButton
             onClick={() => handleEdit(item._id)}
             icon={FaEdit}
-            className="btn border border-primary hover:bg-primary-dark hover:text-white mt-3 text-white"
+            className="btn border border-primary-500 hover:bg-primary-dark-500 hover:text-white mt-3 text-white"
           />
           <ActionButton
             onClick={() => handleDelete(item._id)}
@@ -430,8 +430,8 @@ const SocialMedia = () => {
                 </div>
                 <button
                   type="submit"
-                  className="btn bg-primary hover:bg-primary-dark hover:text-white mt-3 text-white"
-                  style={{color:"white"}}
+                  className="btn bg-primary-500 hover:bg-primary-dark-500 hover:text-white mt-3 text-white"
+                  style={{ color: "white" }}
                 >
                   Save
                 </button>

@@ -109,7 +109,7 @@ const BulkImport = () => {
                             type="file"
                             name="products_file"
                             accept=".xlsx, .xls"
-                            className="form-control-file text--primary font-weight-bold action-upload-section-dot-area"
+                            className="form-control-file text-primary-500 font-weight-bold action-upload-section-dot-area"
                             onChange={handleFileChange}
                           />
                         </div>
@@ -120,14 +120,14 @@ const BulkImport = () => {
                 <div className="d-flex flex-wrap gap-10 align-items-center justify-content-end">
                   <button
                     type="button"
-                    className="btn border border-secondary bg-secondary px-4 action-onclick-reload-page"
+                    className="btn border border-secondary-500 bg-secondary-500 px-4 action-onclick-reload-page"
                     onClick={handleReset}
                   >
                     Reset
                   </button>
                   <button
                     type="submit"
-                    className="btn bg-primary text-white hover:bg-primary-dark px-4"
+                    className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-4"
                     style={{ color: "white" }}
                   >
                     Submit

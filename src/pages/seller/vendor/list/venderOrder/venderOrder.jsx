@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faDownload, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faDownload,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { fetchOrder } from "../../../../../redux/slices/transaction/orderSlice";
 import ActionButton from "../../../../../components/ActionButton/Action";
 import { FaEye } from "react-icons/fa";
@@ -36,13 +40,19 @@ const VenderOrder = () => {
         <div className="card-header d-flex justify-content-between">
           <h5 className="mb-0">Order Info</h5>
           <div className="dropdown">
-            <button className="btn btn-outline-primary">
-              <FontAwesomeIcon icon={faDownload} /> Export <FontAwesomeIcon icon={faChevronDown} />
+            <button className="btn btn-outline-primary-500">
+              <FontAwesomeIcon icon={faDownload} /> Export{" "}
+              <FontAwesomeIcon icon={faChevronDown} />
             </button>
             <ul className="dropdown-menu">
               <li>
                 <a className="dropdown-item" href="#">
-                  <img width="14" src="https://6valley.6amtech.com/public/assets/back-end/img/excel.png" alt="Excel" /> Excel
+                  <img
+                    width="14"
+                    src="https://6valley.6amtech.com/public/assets/back-end/img/excel.png"
+                    alt="Excel"
+                  />{" "}
+                  Excel
                 </a>
               </li>
             </ul>
@@ -82,7 +92,10 @@ const VenderOrder = () => {
                     <td>${product.totalPrice}</td>
                     <td>{product.orderStatus}</td>
                     <td>
-                      <ActionButton to={`/orderdetail/${product._id}`} icon={FaEye} />
+                      <ActionButton
+                        to={`/orderdetail/${product._id}`}
+                        icon={FaEye}
+                      />
                     </td>
                   </tr>
                 ))}
@@ -101,7 +114,12 @@ const VenderOrder = () => {
   );
 };
 
-const Pagination = ({ currentPage, setCurrentPage, totalItems, itemsPerPage }) => {
+const Pagination = ({
+  currentPage,
+  setCurrentPage,
+  totalItems,
+  itemsPerPage,
+}) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   return (

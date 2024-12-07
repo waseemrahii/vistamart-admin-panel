@@ -184,12 +184,12 @@ const ProductGallery = () => {
             type="text"
             name="username"
             placeholder="search by product"
-            className="border border-gray-300 rounded ml-24 text-base w-56 h-10 text-gray-700 hover:border-blue-500 hover:bg-white hover:text-black"
+            className="border border-gray-300 rounded ml-24 text-base w-56 h-10 text-gray-700 hover:border-primary-500 hover:bg-white hover:text-black"
           ></input>
 
           <button
             type="submit"
-            className=" rounded-r-md px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+            className=" rounded-r-md px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
             style={{ color: "white" }}
           >
             Search

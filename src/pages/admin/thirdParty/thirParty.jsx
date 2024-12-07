@@ -31,7 +31,7 @@ const ThirParty = () => {
           <li
             className={
               activeSection === "paymentmethod"
-                ? "border-b-2 border-green-500"
+                ? "border-b-2 border-primary-500"
                 : ""
             }
           >
@@ -42,7 +42,7 @@ const ThirParty = () => {
           <li
             className={
               activeSection === "offlinepaymentmethod"
-                ? "border-b-2 border-green-500"
+                ? "border-b-2 border-primary-500"
                 : ""
             }
           >

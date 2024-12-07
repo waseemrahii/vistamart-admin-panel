@@ -213,7 +213,7 @@ const DealOfTheDay = () => {
                       <input
                         type="text"
                         name="title"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         id="title"
                         placeholder="Ex: LUX"
                         value={title}
@@ -260,7 +260,7 @@ const DealOfTheDay = () => {
                                 <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                 <input
                                   type="text"
-                                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-md focus:outline-none hover:border-primary focus:border-indigo-500"
+                                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-md focus:outline-none hover:border-primary-500 focus:border-primary-dark-500"
                                   placeholder="Search product..."
                                 />
                               </div>
@@ -282,9 +282,8 @@ const DealOfTheDay = () => {
                                           ? `${product?.name.slice(0, 20)}...`
                                           : product?.name}
                                       </h5>
-                                     
                                     </div>
-                                    <AiOutlineCheckCircle className="text-green-500" />
+                                    <AiOutlineCheckCircle className="text-primary-500" />
                                   </div>
                                 ))}
                               </div>

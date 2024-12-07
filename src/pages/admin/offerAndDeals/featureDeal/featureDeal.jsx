@@ -118,7 +118,7 @@ const FeatureDeal = () => {
           Feature deal
         </h2>
         <button
-          className="btn px-4 py-2 bg-primary hover:bg-primary-dark"
+          className="btn px-4 py-2 bg-primary-500 hover:bg-primary-dark-500"
           style={{ color: "white" }}
           data-toggle="modal"
           data-target="#prioritySetModal"
@@ -201,7 +201,7 @@ const FeatureDeal = () => {
                       <input
                         type="text"
                         name="title"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         id="title"
                         placeholder="Ex:LUX"
                         value={formData.title}
@@ -220,7 +220,7 @@ const FeatureDeal = () => {
                       </label>
                       <input
                         type="date"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         id="startDate"
                         name="startDate"
                         value={formData.startDate}
@@ -237,7 +237,7 @@ const FeatureDeal = () => {
                       </label>
                       <input
                         type="date"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         id="endDate"
                         name="endDate"
                         value={formData.endDate}
@@ -253,7 +253,7 @@ const FeatureDeal = () => {
                   </button>
                   <button
                     type="submit"
-                    className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                    className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     Submit
@@ -288,7 +288,7 @@ const FeatureDeal = () => {
                       <input
                         id="datatableSearch_"
                         type="search"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         placeholder="Search by ID or title"
                         aria-label="Search"
                         value={searchQuery}
@@ -299,7 +299,7 @@ const FeatureDeal = () => {
                         filename="FeatureDeal" // Optional filename for the exported file
                         icon={FaDownload} // Icon for the button
                         label="Export " // Button label
-                        className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                        className="bg-primary-500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
                         style={{ color: "white" }} // Optional inline styles
                       />
                       {/* <div className="input-group-append ">
@@ -353,7 +353,7 @@ const FeatureDeal = () => {
                         <div className="d-flex justify-content-center gap-2">
                           <Link
                             to={`add-product/${deal._id}`}
-                            className="h-30 d-flex gap-2 align-items-center btn btn-soft-info btn-sm border-green-500"
+                            className="h-30 d-flex gap-2 align-items-center btn btn-soft-info btn-sm border-primary-500"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

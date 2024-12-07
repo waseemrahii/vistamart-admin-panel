@@ -2,8 +2,16 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import FilterForm from "./FilterForm";
-import { deleteProduct, fetchProducts, toggleFeatured, updateProductStatus } from "../../../../../redux/slices/admin/productSlice";
-import { fetchBrands, fetchCategories } from "../../../../../redux/slices/admin/categorybrandSlice";
+import {
+  deleteProduct,
+  fetchProducts,
+  toggleFeatured,
+  updateProductStatus,
+} from "../../../../../redux/slices/admin/productSlice";
+import {
+  fetchBrands,
+  fetchCategories,
+} from "../../../../../redux/slices/admin/categorybrandSlice";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 import Pagination from "../../../../../components/Pagination";
 import TableList from "../../../../../components/FormInput/TableList";
@@ -11,26 +19,31 @@ import { Link } from "react-router-dom";
 import apiConfig from "../../../../../config/apiConfig";
 import Switcher from "../../../../../components/FormInput/Switcher";
 import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
-const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {} }) => {
+const InHouseProductList = ({
+  initialTitle = "Product List",
+  initialFilters = {},
+}) => {
   const dispatch = useDispatch();
-  const { loading, error, products, results } = useSelector((state) => state.product);
+  const { loading, error, products, results } = useSelector(
+    (state) => state.product
+  );
   const { categories, brands } = useSelector((state) => state.category);
-  const [sortBy, setSortBy] = useState('name');
-  const [sortOrder, setSortOrder] = useState('asc');
- 
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
   const [filters, setFilters] = useState({
     brand: initialFilters.brand || "",
     category: initialFilters.category || "",
-    searchValue: initialFilters.searchValue || '',
-    userType: initialFilters.userType || '',
-    userId : initialFilters.userId || '',
-    status: initialFilters.status || '',
+    searchValue: initialFilters.searchValue || "",
+    userType: initialFilters.userType || "",
+    userId: initialFilters.userId || "",
+    status: initialFilters.status || "",
     vendorNew4Days: initialFilters.vendorNew4Days || false,
-    minPrice: initialFilters.minPrice || '', 
-    maxPrice: initialFilters.maxPrice || ''
+    minPrice: initialFilters.minPrice || "",
+    maxPrice: initialFilters.maxPrice || "",
   });
-
 
   useEffect(() => {
     const cleanFilters = {
@@ -45,56 +58,59 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
       minPrice: filters.minPrice || undefined,
       maxPrice: filters.maxPrice || undefined,
     };
-  
+
     dispatch(fetchProducts(cleanFilters));
     dispatch(fetchCategories());
     dispatch(fetchBrands());
   }, [filters, sortBy, sortOrder, dispatch]);
-  
-   
- 
- 
 
   const handleSort = (field) => {
-    const order = sortBy === field && sortOrder === 'asc' ? 'desc' : 'asc';
+    const order = sortBy === field && sortOrder === "asc" ? "desc" : "asc";
     setSortBy(field);
     setSortOrder(order);
   };
 
   const handleToggleFeatured = async (product) => {
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to ${product.isFeatured ? 'remove' : 'add'} this product as featured?`,
-      icon: 'warning',
+      title: "Are you sure?",
+      text: `Do you want to ${
+        product.isFeatured ? "remove" : "add"
+      } this product as featured?`,
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
     });
     if (result.isConfirmed) {
       try {
-        await dispatch(toggleFeatured({ productId: product._id, isFeatured: !product.isFeatured })).unwrap();
-        Swal.fire('Success', 'Product status updated successfully!', 'success');
+        await dispatch(
+          toggleFeatured({
+            productId: product._id,
+            isFeatured: !product.isFeatured,
+          })
+        ).unwrap();
+        Swal.fire("Success", "Product status updated successfully!", "success");
       } catch (error) {
-        Swal.fire('Error', error.message, 'error');
+        Swal.fire("Error", error.message, "error");
       }
     }
   };
 
   const handleDeleteProduct = async (productId) => {
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete this product?',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "Do you want to delete this product?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No',
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No",
     });
     if (result.isConfirmed) {
       try {
         await dispatch(deleteProduct(productId)).unwrap();
-        Swal.fire('Deleted!', 'Product has been deleted.', 'success');
+        Swal.fire("Deleted!", "Product has been deleted.", "success");
       } catch (error) {
-        Swal.fire('Error', error.message, 'error');
+        Swal.fire("Error", error.message, "error");
       }
     }
   };
@@ -105,7 +121,9 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
         <h2 className="h1 mb-0 text-capitalize d-flex gap-2">
           <img src="/inhouse-product-list.png" alt="In House Product List" />
           {initialTitle}
-          <span className="badge badge-soft-dark radius-50 fz-14 ml-1">{results}</span>
+          <span className="badge badge-soft-dark radius-50 fz-14 ml-1">
+            {results}
+          </span>
         </h2>
       </div>
 
@@ -123,7 +141,11 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
 
       <div className="product-table-container">
         {error ? (
-          <div>{typeof error === 'object' && error !== null ? JSON.stringify(error) : error}</div>
+          <div>
+            {typeof error === "object" && error !== null
+              ? JSON.stringify(error)
+              : error}
+          </div>
         ) : (
           <Suspense fallback={<LoadingSpinner />}>
             <TableList
@@ -131,12 +153,12 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
               tableTitle="Products"
               listData={products}
               columns={[
-                { key: 'SL', label: 'SL', render: (_, index) => index + 1 },
+                { key: "SL", label: "SL", render: (_, index) => index + 1 },
                 {
-                  key: 'name',
-                  label: 'Product Name',
+                  key: "name",
+                  label: "Product Name",
                   sortable: true,
-                  onClick: () => handleSort('name'),
+                  onClick: () => handleSort("name"),
                   render: (product) => (
                     <Link to="#" className="media align-items-center gap-2">
                       <img
@@ -148,25 +170,29 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
                     </Link>
                   ),
                 },
-                { key: 'productType', label: 'Product Type', textAlign: 'center' },
                 {
-                  key: 'price',
-                  label: 'Unit Price',
+                  key: "productType",
+                  label: "Product Type",
+                  textAlign: "center",
+                },
+                {
+                  key: "price",
+                  label: "Unit Price",
                   sortable: true,
-                  onClick: () => handleSort('price'),
+                  onClick: () => handleSort("price"),
                   render: (product) => `PKR ${product?.price}`,
                 },
                 {
-                  key: 'brand',
-                  label: 'Brand',
+                  key: "brand",
+                  label: "Brand",
                   sortable: true,
-                  onClick: () => handleSort('brand'),
+                  onClick: () => handleSort("brand"),
                   render: (product) => `${product?.brand?.name}`,
                 },
                 {
-                  key: 'isFeatured',
-                  label: 'Show as Featured',
-                  textAlign: 'center',
+                  key: "isFeatured",
+                  label: "Show as Featured",
+                  textAlign: "center",
                   render: (product) => (
                     <Switcher
                       checked={product?.isFeatured}
@@ -175,31 +201,31 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
                   ),
                 },
                 {
-                  key: 'actions',
-                  label: 'Actions',
-                  textAlign: 'center',
+                  key: "actions",
+                  label: "Actions",
+                  textAlign: "center",
                   render: (product) => (
                     <div className="btn-group flex gap-3">
                       <Link
                         to={`/products/${product?._id}`}
-                        className="btn border-primary text-primary"
+                        className="btn border-primary-500 text-primary-500"
                         title="View"
                       >
-                        <FiEye />
+                        <FaEye />
                       </Link>
                       <Link
                         to={`/product/${product?._id}`}
-                        className="btn border-primary text-primary"
+                        className="btn border-primary-500 text-primary-500"
                         title="Edit"
                       >
-                        <FiEdit />
+                        <FaEdit />
                       </Link>
                       <button
-                        className="btn btn-sm border-red-400 text-red-400 hover:bg-red-500 hover:text-white"
+                        className="btn  border-red-400 text-red-400 hover:bg-red-500 hover:text-white"
                         onClick={() => handleDeleteProduct(product?._id)}
                         title="Delete"
                       >
-                        <FiTrash />
+                        <FaTrash />
                       </button>
                     </div>
                   ),
@@ -216,4 +242,3 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
 };
 
 export default InHouseProductList;
-

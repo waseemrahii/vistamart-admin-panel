@@ -6,7 +6,6 @@ import FormInput from "../../../../../../components/FormInput/FormInput";
 import FormSection from "../../../../../../components/FormInput/FormSection";
 import FormSelect from "../../../../../../components/FormInput/FormSelect";
 
-
 const ProductAdditional = ({ formData = {}, handleChange }) => {
   useEffect(() => {
     // Ensure discount values don't exceed limits
@@ -17,7 +16,10 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
           value: 100, // Cap at 100%
         },
       });
-    } else if (formData.discountType === "flat" && formData.discountAmount > formData.price) {
+    } else if (
+      formData.discountType === "flat" &&
+      formData.discountAmount > formData.price
+    ) {
       handleChange({
         target: {
           name: "discountAmount",
@@ -25,15 +27,29 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
         },
       });
     }
-  }, [formData.discountType, formData.discountAmount, formData.discount, formData.price, handleChange]);
+  }, [
+    formData.discountType,
+    formData.discountAmount,
+    formData.discount,
+    formData.price,
+    handleChange,
+  ]);
 
   useEffect(() => {
     if (formData.discountType === "percent" && formData.discount > 100) {
       toast.error("Discount amount cannot exceed 100%.");
-    } else if (formData.discountType === "flat" && formData.discountAmount > formData.price) {
+    } else if (
+      formData.discountType === "flat" &&
+      formData.discountAmount > formData.price
+    ) {
       toast.error("Discount amount cannot exceed the price.");
     }
-  }, [formData.discountAmount, formData.discount, formData.discountType, formData.price]);
+  }, [
+    formData.discountAmount,
+    formData.discount,
+    formData.discountType,
+    formData.price,
+  ]);
 
   const handleDiscountFocus = (e) => {
     // Reset the relevant discount field when focused
@@ -44,7 +60,10 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
           value: "", // Clear the input field
         },
       });
-    } else if (e.target.name === "discountAmount" && formData.discountAmount === 0) {
+    } else if (
+      e.target.name === "discountAmount" &&
+      formData.discountAmount === 0
+    ) {
       handleChange({
         target: {
           name: "discountAmount",
@@ -189,4 +208,3 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
 };
 
 export default ProductAdditional;
-

@@ -42,7 +42,7 @@ const CustomerBonusSetUp = () => {
           />
           Wallet bonus setup
         </h2>
-        <div className="text-primary d-flex align-items-center gap-3 font-weight-bolder">
+        <div className="text-primary-500 d-flex align-items-center gap-3 font-weight-bolder">
           How it works
           <div
             className="ripple-animation"
@@ -80,7 +80,7 @@ const CustomerBonusSetUp = () => {
                     <input
                       type="text"
                       name="title"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       id="bonus_title"
                       placeholder="Ex:EID Dhamaka"
                       required
@@ -98,7 +98,7 @@ const CustomerBonusSetUp = () => {
                     <input
                       type="text"
                       name="description"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       id="short_desc"
                       placeholder="Ex:EID Dhamaka"
                     />
@@ -117,7 +117,7 @@ const CustomerBonusSetUp = () => {
                     <select
                       name="bonus_type"
                       id="bonus-type"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       required
                     >
                       <option value="percentage">Percentage(%)</option>
@@ -140,7 +140,7 @@ const CustomerBonusSetUp = () => {
                       type="number"
                       name="bonus_amount"
                       min="0"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       value="0"
                       id="bonus_amount"
                       placeholder="Ex:5"
@@ -159,7 +159,7 @@ const CustomerBonusSetUp = () => {
                       type="number"
                       name="min_add_money_amount"
                       min="0"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       id="min_add_money_amount"
                       value="0"
                       placeholder="Ex:100"
@@ -183,7 +183,7 @@ const CustomerBonusSetUp = () => {
                       min="0"
                       name="max_bonus_amount"
                       value="0"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       id="max_bonus_amount"
                       placeholder="Ex:5000"
                     />
@@ -201,7 +201,7 @@ const CustomerBonusSetUp = () => {
                       type="date"
                       name="start_date_time"
                       id="start-date-time"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       required
                     />
                   </div>
@@ -218,7 +218,7 @@ const CustomerBonusSetUp = () => {
                       type="date"
                       name="end_date_time"
                       id="end-date-time"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                     />
                   </div>
                 </div>
@@ -230,7 +230,7 @@ const CustomerBonusSetUp = () => {
                   </button>
                   <button
                     type="submit"
-                    className="btn  py-2 bg-primary text-white hover:bg-primary-dark px-5"
+                    className="btn  py-2 bg-primary-500 text-white hover:bg-primary-dark-500 px-5"
                     style={{ color: "white" }}
                   >
                     Submit
@@ -275,7 +275,7 @@ const CustomerBonusSetUp = () => {
                   />
                   <button
                     type="submit"
-                    className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark "
+                    className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 "
                     style={{ color: "white" }}
                   >
                     Search
@@ -286,7 +286,7 @@ const CustomerBonusSetUp = () => {
                   filename="CustomerBonusSetp" // Optional filename for the exported file
                   icon={FaDownload} // Icon for the button
                   label="Export " // Button label
-                  className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                  className="bg-primary-500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
                   style={{ color: "white" }} // Optional inline styles
                 />
               </form>

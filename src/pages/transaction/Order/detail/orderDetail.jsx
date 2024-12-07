@@ -298,7 +298,7 @@ const OrderDetails = () => {
                       <button
                         onClick={togglePaymentStatus}
                         className={`relative inline-flex items-center h-6 rounded-full w-11 focus:outline-none ${
-                          paymentStatus ? "bg-green-600" : "bg-gray-200"
+                          paymentStatus ? "bg-primary-500" : "bg-gray-200"
                         }`}
                       >
                         <span

@@ -15,6 +15,7 @@ import {
 import Swal from "sweetalert2";
 import apiConfig from "../../../../../config/apiConfig";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
+import { BsCloudRainHeavy } from "react-icons/bs";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -54,7 +55,6 @@ const ProductDetail = () => {
   //     }
   //   });
   // };
- 
 
   const handleUpdateStatus = (id, currentStatus) => {
     let newStatus;
@@ -99,8 +99,6 @@ const ProductDetail = () => {
       }
     });
   };
-
-
 
   const [productData, setProductData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -147,7 +145,11 @@ const ProductDetail = () => {
   }
 
   if (!productData) {
-    return <div><LoadingSpinner /></div>;
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   const thumbnailUrl = productData?.thumbnail
@@ -167,16 +169,20 @@ const ProductDetail = () => {
     brand = { name: "No Brand" },
     category = { name: "No Category" },
     sold = 0,
-    vendor = 'vendor',
+    vendor = "vendor",
     totalSoldAmount = 0,
     productType = "No Type",
     sku = "No SKU",
     price = "0",
     taxAmount = "0",
+    // slug = "",
     discountAmount = "0",
     videoLink = "https://youtu.be/yC4xCS4nLRg?si=tvU2m2NCYoivkfF2",
   } = productData;
 
+  // BsCloudRainHeavy;
+  //vistamart.biz/products//${produtData.slug}
+  // windowhttps:
   return (
     <>
       <ToastContainer />
@@ -227,18 +233,19 @@ const ProductDetail = () => {
                           key={index}
                           className="aspect-1 float-left overflow-hidden d-block border rounded-lg position-relative"
                         >
-                          <a
+                          <img
+                            width="50"
+                            className="img-fit max-50"
+                            alt={`Additional ${index}`}
+                            src={`${apiConfig.bucket}/${imgUrl}`}
+                          />
+                          {/* <a
                             href={imgUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <img
-                              width="50"
-                              className="img-fit max-50"
-                              alt={`Additional ${index}`}
-                              src={`${apiConfig.bucket}/${imgUrl}`}
-                            />
-                          </a>
+                           
+                          </a> */}
                         </div>
                       );
                     })}
@@ -252,7 +259,7 @@ const ProductDetail = () => {
                       <button
                         className={`px-4 py-2 rounded ${
                           productData?.status === "pending"
-                            ? "bg-primary"
+                            ? "bg-primary-500"
                             : productData?.status === "approved"
                             ? "bg-red-500"
                             : "bg-gray-500"
@@ -286,6 +293,7 @@ const ProductDetail = () => {
                             {productData?.status}
                           </span>
                         </td>
+                        {/* <h1>viw</h1> */}
                       </div>
                     </div>
                   </div>
@@ -373,13 +381,13 @@ const ProductDetail = () => {
               </div>
               <div className="card-body">
                 <div>
-                  <h6 className="mb-3 text-capitalize">{productData?.metaTitle}</h6>
+                  <h6 className="mb-3 text-capitalize">
+                    {productData?.metaTitle}
+                  </h6>
                 </div>
                 <p className="text-capitalize">
-                  
-                    {productData?.metaDescription}
-
-              </p>
+                  {productData?.metaDescription}
+                </p>
                 <div className="d-flex flex-wrap gap-2">
                   <a
                     className="text-dark border rounded p-2 d-flex align-items-center justify-content-center gap-1"

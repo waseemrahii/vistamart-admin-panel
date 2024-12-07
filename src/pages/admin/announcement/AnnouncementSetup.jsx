@@ -2,13 +2,13 @@ import React from "react";
 
 const AnnouncementSetup = () => {
   return (
-    <div className="bg-[#F9F9FB]  px-5 py-5 w-[100%]">
+    <div className="bg-secondary-500  px-5 py-5 w-[100%]">
       {" "}
       <div className="font-bold text-[1.3rem] flex gap-2 items-center">
         <img src="/announcement.png" alt="" className="w-6 h-6" />
         <h1>Announcement Setup</h1>
       </div>
-      <div className="p-4 h-[80vh] w-full bg-white  rounded-lg mt-3 px-10 py-8  border border-gray-300 rounded-lg shadow-lg">
+      <div className="p-4 h-[80vh] w-full bg-white   mt-3 px-10 py-8  border border-gray-300 rounded-lg shadow-lg">
         <h1 className="w-full pb-4 border-b shadow-md border-b-gray-600 text-xl font-semibold">
           Announcement Setup
         </h1>
@@ -58,7 +58,7 @@ const AnnouncementSetup = () => {
           </div>
           <div className=" text-right">
             <button
-              className=" px-3   bg-primary text-white py-2 rounded-md hover:bg-primary-dark"
+              className=" px-3   bg-primary-500 text-white py-2 rounded-md hover:bg-primary-dark-500"
               style={{ color: "white" }}
             >
               Publish

@@ -28,7 +28,7 @@ const TranscatioReports = () => {
           <li
             className={`${
               activeSection === "ordertranscation"
-                ? "active border-b-2 border-green-500"
+                ? "active border-b-2 border-primary-500"
                 : ""
             }`}
           >
@@ -39,7 +39,7 @@ const TranscatioReports = () => {
           <li
             className={`${
               activeSection === "expencetranscation"
-                ? "active border-b-2 border-green-500"
+                ? "active border-b-2 border-primary-500"
                 : ""
             }`}
           >
@@ -50,7 +50,7 @@ const TranscatioReports = () => {
           <li
             className={`${
               activeSection === "refoundtranscation"
-                ? "active border-b-2 border-green-500"
+                ? "active border-b-2 border-primary-500"
                 : ""
             }`}
           >

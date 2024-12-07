@@ -1,12 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { AiOutlineSearch, AiOutlineDelete, AiOutlineCheckCircle } from "react-icons/ai";
+import {
+  AiOutlineSearch,
+  AiOutlineDelete,
+  AiOutlineCheckCircle,
+} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchFlashDealById,
   addProductToFlashDeal,
   removeProductFromFlashDeal,
-} from "../../../../redux/slices/admin/flashDealSlice"; 
+} from "../../../../redux/slices/admin/flashDealSlice";
 import { fetchProducts } from "../../../../redux/slices/admin/productSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,17 +20,17 @@ import apiConfig from "../../../../config/apiConfig";
 const AddFlashDealProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  
+
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   // const { flashDeal } = useSelector((state) => state.flashDeals);
   const { flashDeals } = useSelector((state) => state.flashDeals);
-const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' is available in the component
+  const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' is available in the component
 
   const { products } = useSelector((state) => state.product);
-    
+
   console.log("State of flashDeals:", flashDeal);
 
   useEffect(() => {
@@ -34,15 +38,15 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
       try {
         await dispatch(fetchProducts());
       } catch (err) {
-        console.error('Error fetching products:', err);
+        console.error("Error fetching products:", err);
       }
     };
-    
+
     fetchProductsData();
   }, [dispatch]);
-  
+
   useEffect(() => {
-    dispatch(fetchFlashDealById(id));  
+    dispatch(fetchFlashDealById(id));
   }, [dispatch, id]);
 
   const toggleDropdown = () => {
@@ -53,7 +57,7 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
     setSelectedProduct(product);
     setDropdownOpen(false);
   };
-  
+
   const handleOutsideClick = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setDropdownOpen(false);
@@ -68,11 +72,12 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
   const handleSubmit = (event) => {
     event.preventDefault();
     if (selectedProduct) {
-      dispatch(addProductToFlashDeal({ id: id, productId: selectedProduct._id }))
+      dispatch(
+        addProductToFlashDeal({ id: id, productId: selectedProduct._id })
+      )
         .then(() => {
           toast.success("Product added successfully.");
-          dispatch(fetchFlashDealById(id));  
-
+          dispatch(fetchFlashDealById(id));
         })
         .catch((error) => {
           console.error("Error adding product to flash deal:", error);
@@ -119,21 +124,27 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h3 className="mb-0 text-capitalize">Add Product to Flash Deal</h3>
+              <h3 className="mb-0 text-capitalize">
+                Add Product to Flash Deal
+              </h3>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <div className="row">
                     <div className="col-md-12 mt-3">
-                      <label htmlFor="product" className="text-gray-700">Products</label>
+                      <label htmlFor="product" className="text-gray-700">
+                        Products
+                      </label>
                       <div ref={dropdownRef} className="relative">
                         <button
                           type="button"
                           className="w-full bg-white-200 border text-left p-2 rounded-lg focus:outline-none"
                           onClick={toggleDropdown}
                         >
-                          {selectedProduct ? selectedProduct.name : "Select product"}
+                          {selectedProduct
+                            ? selectedProduct.name
+                            : "Select product"}
                         </button>
                         {dropdownOpen && (
                           <div className="absolute z-10 w-full bg-white border border-gray-300 mt-1 rounded-lg shadow-lg">
@@ -160,13 +171,15 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
                                     alt="product"
                                   />
                                   <div className="ml-2 flex-1">
-                                    <h5 className="text-gray-800">{product?.name}</h5>
+                                    <h5 className="text-gray-800">
+                                      {product?.name}
+                                    </h5>
                                     <div className="text-gray-500 text-sm">
                                       {/* {product?.category} - {product?.brand} */}
                                     </div>
                                   </div>
                                   <div>
-                                    <AiOutlineCheckCircle className="text-green-500" />
+                                    <AiOutlineCheckCircle className="text-primary-500" />
                                   </div>
                                 </div>
                               ))}
@@ -180,9 +193,9 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
                 <div className="flex justify-end">
                   <button
                     type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                  style={{color: "white", fontWeight: "bold"}}
-                 >
+                    className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-dark-500"
+                    style={{ color: "white", fontWeight: "bold" }}
+                  >
                     Add
                   </button>
                 </div>
@@ -205,7 +218,7 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
             </div>
             <div className="table-responsive">
               <table className="table table-hover table-borderless table-nowrap table-align-middle w-full">
-                <thead className="bg-gray-100 text-gray-600">
+                <thead className="bg-secondary-500 text-gray-600">
                   <tr>
                     <th>SL</th>
                     <th>Image</th>
@@ -215,7 +228,9 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
                   </tr>
                 </thead>
                 <tbody>
-                  {flashDeal && Array.isArray(flashDeal.products) && flashDeal.products.length > 0 ? (
+                  {flashDeal &&
+                  Array.isArray(flashDeal.products) &&
+                  flashDeal.products.length > 0 ? (
                     flashDeal.products.map((product, index) => (
                       <tr key={product._id}>
                         <td>{index + 1}</td>
@@ -240,7 +255,9 @@ const flashDeal = flashDeals.find((deal) => deal._id === id); // Assuming 'id' i
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="5" className="text-center">No products added yet.</td>
+                      <td colSpan="5" className="text-center">
+                        No products added yet.
+                      </td>
                     </tr>
                   )}
                 </tbody>

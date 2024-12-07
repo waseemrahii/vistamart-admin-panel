@@ -1,19 +1,15 @@
-
-
 import React, { useState } from "react";
 import { FaCog, FaDatabase, FaGlobe, FaLock, FaServer } from "react-icons/fa";
 import EnvironmentSettings from "./EnvironmentSettings";
 import AppSettings from "./AppSettings";
-import  SoftwareUpdate  from "./SoftwareUpdate";
+import SoftwareUpdate from "./SoftwareUpdate";
 import LanguageTable from "./Language/LanguageTable";
 import CurrencyCard from "./Currency/Currency";
 import CookieSettings from "./Cookies/CookieSettings";
 import DbCleanSettings from "./DbCleanSettings/DbCleanSettings";
 import GenerateSitemap from "./GenerateSitemap";
 
-
 // Sample component imports (replace with actual components)
-
 
 const SystemSetups = () => {
   const [activeSection, setActiveSection] = useState("environment"); // State to track active section
@@ -32,50 +28,89 @@ const SystemSetups = () => {
       </div>
       {/* Top Navbar for sections */}
       <div className="inline-page-menu my-4">
-  <ul className="list-unstyled flex gap-3 w-96 md:w-full text-nowrap p-2 overflow-x-scroll md:overflow-x-hidden scroll-smooth">
-    <li className={activeSection === "environment" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("environment")}>
-        Environment Settings
-      </button>
-    </li>
-    <li className={activeSection === "appSettings" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("appSettings")}>
-        App Settings
-      </button>
-    </li>
-    <li className={activeSection === "softwareUpdate" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("softwareUpdate")}>
-        Software Update
-      </button>
-    </li>
-    <li className={activeSection === "language" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("language")}>
-        Language
-      </button>
-    </li>
-    <li className={activeSection === "currency" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("currency")}>
-        Currency
-      </button>
-    </li>
-    {/* <li className={activeSection === "cookies" ? "border-b-2 border-green-500" : ""}>
+        <ul className="list-unstyled flex gap-3 w-96 md:w-full text-nowrap p-2 overflow-x-scroll md:overflow-x-hidden scroll-smooth">
+          <li
+            className={
+              activeSection === "environment"
+                ? "border-b-2 border-primary-500"
+                : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("environment")}>
+              Environment Settings
+            </button>
+          </li>
+          <li
+            className={
+              activeSection === "appSettings"
+                ? "border-b-2 border-primary-500"
+                : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("appSettings")}>
+              App Settings
+            </button>
+          </li>
+          <li
+            className={
+              activeSection === "softwareUpdate"
+                ? "border-b-2 border-primary-500"
+                : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("softwareUpdate")}>
+              Software Update
+            </button>
+          </li>
+          <li
+            className={
+              activeSection === "language"
+                ? "border-b-2 border-primary-500"
+                : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("language")}>
+              Language
+            </button>
+          </li>
+          <li
+            className={
+              activeSection === "currency"
+                ? "border-b-2 border-primary-500"
+                : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("currency")}>
+              Currency
+            </button>
+          </li>
+          {/* <li className={activeSection === "cookies" ? "border-b-2 border-green-500" : ""}>
       <button onClick={() => handleSectionClick("cookies")}>
         DB Clean
       </button>
     </li> */}
-    <li className={activeSection === "dbcleaning" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("dbcleaning")}>
-        Cookies
-      </button>
-    </li>
-    <li className={activeSection === "sitemap" ? "border-b-2 border-green-500" : ""}>
-      <button onClick={() => handleSectionClick("sitemap")}>
-        SiteMap
-      </button>
-    </li>
-  </ul>
-</div>
-
+          <li
+            className={
+              activeSection === "dbcleaning"
+                ? "border-b-2 border-primary-500"
+                : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("dbcleaning")}>
+              Cookies
+            </button>
+          </li>
+          <li
+            className={
+              activeSection === "sitemap" ? "border-b-2 border-primary-500" : ""
+            }
+          >
+            <button onClick={() => handleSectionClick("sitemap")}>
+              SiteMap
+            </button>
+          </li>
+        </ul>
+      </div>
 
       {/* Conditional rendering of section content */}
       <div className="card">
@@ -88,9 +123,8 @@ const SystemSetups = () => {
         {/* {activeSection === " dbclean" && <DbCleanSettings />} */}
         {activeSection === "dbcleaning" && <DbCleanSettings />}
         {activeSection === "sitemap" && <GenerateSitemap />}
-       
-        {/* Add more conditional rendering for additional sections */}
 
+        {/* Add more conditional rendering for additional sections */}
       </div>
     </div>
   );

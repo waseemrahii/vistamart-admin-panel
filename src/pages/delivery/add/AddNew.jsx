@@ -50,7 +50,7 @@ const AddNewDelivery = () => {
 
   return (
     <>
-      <div className="font-semibold bg-[#F9F9FB] px-5 py-5 h-full w-full text-[1rem]">
+      <div className="font-semibold bg-secondary-500 px-5 py-5 h-full w-full text-[1rem]">
         <div className="flex gap-3">
           <img
             src="https://6valley.6amtech.com/public/assets/back-end/img/add-new-delivery-man.png"
@@ -72,14 +72,14 @@ const AddNewDelivery = () => {
                   <input
                     type="text"
                     placeholder="First Name"
-                    className="w-full outline-none text-sm font-medium border px-3 py-2 hover:border-primary rounded-md shadow-sm"
+                    className="w-full outline-none text-sm font-medium border px-3 py-2 hover:border-primary-500 rounded-md shadow-sm"
                   />
                 </div>
                 <div>
                   <label className="text-sm font-semibold text-gray-700">
                     Identity Type
                   </label>
-                  <select className="w-full border px-3 py-2 font-medium outline-none bg-white hover:border-primary rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50">
+                  <select className="w-full border px-3 py-2 font-medium outline-none bg-white hover:border-primary-500 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-200 focus:ring-opacity-50">
                     <option className="text-sm font-light">Passport</option>
                     <option className="text-sm font-light">National ID</option>
                     <option className="text-sm font-light">
@@ -94,7 +94,7 @@ const AddNewDelivery = () => {
                   <input
                     type="text"
                     placeholder="Last Name"
-                    className="text-sm font-medium w-full border px-3 py-2 border-blue-400 rounded-md hover:border-primary outline-none shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="text-sm font-medium w-full border px-3 py-2 border-primary-500 rounded-md hover:border-primary-500 outline-none shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
                 <div>
@@ -104,7 +104,7 @@ const AddNewDelivery = () => {
                   <input
                     type="text"
                     placeholder="Ex:DH-23434-LS"
-                    className="w-full text-sm font-medium border px-3 py-2 outline-none hover:border-primary bg-white rounded-md shadow-sm"
+                    className="w-full text-sm font-medium border px-3 py-2 outline-none hover:border-primary-500 bg-white rounded-md shadow-sm"
                   />
                 </div>
                 <div>
@@ -145,7 +145,7 @@ const AddNewDelivery = () => {
                     <input
                       type="file"
                       onChange={handleImageChange}
-                      className="border text-sm font-medium px-3 py-2 hover:border-blue-400 bg-white rounded-md border-gray-300 shadow-sm cursor-pointer mb-4"
+                      className="border text-sm font-medium px-3 py-2 hover:border-primary-500 bg-white rounded-md border-gray-300 shadow-sm cursor-pointer mb-4"
                     />
                     {selectedImage ? (
                       <div className="relative">
@@ -351,7 +351,7 @@ const AddNewDelivery = () => {
               Reset
             </button>
             <button
-              className="bg-primary hover:bg-primary-dark font-medium py-2 px-4 rounded"
+              className="bg-primary-500 hover:bg-primary-dark-500 font-medium py-2 px-4 rounded"
               style={{ color: "white" }}
             >
               Submit

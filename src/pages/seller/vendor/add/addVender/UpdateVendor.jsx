@@ -10,11 +10,7 @@ import FormInput from "../../../../../components/FormInput/FormInput";
 import PreviewImage from "../../../../../components/FormInput/PreviewImage";
 import FileUpload from "../../../../../components/FormInput/FileUpload";
 import FormTextArea from "../../../../../components/FormInput/FormTextArea";
-import {
-  deleteUploadedImages,
-  getUploadUrl,
-  uploadImageToS3,
-} from "./helpers";
+import { deleteUploadedImages, getUploadUrl, uploadImageToS3 } from "./helpers";
 import apiConfig from "../../../../../config/apiConfig";
 import axiosInstance from "../../../../../utils/axiosConfig";
 import { useNavigate, useParams } from "react-router-dom";
@@ -42,10 +38,10 @@ const UpdateVendor = () => {
   const [vendorPreview, setVendorPreview] = useState(null);
   const [loading, setLoading] = useState(false);
 
-//   const validatePassword = (password) => {
-//     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-//     return passwordRegex.test(password);
-//   };
+  //   const validatePassword = (password) => {
+  //     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  //     return passwordRegex.test(password);
+  //   };
 
   useEffect(() => {
     const fetchVendor = async () => {
@@ -62,7 +58,7 @@ const UpdateVendor = () => {
 
         if (response.data) {
           const vendor = response.data.doc;
-          console.log("vendor data ",vendor )
+          console.log("vendor data ", vendor);
           setFormData(vendor);
           setLogoPreview(`${backendUrl}/${vendor.logo}`);
           setBannerPreview(`${backendUrl}/${vendor.banner}`);
@@ -75,95 +71,95 @@ const UpdateVendor = () => {
     fetchVendor();
   }, [id, backendUrl]);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true); // Start loading indicator
 
+    const { token } = getAuthData();
+    const uploadedKeys = [];
 
+    // Extract files and initial URLs from formData
+    const { logo, banner, vendorImage } = formData;
 
+    // Files to upload: Include new files and keep existing URLs for unchanged files
+    const filesToUpload = [
+      { file: logo, name: "logo", initialUrl: logoPreview },
+      { file: banner, name: "banner", initialUrl: bannerPreview },
+      { file: vendorImage, name: "vendorImage", initialUrl: vendorPreview },
+    ];
 
+    // Filter files that are new (File objects)
+    const validFiles = filesToUpload.filter(
+      (fileObj) => fileObj.file instanceof File
+    );
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  setLoading(true); // Start loading indicator
-
-  const { token } = getAuthData();
-  const uploadedKeys = [];
-
-  // Extract files and initial URLs from formData
-  const { logo, banner, vendorImage } = formData;
-
-  // Files to upload: Include new files and keep existing URLs for unchanged files
-  const filesToUpload = [
-      { file: logo, name: 'logo', initialUrl: logoPreview },
-      { file: banner, name: 'banner', initialUrl: bannerPreview },
-      { file: vendorImage, name: 'vendorImage', initialUrl: vendorPreview },
-  ];
-
-  // Filter files that are new (File objects)
-  const validFiles = filesToUpload.filter(fileObj => fileObj.file instanceof File);
-
-  try {
+    try {
       // Get upload URLs for new files
-      const uploadConfigs = await Promise.all(validFiles.map(fileObj =>
-          getUploadUrl(fileObj.file.type, "vendors")
-      ));
+      const uploadConfigs = await Promise.all(
+        validFiles.map((fileObj) => getUploadUrl(fileObj.file.type, "vendors"))
+      );
 
       // Upload each file and collect their keys
       for (let i = 0; i < validFiles.length; i++) {
-          const uploadConfig = uploadConfigs[i];
-          const file = validFiles[i].file;
-          await uploadImageToS3(uploadConfig.url, file);
-          uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
+        const uploadConfig = uploadConfigs[i];
+        const file = validFiles[i].file;
+        await uploadImageToS3(uploadConfig.url, file);
+        uploadedKeys.push({ name: validFiles[i].name, key: uploadConfig.key });
       }
 
       // Construct vendor data
       const vendorData = {
-          ...formData,
-          logo: uploadedKeys.find(key => key.name === 'logo')?.key || (typeof logo === 'string' ? logo : null),
-          banner: uploadedKeys.find(key => key.name === 'banner')?.key || (typeof banner === 'string' ? banner : null),
-          vendorImage: uploadedKeys.find(key => key.name === 'vendorImage')?.key || (typeof vendorImage === 'string' ? vendorImage : null),
+        ...formData,
+        logo:
+          uploadedKeys.find((key) => key.name === "logo")?.key ||
+          (typeof logo === "string" ? logo : null),
+        banner:
+          uploadedKeys.find((key) => key.name === "banner")?.key ||
+          (typeof banner === "string" ? banner : null),
+        vendorImage:
+          uploadedKeys.find((key) => key.name === "vendorImage")?.key ||
+          (typeof vendorImage === "string" ? vendorImage : null),
       };
 
       // Send the data to the server
       const response = await axiosInstance.put(
-          `${apiConfig.seller}/vendors/${id}`,
-          vendorData,
-          {
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-              },
-          }
+        `${apiConfig.seller}/vendors/${id}`,
+        vendorData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.data.doc) {
-          toast.success("Vendor updated successfully!");
-          // Reset form and previews
-          setFormData({
-              firstName: "",
-              lastName: "",
-              phoneNumber: "",
-              email: "",
-              // password: "",
-              shopName: "",
-              address: "",
-              vendorImage: null,
-              logo: null,
-              banner: null,
-          });
-          setLogoPreview(null);
-          setBannerPreview(null);
-          setVendorPreview(null);
-          navigate("/venderlist");
+        toast.success("Vendor updated successfully!");
+        // Reset form and previews
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          email: "",
+          // password: "",
+          shopName: "",
+          address: "",
+          vendorImage: null,
+          logo: null,
+          banner: null,
+        });
+        setLogoPreview(null);
+        setBannerPreview(null);
+        setVendorPreview(null);
+        navigate("/venderlist");
       }
-  } catch (error) {
+    } catch (error) {
       console.error("Error updating vendor:", error);
       toast.error("Failed to update vendor!");
-  } finally {
+    } finally {
       setLoading(false); // Stop loading indicator
-  }
-};
-
-
-
+    }
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -186,8 +182,6 @@ const handleSubmit = async (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
-
 
   return (
     <div className="content container-fluid main-card ltr ">
@@ -343,7 +337,7 @@ const handleSubmit = async (event) => {
         <div className="form-group col-lg-12 text-right">
           <button
             type="submit"
-            className="btn bg-primary hover:bg-primary-dark hover:text-white mt-3 text-white"
+            className="btn bg-primary-500 hover:bg-primary-dark-500 hover:text-white mt-3 text-white"
             style={{ color: "white" }}
             disabled={loading} // Disable button when loading
           >

@@ -21,20 +21,23 @@ const Footer = () => {
           <div>
             <Link
               to={"/profileinformation"}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 hover:text-primary-500"
             >
               <IoMdPerson />
               <h1> Profile</h1>
             </Link>
           </div>
           <div>
-            <Link to={"/"} className="flex items-center gap-2">
+            <Link
+              to={"/"}
+              className="flex items-center  gap-2 hover:text-primary-500"
+            >
               <IoHomeSharp />
               <h1>Home</h1>
             </Link>
           </div>
           <h1
-            className="bg-[#E9F8F9]  border rounded  text-[#24BAC3] p-1"
+            className="bg-secondary-500  border rounded  text-[#24BAC3] p-1"
             style={{ color: "#" }}
           >
             Software version:14:7

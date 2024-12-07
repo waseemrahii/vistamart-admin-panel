@@ -67,7 +67,7 @@ const SubscriberList = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control outline-none hover:border-primary"
+                    className="form-control outline-none hover:border-primary-500"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value={searchValue}
@@ -75,7 +75,7 @@ const SubscriberList = () => {
                   />
                   <button
                     type="submit"
-                    className=" bg-primary hover:bg-primary-dark px-2 py-1 md:px-4 md:py-2"
+                    className=" bg-primary-500 hover:bg-primary-dark-500 px-2 py-1 md:px-4 md:py-2"
                     style={{ color: "white" }}
                   >
                     Search
@@ -84,7 +84,7 @@ const SubscriberList = () => {
               </form>
               <button
                 type="button"
-                className="btn rounded text-white px-2 py-2 md:px-4 md:py-2 bg-primary hover:bg-primary-dark text-nowrap flex justify-center align-items-center gap-2"
+                className="btn rounded text-white px-2 py-2 md:px-4 md:py-2 bg-primary-500 hover:bg-primary-dark-500 text-nowrap flex justify-center align-items-center gap-2"
                 style={{ color: "white" }}
                 onClick={handleExport}
               >

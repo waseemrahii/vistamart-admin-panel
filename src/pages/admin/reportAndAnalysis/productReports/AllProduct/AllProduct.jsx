@@ -63,8 +63,6 @@ const AllProduct = () => {
     //   deliverd: "admin",
     //   total: "$0.00",
     // },
-  
-   
   ];
   return (
     <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
@@ -74,7 +72,7 @@ const AllProduct = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-primary outline-none"
+            className="text-md  bg-white px-2 rounded py-2  border border-primary-500 outline-none"
           >
             <option value="">All </option>
             <option value="">Hold</option>
@@ -83,7 +81,7 @@ const AllProduct = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  border border-green-300 outline-none"
+            className="text-md  bg-white px-2 rounded py-2  border border-primary-500 outline-none"
           >
             <option value="">This Year</option>
             <option value="">Inhouse</option>
@@ -93,7 +91,7 @@ const AllProduct = () => {
           </select>
           <div className="flex ">
             <button
-              className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
+              className="px-6  py-2 rounded border border-primary-500 bg-primary-500 hover:bg-primary-dark-500 text-white"
               style={{ color: "white" }}
             >
               Filter
@@ -128,7 +126,7 @@ const AllProduct = () => {
                   0 <br />{" "}
                   <span className="text-gray-400 text-[.7rem]">Pending</span>
                 </div>
-                <div className="text-green-500 text-center text-[1rem] font-semibold">
+                <div className="text-primary-500 text-center text-[1rem] font-semibold">
                   0 <br />{" "}
                   <span className="text-gray-400 text-[.7rem]"> Active</span>
                 </div>
@@ -182,9 +180,7 @@ const AllProduct = () => {
           <div className="flex justify-between gap-3 align-items-center flex-col lg:flex-row">
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
               Total Transactions{" "}
-              <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-                
-              </span>
+              <span className="badge badge-soft-dark radius-50 fz-12 ml-1"></span>
             </h5>
 
             <div className="flex  gap-3 flex-col lg:flex-row w-40 md:w-full lg:w-[30vw]">
@@ -203,14 +199,14 @@ const AllProduct = () => {
                     id="datatableSearch_"
                     type="search"
                     name="searchValue"
-                    className="form-control outline-none hover:border-primary"
+                    className="form-control outline-none hover:border-primary-500"
                     placeholder="Search by email"
                     aria-label="Search orders"
                     value=""
                   />
                   <button
                     type="submit"
-                    className="btn bg-primary hover:bg-primary-dark"
+                    className="btn bg-primary-500 hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     Search
@@ -220,7 +216,7 @@ const AllProduct = () => {
 
               <button
                 type="button"
-                className="rounded w-32 px-3 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
+                className="rounded w-32 px-3 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
                   color: "white",

@@ -17,7 +17,6 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
         <img
           width="50"
           className="avatar rounded-circle"
-          
           src={`${apiConfig.bucket}/${vendor?.vendorImage}`}
           alt={vendor?.firstName}
         />
@@ -39,12 +38,18 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
       render: (vendor) => (
         <>
           <strong>
-            <a className="title-color hover-c1" href={`mailto:${vendor?.email}`}>
+            <a
+              className="title-color hover-c1"
+              href={`mailto:${vendor?.email}`}
+            >
               {vendor?.email}
             </a>
           </strong>
           <br />
-          <a className="title-color hover-c1" href={`tel:${vendor?.phoneNumber}`}>
+          <a
+            className="title-color hover-c1"
+            href={`tel:${vendor?.phoneNumber}`}
+          >
             {vendor?.phoneNumber}
           </a>
         </>
@@ -56,7 +61,9 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
       render: (vendor) => {
         const statusClasses = getStatusBadge(vendor?.status);
         return (
-          <label className={`badge bg-${statusClasses.bg} text-${statusClasses.text}`}>
+          <label
+            className={`badge bg-${statusClasses.bg} text-${statusClasses.text}`}
+          >
             {vendor?.status}
           </label>
         );
@@ -102,7 +109,7 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
   };
 
   return (
-    <div className="bg-[#F9F9FB] px-0 sm:px-6 md:px-8 lg:px-10 py-0 w-full">
+    <div className="bg-secondary-500 px-0 sm:px-6 md:px-8 lg:px-10 py-0 w-full">
       <div className="mt-4 sm:mt-6 md:mt-8 lg:mt-10">
         <React.Suspense
           fallback={

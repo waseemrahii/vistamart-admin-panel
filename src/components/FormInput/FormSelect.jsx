@@ -16,7 +16,7 @@ const FormSelect = ({
       {label}
     </label>
     <select
-      className="form-control form-control-user outline-none hover:border-primary"
+      className="form-control form-control-user outline-none hover:border-primary-500"
       id={name}
       name={name}
       value={value}

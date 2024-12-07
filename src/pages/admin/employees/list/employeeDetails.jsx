@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { FaPhone, FaEnvelope, FaCalendarAlt, FaEdit } from 'react-icons/fa';
-import axios from 'axios';
-import './employeeDetail.css';
-import { getAuthData } from '../../../../utils/authHelper';
-import apiConfig from '../../../../config/apiConfig';
-import LoadingSpinner from '../../../../components/LoodingSpinner/LoadingSpinner';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { FaPhone, FaEnvelope, FaCalendarAlt, FaEdit } from "react-icons/fa";
+import axios from "axios";
+import "./employeeDetail.css";
+import { getAuthData } from "../../../../utils/authHelper";
+import apiConfig from "../../../../config/apiConfig";
+import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 
 const ApiUrl = `${apiConfig.admin}`;
 
@@ -22,14 +22,19 @@ const EmployeeDetails = () => {
         });
         setEmployee(response.data.doc);
       } catch (error) {
-        console.error('Error fetching employee data:', error);
+        console.error("Error fetching employee data:", error);
       }
     };
 
     fetchEmployeeData();
   }, [id]);
 
-  if (!employee) return <div><LoadingSpinner /></div>;
+  if (!employee)
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
 
   const { name, email, role, image, phoneNumber, createdAt } = employee;
 
@@ -37,17 +42,13 @@ const EmployeeDetails = () => {
     <div className="content container-fluid snipcss-gbEEi">
       <div className="mb-3">
         <h2 className="h1 mb-0 text-capitalize d-flex align-items-center gap-2">
-          <img
-            src="/employee.png"
-            width="20"
-            alt="Employee Icon"
-          />
+          <img src="/employee.png" width="20" alt="Employee Icon" />
           Employee Details
         </h2>
       </div>
       <div className="card mt-3">
         <div className="card-body">
-          <h3 className="mb-3 text-primary">#EMP {employee?._id}</h3>
+          <h3 className="mb-3 text-primary-500">#EMP {employee?._id}</h3>
           <div className="row g-2">
             <div className="col-lg-7 col-xl-8">
               <div className="media align-items-center flex-wrap flex-sm-nowrap gap-3">
@@ -55,7 +56,6 @@ const EmployeeDetails = () => {
                   width="250"
                   className="rounded"
                   src={`${apiConfig.bucket}/${employee?.image}`}
-
                   alt="Employee"
                 />
                 <div className="media-body">
@@ -66,8 +66,11 @@ const EmployeeDetails = () => {
                   <ul className="d-flex flex-column gap-3 px-0">
                     <li className="d-flex gap-2 align-items-center">
                       <FaPhone />
-                      <a href={`tel:${employee?.phoneNumber || 'N/A'}`} className="text-dark">
-                        {employee?.phoneNumber ? employee?.phoneNumber : 'N/A'}
+                      <a
+                        href={`tel:${employee?.phoneNumber || "N/A"}`}
+                        className="text-dark"
+                      >
+                        {employee?.phoneNumber ? employee?.phoneNumber : "N/A"}
                       </a>
                     </li>
                     <li className="d-flex gap-2 align-items-center">
@@ -93,12 +96,17 @@ const EmployeeDetails = () => {
                     <div className="d-flex flex-column gap-4">
                       <div className="d-flex gap-2 align-items-center">
                         <FaEdit />
-                        <h6 className="text-dark mb-0 text-capitalize">Access available:</h6>
+                        <h6 className="text-dark mb-0 text-capitalize">
+                          Access available:
+                        </h6>
                       </div>
                       <div className="tags d-flex gap-2 flex-wrap">
                         {role?.modules.map((module, index) => (
-                          <span key={index} className="badge bg-primary-light text-capitalize">
-                            {module.replace('-', ' ')}
+                          <span
+                            key={index}
+                            className="badge bg-primary-500 text-capitalize"
+                          >
+                            {module.replace("-", " ")}
                           </span>
                         ))}
                       </div>

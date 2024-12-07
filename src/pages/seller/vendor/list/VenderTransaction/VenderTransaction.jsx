@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FaSearch, FaFilter } from 'react-icons/fa'; // Importing icons
+import React, { useState } from "react";
+import { FaSearch, FaFilter } from "react-icons/fa"; // Importing icons
 
 const TransactionTable = () => {
   const [transactions, setTransactions] = useState([
@@ -38,16 +38,17 @@ const TransactionTable = () => {
     // },
     // Add more transactions as needed
   ]);
-  const [searchValue, setSearchValue] = useState('');
-  const [filterStatus, setFilterStatus] = useState('');
+  const [searchValue, setSearchValue] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
 
   // Function to handle search
   const handleSearch = (e) => {
     e.preventDefault();
     setTransactions((prevTransactions) =>
-      prevTransactions.filter((transaction) =>
-        transaction.orderId.includes(searchValue) ||
-        transaction.transactionId.includes(searchValue)
+      prevTransactions.filter(
+        (transaction) =>
+          transaction.orderId.includes(searchValue) ||
+          transaction.transactionId.includes(searchValue)
       )
     );
   };
@@ -57,7 +58,7 @@ const TransactionTable = () => {
     e.preventDefault();
     setTransactions((prevTransactions) =>
       prevTransactions.filter((transaction) =>
-        filterStatus === 'all' ? true : transaction.status === filterStatus
+        filterStatus === "all" ? true : transaction.status === filterStatus
       )
     );
   };
@@ -70,7 +71,7 @@ const TransactionTable = () => {
             <div className="col-lg-4 mb-3 mb-lg-0">
               <h5 className="mb-0 text-capitalize d-flex gap-1 align-items-center">
                 Transaction table
-                 {/* <span className="badge badge-soft-dark fz-12">
+                {/* <span className="badge badge-soft-dark fz-12">
                    {transactions.length} 
                 </span>  */}
               </h5>
@@ -93,7 +94,11 @@ const TransactionTable = () => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                   />
-                  <button type="submit" className="btn btn--primary bg-green-400">
+                  <button
+                    type="submit"
+                    className="btn btn-primary-500 bg-primary-500 hover:bg-primary-dark-500 text-white"
+                    style={{ color: "white" }}
+                  >
                     Search
                   </button>
                 </div>
@@ -124,7 +129,10 @@ const TransactionTable = () => {
                       Delivered
                     </option>
                   </select>
-                  <button type="submit" className="btn flex justify-center align-items-center gap-2 btn-success bg-green-400">
+                  <button
+                    type="submit"
+                    className="btn flex justify-center align-items-center gap-2 btn-success bg-primary-500 hover:bg-primary-dark-500"
+                  >
                     <FaFilter /> Filter
                   </button>
                 </div>

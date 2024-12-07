@@ -29,7 +29,14 @@ const InhouseProductUpdate = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { categories, subCategories, subSubCategories, brands, colors, attributes } = useSelector((state) => state.category);
+  const {
+    categories,
+    subCategories,
+    subSubCategories,
+    brands,
+    colors,
+    attributes,
+  } = useSelector((state) => state.category);
 
   const initialFormState = {
     name: "",
@@ -121,9 +128,11 @@ const InhouseProductUpdate = () => {
   }, [dispatch, formData.subCategory]);
 
   const hasChanges = () => {
-    return JSON.stringify(formData) !== JSON.stringify(initialFormState) ||
-           thumbnail !== initialThumbnail ||
-           JSON.stringify(images) !== JSON.stringify(initialImages);
+    return (
+      JSON.stringify(formData) !== JSON.stringify(initialFormState) ||
+      thumbnail !== initialThumbnail ||
+      JSON.stringify(images) !== JSON.stringify(initialImages)
+    );
   };
 
   // const handleChange = (e) => {
@@ -134,22 +143,22 @@ const InhouseProductUpdate = () => {
   //   }));
   // };
 
-
   const handleChange = (e) => {
-		const { name, value, type, checked } = e.target;
-	  
-		setFormData((prev) => ({
-		  ...prev,
-		  [name]: type === "checkbox" 
-			? checked 
-			: (["price", "discountAmount", "taxAmount", "discount"].includes(name) 
-				? parseInt(value, 10) || 0 
-				: value),
-		  // Reset dependent fields if parent category changes
-		  ...(name === "category" && { subCategory: null, subSubCategory: null }),
-		  ...(name === "subCategory" && { subSubCategory: null }),
-		}));
-	  };
+    const { name, value, type, checked } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]:
+        type === "checkbox"
+          ? checked
+          : ["price", "discountAmount", "taxAmount", "discount"].includes(name)
+          ? parseInt(value, 10) || 0
+          : value,
+      // Reset dependent fields if parent category changes
+      ...(name === "category" && { subCategory: null, subSubCategory: null }),
+      ...(name === "subCategory" && { subSubCategory: null }),
+    }));
+  };
 
   const handleDescriptionChange = (value) => {
     setFormData((prevFormData) => ({
@@ -158,230 +167,250 @@ const InhouseProductUpdate = () => {
     }));
   };
 
-//////////// ok for both but not new images
+  //////////// ok for both but not new images
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-  
-//     if (!hasChanges()) {
-//         toast.info("No changes detected.");
-//         navigate(-1);
-//         return;
-//     }
+  //   const handleSubmit = async (e) => {
+  //     e.preventDefault();
 
-//     // Ensure initialThumbnail and initialImages are correctly initialized
-//     let thumbnailKey = initialThumbnail;  // Assuming initialThumbnail is coming from state or props
-//     let imageKeys = initialImages;  // Assuming initialImages is coming from state or props
-//     console.log("file of thumbnail", thumbnail);
-//     console.log("file of images", images);
+  //     if (!hasChanges()) {
+  //         toast.info("No changes detected.");
+  //         navigate(-1);
+  //         return;
+  //     }
 
-//     // Check if thumbnail or images have changed
-//     if (thumbnail?.file && thumbnail.file !== initialThumbnail?.file) {
-//         // Upload new thumbnail if it has changed
-//         const uploadResult = await uploadProductImagesToS3(thumbnail, images, initialThumbnail);
-//         if (!uploadResult) {
-//             console.error("Thumbnail and image upload failed.");
-//             return;
-//         }
-//         thumbnailKey = uploadResult.thumbnailKey;
-//     }
+  //     // Ensure initialThumbnail and initialImages are correctly initialized
+  //     let thumbnailKey = initialThumbnail;  // Assuming initialThumbnail is coming from state or props
+  //     let imageKeys = initialImages;  // Assuming initialImages is coming from state or props
+  //     console.log("file of thumbnail", thumbnail);
+  //     console.log("file of images", images);
 
-//     if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i]?.file)) {
-//         // Upload new images if they have changed
-//         const uploadResult = await uploadProductImagesToS3(null, images, initialThumbnail);
-//         if (!uploadResult) {
-//             console.error("Image upload failed.");
-//             return;
-//         }
-//         imageKeys = uploadResult.imageKeys;
-//     }
+  //     // Check if thumbnail or images have changed
+  //     if (thumbnail?.file && thumbnail.file !== initialThumbnail?.file) {
+  //         // Upload new thumbnail if it has changed
+  //         const uploadResult = await uploadProductImagesToS3(thumbnail, images, initialThumbnail);
+  //         if (!uploadResult) {
+  //             console.error("Thumbnail and image upload failed.");
+  //             return;
+  //         }
+  //         thumbnailKey = uploadResult.thumbnailKey;
+  //     }
 
-//     try {
-//         const { token, user } = getAuthData();
-//         const userId = user?._id;
-//         if (!userId) throw new Error("User not authenticated.");
+  //     if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i]?.file)) {
+  //         // Upload new images if they have changed
+  //         const uploadResult = await uploadProductImagesToS3(null, images, initialThumbnail);
+  //         if (!uploadResult) {
+  //             console.error("Image upload failed.");
+  //             return;
+  //         }
+  //         imageKeys = uploadResult.imageKeys;
+  //     }
 
-//         const productData = {
-//             ...formData,
-//             userId,
-//             thumbnail: thumbnailKey,
-//             images: imageKeys,
-//             category: formData.category,
-//             subCategory: formData.subCategory,
-//             subSubCategory: formData.subSubCategory,
-//         };
+  //     try {
+  //         const { token, user } = getAuthData();
+  //         const userId = user?._id;
+  //         if (!userId) throw new Error("User not authenticated.");
 
-//         const response = await fetch(`${API_URL}/${id}`, {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 Authorization: `Bearer ${token}`,
-//             },
-//             body: JSON.stringify(productData),
-//         });
+  //         const productData = {
+  //             ...formData,
+  //             userId,
+  //             thumbnail: thumbnailKey,
+  //             images: imageKeys,
+  //             category: formData.category,
+  //             subCategory: formData.subCategory,
+  //             subSubCategory: formData.subSubCategory,
+  //         };
 
-//         if (response.ok) {
-//             Swal.fire("Success", "Product updated successfully", "success").then(() => navigate(-1));
-//         } else {
-//             const errorData = await response.json();
-//             console.error("Failed to update product:", errorData.message || "Unknown error");
-//             Swal.fire("Error", errorData.message || "Failed to update product", "error");
-//         }
-//     } catch (error) {
-//         console.error("Error updating product:", error);
-//     }
-// };
+  //         const response = await fetch(`${API_URL}/${id}`, {
+  //             method: "PUT",
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //                 Authorization: `Bearer ${token}`,
+  //             },
+  //             body: JSON.stringify(productData),
+  //         });
 
-// /////////////// for both images
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
+  //         if (response.ok) {
+  //             Swal.fire("Success", "Product updated successfully", "success").then(() => navigate(-1));
+  //         } else {
+  //             const errorData = await response.json();
+  //             console.error("Failed to update product:", errorData.message || "Unknown error");
+  //             Swal.fire("Error", errorData.message || "Failed to update product", "error");
+  //         }
+  //     } catch (error) {
+  //         console.error("Error updating product:", error);
+  //     }
+  // };
 
-//   if (!hasChanges()) {
-//       toast.info("No changes detected.");
-//       navigate(-1);
-//       return;
-//   }
+  // /////////////// for both images
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-//   // Ensure initialThumbnail and initialImages are correctly initialized
-//   let thumbnailKey = initialThumbnail;  // Assuming initialThumbnail is coming from state or props
-//   let imageKeys = [...initialImages];  // Assuming initialImages is coming from state or props
-//   console.log("file of thumbnail", thumbnail);
-//   console.log("file of images", images);
+  //   if (!hasChanges()) {
+  //       toast.info("No changes detected.");
+  //       navigate(-1);
+  //       return;
+  //   }
 
-//   // Check if thumbnail or images have changed
-//   if (thumbnail?.file && thumbnail.file !== initialThumbnail?.file) {
-//       // Upload new thumbnail if it has changed
-//       const uploadResult = await uploadProductImagesToS3(thumbnail, images, initialThumbnail, initialImages);
-//       if (!uploadResult) {
-//           console.error("Thumbnail and image upload failed.");
-//           return;
-//       }
-//       thumbnailKey = uploadResult.thumbnailKey;
-//   }
+  //   // Ensure initialThumbnail and initialImages are correctly initialized
+  //   let thumbnailKey = initialThumbnail;  // Assuming initialThumbnail is coming from state or props
+  //   let imageKeys = [...initialImages];  // Assuming initialImages is coming from state or props
+  //   console.log("file of thumbnail", thumbnail);
+  //   console.log("file of images", images);
 
-//   if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i]?.file)) {
-//       // Upload new images if they have changed
-//       const uploadResult = await uploadProductImagesToS3(null, images, initialThumbnail, initialImages);
-//       if (!uploadResult) {
-//           console.error("Image upload failed.");
-//           return;
-//       }
-//       imageKeys = uploadResult.imageKeys;
-//   }
+  //   // Check if thumbnail or images have changed
+  //   if (thumbnail?.file && thumbnail.file !== initialThumbnail?.file) {
+  //       // Upload new thumbnail if it has changed
+  //       const uploadResult = await uploadProductImagesToS3(thumbnail, images, initialThumbnail, initialImages);
+  //       if (!uploadResult) {
+  //           console.error("Thumbnail and image upload failed.");
+  //           return;
+  //       }
+  //       thumbnailKey = uploadResult.thumbnailKey;
+  //   }
 
-//   try {
-//       const { token, user } = getAuthData();
-//       const userId = user?._id;
-//       if (!userId) throw new Error("User not authenticated.");
+  //   if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i]?.file)) {
+  //       // Upload new images if they have changed
+  //       const uploadResult = await uploadProductImagesToS3(null, images, initialThumbnail, initialImages);
+  //       if (!uploadResult) {
+  //           console.error("Image upload failed.");
+  //           return;
+  //       }
+  //       imageKeys = uploadResult.imageKeys;
+  //   }
 
-//       const productData = {
-//           ...formData,
-//           userId,
-//           thumbnail: thumbnailKey,
-//           images: imageKeys,
-//           category: formData.category,
-//           subCategory: formData.subCategory,
-//           subSubCategory: formData.subSubCategory,
-//       };
+  //   try {
+  //       const { token, user } = getAuthData();
+  //       const userId = user?._id;
+  //       if (!userId) throw new Error("User not authenticated.");
 
-//       const response = await fetch(`${API_URL}/${id}`, {
-//           method: "PUT",
-//           headers: {
-//               "Content-Type": "application/json",
-//               Authorization: `Bearer ${token}`,
-//           },
-//           body: JSON.stringify(productData),
-//       });
+  //       const productData = {
+  //           ...formData,
+  //           userId,
+  //           thumbnail: thumbnailKey,
+  //           images: imageKeys,
+  //           category: formData.category,
+  //           subCategory: formData.subCategory,
+  //           subSubCategory: formData.subSubCategory,
+  //       };
 
-//       if (response.ok) {
-//           Swal.fire("Success", "Product updated successfully", "success").then(() => navigate(-1));
-//       } else {
-//           const errorData = await response.json();
-//           console.error("Failed to update product:", errorData.message || "Unknown error");
-//           Swal.fire("Error", errorData.message || "Failed to update product", "error");
-//       }
-//   } catch (error) {
-//       console.error("Error updating product:", error);
-//   }
-// };
+  //       const response = await fetch(`${API_URL}/${id}`, {
+  //           method: "PUT",
+  //           headers: {
+  //               "Content-Type": "application/json",
+  //               Authorization: `Bearer ${token}`,
+  //           },
+  //           body: JSON.stringify(productData),
+  //       });
 
-/////
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  //       if (response.ok) {
+  //           Swal.fire("Success", "Product updated successfully", "success").then(() => navigate(-1));
+  //       } else {
+  //           const errorData = await response.json();
+  //           console.error("Failed to update product:", errorData.message || "Unknown error");
+  //           Swal.fire("Error", errorData.message || "Failed to update product", "error");
+  //       }
+  //   } catch (error) {
+  //       console.error("Error updating product:", error);
+  //   }
+  // };
 
-  if (!hasChanges()) {
+  /////
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!hasChanges()) {
       toast.info("No changes detected.");
       navigate(-1);
       return;
-  }
+    }
 
-  // Ensure initialThumbnail and initialImages are correctly initialized
-  let thumbnailKey = initialThumbnail;  // Assuming initialThumbnail is coming from state or props
-  let imageKeys = [...initialImages];  // Assuming initialImages is coming from state or props
-  console.log("file of thumbnail", thumbnail);
-  console.log("file of images", images);
+    // Ensure initialThumbnail and initialImages are correctly initialized
+    let thumbnailKey = initialThumbnail; // Assuming initialThumbnail is coming from state or props
+    let imageKeys = [...initialImages]; // Assuming initialImages is coming from state or props
+    console.log("file of thumbnail", thumbnail);
+    console.log("file of images", images);
 
-  // Check if thumbnail or images have changed
-  if (thumbnail?.file && thumbnail.file !== initialThumbnail) {
+    // Check if thumbnail or images have changed
+    if (thumbnail?.file && thumbnail.file !== initialThumbnail) {
       // Upload new thumbnail if it has changed
-      const uploadResult = await uploadProductImagesToS3(thumbnail, images, initialThumbnail, initialImages);
+      const uploadResult = await uploadProductImagesToS3(
+        thumbnail,
+        images,
+        initialThumbnail,
+        initialImages
+      );
       if (!uploadResult) {
-          console.error("Thumbnail and image upload failed.");
-          return;
+        console.error("Thumbnail and image upload failed.");
+        return;
       }
       thumbnailKey = uploadResult.thumbnailKey;
-  }
+    }
 
-  if (images.length > 0) {
+    if (images.length > 0) {
       // Filter out unchanged images and only upload the changed ones
-      const changedImages = images.filter((img, i) => img.file && img.file !== initialImages[i]?.file);
+      const changedImages = images.filter(
+        (img, i) => img.file && img.file !== initialImages[i]?.file
+      );
       if (changedImages.length > 0) {
-          const uploadResult = await uploadProductImagesToS3(null, changedImages, initialThumbnail, initialImages);
-          if (!uploadResult) {
-              console.error("Image upload failed.");
-              return;
-          }
-          imageKeys = uploadResult.imageKeys;
+        const uploadResult = await uploadProductImagesToS3(
+          null,
+          changedImages,
+          initialThumbnail,
+          initialImages
+        );
+        if (!uploadResult) {
+          console.error("Image upload failed.");
+          return;
+        }
+        imageKeys = uploadResult.imageKeys;
       }
-  }
+    }
 
-  try {
+    try {
       const { token, user } = getAuthData();
       const userId = user?._id;
       if (!userId) throw new Error("User not authenticated.");
 
       const productData = {
-          ...formData,
-          userId,
-          thumbnail: thumbnailKey,
-          images: imageKeys,
-          category: formData.category,
-          subCategory: formData.subCategory,
-          subSubCategory: formData.subSubCategory,
+        ...formData,
+        userId,
+        thumbnail: thumbnailKey,
+        images: imageKeys,
+        category: formData.category,
+        subCategory: formData.subCategory,
+        subSubCategory: formData.subSubCategory,
       };
 
       const response = await fetch(`${API_URL}/${id}`, {
-          method: "PUT",
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(productData),
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(productData),
       });
 
       if (response.ok) {
-          Swal.fire("Success", "Product updated successfully", "success").then(() => navigate(-1));
+        Swal.fire("Success", "Product updated successfully", "success").then(
+          () => navigate(-1)
+        );
       } else {
-          const errorData = await response.json();
-          console.error("Failed to update product:", errorData.message || "Unknown error");
-          Swal.fire("Error", errorData.message || "Failed to update product", "error");
+        const errorData = await response.json();
+        console.error(
+          "Failed to update product:",
+          errorData.message || "Unknown error"
+        );
+        Swal.fire(
+          "Error",
+          errorData.message || "Failed to update product",
+          "error"
+        );
       }
-  } catch (error) {
+    } catch (error) {
       console.error("Error updating product:", error);
-  }
-};
+    }
+  };
 
-  
   return (
     <form onSubmit={handleSubmit} className="Update Product p-6">
       <ProductForm
@@ -412,8 +441,8 @@ const handleSubmit = async (e) => {
       <div className="flex justify-end m-5">
         <button
           type="submit"
-          className="btn mt-3 flex justify-end btn-submit bg-primary outline-none"
-          style={{ color: "white", background: "green" }}
+          className="btn mt-3 flex justify-end btn-submit bg-primary-500 hover:bg-primary-dark-500 outline-none"
+          style={{ color: "white" }}
         >
           Update Product
         </button>
@@ -423,8 +452,6 @@ const handleSubmit = async (e) => {
 };
 
 export default InhouseProductUpdate;
-
-
 
 // import { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
@@ -520,9 +547,9 @@ export default InhouseProductUpdate;
 //           headers: { Authorization: `Bearer ${token}` },
 //         });
 //         if (!response.ok) throw new Error("Failed to fetch product data");
-  
+
 //         const product = await response.json();
-  
+
 //         setFormData({
 //           ...product.doc,
 //           category: product.doc.category._id,
@@ -531,12 +558,12 @@ export default InhouseProductUpdate;
 //           brand: product.doc.brand._id,
 //           tags: product.doc.tags || [],
 //         });
-  
+
 //         setThumbnail(product.doc.thumbnail);
 //         setImages(product.doc.images);
 //         setInitialThumbnail(product.doc.thumbnail);
 //         setInitialImages(product.doc.images);
-  
+
 //         if (product.doc.category._id) {
 //           dispatch(fetchSubCategories(product.doc.category._id));
 //         }
@@ -574,11 +601,11 @@ export default InhouseProductUpdate;
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-  
+
 //     // Initializing keys with existing data (in case no new files are uploaded)
 //     let thumbnailKey = initialThumbnail;
 //     let imageKeys = initialImages;
-  
+
 //     // Check if a new thumbnail file is provided
 //     if (thumbnail && thumbnail.file && thumbnail.file !== initialThumbnail) {
 //       const uploadResult = await uploadProductImagesToS3(thumbnail.file, images);
@@ -588,7 +615,7 @@ export default InhouseProductUpdate;
 //       }
 //       thumbnailKey = uploadResult.thumbnailKey; // Update only if new file is uploaded
 //     }
-  
+
 //     // Check for updated additional images, avoiding re-upload if unchanged
 //     if (images.length > 0 && images.some((img, i) => img.file && img.file !== initialImages[i])) {
 //       const uploadResult = await uploadProductImagesToS3(null, images); // null for thumbnail if not uploading
@@ -598,13 +625,13 @@ export default InhouseProductUpdate;
 //       }
 //       imageKeys = uploadResult.imageKeys; // Update only if new files are uploaded
 //     }
-  
+
 //     // Proceed with submitting form data using the new or existing keys
 //     try {
 //       const { token, user } = getAuthData();
 //       const userId = user?._id;
 //       if (!userId) throw new Error("User not authenticated.");
-  
+
 //       const productData = {
 //         ...formData,
 //         userId,
@@ -616,7 +643,7 @@ export default InhouseProductUpdate;
 //         subCategory: formData.subCategory,
 //         subSubCategory: formData.subSubCategory,
 //       };
-  
+
 //       const response = await fetch(`${API_URL}/${id}`, {
 //         method: "PUT",
 //         headers: {
@@ -625,7 +652,7 @@ export default InhouseProductUpdate;
 //         },
 //         body: JSON.stringify(productData),
 //       });
-  
+
 //       if (response.ok) {
 //         Swal.fire("Success", "Product updated successfully", "success");
 //       } else {
@@ -635,7 +662,6 @@ export default InhouseProductUpdate;
 //       console.error("Error updating product:", error);
 //     }
 //   };
-  
 
 //   return (
 //     <form onSubmit={handleSubmit} className="Update Product p-6">

@@ -4,14 +4,19 @@ import { FaStar } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchVendorById, updateVendorStatus } from "../../../../../redux/slices/seller/vendorSlice"; // Adjust the import path as needed
+import {
+  fetchVendorById,
+  updateVendorStatus,
+} from "../../../../../redux/slices/seller/vendorSlice"; // Adjust the import path as needed
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 import apiConfig from "../../../../../config/apiConfig";
 
 const VendorDetailes = () => {
   const { id } = useParams(); // Extract vendor ID from URL parameters
   const dispatch = useDispatch();
-  const { vendorDetails, loading, error } = useSelector((state) => state.vendor); // Adjust state slice name as needed
+  const { vendorDetails, loading, error } = useSelector(
+    (state) => state.vendor
+  ); // Adjust state slice name as needed
 
   // Fetch the vendor details
   useEffect(() => {
@@ -40,7 +45,9 @@ const VendorDetailes = () => {
   // Function to update vendor status using the Redux thunk
   const updateStatus = async (newStatus) => {
     try {
-      await dispatch(updateVendorStatus({ vendorId: id, status: newStatus })).unwrap();
+      await dispatch(
+        updateVendorStatus({ vendorId: id, status: newStatus })
+      ).unwrap();
       dispatch(fetchVendorById(id)); // Refetch vendor details after updating status
     } catch (error) {
       // console.error("Error updating status:", error);
@@ -49,7 +56,11 @@ const VendorDetailes = () => {
   };
 
   if (loading) {
-    return <div><LoadingSpinner /> </div>;
+    return (
+      <div>
+        <LoadingSpinner />{" "}
+      </div>
+    );
   }
 
   if (error) {
@@ -66,7 +77,6 @@ const VendorDetailes = () => {
           <img
             // src={vendorDetails.vendorImage}
             src={`${apiConfig.bucket}/${vendorDetails?.vendorImage}`}
-
             alt="Shop Logo"
             className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover"
           />
@@ -76,12 +86,12 @@ const VendorDetailes = () => {
             </h1>
             <div className="flex flex-col md:flex-row items-start md:items-center py-5 space-y-1 md:space-y-0 md:space-x-6">
               <h1>
-              <span>{vendorDetails?.totalProducts?.length ?? 0}</span> 
-              <span className="font-semibold"> Products</span>
+                <span>{vendorDetails?.totalProducts?.length ?? 0}</span>
+                <span className="font-semibold"> Products</span>
               </h1>
               <h1>
-              {/* <span>{vendorDetails?.totalOrders ?? 0}</span> */}
-              <span className="font-semibold"> Orders</span>
+                {/* <span>{vendorDetails?.totalOrders ?? 0}</span> */}
+                <span className="font-semibold"> Orders</span>
               </h1>
             </div>
             {/* <Link className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
@@ -95,16 +105,15 @@ const VendorDetailes = () => {
           {vendorDetails.status === "pending" && (
             <>
               <button
-                className="bg-primary text-white px-4 py-2 rounded"
-                style={{color:"white !important"}}
+                className="bg-primary-500 hover:bg-primary-dark-500 text-white px-4 py-2 rounded"
+                style={{ color: "white" }}
                 onClick={() => confirmStatusChange("active", "activate")}
               >
                 Activate
               </button>
               <button
                 className="bg-red-500 text-white px-4 py-2 rounded"
-                style={{color:"white"}}
-
+                style={{ color: "white" }}
                 onClick={() => confirmStatusChange("rejected", "reject")}
               >
                 Reject
@@ -115,15 +124,14 @@ const VendorDetailes = () => {
             <button
               className="bg-red-500 text-white px-4 py-2 rounded"
               onClick={() => confirmStatusChange("inactive", "suspend")}
-              style={{color:"white"}}
-
+              style={{ color: "white" }}
             >
               Suspend
             </button>
           )}
           {vendorDetails.status === "rejected" && (
             <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
+              className="bg-primary-500 hover:bg-primary-dark-500 text-white px-4 py-2 rounded"
               onClick={() => confirmStatusChange("active", "activate")}
             >
               Activate
@@ -131,7 +139,7 @@ const VendorDetailes = () => {
           )}
           {vendorDetails.status === "inactive" && (
             <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
+              className="bg-primary-500 hover:bg-primary-dark-500 text-white px-4 py-2 rounded"
               onClick={() => confirmStatusChange("active", "activate")}
             >
               Activate
@@ -146,7 +154,7 @@ const VendorDetailes = () => {
         <div className="col-span-1 md:col-span-2 border rounded-md p-4">
           <p>Total Products:</p>
           <p className="text-xl font-semibold text-blue-600">
-          {vendorDetails?.totalProducts?.length ?? 0} 
+            {vendorDetails?.totalProducts?.length ?? 0}
           </p>
           <p>Total Orders:</p>
           <p className="text-xl font-semibold text-blue-600">

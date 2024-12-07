@@ -186,7 +186,7 @@ const CategoryForm = ({
             <input
               type="text"
               name="name"
-              className="form-control outline-none hover:border-primary"
+              className="form-control outline-none hover:border-primary-500"
               placeholder="New Category"
               required={lang === "en"}
               value={categoryData.name || ""} // Ensure value is a string
@@ -199,7 +199,7 @@ const CategoryForm = ({
             Priority
           </label>
           <select
-            className="form-control outline-none hover:border-primary"
+            className="form-control outline-none hover:border-primary-500"
             name="priority"
             required
             value={categoryData.priority}
@@ -253,7 +253,7 @@ const CategoryForm = ({
       <div className="col-12 d-flex justify-content-end">
         <button
           type="submit"
-          className="btn bg-primary text-white"
+          className="btn bg-primary-500 text-white"
           style={{
             color: "white",
           }}

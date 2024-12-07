@@ -72,7 +72,6 @@ const VendorSales = () => {
     //   refound: "$0.00",
     //   total: "$0.00",
     // },
-   
   ];
   return (
     <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
@@ -90,7 +89,7 @@ const VendorSales = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2 w-52 outline-none hover:border-primary"
+            className="text-md  bg-white px-2 rounded py-2 w-52 outline-none hover:border-primary-500"
           >
             <option value="">This Year</option>
             <option value="">This Month</option>
@@ -99,7 +98,7 @@ const VendorSales = () => {
             <option value="">Custom Date</option>
           </select>
           <button
-            className="px-6 w-52 py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
+            className="px-6 w-52 py-2 rounded border border-primary-500 bg-primary-500    hover:bg-primary-dark-500 text-white"
             style={{ color: "white" }}
           >
             Filter
@@ -140,11 +139,11 @@ const VendorSales = () => {
               </div>
               <div className="flex justify-center gap-2 mt-4">
                 <div className="text-red-500 text-[1rem] font-semibold">
-                   <br />{" "}
+                  <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Cancel</span>
                 </div>
                 <div className="text-blue-500 text-[1rem] font-semibold">
-                   <br />{" "}
+                  <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Ongoing</span>
                 </div>
                 {/* <div className=" text-[1em] text-blue-500 font-semibold">
@@ -153,8 +152,8 @@ const VendorSales = () => {
                 In House
               </span>
             </div> */}
-                <div className="text-green-500 text-[1rem] font-semibold">
-                   <br />{" "}
+                <div className="text-primary-500 text-[1rem] font-semibold">
+                  <br />{" "}
                   <span className="text-gray-400 text-[.8rem]"> Complated</span>
                 </div>
               </div>
@@ -205,9 +204,7 @@ const VendorSales = () => {
           <div className="flex justify-between gap-3 align-items-center flex-col lg:flex-row">
             <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
               Total Vendor{" "}
-              <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-                
-              </span>
+              <span className="badge badge-soft-dark radius-50 fz-12 ml-1"></span>
             </h5>
 
             <div className="flex  gap-3 flex-col md:flex-row">
@@ -233,7 +230,7 @@ const VendorSales = () => {
                   />
                   <button
                     type="submit"
-                    className="btn bg-primary hover:bg-primary-dark"
+                    className="btn bg-primary-500 hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     Search
@@ -242,7 +239,7 @@ const VendorSales = () => {
               </form>
               <button
                 type="button"
-                className="rounded w-20 px-3 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block flex gap-2 "
+                className="rounded w-20 px-3 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
                   color: "white",

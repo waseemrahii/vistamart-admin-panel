@@ -18,7 +18,7 @@ const FormInput = ({
     </label>
     <input
       type={type}
-      className="form-control form-control-user outline-none hover:border-primary"
+      className="form-control form-control-user outline-none hover:border-primary-500"
       id={name}
       name={name}
       placeholder={placeholder}

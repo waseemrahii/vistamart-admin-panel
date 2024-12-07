@@ -54,7 +54,7 @@ const StatisticsCard = () => {
             <div>
               <button
                 type="button"
-                className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark text-nowrap btn-block"
+                className="btn px-4 py-2 bg-prim-500 text-white hover:bg-primary-dark-500 text-nowrap btn-block"
                 data-toggle="dropdown"
                 style={{ color: "white" }}
               >

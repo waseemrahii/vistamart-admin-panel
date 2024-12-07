@@ -33,7 +33,6 @@ const WithdrawRequest = () => {
     //   featured: true,
     //   active: true,
     // },
-   
     // Add more products as needed
   ];
   // State to manage form inputs and filtered products
@@ -119,7 +118,7 @@ const WithdrawRequest = () => {
                       />
                       <button
                         type="submit"
-                        className="btn  bg-primary hover:bg-primary-dark hover:text-white text-white"
+                        className="btn  bg-primary-500 hover:bg-primary-dark-500 hover:text-white text-white"
                         style={{ color: "white" }}
                       >
                         Search
@@ -135,7 +134,7 @@ const WithdrawRequest = () => {
                     filename="List"
                     icon={FaDownload}
                     label="Export "
-                    className="bg-primary text-white hover:bg-primary-dark"
+                    className="bg-primary-500 text-white hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   />
                   <select
@@ -155,7 +154,7 @@ const WithdrawRequest = () => {
         <div className="table-responsive">
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-              <thead className="bg-secondary font-semibold">
+              <thead className="bg-secondary-500 font-semibold">
                 <tr>
                   <th className="px-4 py-2">SL</th>
                   <th className="px-4 py-2 text-center">Amount</th>
@@ -182,7 +181,7 @@ const WithdrawRequest = () => {
                     <td className="px-4 py-2 text-center ">
                       ${product.priority}
                     </td>
-                    <td className="px-4 py-2 text-center  text-green-500">
+                    <td className="px-4 py-2 text-center  text-primary-500">
                       {product.img}
                     </td>
                     <td className="px-4 py-2 text-center">
@@ -207,8 +206,6 @@ const WithdrawRequest = () => {
             </table>
           </div>
         </div>
-
-      
       </div>
     </div>
   );

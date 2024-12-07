@@ -153,7 +153,7 @@ const CustomerReviews = () => {
                 />
                 <button
                   type="submit"
-                  className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                  className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                   style={{ color: "white" }}
                 >
                   Search
@@ -169,7 +169,7 @@ const CustomerReviews = () => {
                 Choose Status
               </label>
               <select
-                className="form-control outline-none hover:border-primary"
+                className="form-control outline-none hover:border-primary-500"
                 name="status"
               >
                 <option value="" selected="">
@@ -189,7 +189,7 @@ const CustomerReviews = () => {
                   name="from"
                   id="start-date-time"
                   value=""
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   title="From date"
                 />
               </div>
@@ -204,7 +204,7 @@ const CustomerReviews = () => {
                   name="to"
                   id="end-date-time"
                   value=""
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   title="To date"
                 />
               </div>
@@ -213,7 +213,7 @@ const CustomerReviews = () => {
               <div>
                 <button
                   type="submit"
-                  className="btn px-3  py-2 bg-primary text-white hover:bg-primary-dark"
+                  className="btn px-3  py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                   style={{ color: "white" }}
                 >
                   Filter
@@ -259,12 +259,12 @@ const CustomerReviews = () => {
                       </td>
                       <td>{review.customer?.name || "N/A"}</td>
                       <td className="flex justify-center mt-6 align-items-center">
-                        <div className="d-flex align-items-center gap-1 text-primary justify-content-center fz-14 mt-6">
+                        <div className="d-flex align-items-center gap-1 text-primary-500 justify-content-center fz-14 mt-6">
                           {[...Array(5)].map((_, i) =>
                             i < review.rating ? (
                               <MdOutlineStarPurple500
                                 key={i}
-                                className="text-primary"
+                                className="text-primary-500"
                               />
                             ) : (
                               <MdStarBorder key={i} className="text-gray-300" />
@@ -292,7 +292,7 @@ const CustomerReviews = () => {
                           <span className="switcher_control"></span>
                         </label>
                       </td>
-                      <td className="border-primary border-t-0 border-b-0 text-center">
+                      <td className="border-primary-500 border-t-0 border-b-0 text-center">
                         <FaEye
                           size={18}
                           color="#A1CB46"
@@ -353,7 +353,7 @@ const CustomerReviews = () => {
                     i < selectedReview.rating ? (
                       <MdOutlineStarPurple500
                         key={i}
-                        className="text-primary"
+                        className="text-primary-500"
                       />
                     ) : (
                       <MdStarBorder key={i} className="text-gray-300" />
@@ -373,7 +373,7 @@ const CustomerReviews = () => {
               <div className="modal-footer">
                 <button
                   type="button"
-                  className="btn bg-primary text-white hover:bg-primary-dark"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500"
                   onClick={closeModal}
                   style={{ color: "white" }}
                 >

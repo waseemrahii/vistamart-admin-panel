@@ -44,7 +44,7 @@ const OfflinePaymentMethods = () => {
         <div className="nav nav-tabs mb-3 border-0" role="tablist">
           <button
             className={`nav-link ${
-              currentTab === "all" ? "border-b-2 border-green-500" : ""
+              currentTab === "all" ? "border-b-2 border-primary-500" : ""
             }`}
             onClick={() => handleTabChange("all")}
           >
@@ -52,7 +52,7 @@ const OfflinePaymentMethods = () => {
           </button>
           <button
             className={`nav-link ${
-              currentTab === "active" ? "border-b-2 border-green-500" : ""
+              currentTab === "active" ? "border-b-2 border-primary-500" : ""
             }`}
             onClick={() => handleTabChange("active")}
           >
@@ -60,7 +60,7 @@ const OfflinePaymentMethods = () => {
           </button>
           <button
             className={`nav-link ${
-              currentTab === "inactive" ? "border-b-2 border-green-500" : ""
+              currentTab === "inactive" ? "border-b-2 border-primary-500" : ""
             }`}
             onClick={() => handleTabChange("inactive")}
           >
@@ -96,14 +96,14 @@ const OfflinePaymentMethods = () => {
                         id="datatableSearch_"
                         type="search"
                         name="searchValue"
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         placeholder="Search by payment method name"
                         value=""
                         required=""
                       />
                       <button
                         type="submit"
-                        className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark input-group-text"
+                        className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 input-group-text"
                         style={{ color: "white" }}
                       >
                         Search
@@ -114,7 +114,7 @@ const OfflinePaymentMethods = () => {
                   <div className=" ">
                     <p
                       href="https://6valley.6amtech.com/admin/business-settings/offline-payment-method/add"
-                      className="btn btn-- bg-primary text-white hover:bg-primary-dark  hover:text-white "
+                      className="btn btn-- bg-primary-500 text-white hover:bg-primary-dark-500  hover:text-white "
                       style={{ color: "white" }}
                     >
                       Add New Method

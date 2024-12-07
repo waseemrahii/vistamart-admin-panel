@@ -64,17 +64,16 @@ const OrderTranscation = () => {
     //   deliverd: "admin",
     //   total: "$0.00",
     // },
-   
   ];
   return (
-    <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
+    <div className="bg-secondary-500  flex flex-col gap-4 px-5 py-5">
       <div className="rounded-md border bg-white border-gray-300 shadow-md hover:shadow-md px-5 py-5">
         <h1 className="font-bold text-md">Filter Data</h1> <br />
         <div className="grid grid-cols-4 gap-3 ">
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2 outline-none hover:border-primary"
+            className="text-md  bg-white px-2 rounded py-2 outline-none hover:border-primary-500"
           >
             <option value="">All Status</option>
             <option value="">Hold</option>
@@ -83,7 +82,7 @@ const OrderTranscation = () => {
           <select
             name=""
             id=""
-            className="text-md  bg-white px-2 rounded py-2  outline-none hover:border-primary"
+            className="text-md  bg-white px-2 rounded py-2  outline-none hover:border-primary-500"
           >
             <option value="">All Status</option>
             <option value="">Inhouse</option>
@@ -117,7 +116,7 @@ const OrderTranscation = () => {
         <br />
         <div className="flex justify-end">
           <button
-            className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
+            className="px-6  py-2 rounded border border-primary-500 bg-primary-500 hover:bg-primary-dark-500 text-white"
             style={{ color: "white" }}
           >
             Filter
@@ -146,8 +145,8 @@ const OrderTranscation = () => {
                   $2,280.97 <br />{" "}
                   <span className="text-gray-400 text-[.8rem]">Commission</span>
                 </div> */}
-                <div className="text-blue-500 text-[1rem] text-center font-semibold">
-                   <br />{" "}
+                <div className="text-primary-500 text-[1rem] text-center font-semibold">
+                  <br />{" "}
                   <span className="text-gray-400 text-[.7rem]">
                     In House Orders
                   </span>
@@ -158,8 +157,8 @@ const OrderTranscation = () => {
                 In House
               </span>
             </div> */}
-                <div className="text-green-500 text-center text-[1rem] font-semibold">
-                   <br />{" "}
+                <div className="text-primary-500 text-center text-[1rem] font-semibold">
+                  <br />{" "}
                   <span className="text-gray-400 text-[.7rem]">
                     {" "}
                     Vendor Orders
@@ -177,14 +176,14 @@ const OrderTranscation = () => {
                 />
               </div>
               <div className=" flex justify-center items-center gap-3">
-                <div className="text-blue-500 text-[1rem] text-center font-semibold">
-                   <br />{" "}
+                <div className="text-secondary-500 text-[1rem] text-center font-semibold">
+                  <br />{" "}
                   <span className="text-gray-400 text-[.6rem]">
                     In House Orders
                   </span>
                 </div>
-                <div className="text-green-500 text-center text-[1rem] font-semibold">
-                   <br />{" "}
+                <div className="text-primary-500 text-center text-[1rem] font-semibold">
+                  <br />{" "}
                   <span className="text-gray-400 text-[.6rem]">
                     {" "}
                     Vendor Orders
@@ -219,7 +218,7 @@ const OrderTranscation = () => {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h2 className="text-xl font-semibold">Payment Statistics</h2>
               <div className="flex justify-center mt-4">
-                <div className="w-32 h-32 bg-blue-500 rounded-full relative">
+                <div className="w-32 h-32 bg-primary-500 rounded-full relative">
                   <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold">
                     PKR
                   </div>

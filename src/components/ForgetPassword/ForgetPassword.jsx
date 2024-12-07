@@ -10,7 +10,6 @@ const ForgotPassword = () => {
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     try {
-        
       const response = await axios.post(
         `${apiConfig.admin}/employees/forgot-password`,
         { email }
@@ -27,7 +26,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-secondary-500 p-4">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
         <ToastContainer />
         <h1 className="text-2xl font-bold text-center mb-4">Forgot Password</h1>
@@ -48,9 +47,9 @@ const ForgotPassword = () => {
           </div>
           <button
             type="submit"
-            className="btn btn-block p-3 rounded bg-primary hover:bg-green-400 hover:text-black text-white font-semibold"
-          style= {{color:"white"}}
-         >
+            className="btn btn-block p-3 rounded bg-primary-500 hover:bg-primary-dark-500 hover:text-black text-white font-semibold"
+            style={{ color: "white" }}
+          >
             Send Reset Link
           </button>
         </form>

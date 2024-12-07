@@ -125,7 +125,7 @@ const VenderWalletMethod = () => {
           </h2>
           <a
             href="#"
-            className="btn bg-primary hover:bg-primary-dark"
+            className="btn bg-primary-500 hover:bg-primary-dark-500"
             style={{ color: "white" }}
           >
             + Add method
@@ -154,13 +154,13 @@ const VenderWalletMethod = () => {
                     </div>
                     <input
                       type="search"
-                      className="form-control outline-none hover:border-primary"
+                      className="form-control outline-none hover:border-primary-500"
                       placeholder="Search Method Name"
                       value={searchValue}
                       onChange={handleSearch}
                     />
                     <button
-                      className="btn bg-primary text-white border-primary-dark"
+                      className="btn bg-primary-500 text-white border-primary-dark-500"
                       style={{ color: "white" }}
                     >
                       Search

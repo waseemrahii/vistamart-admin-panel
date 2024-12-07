@@ -3,7 +3,7 @@ import React from "react";
 const PageGallery = () => {
   return (
     <>
-      <div className="bg-[#F9F9FB] h-full w-full">
+      <div className="bg-secondary-500 h-full w-full">
         {/* Header section */}
         <div className="flex items-center pt-6 pl-8">
           <img
@@ -22,7 +22,7 @@ const PageGallery = () => {
             File Manager
           </p>
           <button
-            className="bg-primary text-nowrap rounded text-sm text-white px-4 py-2 hover:bg-primary-dark"
+            className="bg-primary-500 text-nowrap rounded text-sm text-white px-4 py-2 hover:bg-primary-dark-500"
             style={{ color: "white" }}
           >
             + Add New
@@ -34,13 +34,13 @@ const PageGallery = () => {
           {/* Folder section title */}
           <div className="flex items-center">
             <p className="text-lg text-[#334257] font-semibold">Public</p>
-            <p className="text-xs font-semibold text-[#334257] ml-2 bg-[#E0E7D8] rounded-full px-2 py-1">
+            <p className="text-xs font-semibold text-[#334257] ml-2 bg-secondary-500 rounded-full px-2 py-1">
               15
             </p>
           </div>
 
           {/* Divider */}
-          <p className="border-2 border-[#F9F9FB] mt-3"></p>
+          <p className="border-2 border-secondary-500 mt-3"></p>
 
           {/* Folders grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 ml-8 mt-8">

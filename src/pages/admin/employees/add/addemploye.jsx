@@ -25,7 +25,7 @@
 //     identityImage: null,
 //     roleId: "", // Add roleId to form data
 //   });
-  
+
 //   const [imagePreview, setImagePreview] = useState(null);
 //   const [identityImagePreview, setIdentityImagePreview] = useState(null);
 //   const [selectedFile, setSelectedFile] = useState(null);
@@ -192,7 +192,6 @@
 //   required
 // />
 
-
 //               <FormInput
 //                 label="Email"
 //                 name="email"
@@ -253,7 +252,7 @@
 //                 required
 //               />
 //             </div>
-             
+
 //             <div className="col-lg-6 mb-4 mb-lg-0">
 //               <FormInput
 //                 label="Password"
@@ -291,7 +290,7 @@
 //                 onChange={handleInputChange}
 //                 required
 //               />
-             
+
 //             </div>
 //             <div className="col-lg-6">
 //               <PreviewImage
@@ -325,12 +324,6 @@
 // };
 
 // export default AddEmployee;
-
-
-
-
-
-
 
 import React, { useState, useEffect } from "react";
 import { FiUserPlus, FiInfo, FiImage, FiMail } from "react-icons/fi";
@@ -370,7 +363,8 @@ const AddEmployee = () => {
   const API_EMP = `${apiConfig.admin}/employees`;
 
   // Password validation regex: 8-16 characters, uppercase, lowercase, number, special character
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
 
   // Fetch roles with token
   useEffect(() => {
@@ -383,7 +377,7 @@ const AddEmployee = () => {
           },
         });
         if (response.status === 200) {
-          const formattedRoles = response.data.doc.map(role => ({
+          const formattedRoles = response.data.doc.map((role) => ({
             value: role._id,
             label: role.name,
           }));
@@ -404,7 +398,9 @@ const AddEmployee = () => {
     event.preventDefault();
 
     if (!passwordRegex.test(formData.password)) {
-      toast.error("Password must be 8-16 characters long and include uppercase, lowercase, number, and special character.");
+      toast.error(
+        "Password must be 8-16 characters long and include uppercase, lowercase, number, and special character."
+      );
       return;
     }
 
@@ -431,15 +427,24 @@ const AddEmployee = () => {
 
       let imageKey = null;
       if (selectedFile) {
-        const uploadUrlResponse = await getUploadUrl(selectedFile.type, 'employees');
+        const uploadUrlResponse = await getUploadUrl(
+          selectedFile.type,
+          "employees"
+        );
         imageKey = uploadUrlResponse.key;
         await uploadImageToS3(uploadUrlResponse.url, selectedFile);
       }
 
       if (selectedIdentityFile) {
-        const identityUploadUrlResponse = await getUploadUrl(selectedIdentityFile.type, 'identity');
+        const identityUploadUrlResponse = await getUploadUrl(
+          selectedIdentityFile.type,
+          "identity"
+        );
         const identityImageKey = identityUploadUrlResponse.key;
-        await uploadImageToS3(identityUploadUrlResponse.url, selectedIdentityFile);
+        await uploadImageToS3(
+          identityUploadUrlResponse.url,
+          selectedIdentityFile
+        );
         employeeData.identityImage = identityImageKey;
       }
 
@@ -502,7 +507,9 @@ const AddEmployee = () => {
       setImagePreview(objectUrl);
       setSelectedFile(file);
     } else {
-      toast.error("Invalid image type! Only jpg, png, jpeg, gif, bmp, tif, tiff are allowed.");
+      toast.error(
+        "Invalid image type! Only jpg, png, jpeg, gif, bmp, tif, tiff are allowed."
+      );
     }
   };
 
@@ -514,13 +521,22 @@ const AddEmployee = () => {
       setIdentityImagePreview(objectUrl);
       setSelectedIdentityFile(file);
     } else {
-      toast.error("Invalid image type! Only jpg, png, jpeg, gif, bmp, tif, tiff are allowed.");
+      toast.error(
+        "Invalid image type! Only jpg, png, jpeg, gif, bmp, tif, tiff are allowed."
+      );
     }
   };
 
   // Validate image type
   const validateImageType = (file) => {
-    const validTypes = ["image/jpeg", "image/png", "image/gif", "image/bmp", "image/tiff", "image/tif"];
+    const validTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/bmp",
+      "image/tiff",
+      "image/tif",
+    ];
     return validTypes.includes(file.type);
   };
 
@@ -537,7 +553,10 @@ const AddEmployee = () => {
         encType="multipart/form-data"
         id="add-employee-form"
       >
-        <FormSection icon={<FiInfo className="mb-1" />} title="Employee Information">
+        <FormSection
+          icon={<FiInfo className="mb-1" />}
+          title="Employee Information"
+        >
           <div className="row align-items-center p-4">
             <div className="col-lg-6 mb-4 mb-lg-0">
               <FormInput
@@ -559,7 +578,10 @@ const AddEmployee = () => {
                 required
               />
               <div className="form-group">
-                <label htmlFor="exampleInputPhone" className="title-color d-flex gap-1 align-items-center">
+                <label
+                  htmlFor="exampleInputPhone"
+                  className="title-color d-flex gap-1 align-items-center"
+                >
                   Phone
                 </label>
                 <PhoneInput
@@ -595,7 +617,10 @@ const AddEmployee = () => {
             </div>
           </div>
         </FormSection>
-        <FormSection icon={<FiMail className="mb-1" />} title="Role and Password">
+        <FormSection
+          icon={<FiMail className="mb-1" />}
+          title="Role and Password"
+        >
           <div className="row align-items-center">
             <div className="col-md-6 mb-4 mb-md-0">
               <FormSelect
@@ -621,10 +646,13 @@ const AddEmployee = () => {
             </div>
           </div>
         </FormSection>
-        <FormSection icon={<FiImage className="mb-1" />} title="Identity Details">
+        <FormSection
+          icon={<FiImage className="mb-1" />}
+          title="Identity Details"
+        >
           <div className="row">
             <div className="col-md-6">
-                      <FormSelect
+              <FormSelect
                 label="Identification Type"
                 name="identifyType"
                 value={formData.identifyType}
@@ -662,12 +690,12 @@ const AddEmployee = () => {
             </div>
           </div>
         </FormSection>
-      
+
         <div className="d-flex justify-content-end gap-3 mb-4">
-                   <button
+          <button
             type="submit"
-            className="btn bg-primary text-white"
-            style={{color:"white"}}
+            className="btn bg-primary-500 text-white"
+            style={{ color: "white" }}
           >
             Add Employee
           </button>

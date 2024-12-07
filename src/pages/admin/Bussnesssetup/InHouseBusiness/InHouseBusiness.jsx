@@ -22,7 +22,7 @@ const InHouseBusiness = () => {
           <div className="dropdown-menu dropdown-menu-right bg-aliceblue border border-color-primary-light p-4 dropdown-w-lg">
             <div className="d-flex align-items-center gap-2 mb-3">
               <FiImage width={20} /> {/* Replace img tag with React icon */}
-              <h5 className="text-primary mb-0">Note</h5>
+              <h5 className="text-primary-500 mb-0">Note</h5>
             </div>
             <p className="title-color font-weight-medium mb-0">
               Please click the Save button below to save all the changes
@@ -95,7 +95,7 @@ const InHouseBusiness = () => {
               </button>
               <a
                 href="https://6valley.6amtech.com/admin/product-settings/inhouse-shop"
-                className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark d-flex gap-2 align-items-center"
+                className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 d-flex gap-2 align-items-center"
                 style={{ color: "white" }}
               >
                 Back
@@ -154,7 +154,7 @@ const InHouseBusiness = () => {
               <div className="d-flex justify-content-end mt-30">
                 <button
                   type="submit"
-                  className="btn px-4 py-2 bg-primary text-white hover:bg-primary-dark "
+                  className="btn px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500 "
                   style={{ color: "white" }}
                 >
                   {" "}
@@ -254,12 +254,12 @@ const InHouseBusiness = () => {
                 <div className="text-end gap-5 mt-2">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btn-secondary-500"
                     data-dismiss="modal"
                   >
                     Close
                   </button>
-                  <button type="submit" className="btn btn--primary">
+                  <button type="submit" className="btn bg-primary-500">
                     Update
                   </button>
                 </div>

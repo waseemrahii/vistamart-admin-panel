@@ -64,10 +64,9 @@ const ExpenceTranscation = () => {
     //   deliverd: "admin",
     //   total: "$0.00",
     // },
-  
   ];
   return (
-    <div className="bg-gray-100  flex flex-col gap-4 px-5 py-5">
+    <div className="bg-secondary-500  flex flex-col gap-4 px-5 py-5">
       <div className="rounded-md border bg-white border-gray-300 shadow-md hover:shadow-md px-5 py-5">
         <h1 className="font-bold text-md">Filter Data</h1> <br />
         <div className="grid grid-cols-3 gap-3">
@@ -82,7 +81,7 @@ const ExpenceTranscation = () => {
           </select>
           <div className="">
             <button
-              className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
+              className="px-6  py-2 rounded border border-primary-500  bg-primary-500 hover:bg-primary-dark-500 text-white"
               style={{ color: "white" }}
             >
               Filter
@@ -200,7 +199,7 @@ const ExpenceTranscation = () => {
                   />
                   <button
                     type="submit"
-                    className="btn bg-primary hover:bg-primary-dark"
+                    className="btn bg-primary-500 hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     Search
@@ -208,7 +207,7 @@ const ExpenceTranscation = () => {
                 </div>
               </form>
               {/* <button
-                type="button"
+                 type="button"
                 className="rounded w-40 px-3 py-2 pr-4 bg-[#A1CB46] text-white hover:bg-[#7e9f37] text-nowrap btn-block flex gap-2 "
                 style={{
                   display: "flex",
@@ -225,7 +224,7 @@ const ExpenceTranscation = () => {
                 filename="ExpenceTranscation" // Optional filename for the exported file
                 icon={FaDownload} // Icon for the button
                 label="Export " // Button label
-                className="bg-primary text-white hover:bg-primary-dark w-40 " // Tailwind classes for styling
+                className="bg-primary-500 text-white hover:bg-primary-dark-500 w-40 " // Tailwind classes for styling
                 style={{ color: "white" }} // Optional inline styles
               />
             </div>
@@ -268,7 +267,7 @@ const ExpenceTranscation = () => {
                     </div>
                   </td>
 
-                  <td className="   text-green-500 ">
+                  <td className="   text-primary-500 ">
                     <IoMdDownload />
                   </td>
                 </tr>

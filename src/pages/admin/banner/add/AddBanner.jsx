@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { FiSkipBack } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
@@ -150,7 +149,6 @@ const AddBannerForm = () => {
     <div className="content container-fluid">
       <ToastContainer />
       {loading && <Uploading />} {/* Show loading indicator */}
-
       <div className="d-flex justify-content-between mb-3">
         <div>
           <h2 className="h1 mb-1 text-capitalize d-flex align-items-center gap-2">
@@ -178,127 +176,145 @@ const AddBannerForm = () => {
             <div className="card-body">
               <form onSubmit={handleSubmit} className="banner_form">
                 <div className="row g-3">
-                 
-                
-  <div className="col-md-6">
-      <div className="form-group">
-        <label htmlFor="banner_type" className="title-color text-capitalize">
-          Banner Type
-        </label>
-        <select
-          className="form-control outline-none hover:border-primary"
-          name="banner_type"
-          id="banner_type"
-          value={bannerType}
-          onChange={handleBannerTypeChange}
-        >
-          <option value="">Select Banner Type</option>
-          <option value="main-banner">Main Banner</option>
-          <option value="popup-banner">Popup Banner</option>
-          <option value="footer-banner">Footer Banner</option>
-          <option value="main-section-banner">Main Section Banner</option>
-        </select>
-      </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label
+                        htmlFor="banner_type"
+                        className="title-color text-capitalize"
+                      >
+                        Banner Type
+                      </label>
+                      <select
+                        className="form-control outline-none hover:border-primary-500"
+                        name="banner_type"
+                        id="banner_type"
+                        value={bannerType}
+                        onChange={handleBannerTypeChange}
+                      >
+                        <option value="">Select Banner Type</option>
+                        <option value="main-banner">Main Banner</option>
+                        <option value="popup-banner">Popup Banner</option>
+                        <option value="footer-banner">Footer Banner</option>
+                        <option value="main-section-banner">
+                          Main Section Banner
+                        </option>
+                      </select>
+                    </div>
 
-      <div className="form-group">
-        <label htmlFor="url" className="title-color text-capitalize">
-          Banner URL
-        </label>
-        <input
-          type="url"
-          name="url"
-          className="form-control outline-none hover:border-primary"
-          id="url"
-          required
-          placeholder="Enter URL"
-          defaultValue=""
-        />
-      </div>
+                    <div className="form-group">
+                      <label
+                        htmlFor="url"
+                        className="title-color text-capitalize"
+                      >
+                        Banner URL
+                      </label>
+                      <input
+                        type="url"
+                        name="url"
+                        className="form-control outline-none hover:border-primary-500"
+                        id="url"
+                        required
+                        placeholder="Enter URL"
+                        defaultValue=""
+                      />
+                    </div>
 
-      <div className="form-group">
-        <label htmlFor="resource_type" className="title-color text-capitalize">
-          Resource Type
-        </label>
-        <select
-          className="form-control outline-none hover:border-primary"
-          name="resource_type"
-          id="resource_type"
-          value={resourceType}
-          onChange={handleResourceTypeChange}
-        >
-          <option value="">Select Resource Type</option>
-          <option value="product">Product</option>
-          <option value="category">Category</option>
-          <option value="brand">Brand</option>
-        </select>
-      </div>
+                    <div className="form-group">
+                      <label
+                        htmlFor="resource_type"
+                        className="title-color text-capitalize"
+                      >
+                        Resource Type
+                      </label>
+                      <select
+                        className="form-control outline-none hover:border-primary-500"
+                        name="resource_type"
+                        id="resource_type"
+                        value={resourceType}
+                        onChange={handleResourceTypeChange}
+                      >
+                        <option value="">Select Resource Type</option>
+                        <option value="product">Product</option>
+                        <option value="category">Category</option>
+                        <option value="brand">Brand</option>
+                      </select>
+                    </div>
 
-      {resourceType === "product" && (
-        <div className="form-group">
-          <label htmlFor="product_id" className="title-color text-capitalize">
-            Product
-          </label>
-          <select
-            className="form-control outline-none hover:border-primary"
-            name="product_id"
-            id="product_id"
-            value={productId}
-            onChange={handleProductChange}
-          >
-            <option value="">Select Product</option>
-            {products.map((product) => (
-              <option key={product._id} value={product._id}>
-                {product.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+                    {resourceType === "product" && (
+                      <div className="form-group">
+                        <label
+                          htmlFor="product_id"
+                          className="title-color text-capitalize"
+                        >
+                          Product
+                        </label>
+                        <select
+                          className="form-control outline-none hover:border-primary-500"
+                          name="product_id"
+                          id="product_id"
+                          value={productId}
+                          onChange={handleProductChange}
+                        >
+                          <option value="">Select Product</option>
+                          {products.map((product) => (
+                            <option key={product._id} value={product._id}>
+                              {product.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
 
-      {resourceType === "category" && (
-        <div className="form-group">
-          <label htmlFor="category_id" className="title-color text-capitalize">
-            Category
-          </label>
-          <select
-            className="form-control outline-none hover:border-primary"
-            name="category_id"
-            id="category_id"
-            value={category}
-            onChange={handleCategoryChange}
-          >
-            <option value="">Select Category</option>
-            {categories.map((cat) => (
-              <option key={cat._id} value={cat._id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+                    {resourceType === "category" && (
+                      <div className="form-group">
+                        <label
+                          htmlFor="category_id"
+                          className="title-color text-capitalize"
+                        >
+                          Category
+                        </label>
+                        <select
+                          className="form-control outline-none hover:border-primary-500"
+                          name="category_id"
+                          id="category_id"
+                          value={category}
+                          onChange={handleCategoryChange}
+                        >
+                          <option value="">Select Category</option>
+                          {categories.map((cat) => (
+                            <option key={cat._id} value={cat._id}>
+                              {cat.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
 
-      {resourceType === "brand" && (
-        <div className="form-group">
-          <label htmlFor="brand_id" className="title-color text-capitalize">
-            Brand
-          </label>
-          <select
-            className="form-control outline-none hover:border-primary"
-            name="brand_id"
-            id="brand_id"
-            value={brand}
-            onChange={handleBrandChange}
-          >
-            <option value="">Select Brand</option>
-            {brands.map((brandItem) => (
-              <option key={brandItem._id} value={brandItem._id}>
-                {brandItem.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-    </div>
+                    {resourceType === "brand" && (
+                      <div className="form-group">
+                        <label
+                          htmlFor="brand_id"
+                          className="title-color text-capitalize"
+                        >
+                          Brand
+                        </label>
+                        <select
+                          className="form-control outline-none hover:border-primary-500"
+                          name="brand_id"
+                          id="brand_id"
+                          value={brand}
+                          onChange={handleBrandChange}
+                        >
+                          <option value="">Select Brand</option>
+                          {brands.map((brandItem) => (
+                            <option key={brandItem._id} value={brandItem._id}>
+                              {brandItem.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+                  </div>
 
                   <div className="col-lg-6">
                     <PreviewImage
@@ -318,7 +334,7 @@ const AddBannerForm = () => {
                 <div className="d-flex justify-content-end mt-3">
                   <button
                     type="submit"
-                    className="btn bg-primary hover:bg-primary-dark"
+                    className="btn bg-primary-500 hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     Submit

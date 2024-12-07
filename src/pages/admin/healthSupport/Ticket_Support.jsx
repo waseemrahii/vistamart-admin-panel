@@ -66,24 +66,24 @@ const Ticket_Support = () => {
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search by Store..."
-            className="border border-gray-300 rounded h-12 px-4 py-2 focus:outline-none focus:border-blue-500"
+            className="border border-gray-300 rounded h-12 px-4 py-2 focus:outline-none focus:border-primary-500"
           />
           <button
             type="submit"
-            className="bg-primary text-white px-4 py-2 w-16 h-12  rounded hover:bg-primary-dark"
+            className="bg-primary-500 text-white px-4 py-2 w-16 h-12  rounded hover:bg-primary-dark-500"
           >
             <FaSearch />
           </button>
         </form>
 
         <div className="flex mt-4 md:mt-0">
-          <select className="border border-blue-600 rounded h-12 text-gray-700 px-4 mr-4">
+          <select className="border border-primary-500 rounded h-12 text-gray-700 px-4 mr-4">
             <option value="1">ALL Priority</option>
             <option value="2">Low</option>
             <option value="3">Medium</option>
             <option value="4">Urgent</option>
           </select>
-          <select className="border border-blue-600 rounded h-12 text-gray-700 px-4">
+          <select className="border border-primary-500 rounded h-12 text-gray-700 px-4">
             <option value="ALL status">All status</option>
             <option value="Open">Open</option>
             <option value="Close">Close</option>
@@ -111,7 +111,7 @@ const Ticket_Support = () => {
                 <p className="text-xs text-red-700 bg-red-400 rounded-full px-3 py-1 mr-2">
                   {ticket.priority}
                 </p>
-                <p className="text-xs  bg-primary text-white  rounded-full px-3 py-1 mr-2">
+                <p className="text-xs  bg-primary-500 hover:bg-primary-dark-500 text-white  rounded-full px-3 py-1 mr-2">
                   {ticket.status}
                 </p>
               </div>
@@ -123,7 +123,7 @@ const Ticket_Support = () => {
           <div className="flex justify-between items-center mt-3">
             <p className="text-sm text-slate-600">{ticket.message}</p>
             <button
-              className="rounded-md bg-primary hover:bg-primary-dark h-10 w-20 text-white flex items-center justify-center"
+              className="rounded-md bg-primary-500 hover:bg-primary-dark-500 h-10 w-20 text-white flex items-center justify-center"
               style={{ color: "white" }}
             >
               <MdOutlineStreetview className="mr-1" /> View

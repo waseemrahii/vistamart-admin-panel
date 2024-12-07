@@ -19,7 +19,6 @@ const InHouseSales = () => {
     //   name: "Crossbody Shoulder Bag Soft Leather Bag Female Fashion",
     //   sales: 7,
     // },
-   
   ];
   return (
     <>
@@ -38,7 +37,7 @@ const InHouseSales = () => {
             <select
               name=""
               id=""
-              className="text-md  bg-white px-4 rounded py-3 w-[70%] border border-primary outline-none"
+              className="text-md  bg-white px-4 rounded py-3 w-[70%] border border-primary-500 outline-none"
             >
               <option value="">This Year</option>
               <option value="">This Month</option>
@@ -47,7 +46,7 @@ const InHouseSales = () => {
               <option value="">Custom Date</option>
             </select>
             <button
-              className="px-3 w-[20% ] py-3 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
+              className="px-3 w-[20% ] py-3 rounded border border-primary-500 bg-primary-500 hover:bg-primary-dark-500  text-white"
               style={{ color: "white" }}
             >
               Filter

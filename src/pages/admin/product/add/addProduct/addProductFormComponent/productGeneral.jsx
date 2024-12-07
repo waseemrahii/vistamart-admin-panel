@@ -21,7 +21,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   const { categories, subCategories, subSubCategories, brands } = useSelector(
     (state) => state.category
   );
- 
+
   const [tags, setTags] = useState(
     (formData.tags || []).filter((tag) => tag.trim() !== "")
   );
@@ -119,7 +119,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               required
             />
           </div>
-        
+
           {/* <div className="flex flex-col px-2">
   <FormSelect
     label="Sub-Category"
@@ -141,29 +141,27 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   />
 </div> */}
 
-
-
-<div className="flex flex-col px-2">
-  <FormSelect
-    label="Sub-Category"
-    name="subCategory"
-    value={formData.subCategory || ""}
-    onChange={(e) =>
-      setFormData({
-        ...formData,
-        subCategory: e.target.value === "" ? null : e.target.value,
-      })
-    }
-    options={[
-      ...(filteredSubCategories.length > 0
-        ? filteredSubCategories.map((subCategory) => ({
-            value: subCategory._id,
-            label: subCategory.name,
-          }))
-        : []),
-    ]}
-  />
-</div>
+          <div className="flex flex-col px-2">
+            <FormSelect
+              label="Sub-Category"
+              name="subCategory"
+              value={formData.subCategory || ""}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  subCategory: e.target.value === "" ? null : e.target.value,
+                })
+              }
+              options={[
+                ...(filteredSubCategories.length > 0
+                  ? filteredSubCategories.map((subCategory) => ({
+                      value: subCategory._id,
+                      label: subCategory.name,
+                    }))
+                  : []),
+              ]}
+            />
+          </div>
 
           {/* Sub-Sub-Category */}
           {/* <div className="flex flex-col px-2">
@@ -183,22 +181,22 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             />
           </div> */}
 
-<div className="flex flex-col px-2">
-  <FormSelect
-    label="Sub-Sub-Category"
-    name="subSubCategory"
-    value={formData.subSubCategory}
-    onChange={handleChange}
-    options={
-      filteredSubSubCategories.length > 0
-        ? filteredSubSubCategories.map((subSubCategory) => ({
-            value: subSubCategory._id, // Ensure correct field here
-            label: subSubCategory.name,
-          }))
-        : [] // Leave empty array if no options are available
-    }
-  />
-</div>
+          <div className="flex flex-col px-2">
+            <FormSelect
+              label="Sub-Sub-Category"
+              name="subSubCategory"
+              value={formData.subSubCategory}
+              onChange={handleChange}
+              options={
+                filteredSubSubCategories.length > 0
+                  ? filteredSubSubCategories.map((subSubCategory) => ({
+                      value: subSubCategory._id, // Ensure correct field here
+                      label: subSubCategory.name,
+                    }))
+                  : [] // Leave empty array if no options are available
+              }
+            />
+          </div>
 
           {/* Brand */}
           <div className="flex flex-col px-2">
@@ -252,10 +250,10 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             <div className="flex justify-between items-center">
               <label className="">Product SKU</label>
               <button
-                className="text-primary   flex g items-center hover:text-primary-dark"
+                className="text-primary-500   flex g items-center hover:text-primary-dark-500"
                 onClick={handleGenerateSKU}
               >
-                <IoIosInformationCircleOutline className="text-[1rem] " />
+                <IoIosInformationCircleOutline className="text-[1rem] text-primary-500 hover:text-primary-dark-500" />
                 Generate Code
               </button>
             </div>
@@ -263,7 +261,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             <div className="form-group flex items-center">
               <input
                 type="text"
-                className="form-control form-control-user flex-1 outline-none hover:border-primary"
+                className="form-control form-control-user flex-1 outline-none hover:border-primary-500"
                 name="sku"
                 placeholder="Code"
                 value={formData.sku}
@@ -271,7 +269,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               />
               <AiOutlineSync
                 onClick={handleGenerateSKU}
-                className="cursor-pointer text-primary hover:text-primary-dark ml-2"
+                className="cursor-pointer text-primary-500 hover:text-primary-dark-500 ml-2"
                 title="Generate SKU"
                 size={24} // Set size for the icon
               />
@@ -314,13 +312,13 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                 {tag}
                 <AiOutlineClose
                   onClick={() => removeTag(index)}
-                  className="cursor-pointer border border-primary font-semibold  ml-1 rounded-full text-red-500"
+                  className="cursor-pointer border border-primary-500 font-semibold  ml-1 rounded-full text-red-500"
                 />
               </span>
             ))}
             <input
               type="text"
-              className="flex-1 border-none outline-none focus:ring-0 p-1 hover:border-primary"
+              className="flex-1 border-none outline-none focus:ring-0 p-1 hover:border-primary-500"
               placeholder="Press Enter to add tag"
               onKeyPress={handleTagInput}
             />

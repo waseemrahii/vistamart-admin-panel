@@ -125,7 +125,7 @@ const InhouseSale = () => {
                   <div className="col-span-1">
                     <button
                       type="submit"
-                      className="btn w-full flex justify-center items-center px-4 py-2 bg-primary text-white hover:bg-primary-dark rounded-md"
+                      className="btn w-full flex justify-center items-center px-4 py-2 bg-primary-500 hover:bg-primary-dark text-white hover:bg-primary-dark rounded-md"
                       style={{ color: "white" }}
                     >
                       <IoFilter className="mr-2" /> Filter

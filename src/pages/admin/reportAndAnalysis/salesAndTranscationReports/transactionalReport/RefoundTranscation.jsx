@@ -25,7 +25,6 @@ const RefoundTranscation = () => {
     //   deliverd: "admin",
     //   total: "$0.00",
     // },
-
   ];
   return (
     <div className="card">
@@ -33,9 +32,7 @@ const RefoundTranscation = () => {
         <div className="flex justify-between gap-3 align-items-center flex-col lg:flex-row">
           <h5 className="mb-0 text-capitalize d-flex gap-2 mr-auto font-bold">
             Total Transactions{" "}
-            <span className="badge badge-soft-dark radius-50 fz-12 ml-1">
-              
-            </span>
+            <span className="badge badge-soft-dark radius-50 fz-12 ml-1"></span>
           </h5>
 
           <div className="flex flex-col md:flex-row gap-3 w-40 md:w-full  lg:w-[40vw]">
@@ -61,7 +58,7 @@ const RefoundTranscation = () => {
                 />
                 <button
                   type="submit"
-                  className="btn bg-primary hover:bg-primary-dark"
+                  className="btn bg-primary-500 hover:bg-primary-dark-500"
                   style={{ color: "white" }}
                 >
                   Search
@@ -78,7 +75,7 @@ const RefoundTranscation = () => {
               <option value="">Digitol Paid</option>
             </select>
             <button
-              className="px-6  py-2 rounded border border-green-200 bg-primary hover:bg-primary-dark text-white"
+              className="px-6  py-2 rounded border border-primary-500 bg-primary-500 hover:bg-primary-dark-500 text-white"
               style={{ color: "white" }}
             >
               Filter
@@ -102,7 +99,7 @@ const RefoundTranscation = () => {
               filename="RefoundTranscation" // Optional filename for the exported file
               icon={FaDownload} // Icon for the button
               label="Export " // Button label
-              className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+              className="bg-primary-500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
               style={{ color: "white" }} // Optional inline styles
             />
           </div>
@@ -110,7 +107,7 @@ const RefoundTranscation = () => {
       </div>
       <div className="table-responsive">
         <table className="table overflow-y-auto table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table text-left">
-          <thead className="thead-light thead-50 text-capitalize ">
+          <thead className="thead-light bg-secondary-500 thead-50 text-capitalize ">
             <tr>
               <th>SL</th>
               <th>Product</th>
@@ -153,7 +150,7 @@ const RefoundTranscation = () => {
                 </td>
                 <td>Paid</td>
                 <td>Admin</td>
-                <td>PKR  </td>
+                <td>PKR </td>
                 <td>Refunded</td>
               </tr>
             ))}

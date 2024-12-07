@@ -81,7 +81,7 @@ const CustomerLoyaltyReport = () => {
                         name="from"
                         id="start-date-time"
                         value=""
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         title="From date"
                       />
                     </div>
@@ -93,7 +93,7 @@ const CustomerLoyaltyReport = () => {
                         name="to"
                         id="end-date-time"
                         value=""
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         title="To date"
                       />
                     </div>
@@ -103,7 +103,7 @@ const CustomerLoyaltyReport = () => {
                       <select
                         name="transaction_type"
                         id=""
-                        className="form-control outline-none hover:border-primary"
+                        className="form-control outline-none hover:border-primary-500"
                         title="Select transaction type"
                       >
                         <option value="">All</option>
@@ -140,7 +140,7 @@ const CustomerLoyaltyReport = () => {
                 <div>
                   <button
                     type="submit"
-                    className="btn flex gap items-center px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                    className="btn flex gap items-center px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                     style={{ color: "white" }}
                   >
                     <FaFilter className="mr-1" /> Filter
@@ -163,26 +163,21 @@ const CustomerLoyaltyReport = () => {
                 <AiFillBank />
                 <h6 className="order-stats__subtitle">Debit</h6>
               </div>
-              <span className="order-stats__title fz-14 text--primary">
-              </span>
+              <span className="order-stats__title fz-14 text-primary-500"></span>
             </div>
             <div className="order-stats flex-grow-1">
               <div className="order-stats__content">
                 <GiReceiveMoney />
                 <h6 className="order-stats__subtitle">Credit</h6>
               </div>
-              <span className="order-stats__title fz-14 text-warning">
-                {" "}
-              </span>
+              <span className="order-stats__title fz-14 text-warning"> </span>
             </div>
             <div className="order-stats flex-grow-1">
               <div className="order-stats__content">
                 <IoMdWallet />
                 <h6 className="order-stats__subtitle">Balance</h6>
               </div>
-              <span className="order-stats__title fz-14 text-success">
-                {" "}
-              </span>
+              <span className="order-stats__title fz-14 text-success"> </span>
             </div>
           </div>
         </div>
@@ -203,7 +198,7 @@ const CustomerLoyaltyReport = () => {
                 filename="CustomerLoyaltyReport" // Optional filename for the exported file
                 icon={FaDownload} // Icon for the button
                 label="Export " // Button label
-                className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                className="bg--500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
                 style={{ color: "white" }} // Optional inline styles
               />
               <ul className="dropdown-menu dropdown-menu-right">

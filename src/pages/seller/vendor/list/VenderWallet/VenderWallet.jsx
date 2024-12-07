@@ -59,7 +59,7 @@ const VenderWallet = () => {
                   <select
                     name="withdraw_status_filter"
                     data-action=""
-                    className="custom-select min-w-120 withdraw-status-filter outline-none hover:border-primary"
+                    className="custom-select min-w-120 withdraw-status-filter outline-none hover:border-primary-500"
                   >
                     <option value="all">All</option>
                     <option value="approved">Approved</option>
@@ -72,7 +72,7 @@ const VenderWallet = () => {
                       filename="VendorWallet" // Optional filename for the exported file
                       icon={FaDownload} // Icon for the button
                       label="Export " // Button label
-                      className="bg-primary text-white hover:bg-primary-dark" // Tailwind classes for styling
+                      className="bg-primary-500 text-white hover:bg-primary-dark-500" // Tailwind classes for styling
                       style={{ color: "white" }} // Optional inline styles
                     />
                     {/* <ul className="dropdown-menu dropdown-menu-right">

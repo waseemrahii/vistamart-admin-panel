@@ -168,7 +168,7 @@ const SendNotification = () => {
                   placeholder="Notification*"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="px-5 py-2 border border-gray-200 rounded-md focus:outline-none hover:border-primary focus:border-blue-500"
+                  className="px-5 py-2 border border-gray-200 rounded-md focus:outline-none hover:border-primary-500 "
                 />
               </div>
               <div className="flex flex-col gap-3">
@@ -218,7 +218,7 @@ const SendNotification = () => {
               </button>
               <button
                 type="submit"
-                className="rounded-md px-4  bg-primary text-white py-2 border border-primary hover:bg-primary-dark"
+                className="rounded-md px-4  bg-primary text-white py-2 border border-primary-500 hover:bg-primary-dark"
                 style={{ color: "white" }}
               >
                 send notification
@@ -259,7 +259,7 @@ const SendNotification = () => {
                         />
                         <button
                           type="submit"
-                          className="px-4 py-2 bg-primary text-white hover:bg-primary-dark"
+                          className="px-4 py-2 bg-primary-500 text-white hover:bg-primary-dark-500"
                           style={{ color: "white" }}
                         >
                           Search
@@ -272,7 +272,7 @@ const SendNotification = () => {
                         filename="SendNotifactionList"
                         icon={FaDownload}
                         label="Export "
-                        className="bg-primary text-white hover:bg-primary-dark  "
+                        className="bg-primary-500 text-white hover:bg-primary-dark-500  "
                         style={{ color: "white" }}
                       />
                     </div>
@@ -322,7 +322,7 @@ const SendNotification = () => {
                                 }
                                 className={`px-4 py-1 rounded-md ${
                                   notification.status === "Active"
-                                    ? "bg-primary"
+                                    ? "bg-primary-500"
                                     : "bg-gray-400"
                                 } text-white`}
                               >

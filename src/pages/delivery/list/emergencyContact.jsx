@@ -18,9 +18,7 @@ import ActionButton from "../../../components/ActionButton/Action";
 import Switcher from "../../../components/FormInput/Switcher";
 
 const EmergencyContact = () => {
-  const list = [
-   
-  ];
+  const list = [];
   const staticProducts = [
     // {
     //   id: 1,
@@ -41,7 +39,6 @@ const EmergencyContact = () => {
     //   featured: false,
     //   active: false,
     // },
-   
     // Add more products as needed
   ];
 
@@ -90,7 +87,7 @@ const EmergencyContact = () => {
   };
 
   return (
-    <div className="font-semibold bg-[#F9F9FB]  px-5 py-5 text-[1rem]  ">
+    <div className="font-semibold bg-secondary-500  px-5 py-5 text-[1rem]  ">
       <div className="flex gap-3">
         <img
           src="https://6valley.6amtech.com/public/assets/back-end/img/add-new-delivery-man.png"
@@ -114,7 +111,7 @@ const EmergencyContact = () => {
                 <input
                   type="text"
                   placeholder="Contact Name"
-                  className="mt-1 block w-full border px-3 py-2 font-medium text-base rounded-md border-gray-300 shadow-sm outline-none hover:border-primary "
+                  className="mt-1 block w-full border px-3 py-2 font-medium text-base rounded-md border-gray-300 shadow-sm outline-none hover:border-primary-500 "
                 />
               </div>
 
@@ -143,7 +140,7 @@ const EmergencyContact = () => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-primary hover:bg-primary-dark inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                    className="bg-primary-500 hover:bg-primary-dark-500 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                     style={{ color: "white" }}
                   >
                     Submit
@@ -162,7 +159,7 @@ const EmergencyContact = () => {
         <div className="table-responsive">
           <div className="overflow-x-auto">
             <table className="min-w-full  bg-white shadow-md rounded-lg overflow-hidden">
-              <thead className="bg-secondary font-semibold">
+              <thead className="bg-secondary-500 font-semibold">
                 <tr>
                   <th className="px-4 py-2">SL</th>
                   <th className="px-4 py-2"> Name</th>
@@ -199,7 +196,7 @@ const EmergencyContact = () => {
                           <Switcher />
                           <span
                             className={`slider ${
-                              list.name ? "bg-blue-500" : "bg-gray-300"
+                              list.name ? "bg-primary-500" : "bg-gray-300"
                             }`}
                           />
                         </label>

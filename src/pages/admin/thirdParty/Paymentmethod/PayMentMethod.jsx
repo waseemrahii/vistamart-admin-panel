@@ -49,7 +49,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -65,7 +65,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Access Token *"
                   value=""
@@ -80,7 +80,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Public Key **"
                   value=""
@@ -95,7 +95,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Payment Gateway Title *"
                   value=""
@@ -110,7 +110,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -120,7 +120,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-5"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-5"
                   style={{ color: "white" }}
                 >
                   Save
@@ -179,7 +179,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -195,7 +195,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Access Token *"
                   value=""
@@ -210,7 +210,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Public Key **"
                   value=""
@@ -225,7 +225,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Payment Gateway Title *"
                   value=""
@@ -240,7 +240,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -250,7 +250,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-5"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-5"
                   style={{ color: "white" }}
                 >
                   Save
@@ -309,7 +309,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -325,7 +325,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Client Id *"
                   value=""
@@ -340,7 +340,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Client Secret**"
                   value=""
@@ -356,7 +356,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Payment Gateway Title *"
                   value=""
@@ -371,7 +371,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -381,7 +381,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-5"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-5"
                   style={{ color: "white" }}
                 >
                   Save
@@ -440,7 +440,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -456,7 +456,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Api Key*"
                   value=""
@@ -471,7 +471,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Published Key **"
                   value=""
@@ -487,7 +487,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Payment Gateway Title *"
                   value=""
@@ -502,7 +502,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -512,7 +512,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-4 py-2"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-4 py-2"
                   style={{ color: "white" }}
                 >
                   Save
@@ -571,7 +571,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -587,7 +587,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Api Key*"
                   value=""
@@ -602,7 +602,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Api Secret **"
                   value=""
@@ -618,7 +618,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Payment Gateway Title *"
                   value=""
@@ -633,7 +633,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -643,7 +643,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-5"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-5"
                   style={{ color: "white" }}
                 >
                   Save
@@ -701,7 +701,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -717,7 +717,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Store Id*"
                   value=""
@@ -732,7 +732,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Store Password*"
                   value=""
@@ -748,7 +748,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Payment Gateway Title *"
                   value=""
@@ -763,7 +763,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -773,7 +773,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-5"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark-500 px-5"
                   style={{ color: "white" }}
                 >
                   Save
@@ -832,7 +832,7 @@ const PayMentMethod = () => {
                 <select
                   name=""
                   id=""
-                  className="form-label form-control outline-none hover:border-primary mb-10px "
+                  className="form-label form-control outline-none hover:border-primary-500 mb-10px "
                 >
                   <option value="">All</option>
                   <option value="">Live </option>
@@ -848,7 +848,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Profile Id*"
                   value=""
@@ -863,7 +863,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Server Key*"
                   value=""
@@ -879,7 +879,7 @@ const PayMentMethod = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control outline-none hover:border-primary"
+                  className="form-control outline-none hover:border-primary-500"
                   name="access_token"
                   placeholder="Base Url *"
                   value=""
@@ -894,7 +894,7 @@ const PayMentMethod = () => {
                   Choose Logo <span className="text-danger">*</span>
                 </label>
                 <input
-                  className="block form-control outline-none hover:border-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  className="block form-control outline-none hover:border-primary-500 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                   id="file_input"
                   type="file"
                 />
@@ -904,7 +904,7 @@ const PayMentMethod = () => {
               <div className="text-right mb-20px">
                 <button
                   type="submit"
-                  className="btn bg-primary text-white hover:bg-primary-dark px-5"
+                  className="btn bg-primary-500 text-white hover:bg-primary-dark px-5"
                   style={{ color: "white" }}
                 >
                   Save

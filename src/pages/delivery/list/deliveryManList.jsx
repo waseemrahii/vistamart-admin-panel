@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { FaChevronDown, FaFileImport } from "react-icons/fa";
+import { FaChevronDown, FaEdit, FaFileImport, FaTrash } from "react-icons/fa";
 import { FiSearch, FiEdit, FiTrash } from "react-icons/fi"; // Importing icons
 import { CiImport } from "react-icons/ci";
 import { BiHide } from "react-icons/bi";
 import Switcher from "../../../components/FormInput/Switcher";
 const DeliveryManList = () => {
- 
   const list = [
     {
       id: 27,
@@ -25,7 +24,6 @@ const DeliveryManList = () => {
     //   img: "https://6valley.6amtech.com/storage/app/public/category/2023-06-13-64881a1265b65.png",
     //   priority: 5,
     // },
-  
   ];
   const deliveryMen = [
     // {
@@ -39,7 +37,6 @@ const DeliveryManList = () => {
     //   image:
     //     "https://6valley.6amtech.com/storage/app/public/delivery-man/2022-11-20-6379f432228b8.png", // Replace with actual image path
     // },
-   
     // Add more delivery men as needed
   ];
   return (
@@ -63,7 +60,7 @@ const DeliveryManList = () => {
               placeholder="Search by name, contact info"
             />
             <button
-              className="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark "
+              className="bg-primary-500 text-white py-2 px-4 rounded-md hover:bg-primary-dark-500 "
               style={{ color: "white" }}
             >
               Search
@@ -71,12 +68,12 @@ const DeliveryManList = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center md:flex-row gap-3 w-40 md:w-auto">
-            <button className="border-2 border-green-500  bg-white text-blue-300 items-center flex-grow flex gap-2 py-2 px-4 rounded-md hover:bg-primary-dark">
+            <button className="border-2 border-primary-500 bg-white text-primary-500 items-center flex-grow flex gap-2 py-2 px-4 rounded-md hover:bg-primary-dark-500">
               <FaChevronDown />
               Export
             </button>
             <button
-              className="bg-primary text-white text-nowrap flex-grow py-2 px-4 rounded-md hover:bg-primary-dark"
+              className="bg-primary-500 text-white text-nowrap flex-grow py-2 px-4 rounded-md hover:bg-primary-dark-500"
               style={{ color: "white" }}
             >
               + Add Delivery Man
@@ -139,7 +136,7 @@ const DeliveryManList = () => {
                           />
                           <span
                             className={`slider ${
-                              deliveryMan.name ? "bg-blue-500" : "bg-gray-300"
+                              deliveryMan.name ? "bg-primary-500" : "bg-gray-300"
                             }`}
                           />
                         </label> */}
@@ -151,13 +148,13 @@ const DeliveryManList = () => {
                       <div className="flex justify-center gap-2">
                         <button
                           type="button"
-                          className="btn btn-outline-primary btn-sm text-blue-500 border-blue-500"
+                          className="btn btn-outline-primary-500 btn-sm text-primary-500 border-primary-500"
                         >
-                          <FiEdit />
+                          <FaEdit />
                         </button>
                         <button
                           type="button"
-                          className="btn btn-outline-primary btn-sm text-green-500 border-green-800"
+                          className="btn btn-outline-primary-500 btn-sm text-primary-500  border-primary-500"
                         >
                           <BiHide />
                         </button>
@@ -165,7 +162,7 @@ const DeliveryManList = () => {
                           type="button"
                           className="btn btn-outline-danger btn-sm text-pink-500 border-pink-500"
                         >
-                          <FiTrash />
+                          <FaTrash />
                         </button>
                       </div>
                     </td>
