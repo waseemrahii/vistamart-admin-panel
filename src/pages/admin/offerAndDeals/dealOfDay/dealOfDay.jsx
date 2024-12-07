@@ -35,6 +35,7 @@ const DealOfTheDay = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  console.log("deal of the day =", deals)
   const handleProductSelect = (product) => {
     setSelectedProduct(product);
     setDropdownOpen(false);
@@ -157,7 +158,7 @@ const DealOfTheDay = () => {
         <h2 className="h1 mb-0 text-capitalize d-flex gap-2">
           <img
             width="20"
-            src="https://6valley.6amtech.com/public/assets/back-end/img/deal_of_the_day.png"
+            src="/deal_of_the_day.png"
             alt=""
           />
           Deal of the Day
@@ -178,7 +179,7 @@ const DealOfTheDay = () => {
                       English (EN)
                     </a>
                   </li>
-                  <li className="nav-item text-capitalize">
+                  {/* <li className="nav-item text-capitalize">
                     <a
                       className="nav-link lang-link"
                       href="javascript:;"
@@ -204,7 +205,7 @@ const DealOfTheDay = () => {
                     >
                       Hindi (IN)
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
                 <div className="form-group">
                   <div className="row lang-form" id="en-form">
@@ -317,54 +318,57 @@ const DealOfTheDay = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {deals && deals.length > 0 ? (
-                    deals.map((dealItem, index) => (
-                      <tr key={dealItem._id}>
-                        <td>{index + 1}</td>
-                        <td>
-                          {dealItem.products && dealItem.products.length > 0
-                            ? dealItem.products[0].name
-                            : "N/A"}
-                        </td>
-                        <td>{dealItem.title}</td>
-                        <td>
-                          <label className="switcher">
-                            <input
-                              type="checkbox"
-                              className="switcher_input"
-                              checked={dealItem.status === "active"}
-                              onChange={() =>
-                                toggleStatus(dealItem._id, dealItem.status)
-                              }
-                            />
-                            <span className="switcher_control"></span>
-                          </label>
-                        </td>
-                        <td className="text-center flex justify-center">
-                          <div className="d-flex gap-2">
-                            <button
-                              title="Edit"
-                              className="btn btn-sm border-green-400 hover:bg-green-400 hover:text-white"
-                              onClick={() => handleEdit(dealItem)}
-                            >
-                              <FaPen />
-                            </button>
-                            <ActionButton
-                              onClick={() => handleDelete(dealItem._id)}
-                              icon={FaTrash}
-                              className="ml-4"
-                              label="Delete"
-                            />
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="5">No deals available</td>
-                    </tr>
-                  )}
-                </tbody>
+  {deals ? (
+    Array.isArray(deals) && deals.length > 0 ? (
+      deals.map((dealItem, index) => (
+        <tr key={dealItem._id}>
+          <td>{index + 1}</td>
+          {console.log("dealitem----", dealItem)}
+          <td>{dealItem.products[0]?.name || "N/A"}</td>
+          <td>{dealItem.title || "N/A"}</td>
+          <td>
+            <label className="switcher">
+              <input
+                type="checkbox"
+                className="switcher_input"
+                checked={dealItem.status === "active"}
+                onChange={() => toggleStatus(dealItem._id, dealItem.status)}
+              />
+              <span className="switcher_control"></span>
+            </label>
+          </td>
+          <td className="text-center flex justify-center">
+            <div className="d-flex gap-2">
+              <button
+                title="Edit"
+                className="btn btn-sm border-green-400 hover:bg-green-400 hover:text-white"
+                onClick={() => handleEdit(dealItem)}
+              >
+                <FaPen />
+              </button>
+              <ActionButton
+                onClick={() => handleDelete(dealItem._id)}
+                icon={FaTrash}
+                className="ml-4"
+                label="Delete"
+              />
+            </div>
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="5">No deals available</td>
+      </tr>
+    )
+  ) : (
+    <tr>
+      <td colSpan="5">Loading deals...</td>
+    </tr>
+  )}
+</tbody>
+
+
               </table>
             </div>
           </div>

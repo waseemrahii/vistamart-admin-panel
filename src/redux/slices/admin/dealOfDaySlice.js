@@ -18,7 +18,7 @@ export const fetchDeals = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-      return response.data.docs; // Adjust based on your API response structure
+      return response.data.doc; // Adjust based on your API response structure
     } catch (error) {
       const errorMessage = ErrorMessage(error);
       return rejectWithValue(errorMessage);

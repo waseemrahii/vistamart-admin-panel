@@ -104,7 +104,7 @@ const EmployeeDetails = () => {
                         {role?.modules.map((module, index) => (
                           <span
                             key={index}
-                            className="badge bg-primary-500 text-capitalize"
+                            className="badge  text-capitalize"
                           >
                             {module.replace("-", " ")}
                           </span>

@@ -18,6 +18,7 @@ import Sidebar from "./components/Layout/sidebar/sidebar.jsx";
 import LoadingSpinner from "./components/LoodingSpinner/LoadingSpinner.jsx";
 import ForgotPassword from "./components/ForgetPassword/forgetPassword.jsx";
 import ResetPassword from "./components/ForgetPassword/ResetPassword.jsx";
+import { ColorScheam } from "./utils/ColorScheam.js";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -27,7 +28,14 @@ function App() {
   const [loading, setLoading] = useState(true); // Local loading state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [user, setUser] = useState(null);
+  useEffect(() => {
+    const initializeColors = async () => {
+      await ColorScheam();
+      setLoading(false); // Finish loading after colors are applied
+    };
 
+    initializeColors();
+  }, []);
   useEffect(() => {
     // Check for authentication on mount
     const token = localStorage.getItem("token");
@@ -62,6 +70,7 @@ function App() {
           {isLoggedIn ? (
             <>
               <Header user={user} handleLogout={handleLogout} />
+
               <div className="flex flex-1">
                 <div
                   className={`fixed inset-0 z-30 ${

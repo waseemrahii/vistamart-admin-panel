@@ -18,19 +18,21 @@ import TableList from "./TableList";
 import { Link } from "react-router-dom";
 import apiConfig from "../../../../../config/apiConfig";
 import Switcher from "../../../../../components/FormInput/Switcher";
-import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import usePagination from "../../../../../hooks/usePagination";
 
 const InHouseProductList = ({
   initialTitle = "Product List",
   initialFilters = {},
 }) => {
   const dispatch = useDispatch();
-  const { loading, error, products, results } = useSelector(
+  const { loading, error, products,totalDocs, results, currentPage, totalPages } = useSelector(
     (state) => state.product
   );
   const { categories, brands } = useSelector((state) => state.category);
   const [sortBy, setSortBy] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
+  const { pagination, setPage } = usePagination(); 
 
   const [filters, setFilters] = useState({
     brand: initialFilters.brand || "",
@@ -42,6 +44,8 @@ const InHouseProductList = ({
     vendorNew4Days: initialFilters.vendorNew4Days || false,
     minPrice: initialFilters.minPrice || "",
     maxPrice: initialFilters.maxPrice || "",
+    page: pagination.page,
+    limit: pagination.limit,
   });
 
   useEffect(() => {
@@ -114,6 +118,9 @@ const InHouseProductList = ({
     }
   };
 
+  const handlePageChange = (page) => {
+    setFilters((prev) => ({ ...prev, page })); // Update page number
+  };
   return (
     <div className="content container-fluid">
       <div className="mb-3">
@@ -121,7 +128,7 @@ const InHouseProductList = ({
           <img src="/inhouse-product-list.png" alt="In House Product List" />
           {initialTitle}
           <span className="badge badge-soft-dark radius-50 fz-14 ml-1">
-            {results}
+            {totalDocs}
           </span>
         </h2>
       </div>

@@ -139,7 +139,8 @@ export const updateProductStatus = createAsyncThunk(
 const initialState = {
   status: "", // Will store "success" or other status from the API response
   cached: false, // Will store the cached status
-  results: 0,     // Number of results returned
+  results: 0, 
+  totalDocs:0,    // Number of results returned
   currentPage: 1, // Number of results returned
   totalPages: 1, // Number of results returned
   products: [], // Array of product objects
@@ -160,10 +161,11 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
-        const { status, cached, results, doc ,totalPages, currentPage} = action.payload;
+        const { status, cached, results, doc ,totalPages, currentPage,totalDocs} = action.payload;
         state.status = status || "";
         state.cached = cached || false;
         state.results = results || 0;
+        state.totalDocs = totalDocs || 0;
         state.currentPage = currentPage || 1;
         state.totalPages = totalPages || 1;
         state.products = doc || []; // Update with the product list
