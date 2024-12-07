@@ -6,30 +6,34 @@ import { deleteProduct, fetchProducts, toggleFeatured, updateProductStatus } fro
 import { fetchBrands, fetchCategories } from "../../../../../redux/slices/admin/categorybrandSlice";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 import Pagination from "../../../../../components/Pagination";
-import TableList from "../../../../../components/FormInput/TableList";
+import TableList from "./TableList";
 import { Link } from "react-router-dom";
 import apiConfig from "../../../../../config/apiConfig";
 import Switcher from "../../../../../components/FormInput/Switcher";
 import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
-
+import usePagination from "../../../../../hooks/usePagination";
 const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {} }) => {
   const dispatch = useDispatch();
-  const { loading, error, products, results } = useSelector((state) => state.product);
+  const { loading, error, products, results, totalPages, currentPage } = useSelector((state) => state.product);
   const { categories, brands } = useSelector((state) => state.category);
-  const [sortBy, setSortBy] = useState('name');
-  const [sortOrder, setSortOrder] = useState('asc');
- 
+
+  const { pagination, setPage } = usePagination(); // Defaults are now managed centrally
+
   const [filters, setFilters] = useState({
     brand: initialFilters.brand || "",
     category: initialFilters.category || "",
     searchValue: initialFilters.searchValue || '',
     userType: initialFilters.userType || '',
-    userId : initialFilters.userId || '',
+    userId: initialFilters.userId || '',
     status: initialFilters.status || '',
     vendorNew4Days: initialFilters.vendorNew4Days || false,
     minPrice: initialFilters.minPrice || '', 
-    maxPrice: initialFilters.maxPrice || ''
+    maxPrice: initialFilters.maxPrice || '',
+    // page: 2, // Default page
+    page: pagination.page, // Use the centralized pagination state
+    limit: pagination?.limit, // Default limit per page
   });
+
 
 
   useEffect(() => {
@@ -45,62 +49,20 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
       minPrice: filters.minPrice || undefined,
       maxPrice: filters.maxPrice || undefined,
     };
-  
     dispatch(fetchProducts(cleanFilters));
     dispatch(fetchCategories());
     dispatch(fetchBrands());
-  }, [filters, sortBy, sortOrder, dispatch]);
-  
-   
- 
- 
+  }, [filters, dispatch]);
 
-  const handleSort = (field) => {
-    const order = sortBy === field && sortOrder === 'asc' ? 'desc' : 'asc';
-    setSortBy(field);
-    setSortOrder(order);
+  const handlePageChange = (page) => {
+    setFilters((prev) => ({ ...prev, page })); // Update the page number
   };
-
-  const handleToggleFeatured = async (product) => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to ${product.isFeatured ? 'remove' : 'add'} this product as featured?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
-    });
-    if (result.isConfirmed) {
-      try {
-        await dispatch(toggleFeatured({ productId: product._id, isFeatured: !product.isFeatured })).unwrap();
-        Swal.fire('Success', 'Product status updated successfully!', 'success');
-      } catch (error) {
-        Swal.fire('Error', error.message, 'error');
-      }
-    }
-  };
-
-  const handleDeleteProduct = async (productId) => {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete this product?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No',
-    });
-    if (result.isConfirmed) {
-      try {
-        await dispatch(deleteProduct(productId)).unwrap();
-        Swal.fire('Deleted!', 'Product has been deleted.', 'success');
-      } catch (error) {
-        Swal.fire('Error', error.message, 'error');
-      }
-    }
-  };
+      // Rest of the component remains the same
+      // const handlePageChange = (page) => setPage(page);
+    
 
   return (
-    <div className="content container-fluid ">
+    <div className="content container-fluid">
       <div className="mb-3">
         <h2 className="h1 mb-0 text-capitalize d-flex gap-2">
           <img src="/inhouse-product-list.png" alt="In House Product List" />
@@ -136,7 +98,6 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
                   key: 'name',
                   label: 'Product Name',
                   sortable: true,
-                  onClick: () => handleSort('name'),
                   render: (product) => (
                     <Link to="#" className="media align-items-center gap-2">
                       <img
@@ -153,14 +114,11 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
                   key: 'price',
                   label: 'Unit Price',
                   sortable: true,
-                  onClick: () => handleSort('price'),
                   render: (product) => `PKR ${product?.price}`,
                 },
                 {
                   key: 'brand',
                   label: 'Brand',
-                  sortable: true,
-                  onClick: () => handleSort('brand'),
                   render: (product) => `${product?.brand?.name}`,
                 },
                 {
@@ -205,15 +163,18 @@ const InHouseProductList = ({ initialTitle = 'Product List', initialFilters = {}
                   ),
                 },
               ]}
-              searchPlaceholder="Search products..."
-              itemsPerPage={10}
+              itemsPerPage={filters.limit}
             />
           </Suspense>
         )}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        paginate={handlePageChange}
+      />
     </div>
   );
 };
 
 export default InHouseProductList;
-

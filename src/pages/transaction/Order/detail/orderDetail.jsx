@@ -23,7 +23,7 @@ const OrderDetails = () => {
   const navigate = useNavigate(); // Initialize useNavigate hook
 
   const [showModal, setShowModal] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState(true);
+  const [paymentStatus, setPaymentStatus] = useState();
   const fallbackImage = "/image-place-holder.png"; // Replace with the path to your fallback image
 
   useEffect(() => {

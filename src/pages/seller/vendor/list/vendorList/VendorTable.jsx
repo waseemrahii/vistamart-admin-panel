@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import TableList from "../../../../../components/FormInput/TableList";
 import { ToastContainer } from "react-toastify"; // Import ToastContainer for notifications
 import ActionButton from "../../../../../components/ActionButton/Action";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 import apiConfig from "../../../../../config/apiConfig";
+import TableList from "./TableList";
 
-const VendorTable = memo(({ onDeleteVendor, vendors }) => {
+const VendorTable = memo(({ onDeleteVendor, vendors, pagenations }) => {
   // Define columns for the TableList
   const columns = [
     { key: "index", label: "SL", render: (_, index) => index + 1 },
@@ -111,11 +111,15 @@ const VendorTable = memo(({ onDeleteVendor, vendors }) => {
             </div>
           }
         >
+          {/* {
+            console.log("pageniation in table=====", pagenations)
+          } */}
           <TableList
             title="Vendor Management"
             imageSrc="/add-new-seller.png"
             tableTitle="List of Vendors"
             listData={vendors}
+            pagenations={pagenations} // Pass the fetched pagenations for pagination
             columns={columns}
             exportFileName="vendors"
             headerActions={
