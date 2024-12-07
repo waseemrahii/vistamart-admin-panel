@@ -52,23 +52,48 @@ export const registerVendor = createAsyncThunk(
 );
 
 // Thunk for fetching vendors
+// export const fetchVendors = createAsyncThunk(
+//   'vendors/fetchVendors',
+//   async (_, { rejectWithValue }) => {
+//     const { token } = getAuthData(); // Get the token from auth data
+//     try {
+//       const vendorsResponse = await axiosInstance.get(API_URL, {
+//         params: searchParams,
+//         headers: { Authorization: `Bearer ${token}` },
+//       });
+//       const vendorsData = vendorsResponse.data;
+
+//       return vendorsData;
+//     } catch (error) {
+//       const errorMessage = ErrorMessage(error);  // Use the error handler
+//       return rejectWithValue(errorMessage);
+//     }
+//   }
+// );
+
+
 export const fetchVendors = createAsyncThunk(
   'vendors/fetchVendors',
-  async (_, { rejectWithValue }) => {
+  async (searchParams = {}, { rejectWithValue }) => {
     const { token } = getAuthData(); // Get the token from auth data
     try {
+
+      console.log('Fetching vendors with params:', searchParams);
       const vendorsResponse = await axiosInstance.get(API_URL, {
+        params: searchParams,
         headers: { Authorization: `Bearer ${token}` },
       });
-      const vendorsData = vendorsResponse.data.doc;
 
-      return vendorsData;
+      console.log('Response:', vendorsResponse.data);
+      return vendorsResponse.data;
     } catch (error) {
-      const errorMessage = ErrorMessage(error);  // Use the error handler
+      const errorMessage = ErrorMessage(error); // Handle and log errors
+      console.error('Fetch Vendors Error:', errorMessage);
       return rejectWithValue(errorMessage);
     }
   }
 );
+
 
 // Thunk for fetching vendor details by ID
 export const fetchVendorById = createAsyncThunk(
@@ -127,12 +152,25 @@ export const deleteVendor = createAsyncThunk(
 
 const vendorSlice = createSlice({
   name: 'vendors',
+  // initialState: {
+  //   vendors: [], // Ensure this matches what you're trying to access
+  //   vendorDetails: null, // To store details of a specific vendor
+  //   loading: false,
+  //   error: null,
+  // },
   initialState: {
-    vendors: [], // Ensure this matches what you're trying to access
+    vendors: [], // List of vendors
     vendorDetails: null, // To store details of a specific vendor
     loading: false,
     error: null,
+    pagination: {
+      totalDocs: 0,
+      currentPage: 1,
+      totalPages: 0,
+      resultsPerPage: 10,
+    }, // Pagination data
   },
+  
   reducers: {
     resetError: (state) => {
       state.error = null;
@@ -167,7 +205,15 @@ const vendorSlice = createSlice({
       })
       .addCase(fetchVendors.fulfilled, (state, action) => {
         state.loading = false;
-        state.vendors = action.payload;
+        const { doc, totalDocs, currentPage, totalPages, results } = action.payload;
+  
+        state.vendors = doc || []; // Ensure vendors are updated
+state.pagination = {
+  totalDocs: totalDocs || 0,
+  currentPage: currentPage || 1,
+  totalPages: totalPages || 0,
+  resultsPerPage: results || 10,
+};
       })
       .addCase(fetchVendors.rejected, (state, action) => {
         state.loading = false;

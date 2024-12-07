@@ -9,6 +9,8 @@ import {
 } from "../../../../../redux/slices/seller/vendorSlice";
 import VendorTable from "./VendorTable";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
+import usePagination from "../../../../../hooks/usePagination";
+import Pagination from "../../../../../components/Pagination";
 
 // Lazy load VendorSearch and VendorTable components
 
@@ -16,13 +18,14 @@ const VendorList = () => {
   const dispatch = useDispatch();
   const [imageLoading, setImageLoading] = useState({});
   const vendors = useSelector((state) => state.vendor?.vendors || []);
+  const paginations = useSelector((state) => state.vendor?.pagination || []);
   const loading = useSelector((state) => state.vendor?.loading || false);
   const error = useSelector((state) => state.vendor?.error || null);
-  const [deleting, setDeleting] = useState(false); // State to manage deletion loading
-
+  const [deleting, setDeleting] = useState(false); 
+  const { pagination, setPage } = usePagination(); 
   useEffect(() => {
-    dispatch(fetchVendors());
-  }, [dispatch]);
+    dispatch(fetchVendors({ page: pagination.page, limit: pagination.limit }));
+  }, [dispatch, pagination.page, pagination.limit]);
 
   useEffect(() => {
     if (error) {
@@ -35,6 +38,9 @@ const VendorList = () => {
       dispatch(resetError()); // Reset error after showing
     }
   }, [error, dispatch]);
+
+
+ 
 
   const handleDeleteVendor = async (vendorId) => {
     const result = await Swal.fire({
@@ -51,7 +57,8 @@ const VendorList = () => {
         try {
           setDeleting(true); // Show the loading spinner
           await dispatch(deleteVendor({ vendorId }));
-          await dispatch(fetchVendors()); // Fetch updated vendors after deletion
+          await dispatch(fetchVendors());
+
           return true;
         } catch (error) {
           Swal.showValidationMessage(`Request failed: ${error}`);
@@ -103,14 +110,31 @@ const VendorList = () => {
       </div>
     );
 
+    const handlePageChange = (page) => {
+      setPage(page); // Update the page number using usePagination hook
+    };
+ 
+    console.log("pageination response from api  ======", paginations)
+    console.log("use pagpageination ======", pagination)
+
   return (
+   <>
+   
     <VendorTable
       vendors={memoizedVendors}
+      pagenations = { paginations }
       onDeleteVendor={handleDeleteVendor}
       onUpdateStatus={handleUpdateStatus}
       setImageLoading={setImageLoading}
       imageLoading={imageLoading}
     />
+
+     <Pagination
+        currentPage={paginations?.currentPage}
+        totalPages={paginations?.totalPages}
+        paginate={handlePageChange}
+      />
+</>
   );
 };
 

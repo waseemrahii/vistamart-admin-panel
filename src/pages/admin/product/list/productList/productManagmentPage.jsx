@@ -14,12 +14,11 @@ import {
 } from "../../../../../redux/slices/admin/categorybrandSlice";
 import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 import Pagination from "../../../../../components/Pagination";
-import TableList from "../../../../../components/FormInput/TableList";
+import TableList from "./TableList";
 import { Link } from "react-router-dom";
 import apiConfig from "../../../../../config/apiConfig";
 import Switcher from "../../../../../components/FormInput/Switcher";
 import { FiEdit, FiEye, FiTrash } from "react-icons/fi";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
 const InHouseProductList = ({
   initialTitle = "Product List",
@@ -116,7 +115,7 @@ const InHouseProductList = ({
   };
 
   return (
-    <div className="content container-fluid ">
+    <div className="content container-fluid">
       <div className="mb-3">
         <h2 className="h1 mb-0 text-capitalize d-flex gap-2">
           <img src="/inhouse-product-list.png" alt="In House Product List" />
@@ -231,12 +230,16 @@ const InHouseProductList = ({
                   ),
                 },
               ]}
-              searchPlaceholder="Search products..."
-              itemsPerPage={10}
+              itemsPerPage={filters.limit}
             />
           </Suspense>
         )}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        paginate={handlePageChange}
+      />
     </div>
   );
 };
