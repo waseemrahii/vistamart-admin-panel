@@ -92,9 +92,9 @@ const TableList = memo(
           <div className="flex items-start justify-between flex-col md:flex-row gap-4 px-3 py-4">
             <div className="flex gap-3 justify-center items-center">
               <h4 className="font-semibold text-lg">{tableTitle}</h4>
-              <span className="badge badge-soft-dark ml-2">
+              {/* <span className="badge badge-soft-dark ml-2">
                 {filteredData.length}
-              </span>
+              </span> */}
             </div>
             <div className="flex flex-col md:flex-row items-end gap-4">
               <form onSubmit={(e) => e.preventDefault()} className="flex-grow">

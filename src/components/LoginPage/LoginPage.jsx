@@ -148,8 +148,13 @@ const LoginPage = ({ setIsLoggedIn }) => {
       <div className="text-center mt-4">
   <Link to="/forgot-password" className="text-primary hover:underline"
   >
-    Forgot Password?
+    Forgot Password By Email?
   </Link>
+  {/* <Link to="/forgot-password-sms" className="text-primary hover:underline"
+  >
+    Forgot Password By Number?
+  </Link> */}
+ 
 </div>
       </div>
     </div>

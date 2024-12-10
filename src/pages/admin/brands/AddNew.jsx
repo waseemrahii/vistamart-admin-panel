@@ -41,25 +41,11 @@ const AddNewBrand = () => {
     }
   }
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setSelectedFile(file);
-  //     const objectUrl = URL.createObjectURL(file);
-  //     setImagePreview(objectUrl);
-
-  //     // const reader = new FileReader();
-  //     // reader.readAsDataURL(file);
-  //     // reader.onloadend = () => {
-  //     //   setImageBase64(reader.result);
-  //     // };
-  //   }
-  // };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
-    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+    const maxSizeInBytes = 2 * 1024 * 1024; // 5MB
 
     if (!file) return;
 
@@ -82,12 +68,6 @@ const AddNewBrand = () => {
     const objectUrl = URL.createObjectURL(file);
     setImagePreview(objectUrl);
 
-    // Optional: Convert the image file to Base64 format
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onloadend = () => {
-    //   setImageBase64(reader.result);
-    // };
 
     // Revoke object URL when the component unmounts or file changes to avoid memory leaks
     return () => URL.revokeObjectURL(objectUrl);

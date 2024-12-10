@@ -19,6 +19,7 @@ import LoadingSpinner from "./components/LoodingSpinner/LoadingSpinner.jsx";
 import ForgotPassword from "./components/ForgetPassword/forgetPassword.jsx";
 import ResetPassword from "./components/ForgetPassword/ResetPassword.jsx";
 import { ColorScheam } from "./utils/ColorScheam.js";
+import ForgotPasswordViaPhone from "./components/ForgetPassword/ForgotPasswordViaPhone.jsx";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -99,6 +100,7 @@ function App() {
           ) : (
             <Routes>
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/forgot-password-sms" element={<ForgotPasswordViaPhone />} />
               <Route
                 path="/auth/reset-password/:token"
                 element={<ResetPassword />}
