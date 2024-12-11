@@ -16,7 +16,7 @@ import AllRoutes from "./Routes.jsx";
 import "./App.css";
 import Sidebar from "./components/Layout/sidebar/sidebar.jsx";
 import LoadingSpinner from "./components/LoodingSpinner/LoadingSpinner.jsx";
-import ForgotPassword from "./components/ForgetPassword/forgetPassword.jsx";
+import ForgotPassword from "./components/ForgetPassword/ForgetPassword.jsx";
 import ResetPassword from "./components/ForgetPassword/ResetPassword.jsx";
 import { ColorScheam } from "./utils/ColorScheam.js";
 import ForgotPasswordViaPhone from "./components/ForgetPassword/ForgotPasswordViaPhone.jsx";
