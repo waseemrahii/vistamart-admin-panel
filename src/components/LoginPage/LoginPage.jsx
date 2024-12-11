@@ -120,7 +120,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
                 id="rememberMe"
                 name="remember"
                 checked={rememberMe}
-                onChange={handleRememberMeChange}
+                // onChange={handleRememberMeChange}
               />
               <label
                 className="custom-control-label text-gray-500 mt-2"
@@ -137,7 +137,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
           ></div> */}
           <button
             type="submit"
-            className={`btn btn-block p-3 rounded bg-primary hover:bg-green-400 hover:text-black text-white font-semibold mt-0 ${loading ? "opacity-50 cursor-not-allowed" : ""}` }
+            className={`btn btn-block p-3 rounded bg-primary-500 hover:bg-primary-dark-500 hover:text-black text-white font-semibold mt-0 ${loading ? "opacity-50 cursor-not-allowed" : ""}` }
             disabled={loading} // Disable button while loading
            style={{color:"white"}}
        >
@@ -145,15 +145,12 @@ const LoginPage = ({ setIsLoggedIn }) => {
           </button>
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         </form>
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 flex flex-col gap-3">
   <Link to="/forgot-password" className="text-primary hover:underline"
   >
     Forgot Password By Email?
   </Link>
-  {/* <Link to="/forgot-password-sms" className="text-primary hover:underline"
-  >
-    Forgot Password By Number?
-  </Link> */}
+ 
  
 </div>
       </div>

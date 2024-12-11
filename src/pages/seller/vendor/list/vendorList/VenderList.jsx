@@ -114,8 +114,6 @@ const VendorList = () => {
       setPage(page); // Update the page number using usePagination hook
     };
  
-    console.log("pageination response from api  ======", paginations)
-    console.log("use pagpageination ======", pagination)
 
   return (
    <>

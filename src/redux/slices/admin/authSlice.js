@@ -12,7 +12,7 @@ const initialState = {
     loading: false,
 };
 
-// Async thunk for login
+// Async thunk for l///ogin
 export const login = createAsyncThunk(
     'auth/login',
     async ({ email, password, role }, thunkAPI) => {
@@ -91,3 +91,7 @@ export const selectAuthLoading = (state) => state.auth.loading;
 // Export actions and reducer
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
+
+
+
+

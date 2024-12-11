@@ -3,20 +3,20 @@ import "./BussniesWallet.css";
 import axios from "axios";
 import LoadingSpinner from "../../components/LoodingSpinner/LoadingSpinner";
 import apiConfig from '../../config/apiConfig';
+import { getAuthData } from "../../utils/authHelper";
 // import { getAuthData } from '../../utils/authHelper';
 
 const ApiUrl = `${apiConfig.admin}`;
 
 const BusinessAnalytics = () => {
   
-  const getToken = () => localStorage.getItem('token');
   const [businessAnalytics, setBusinessAnalytics] = useState() ;
 
   const [loading ,setLoading ] = useState(true);
   useEffect(()=>{
     async function walletAnalytics(){
       try {
-        const token = getToken();
+        const { token } = getAuthData(); 
         const response  =await axios.get(`${ApiUrl}/business-analytics` ,{
         headers: {
           Authorization: `Bearer ${token}`,

@@ -22,8 +22,7 @@ const Pagination = ({
     }
   }
 
-   console.log("current page =====", currentPage)
-   console.log("totall pages =====", totalPages)
+  
   return (
     <div className="flex items-center justify-center gap-3 my-6">
       {/* Previous Button */}
